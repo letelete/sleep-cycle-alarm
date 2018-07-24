@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?listStyle">
+
+        <TextView
+            android:id="@+id/hourDigitsInListTextView"
+            style="?hourDigitsInListText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HH:MM" />
+
+        <TextView
+            android:id="@+id/clickableObjectHintTextView"
+            style="?clickableObjectHintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/hourDigitsInListTextView"
+            android:text="@string/set_alarm_hint_text" />
+
+        <ImageView
+            android:id="@+id/sleepTimeImageView"
+            style="?sleepTimeIcon"
+            android:layout_below="@+id/hourDigitsInListTextView" />
+
+        <TextView
+            android:id="@+id/infoInListTextView"
+            style="?infoInListText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hourDigitsInListTextView"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/sleepTimeImageView"
+            android:text="@string/sleep_time_text" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            style="?sleepQualityIcon"
+            android:layout_below="@+id/hourDigitsInListTextView"
+            android:layout_toEndOf="@+id/infoInListTextView" />
+
+        <TextView
+            android:id="@+id/sleepQualityTextView"
+            style="?infoInListText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hourDigitsInListTextView"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/imageView"
+            android:text="@string/sleep_quality_text" />
+
+        <View
+            android:id="@+id/divider"
+            style="?dividerInListStyle"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/sleepQualityTextView" />
+
+</RelativeLayout>

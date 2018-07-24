@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Sleep Cycle Alarm</string>
+
+    <!-- TABS STRINGS -->
+    <string name="sleep_now_tab_text">Sleep now</string>
+    <string name="wake_up_at_tab_text">Wake up at</string>
+    <string name="alarms_tab_text">Alarms</string>
+    <string name="settings_tab_text">Settings</string>
+
+    <!-- CARD INFO STRINGS -->
+    <string name="card_info_title_for_sleep_now_tab">Going to sleep right now?</string>
+    <string name="card_info_content_for_sleep_now_tab">Choose any hour of listed below, so I will easily wake you up on time!</string>
+
+    <string name="card_info_title_for_wake_up_at_tab">Need to wake up on specific time?</string>
+    <string name="card_info_content_for_wake_up_at_tab">Set hour and I will create a list of hours when you should go to sleep</string>
+
+    <!-- BUTTON STRINGS -->
+    <string name="set_hour_button_text">Set hour</string>
+
+    <!-- LIST STRINGS -->
+    <string name="set_alarm_hint_text">Tap to set alarm</string>
+    <string name="edit_alarm_hint_text">Tap to edit alarm</string>
+
+    <string name="hour_mark_character">H</string>
+    <string name="minute_mark_character">MIN</string>
+
+    <string name="sleep_time_text">of sleep</string>
+    <string name="sleep_quality_text">Sleep quality:</string>
+
+    <string name="icon_sleep_time_description">Sleep time icon</string>
+    <string name="icon_sleep_quality_description">Sleep quality icon</string>
+
+    <!-- SETTINGS TAB STRINGS -->
+    <string name="language_label_text">Language</string>
+    <string name="worldclock_label_text">Wordclock</string>
+    <string name="alarm_label_text">Alarm</string>
+    <string name="theme_label_text">Theme</string>
+
+    <string name="language_title_text">Language</string>
+    <string name="language_description_text">Set preferable language, if available</string>
+
+    <string name="date_and_time_title_text">Date &amp; Time</string>
+    <string name="date_and_time_description_text">Set the system date and time</string>
+
+    <string name="alarm_silent_mode_title_text">Alarm in silent mode</string>
+    <string name="alarm_silent_mode_description_text">Play alarm even when phone is in silent mode</string>
+
+    <string name="alarms_has_same_ringtone_title_text">Alarms has the same ringtone</string>
+    <string name="alarms_has_same_ringtone_description_text">Avoid configuring ringtone for every single alarm</string>
+
+    <string name="ring_duration_title_text">Ring duration</string>
+    <string name="ring_duration_description_text">Alarms will be silenced after this time</string>
+
+    <string name="snooze_duration_title_text">Snooze duration</string>
+    <string name="snooze_duration_description_text">Alarms intervals &amp; auto silence settings</string>
+
+    <string name="manage_themes_title_text">Manage themes</string>
+    <string name="manage_themes_description_text">Enable/Disable themes</string>
+
+</resources>
