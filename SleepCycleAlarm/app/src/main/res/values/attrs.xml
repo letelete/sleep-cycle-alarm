@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="tabText" format="reference" />
+    <attr name="tabStyle" format="reference" />
+
+    <attr name="titleInfoText" format="reference" />
+    <attr name="contentInfoText" format="reference" />
+    <attr name="infoCardStyle" format="reference" />
+
+    <attr name="hourDigitsInListText" format="reference" />
+    <attr name="clickableObjectHintText" format="reference" />
+    <attr name="infoInListText" format="reference" />
+    <attr name="dividerInListStyle" format="reference" />
+    <attr name="listStyle" format="reference" />
+
+    <attr name="backgroundGradient" format="reference" />
+    <attr name="headerImage" format="reference" />
+
+    <attr name="setHourButtonStyle" format="reference" />
+
+    <attr name="sleepTimeIcon" format="reference" />
+    <attr name="sleepQualityIcon" format="reference" />
+
+</resources>
