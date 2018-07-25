@@ -21,23 +21,23 @@
 
     <style name="global_tab_style">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">@dimen/smartTabLayoutHeight</item>
         <item name="stl_clickable">true</item>
         <item name="stl_defaultTabTextAllCaps">true</item>
-        <item name="stl_defaultTabTextHorizontalPadding">16dp</item>
+        <item name="stl_defaultTabTextHorizontalPadding">@dimen/smartTabHorizontalPadding</item>
         <item name="stl_defaultTabTextSize">@dimen/small_text_size</item>
         <item name="stl_distributeEvenly">true</item>
         <item name="stl_dividerColor">@color/transparent</item>
-        <item name="stl_dividerThickness">0dp</item>
-        <item name="stl_indicatorCornerRadius">2dp</item>
+        <item name="stl_dividerThickness">@dimen/smartTabDividerThickness</item>
+        <item name="stl_indicatorCornerRadius">@dimen/smartTabIndicatorThickness</item>
         <item name="stl_indicatorGravity">bottom</item>
         <item name="stl_indicatorInterpolation">smart</item>
-        <item name="stl_indicatorThickness">4dp</item>
+        <item name="stl_indicatorThickness">@dimen/smartTabIndicatorThickness</item>
         <item name="stl_indicatorWidth">auto</item>
         <item name="stl_overlineColor">@color/transparent</item>
-        <item name="stl_overlineThickness">0dp</item>
-        <item name="stl_titleOffset">24dp</item>
-        <item name="stl_underlineThickness">1dp</item>
+        <item name="stl_overlineThickness">@dimen/smartTabOverlineThickness</item>
+        <item name="stl_titleOffset">@dimen/smartTabTitleOffset</item>
+        <item name="stl_underlineThickness">@dimen/smartTabUnderlineThickness</item>
         <item name="stl_defaultTabBackground">?attr/selectableItemBackground</item>
     </style>
 

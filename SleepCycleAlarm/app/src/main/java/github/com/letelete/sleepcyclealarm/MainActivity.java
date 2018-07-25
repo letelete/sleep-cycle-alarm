@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String sleepNowTabText= getResources().getString(R.string.sleep_now_tab_text);
+        String sleepNowTabText = getResources().getString(R.string.sleep_now_tab_text);
 
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add(FragmentPagerItem.of("halo", SleepNowFragment.class, SleepNowFragment.arguments("params:sleep_now")))
+                .add(FragmentPagerItem.of(sleepNowTabText, SleepNowFragment.class, SleepNowFragment.arguments("sleep_now")))
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewPagerTab);
         viewPagerTab.setViewPager(viewPager);
-
     }
 }
 
