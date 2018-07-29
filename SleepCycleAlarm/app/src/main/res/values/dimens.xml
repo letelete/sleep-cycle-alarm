@@ -28,4 +28,6 @@
     <dimen name="smartTabOverlineThickness">0dp</dimen>
     <dimen name="smartTabTitleOffset">24dp</dimen>
     <dimen name="smartTabUnderlineThickness">1dp</dimen>
+
+    <dimen name="fabSize">56dp</dimen>
 </resources>

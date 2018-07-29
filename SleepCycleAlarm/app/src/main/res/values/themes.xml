@@ -5,6 +5,7 @@
         <item name="sleepTimeIcon">@style/global_sleep_time_icon</item>
         <item name="sleepQualityIcon">@style/global_sleep_quality_icon</item>
         <item name="listStyle">@style/global_list_style</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // Failed to find style 'coordinatorLayoutStyle' in current theme error...
     </style>
 
     <!-- NIGHT THEME -->
@@ -30,6 +31,8 @@
         <item name="headerImage">@style/night_theme_header_image</item>
 
         <item name="setHourButtonStyle">@style/night_theme_set_hour_button_style</item>
+        <item name="settingsFABStyle">@style/night_theme_settings_fab_style</item>
+        <item name="returnFABStyle">@style/night_theme_return_fab_style</item>
 
     </style>
 
@@ -56,6 +59,9 @@
         <item name="headerImage">@style/day_theme_header_image</item>
 
         <item name="setHourButtonStyle">@style/day_theme_set_hour_button_style</item>
+        <item name="settingsFABStyle">@style/day_theme_settings_fab_style</item>
+        <item name="returnFABStyle">@style/day_theme_return_fab_style</item>
+
     </style>
 
 </resources>

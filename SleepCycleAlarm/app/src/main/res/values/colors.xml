@@ -8,7 +8,7 @@
     <color name="night_theme_color_primary">#6e76a4</color>
     <color name="night_theme_color_primary_dark">#35386E</color>
     <color name="night_theme_color_accent">#ffffff</color>
-    <color name="night_theme_color_secondary">#8C92B7</color>
+    <color name="night_theme_color_secondary">#8c92b7</color>
     <color name="night_theme_color_secondary_with_opacity">#648C92B7</color>
 
     <color name="night_theme_switch_button_background">#27294b</color>
@@ -22,6 +22,8 @@
 
     <color name="night_theme_gradient_start">#30336B</color>
     <color name="night_theme_gradient_end">#4F517E</color>
+
+    <color name="night_theme_fab_color">@color/night_theme_color_secondary</color>
 
     <!-- DAY THEME COLORS -->
 
@@ -42,5 +44,7 @@
 
     <color name="day_theme_gradient_start">#125a41</color>
     <color name="day_theme_gradient_end">#026744</color>
+
+    <color name="day_theme_fab_color">#e74c3c</color>
 
 </resources>
