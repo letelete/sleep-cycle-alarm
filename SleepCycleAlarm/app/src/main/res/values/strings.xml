@@ -5,7 +5,6 @@
     <string name="sleep_now_tab_text">Sleep now</string>
     <string name="wake_up_at_tab_text">Wake up at</string>
     <string name="alarms_tab_text">Alarms</string>
-    <string name="settings_tab_text">Settings</string>
 
     <!-- CARD INFO STRINGS -->
     <string name="card_info_title_for_sleep_now_tab">Going to sleep right now?</string>
