@@ -47,10 +47,12 @@
         <ImageView
             android:id="@+id/sleepQualityImageView"
             style="?sleepQualityIcon"
+            android:layout_marginBottom="@dimen/normal_margin_size"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:layout_marginTop="@dimen/normal_margin_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sleepTimeImageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/sleepTimeTextView"
+            app:layout_constraintStart_toEndOf="@+id/sleepTimeTextView"
+            app:layout_constraintTop_toTopOf="@+id/sleepTimeTextView" />
 
         <TextView
             android:id="@+id/sleepQualityTextView"

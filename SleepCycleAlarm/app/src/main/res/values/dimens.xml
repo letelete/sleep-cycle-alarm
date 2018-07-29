@@ -19,7 +19,7 @@
 
     <dimen name="content_padding_info_board">12dp</dimen>
     <dimen name="divider_height">1dp</dimen>
-    <dimen name="iconsSize">14dp</dimen>
+    <dimen name="iconsSize">12dp</dimen>
 
     <dimen name="smartTabLayoutHeight">48dp</dimen>
     <dimen name="smartTabHorizontalPadding">16dp</dimen>
