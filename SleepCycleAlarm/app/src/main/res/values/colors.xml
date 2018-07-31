@@ -13,7 +13,7 @@
     <color name="dark_theme_text_medium_emphasis">#99FFFFFF</color>
     <color name="dark_theme_text_disabled">#61FFFFFF</color>
 
-    <color name="dark_theme_text_secondary_high_emphasis">#DE000000</color>
+    <color name="dark_theme_text_on_card_info">#DE000000</color>
 
     <color name="dark_theme_icons_active_focused">@color/dark_theme_color_accent</color>
     <color name="dark_theme_icons_active_unfocused">#8AFFFFFF</color>
@@ -28,6 +28,8 @@
     <color name="light_theme_text_high_emphasis">#DE000000</color>
     <color name="light_theme_text_medium_emphasis">#99000000</color>
     <color name="light_theme_text_disabled">#61000000</color>
+
+    <color name="light_theme_text_on_card_info">#FFFFFF</color>
 
     <color name="light_theme_icons_active_focused">@color/light_theme_color_accent</color>
     <color name="light_theme_icons_active_unfocused">#8A000000</color>

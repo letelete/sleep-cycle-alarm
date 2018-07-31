@@ -32,6 +32,8 @@
         <item name="appBackgroundStyle">@style/dark_theme_app_background_style</item>
 
         <item name="floatingActionButtonStyle">@style/dark_theme_floating_action_button_style</item>
+
+        <item name="iconsBackground">@style/dark_theme_icons_background</item>
         <item name="setAlarmIcon">@style/dark_theme_set_alarm_icon</item>
         <item name="accessAlarmIcon">@style/dark_theme_access_alarm_icon</item>
     </style>
@@ -62,6 +64,8 @@
         <item name="appBackgroundStyle">@style/light_theme_app_background_style</item>
 
         <item name="floatingActionButtonStyle">@style/light_theme_floating_action_button_style</item>
+
+        <item name="iconsBackground">@style/light_theme_icons_background</item>
         <item name="setAlarmIcon">@style/light_theme_set_alarm_icon</item>
         <item name="accessAlarmIcon">@style/light_theme_access_alarm_icon</item>
     </style>

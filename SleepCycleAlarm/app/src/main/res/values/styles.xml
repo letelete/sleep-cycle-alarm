@@ -109,6 +109,8 @@
         <item name="stl_defaultTabBackground">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="global_icons_background"></style>
+
     <style name="global_floating_action_button_style" parent="Widget.Design.FloatingActionButton">
         <item name="android:layout_width">@dimen/fabSize</item>
         <item name="android:layout_height">@dimen/fabSize</item>
@@ -131,7 +133,9 @@
 
     <!-- NIGHT THEME -->
 
-    <style name="dark_theme_header_app_name_text" parent="global_header_app_name_text"></style>
+    <style name="dark_theme_header_app_name_text" parent="global_header_app_name_text">
+        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
+    </style>
 
     <style name="dark_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
 
@@ -142,31 +146,31 @@
     </style>
 
     <style name="dark_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
+        <item name="android:textColor">@color/dark_theme_text_on_card_info</item>
     </style>
 
     <style name="dark_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
+        <item name="android:textColor">@color/dark_theme_text_on_card_info</item>
     </style>
 
     <style name="dark_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/dark_theme_color_primary</item>
+        <item name="cardBackgroundColor">@color/dark_theme_color_accent</item>
     </style>
 
     <style name="dark_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/dark_theme_hint_color</item>
+        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
     </style>
 
     <style name="dark_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
+        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
     </style>
 
     <style name="dark_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/dark_theme_text_color_secondary</item>
+        <item name="android:textColor">@color/dark_theme_text_medium_emphasis</item>
     </style>
 
     <style name="dark_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
+        <item name="android:textColor">@color/dark_theme_color_accent</item>
     </style>
 
     <style name="dark_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
@@ -176,10 +180,16 @@
         <item name="stl_underlineColor">@color/dark_theme_color_primary</item>
     </style>
 
-    <style name="dark_theme_app_background_style"></style>
+    <style name="dark_theme_app_background_style">
+        <item name="android:background">@color/dark_theme_color_primary_dark</item>
+    </style>
 
     <style name="dark_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/dark_theme_fab_color</item>
+        <item name="backgroundTint">@color/dark_theme_color_accent</item>
+    </style>
+
+    <style name="dark_theme_icons_background" parent="global_icons_background">
+        <item name="android:background">@color/dark_theme_color_primary_dark</item>
     </style>
 
     <style name="dark_theme_set_alarm_icon" parent="global_icons_style"></style>
@@ -192,7 +202,9 @@
 
     <!-- DAY THEME -->
 
-    <style name="light_theme_header_app_name_text" parent="global_header_app_name_text"></style>
+    <style name="light_theme_header_app_name_text" parent="global_header_app_name_text">
+        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
+    </style>
 
     <style name="light_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
 
@@ -203,31 +215,31 @@
     </style>
 
     <style name="light_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/light_theme_text_color_primary</item>
+        <item name="android:textColor">@color/light_theme_text_on_card_info</item>
     </style>
 
     <style name="light_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/light_theme_text_color_primary</item>
+        <item name="android:textColor">@color/light_theme_text_on_card_info</item>
     </style>
 
     <style name="light_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/light_theme_color_primary</item>
+        <item name="cardBackgroundColor">@color/light_theme_color_accent</item>
     </style>
 
     <style name="light_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/light_theme_hint_color</item>
+        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
     </style>
 
     <style name="light_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/light_theme_text_color_primary</item>
+        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
     </style>
 
     <style name="light_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/light_theme_text_color_secondary</item>
+        <item name="android:textColor">@color/light_theme_text_medium_emphasis</item>
     </style>
 
     <style name="light_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/light_theme_text_color_primary</item>
+        <item name="android:textColor">@color/light_theme_color_accent</item>
     </style>
 
     <style name="light_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
@@ -237,10 +249,16 @@
         <item name="stl_underlineColor">@color/light_theme_color_primary</item>
     </style>
 
-    <style name="light_theme_app_background_style"></style>
+    <style name="light_theme_app_background_style">
+        <item name="android:background">@color/light_theme_color_primary_dark</item>
+    </style>
 
     <style name="light_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/light_theme_fab_color</item>
+        <item name="backgroundTint">@color/light_theme_color_accent</item>
+    </style>
+
+    <style name="light_theme_icons_background" parent="global_icons_background">
+        <item name="android:background">@color/light_theme_color_primary_dark</item>
     </style>
 
     <style name="light_theme_set_alarm_icon" parent="global_icons_style"></style>
