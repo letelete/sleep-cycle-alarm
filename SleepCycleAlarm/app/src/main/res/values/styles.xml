@@ -131,60 +131,60 @@
 
     <!-- NIGHT THEME -->
 
-    <style name="night_theme_header_app_name_text" parent="global_header_app_name_text"></style>
+    <style name="dark_theme_header_app_name_text" parent="global_header_app_name_text"></style>
 
-    <style name="night_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
+    <style name="dark_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
 
-    <style name="night_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
+    <style name="dark_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
 
-    <style name="night_theme_header_image" parent="global_header_image">
-        <item name="android:src">@drawable/night_theme_header_image</item>
+    <style name="dark_theme_header_image" parent="global_header_image">
+        <item name="android:src">@drawable/dark_theme_header_image</item>
     </style>
 
-    <style name="night_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/night_theme_text_color_primary</item>
+    <style name="dark_theme_title_info_text" parent="global_title_info_text">
+        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
     </style>
 
-    <style name="night_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/night_theme_text_color_primary</item>
+    <style name="dark_theme_content_info_text" parent="global_content_info_text">
+        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
     </style>
 
-    <style name="night_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/night_theme_color_primary</item>
+    <style name="dark_theme_info_card_style" parent="global_info_card_style">
+        <item name="cardBackgroundColor">@color/dark_theme_color_primary</item>
     </style>
 
-    <style name="night_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/night_theme_hint_color</item>
+    <style name="dark_theme_list_helper_text" parent="global_list_helper_text">
+        <item name="android:textColor">@color/dark_theme_hint_color</item>
     </style>
 
-    <style name="night_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/night_theme_text_color_primary</item>
+    <style name="dark_theme_title_in_list_text" parent="global_title_in_list_text">
+        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
     </style>
 
-    <style name="night_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/night_theme_text_color_secondary</item>
+    <style name="dark_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
+        <item name="android:textColor">@color/dark_theme_text_color_secondary</item>
     </style>
 
-    <style name="night_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/night_theme_text_color_primary</item>
+    <style name="dark_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
+        <item name="android:textColor">@color/dark_theme_text_color_primary</item>
     </style>
 
-    <style name="night_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
-        <item name="android:background">@color/night_theme_color_primary</item>
-        <item name="stl_defaultTabTextColor">@color/night_theme_color_accent</item>
-        <item name="stl_indicatorColor">@color/night_theme_color_accent</item>
-        <item name="stl_underlineColor">@color/night_theme_color_primary</item>
+    <style name="dark_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
+        <item name="android:background">@color/dark_theme_color_primary</item>
+        <item name="stl_defaultTabTextColor">@color/dark_theme_color_accent</item>
+        <item name="stl_indicatorColor">@color/dark_theme_color_accent</item>
+        <item name="stl_underlineColor">@color/dark_theme_color_primary</item>
     </style>
 
-    <style name="night_theme_app_background_style"></style>
+    <style name="dark_theme_app_background_style"></style>
 
-    <style name="night_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/night_theme_fab_color</item>
+    <style name="dark_theme_floating_action_button_style" parent="global_floating_action_button_style">
+        <item name="backgroundTint">@color/dark_theme_fab_color</item>
     </style>
 
-    <style name="night_theme_set_alarm_icon" parent="global_icons_style"></style>
+    <style name="dark_theme_set_alarm_icon" parent="global_icons_style"></style>
 
-    <style name="night_theme_access_alarm_icon" parent="global_icons_style"></style>
+    <style name="dark_theme_access_alarm_icon" parent="global_icons_style"></style>
 
 
 
@@ -192,59 +192,59 @@
 
     <!-- DAY THEME -->
 
-    <style name="day_theme_header_app_name_text" parent="global_header_app_name_text"></style>
+    <style name="light_theme_header_app_name_text" parent="global_header_app_name_text"></style>
 
-    <style name="day_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
+    <style name="light_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
 
-    <style name="day_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
+    <style name="light_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
 
-    <style name="day_theme_header_image" parent="global_header_image">
-        <item name="android:src">@drawable/day_theme_header_image</item>
+    <style name="light_theme_header_image" parent="global_header_image">
+        <item name="android:src">@drawable/light_theme_header_image</item>
     </style>
 
-    <style name="day_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/day_theme_text_color_primary</item>
+    <style name="light_theme_title_info_text" parent="global_title_info_text">
+        <item name="android:textColor">@color/light_theme_text_color_primary</item>
     </style>
 
-    <style name="day_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/day_theme_text_color_primary</item>
+    <style name="light_theme_content_info_text" parent="global_content_info_text">
+        <item name="android:textColor">@color/light_theme_text_color_primary</item>
     </style>
 
-    <style name="day_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/day_theme_color_primary</item>
+    <style name="light_theme_info_card_style" parent="global_info_card_style">
+        <item name="cardBackgroundColor">@color/light_theme_color_primary</item>
     </style>
 
-    <style name="day_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/day_theme_hint_color</item>
+    <style name="light_theme_list_helper_text" parent="global_list_helper_text">
+        <item name="android:textColor">@color/light_theme_hint_color</item>
     </style>
 
-    <style name="day_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/day_theme_text_color_primary</item>
+    <style name="light_theme_title_in_list_text" parent="global_title_in_list_text">
+        <item name="android:textColor">@color/light_theme_text_color_primary</item>
     </style>
 
-    <style name="day_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/day_theme_text_color_secondary</item>
+    <style name="light_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
+        <item name="android:textColor">@color/light_theme_text_color_secondary</item>
     </style>
 
-    <style name="day_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/day_theme_text_color_primary</item>
+    <style name="light_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
+        <item name="android:textColor">@color/light_theme_text_color_primary</item>
     </style>
 
-    <style name="day_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
-        <item name="android:background">@color/day_theme_color_primary</item>
-        <item name="stl_defaultTabTextColor">@color/day_theme_color_accent</item>
-        <item name="stl_indicatorColor">@color/day_theme_color_accent</item>
-        <item name="stl_underlineColor">@color/day_theme_color_primary</item>
+    <style name="light_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
+        <item name="android:background">@color/light_theme_color_primary</item>
+        <item name="stl_defaultTabTextColor">@color/light_theme_color_accent</item>
+        <item name="stl_indicatorColor">@color/light_theme_color_accent</item>
+        <item name="stl_underlineColor">@color/light_theme_color_primary</item>
     </style>
 
-    <style name="day_theme_app_background_style"></style>
+    <style name="light_theme_app_background_style"></style>
 
-    <style name="day_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/day_theme_fab_color</item>
+    <style name="light_theme_floating_action_button_style" parent="global_floating_action_button_style">
+        <item name="backgroundTint">@color/light_theme_fab_color</item>
     </style>
 
-    <style name="day_theme_set_alarm_icon" parent="global_icons_style"></style>
+    <style name="light_theme_set_alarm_icon" parent="global_icons_style"></style>
 
-    <style name="day_theme_access_alarm_icon" parent="global_icons_style"></style>
+    <style name="light_theme_access_alarm_icon" parent="global_icons_style"></style>
 
 </resources>

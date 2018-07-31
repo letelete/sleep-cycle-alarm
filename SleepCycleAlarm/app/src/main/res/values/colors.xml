@@ -5,46 +5,46 @@
 
     <!-- NIGHT THEME COLORS -->
 
-    <color name="night_theme_color_primary">#6e76a4</color>
-    <color name="night_theme_color_primary_dark">#35386E</color>
-    <color name="night_theme_color_accent">#ffffff</color>
-    <color name="night_theme_color_secondary">#8c92b7</color>
-    <color name="night_theme_color_secondary_with_opacity">#648C92B7</color>
+    <color name="dark_theme_color_primary">#6e76a4</color>
+    <color name="dark_theme_color_primary_dark">#35386E</color>
+    <color name="dark_theme_color_accent">#ffffff</color>
+    <color name="dark_theme_color_secondary">#8c92b7</color>
+    <color name="dark_theme_color_secondary_with_opacity">#648C92B7</color>
 
-    <color name="night_theme_switch_button_background">#27294b</color>
-    <color name="night_theme_switch_button_thumb">#FFFFFF</color>
+    <color name="dark_theme_switch_button_background">#27294b</color>
+    <color name="dark_theme_switch_button_thumb">#FFFFFF</color>
 
-    <color name="night_theme_settings_category_label_background">#32FFFFFF</color>
+    <color name="dark_theme_settings_category_label_background">#32FFFFFF</color>
 
-    <color name="night_theme_text_color_primary">#FFFFFF</color>
-    <color name="night_theme_text_color_secondary">#C0FFFFFF</color>
-    <color name="night_theme_hint_color">#8C92B7</color>
+    <color name="dark_theme_text_color_primary">#FFFFFF</color>
+    <color name="dark_theme_text_color_secondary">#C0FFFFFF</color>
+    <color name="dark_theme_hint_color">#8C92B7</color>
 
-    <color name="night_theme_gradient_start">#30336B</color>
-    <color name="night_theme_gradient_end">#4F517E</color>
+    <color name="dark_theme_gradient_start">#30336B</color>
+    <color name="dark_theme_gradient_end">#4F517E</color>
 
-    <color name="night_theme_fab_color">@color/night_theme_color_secondary</color>
+    <color name="dark_theme_fab_color">@color/dark_theme_color_secondary</color>
 
     <!-- DAY THEME COLORS -->
 
-    <color name="day_theme_color_primary">#157455</color>
-    <color name="day_theme_color_primary_dark">#026744</color>
-    <color name="day_theme_color_accent">#ffffff</color>
-    <color name="day_theme_color_secondary">#549d8a</color>
-    <color name="day_theme_color_secondary_with_opacity">#64549d8a</color>
+    <color name="light_theme_color_primary">#157455</color>
+    <color name="light_theme_color_primary_dark">#026744</color>
+    <color name="light_theme_color_accent">#ffffff</color>
+    <color name="light_theme_color_secondary">#549d8a</color>
+    <color name="light_theme_color_secondary_with_opacity">#64549d8a</color>
 
-    <color name="day_theme_switch_button_background">#004d40</color>
-    <color name="day_theme_switch_button_thumb">#FFFFFF</color>
+    <color name="light_theme_switch_button_background">#004d40</color>
+    <color name="light_theme_switch_button_thumb">#FFFFFF</color>
 
-    <color name="day_theme_settings_category_label_background">#32FFFFFF</color>
+    <color name="light_theme_settings_category_label_background">#32FFFFFF</color>
 
-    <color name="day_theme_text_color_primary">#FFFFFF</color>
-    <color name="day_theme_text_color_secondary">#c0ffffff</color>
-    <color name="day_theme_hint_color">#FF549D8A</color>
+    <color name="light_theme_text_color_primary">#FFFFFF</color>
+    <color name="light_theme_text_color_secondary">#c0ffffff</color>
+    <color name="light_theme_hint_color">#FF549D8A</color>
 
-    <color name="day_theme_gradient_start">#125a41</color>
-    <color name="day_theme_gradient_end">#026744</color>
+    <color name="light_theme_gradient_start">#125a41</color>
+    <color name="light_theme_gradient_end">#026744</color>
 
-    <color name="day_theme_fab_color">#e74c3c</color>
+    <color name="light_theme_fab_color">#e74c3c</color>
 
 </resources>

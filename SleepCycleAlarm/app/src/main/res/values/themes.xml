@@ -9,61 +9,61 @@
     <!-- NIGHT THEME -->
 
     <style name="Theme.NightTheme" parent="Theme.AppParentThemeOfAllThemes">
-        <item name="colorPrimary">@color/night_theme_color_primary</item>
-        <item name="colorPrimaryDark">@color/night_theme_color_primary_dark</item>
-        <item name="colorAccent">@color/night_theme_color_accent</item>
+        <item name="colorPrimary">@color/dark_theme_color_primary</item>
+        <item name="colorPrimaryDark">@color/dark_theme_color_primary_dark</item>
+        <item name="colorAccent">@color/dark_theme_color_accent</item>
 
-        <item name="headerAppNameText">@style/night_theme_header_app_name_text</item>
-        <item name="kebabMenuButton">@style/night_theme_kebab_menu_button</item>
-        <item name="kebabMenuStyle">@style/night_theme_kebab_menu_style</item>
-        <item name="headerImage">@style/night_theme_header_image</item>
+        <item name="headerAppNameText">@style/dark_theme_header_app_name_text</item>
+        <item name="kebabMenuButton">@style/dark_theme_kebab_menu_button</item>
+        <item name="kebabMenuStyle">@style/dark_theme_kebab_menu_style</item>
+        <item name="headerImage">@style/dark_theme_header_image</item>
 
-        <item name="titleInfoText">@style/night_theme_title_info_text</item>
-        <item name="contentInfoText">@style/night_theme_content_info_text</item>
-        <item name="infoCardStyle">@style/night_theme_info_card_style</item>
+        <item name="titleInfoText">@style/dark_theme_title_info_text</item>
+        <item name="contentInfoText">@style/dark_theme_content_info_text</item>
+        <item name="infoCardStyle">@style/dark_theme_info_card_style</item>
 
-        <item name="listHelperText">@style/night_theme_list_helper_text</item>
-        <item name="titleInListText">@style/night_theme_title_in_list_text</item>
-        <item name="subtitleInListText">@style/night_theme_subtitle_in_list_text</item>
+        <item name="listHelperText">@style/dark_theme_list_helper_text</item>
+        <item name="titleInListText">@style/dark_theme_title_in_list_text</item>
+        <item name="subtitleInListText">@style/dark_theme_subtitle_in_list_text</item>
 
-        <item name="bottomNavigationText">@style/night_theme_bottom_navigation_text</item>
-        <item name="bottomNavigationStyle">@style/night_theme_bottom_navigation_style</item>
+        <item name="bottomNavigationText">@style/dark_theme_bottom_navigation_text</item>
+        <item name="bottomNavigationStyle">@style/dark_theme_bottom_navigation_style</item>
 
-        <item name="appBackgroundStyle">@style/night_theme_app_background_style</item>
+        <item name="appBackgroundStyle">@style/dark_theme_app_background_style</item>
 
-        <item name="floatingActionButtonStyle">@style/night_theme_floating_action_button_style</item>
-        <item name="setAlarmIcon">@style/night_theme_set_alarm_icon</item>
-        <item name="accessAlarmIcon">@style/night_theme_access_alarm_icon</item>
+        <item name="floatingActionButtonStyle">@style/dark_theme_floating_action_button_style</item>
+        <item name="setAlarmIcon">@style/dark_theme_set_alarm_icon</item>
+        <item name="accessAlarmIcon">@style/dark_theme_access_alarm_icon</item>
     </style>
 
     <!-- DAY THEME -->
 
     <style name="Theme.DayTheme" parent="Theme.AppParentThemeOfAllThemes">
-        <item name="colorPrimary">@color/day_theme_color_primary</item>
-        <item name="colorPrimaryDark">@color/day_theme_color_primary_dark</item>
-        <item name="colorAccent">@color/day_theme_color_accent</item>
+        <item name="colorPrimary">@color/light_theme_color_primary</item>
+        <item name="colorPrimaryDark">@color/light_theme_color_primary_dark</item>
+        <item name="colorAccent">@color/light_theme_color_accent</item>
 
-        <item name="headerAppNameText">@style/day_theme_header_app_name_text</item>
-        <item name="kebabMenuButton">@style/day_theme_kebab_menu_button</item>
-        <item name="kebabMenuStyle">@style/day_theme_kebab_menu_style</item>
-        <item name="headerImage">@style/day_theme_header_image</item>
+        <item name="headerAppNameText">@style/light_theme_header_app_name_text</item>
+        <item name="kebabMenuButton">@style/light_theme_kebab_menu_button</item>
+        <item name="kebabMenuStyle">@style/light_theme_kebab_menu_style</item>
+        <item name="headerImage">@style/light_theme_header_image</item>
 
-        <item name="titleInfoText">@style/day_theme_title_info_text</item>
-        <item name="contentInfoText">@style/day_theme_content_info_text</item>
-        <item name="infoCardStyle">@style/day_theme_info_card_style</item>
+        <item name="titleInfoText">@style/light_theme_title_info_text</item>
+        <item name="contentInfoText">@style/light_theme_content_info_text</item>
+        <item name="infoCardStyle">@style/light_theme_info_card_style</item>
 
-        <item name="listHelperText">@style/day_theme_list_helper_text</item>
-        <item name="titleInListText">@style/day_theme_title_in_list_text</item>
-        <item name="subtitleInListText">@style/day_theme_subtitle_in_list_text</item>
+        <item name="listHelperText">@style/light_theme_list_helper_text</item>
+        <item name="titleInListText">@style/light_theme_title_in_list_text</item>
+        <item name="subtitleInListText">@style/light_theme_subtitle_in_list_text</item>
 
-        <item name="bottomNavigationText">@style/day_theme_bottom_navigation_text</item>
-        <item name="bottomNavigationStyle">@style/day_theme_bottom_navigation_style</item>
+        <item name="bottomNavigationText">@style/light_theme_bottom_navigation_text</item>
+        <item name="bottomNavigationStyle">@style/light_theme_bottom_navigation_style</item>
 
-        <item name="appBackgroundStyle">@style/day_theme_app_background_style</item>
+        <item name="appBackgroundStyle">@style/light_theme_app_background_style</item>
 
-        <item name="floatingActionButtonStyle">@style/day_theme_floating_action_button_style</item>
-        <item name="setAlarmIcon">@style/day_theme_set_alarm_icon</item>
-        <item name="accessAlarmIcon">@style/day_theme_access_alarm_icon</item>
+        <item name="floatingActionButtonStyle">@style/light_theme_floating_action_button_style</item>
+        <item name="setAlarmIcon">@style/light_theme_set_alarm_icon</item>
+        <item name="accessAlarmIcon">@style/light_theme_access_alarm_icon</item>
     </style>
 
 </resources>
