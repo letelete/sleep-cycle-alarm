@@ -21,6 +21,8 @@
 
     <attr name="floatingActionButtonStyle" format="reference" />
 
+    <attr name="colorForIcons" format="reference" />
+    <attr name="colorForIconsNegative" format="reference" />
     <attr name="iconsBackground" format="reference" />
     <attr name="setAlarmIcon" format="reference" />
     <attr name="accessAlarmIcon" format="reference" />

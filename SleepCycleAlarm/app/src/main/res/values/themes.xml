@@ -8,10 +8,12 @@
 
     <!-- NIGHT THEME -->
 
-    <style name="Theme.NightTheme" parent="Theme.AppParentThemeOfAllThemes">
+    <style name="Theme.DarkTheme" parent="Theme.AppParentThemeOfAllThemes">
         <item name="colorPrimary">@color/dark_theme_color_primary</item>
         <item name="colorPrimaryDark">@color/dark_theme_color_primary_dark</item>
         <item name="colorAccent">@color/dark_theme_color_accent</item>
+        <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
+        <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
 
         <item name="headerAppNameText">@style/dark_theme_header_app_name_text</item>
         <item name="kebabMenuButton">@style/dark_theme_kebab_menu_button</item>
@@ -40,10 +42,12 @@
 
     <!-- DAY THEME -->
 
-    <style name="Theme.DayTheme" parent="Theme.AppParentThemeOfAllThemes">
+    <style name="Theme.LightTheme" parent="Theme.AppParentThemeOfAllThemes">
         <item name="colorPrimary">@color/light_theme_color_primary</item>
         <item name="colorPrimaryDark">@color/light_theme_color_primary_dark</item>
         <item name="colorAccent">@color/light_theme_color_accent</item>
+        <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
+        <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
 
         <item name="headerAppNameText">@style/light_theme_header_app_name_text</item>
         <item name="kebabMenuButton">@style/light_theme_kebab_menu_button</item>
