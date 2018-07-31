@@ -19,7 +19,4 @@
     <attr name="setHourButtonStyle" format="reference" />
     <attr name="settingsFABStyle" format="reference" />
     <attr name="returnFABStyle" format="reference" />
-
-    <attr name="sleepTimeIcon" format="reference" />
-    <attr name="sleepQualityIcon" format="reference" />
 </resources>

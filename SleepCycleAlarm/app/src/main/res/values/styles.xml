@@ -26,16 +26,6 @@
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
     </style>
 
-    <style name="global_sleep_time_icon" parent="icons_same_attributes">
-        <item name="android:contentDescription">@string/icon_sleep_time_description</item>
-        <item name="android:src">@drawable/ic_time</item>
-    </style>
-
-    <style name="global_sleep_quality_icon" parent="icons_same_attributes">
-        <item name="android:contentDescription">@string/icon_sleep_quality_description</item>
-        <item name="android:src">@drawable/ic_heart</item>
-    </style>
-
 
     <style name="global_tab_text" parent="global_font_regular">
         <item name="android:textAllCaps">true</item>

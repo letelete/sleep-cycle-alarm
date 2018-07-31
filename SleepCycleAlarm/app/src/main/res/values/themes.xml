@@ -2,8 +2,6 @@
 <resources>
 
     <style name="Theme.AppParentThemeOfAllThemes" parent="Theme.AppCompat.NoActionBar">
-        <item name="sleepTimeIcon">@style/global_sleep_time_icon</item>
-        <item name="sleepQualityIcon">@style/global_sleep_quality_icon</item>
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // Failed to find style 'coordinatorLayoutStyle' in current theme error...
     </style>
