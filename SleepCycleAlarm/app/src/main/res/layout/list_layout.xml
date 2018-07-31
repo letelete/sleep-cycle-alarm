@@ -6,69 +6,34 @@
     tools:layout_editor_absoluteX="16dp"
     tools:layout_editor_absoluteY="29dp">
 
-        <TextView
-            android:id="@+id/hourDigitsInListTextView"
-            style="?hourDigitsInListText"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_marginTop="@dimen/normal_margin_size"
-            android:text="@string/hour_digits_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/titleInListTextView"
+        style="?attr/titleInListText"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/titleInListText"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/clickableObjectHintTextView"
-            style="?clickableObjectHintText"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_toEndOf="@+id/hourDigitsInListTextView"
-            android:text="@string/set_alarm_hint_text"
-            app:layout_constraintStart_toEndOf="@+id/hourDigitsInListTextView"
-            app:layout_constraintTop_toTopOf="@+id/hourDigitsInListTextView" />
+    <TextView
+        android:id="@+id/sleepTimeTextView"
+        style="?attr/subtitleInListText"
+        android:text="@string/sleep_subtitle_text"
+        app:layout_constraintStart_toStartOf="@+id/titleInListTextView"
+        app:layout_constraintTop_toBottomOf="@+id/titleInListTextView" />
 
-        <ImageView
-            android:id="@+id/sleepTimeImageView"
-            style="?sleepTimeIcon"
-            android:layout_below="@+id/hourDigitsInListTextView"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_marginTop="@dimen/normal_margin_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hourDigitsInListTextView" />
-
-        <TextView
-            android:id="@+id/sleepTimeTextView"
-            style="?infoInListText"
-            android:layout_below="@+id/hourDigitsInListTextView"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_toEndOf="@+id/sleepTimeImageView"
-            android:text="@string/sleep_time_text"
-            app:layout_constraintBottom_toBottomOf="@+id/sleepTimeImageView"
-            app:layout_constraintStart_toEndOf="@+id/sleepTimeImageView"
-            app:layout_constraintTop_toTopOf="@+id/sleepTimeImageView" />
-
-        <ImageView
-            android:id="@+id/sleepQualityImageView"
-            style="?sleepQualityIcon"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_marginTop="@dimen/normal_margin_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sleepTimeImageView" />
-
-        <TextView
-            android:id="@+id/sleepQualityTextView"
-            style="?infoInListText"
-            android:layout_below="@+id/hourDigitsInListTextView"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_toEndOf="@+id/sleepQualityImageView"
-            android:text="@string/sleep_quality_text"
-            app:layout_constraintBottom_toBottomOf="@+id/sleepQualityImageView"
-            app:layout_constraintStart_toEndOf="@+id/sleepQualityImageView"
-            app:layout_constraintTop_toTopOf="@+id/sleepQualityImageView" />
-
-        <View
-            android:id="@+id/divider"
-            style="?dividerInListStyle"
-            android:layout_below="@+id/sleepQualityTextView"
-            android:layout_marginTop="@dimen/large_margin_size"
-            app:layout_constraintTop_toBottomOf="@+id/sleepQualityTextView" />
+    <ImageView
+        android:id="@+id/imageView"
+        style="?setAlarmIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="@+id/sleepTimeTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleInListTextView"
+        app:srcCompat="@drawable/ic_shape_alarm_add" />
 
 
 </android.support.constraint.ConstraintLayout>

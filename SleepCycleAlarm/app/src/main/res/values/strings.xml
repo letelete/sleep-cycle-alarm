@@ -13,22 +13,24 @@
     <string name="card_info_title_for_wake_up_at_tab">Need to wake up on specific time?</string>
     <string name="card_info_content_for_wake_up_at_tab">Set hour and I will create a list of hours when you should go to sleep</string>
 
+    <string name="card_info_title_for_alarms_tab">Manage your alarms.</string>
+    <string name="card_info_content_for_alarms_tab">List presents active alarms that are going to be executed in the future. Every, already used alarm will be removed, so you don\'t need to care about them.</string>
+
     <!-- BUTTON STRINGS -->
     <string name="set_hour_button_text">Set hour</string>
 
     <!-- LIST STRINGS -->
-    <string name="hour_digits_text">%1$s</string>
-    <string name="set_alarm_hint_text">Tap to set alarm</string>
-    <string name="edit_alarm_hint_text">Tap to edit alarm</string>
+    <string name="set_alarm_helper_text_for_sleep_now_tab">Tap on any hour of listed below to set alarm</string>
+    <string name="set_alarm_helper_text_for_alarms_tab">Tap to edit, press and hold to select</string>
 
-    <string name="hour_mark_character">H</string>
-    <string name="minute_mark_character">MIN</string>
+    <string name="hour_mark_character">h</string>
+    <string name="minute_mark_character">min</string>
 
-    <string name="sleep_time_text">%1$s of sleep</string>
-    <string name="sleep_quality_text">Sleep quality: %1$s</string>
+    <string name="titleInListText">%1$s:%2$s</string>
+    <string name="sleep_subtitle_text">%1$s, %2$s</string>
 
-    <string name="icon_sleep_time_description">Sleep time icon</string>
-    <string name="icon_sleep_quality_description">Sleep quality icon</string>
+    <string name="empty_list_title">Oops&#8230; Nothing to see here.</string>
+    <string name="empty_list_subtitle">Set hour when you want to wake up at to see results.</string>
 
     <!-- SETTINGS TAB STRINGS -->
     <string name="language_label_text">Language</string>
