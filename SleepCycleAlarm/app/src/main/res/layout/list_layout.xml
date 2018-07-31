@@ -7,8 +7,8 @@
     tools:layout_editor_absoluteY="29dp">
 
         <TextView
-            android:id="@+id/hourDigitsInListTextView"
-            style="?hourDigitsInListText"
+            android:id="@+id/titleInListTextView"
+            style="?attr/titleInListText"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:layout_marginTop="@dimen/normal_margin_size"
             android:text="@string/hour_digits_text"
@@ -16,27 +16,27 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/clickableObjectHintTextView"
-            style="?clickableObjectHintText"
+            android:id="@+id/listHelperTextView"
+            style="?attr/listHelperText"
             android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_toEndOf="@+id/hourDigitsInListTextView"
+            android:layout_toEndOf="@+id/titleInListTextView"
             android:text="@string/set_alarm_hint_text"
-            app:layout_constraintStart_toEndOf="@+id/hourDigitsInListTextView"
-            app:layout_constraintTop_toTopOf="@+id/hourDigitsInListTextView" />
+            app:layout_constraintStart_toEndOf="@+id/titleInListTextView"
+            app:layout_constraintTop_toTopOf="@+id/titleInListTextView" />
 
         <ImageView
             android:id="@+id/sleepTimeImageView"
             style="?sleepTimeIcon"
-            android:layout_below="@+id/hourDigitsInListTextView"
+            android:layout_below="@+id/titleInListTextView"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:layout_marginTop="@dimen/normal_margin_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hourDigitsInListTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/titleInListTextView" />
 
         <TextView
             android:id="@+id/sleepTimeTextView"
-            style="?infoInListText"
-            android:layout_below="@+id/hourDigitsInListTextView"
+            style="?attr/subtitleInListText"
+            android:layout_below="@+id/titleInListTextView"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:layout_toEndOf="@+id/sleepTimeImageView"
             android:text="@string/sleep_time_text"
@@ -54,8 +54,8 @@
 
         <TextView
             android:id="@+id/sleepQualityTextView"
-            style="?infoInListText"
-            android:layout_below="@+id/hourDigitsInListTextView"
+            style="?attr/subtitleInListText"
+            android:layout_below="@+id/titleInListTextView"
             android:layout_marginStart="@dimen/normal_margin_size"
             android:layout_toEndOf="@+id/sleepQualityImageView"
             android:text="@string/sleep_quality_text"

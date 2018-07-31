@@ -9,11 +9,11 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/settingsFAB"
-        style="?settingsFABStyle" />
+        style="?attr/floatingActionButtonStyle" />
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewPagerTab"
-        style="?tabStyle">
+        style="?attr/bottomNavigationStyle">
 
     </com.ogaclejapan.smarttablayout.SmartTabLayout>
 
