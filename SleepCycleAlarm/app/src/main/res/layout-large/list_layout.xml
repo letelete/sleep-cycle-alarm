@@ -54,16 +54,16 @@
             app:layout_constraintStart_toEndOf="@+id/sleepTimeTextView"
             app:layout_constraintTop_toTopOf="@+id/sleepTimeTextView" />
 
-        <TextView
-            android:id="@+id/sleepQualityTextView"
-            style="?infoInListText"
-            android:layout_below="@+id/hourDigitsInListTextView"
-            android:layout_marginStart="@dimen/normal_margin_size"
-            android:layout_toEndOf="@+id/sleepQualityImageView"
-            android:text="@string/sleep_quality_text"
-            app:layout_constraintBottom_toBottomOf="@+id/sleepQualityImageView"
-            app:layout_constraintStart_toEndOf="@+id/sleepQualityImageView"
-            app:layout_constraintTop_toTopOf="@+id/sleepQualityImageView" />
+    <TextView
+        android:id="@+id/sleepQualityTextView"
+        style="?infoInListText"
+        android:layout_below="@+id/hourDigitsInListTextView"
+        android:layout_marginStart="@dimen/normal_margin_size"
+        android:layout_toEndOf="@+id/sleepQualityImageView"
+        android:text="@string/sleep_quality_text"
+        app:layout_constraintBottom_toBottomOf="@+id/sleepQualityImageView"
+        app:layout_constraintStart_toEndOf="@+id/sleepQualityImageView"
+        app:layout_constraintTop_toTopOf="@+id/sleepQualityImageView" />
 
         <View
             android:id="@+id/divider"

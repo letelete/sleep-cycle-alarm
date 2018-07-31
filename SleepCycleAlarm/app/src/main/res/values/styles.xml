@@ -4,14 +4,18 @@
     <!-- STANDARD FOR EVERY THEME VARIABLES CONFIG -->
 
     <style name="global_font_light">
-        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
     </style>
     <style name="global_font_regular">
-        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
-    <style name="global_font_semibold">
-        <item name="android:fontFamily">@font/open_sans_semibold</item>
+    <style name="global_font_medium">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="global_font_bold">
+        <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
     <style name="icons_same_attributes">
@@ -83,7 +87,7 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="global_hour_digits_in_list_text" parent="global_font_semibold">
+    <style name="global_hour_digits_in_list_text" parent="global_font_medium">
         <item name="android:textSize">@dimen/extra_large_text_size</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
