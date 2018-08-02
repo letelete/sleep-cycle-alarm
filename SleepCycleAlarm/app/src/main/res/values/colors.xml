@@ -2,12 +2,13 @@
 <resources>
 
     <color name="transparent">#00FFFFFF</color>
+    <color name="colorPrimaryThemeDependent">?colorPrimary</color>
 
     <!-- NIGHT THEME COLORS -->
 
     <color name="dark_theme_color_primary">#344955</color>
     <color name="dark_theme_color_primary_dark">#232F34</color>
-    <color name="dark_theme_color_accent">#F9AA33</color>
+    <color name="dark_theme_color_accent">#f9aa33</color>
 
     <color name="dark_theme_text_high_emphasis">#DEFFFFFF</color>
     <color name="dark_theme_text_medium_emphasis">#99FFFFFF</color>

@@ -3,6 +3,7 @@
     <attr name="headerAppNameText" format="reference" />
     <attr name="kebabMenuButton" format="reference" />
     <attr name="kebabMenuStyle" format="reference" />
+    <attr name="toolbarStyle" format="reference" />
     <attr name="headerImage" format="reference" />
 
     <attr name="titleInfoText" format="reference" />
