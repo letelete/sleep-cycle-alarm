@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.AppParentThemeOfAllThemes" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.AppParentThemeOfAllThemes" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
-        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // Failed to find style 'coordinatorLayoutStyle' in current theme error...
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item> // for settings fragment
     </style>
 
     <!-- NIGHT THEME -->
@@ -15,9 +16,13 @@
         <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
 
+        // generally used to change three dot menu icon color
+        <item name="android:textColorSecondary">@color/dark_theme_text_high_emphasis</item>
+
         <item name="headerAppNameText">@style/dark_theme_header_app_name_text</item>
         <item name="kebabMenuButton">@style/dark_theme_kebab_menu_button</item>
         <item name="kebabMenuStyle">@style/dark_theme_kebab_menu_style</item>
+        <item name="toolbarStyle">@style/dark_theme_toolbar_style</item>
         <item name="headerImage">@style/dark_theme_header_image</item>
 
         <item name="titleInfoText">@style/dark_theme_title_info_text</item>
@@ -49,9 +54,13 @@
         <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
 
+        // generally used to change three dot menu icon color
+        <item name="android:textColorSecondary">@color/light_theme_text_high_emphasis</item>
+
         <item name="headerAppNameText">@style/light_theme_header_app_name_text</item>
         <item name="kebabMenuButton">@style/light_theme_kebab_menu_button</item>
         <item name="kebabMenuStyle">@style/light_theme_kebab_menu_style</item>
+        <item name="toolbarStyle">@style/light_theme_toolbar_style</item>
         <item name="headerImage">@style/light_theme_header_image</item>
 
         <item name="titleInfoText">@style/light_theme_title_info_text</item>
