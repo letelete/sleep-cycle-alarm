@@ -25,8 +25,6 @@
         //android:gravity does not works here
     </style>
 
-    <style name="global_kebab_menu_button"></style>
-
     <style name="global_kebab_menu_style"></style>
 
     <style name="global_toolbar_style" parent="Base.V7.Widget.AppCompat.Toolbar">
@@ -130,8 +128,6 @@
         <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
     </style>
 
-    <style name="dark_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
-
     <style name="dark_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
 
     <style name="dark_theme_toolbar_style" parent="global_toolbar_style">
@@ -199,8 +195,6 @@
     <style name="light_theme_header_app_name_text" parent="global_header_app_name_text">
         <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
     </style>
-
-    <style name="light_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
 
     <style name="light_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
 

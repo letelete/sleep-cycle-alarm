@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="headerAppNameText" format="reference" />
-    <attr name="kebabMenuButton" format="reference" />
     <attr name="kebabMenuStyle" format="reference" />
     <attr name="toolbarStyle" format="reference" />
     <attr name="headerImage" format="reference" />
