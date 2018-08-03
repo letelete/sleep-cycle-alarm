@@ -68,11 +68,7 @@ public class MenuActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    private boolean isStringEmpty(String str) {
-        return str == null || str.trim().isEmpty();
-    }
-
+    
     @Override
     public void onDestroy() {
         super.onDestroy();
