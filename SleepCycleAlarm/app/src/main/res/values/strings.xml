@@ -7,35 +7,34 @@
     <string name="app_name">Sleep Cycle Alarm</string>
 
     <!-- TABS STRINGS -->
-    <string name="sleep_now_tab_text">Sleep now</string>
-    <string name="wake_up_at_tab_text">Wake up at</string>
-    <string name="alarms_tab_text">Alarms</string>
+    <string name="sleep_now_tab">Sleep now</string>
+    <string name="wake_up_at_tab">Wake up at</string>
+    <string name="alarms_tab">Alarms</string>
 
     <!-- CARD INFO STRINGS -->
-    <string name="card_info_title_for_sleep_now_tab">Going to sleep right now?</string>
-    <string name="card_info_content_for_sleep_now_tab">Choose any hour of listed below, so I will easily wake you up on time!</string>
+    <string name="sleep_now_card_info_title">Going to sleep right now?</string>
+    <string name="sleep_now_card_info_summary">Choose any hour of listed below, so I will easily wake you up on time!</string>
 
-    <string name="card_info_title_for_wake_up_at_tab">Need to wake up on specific time?</string>
-    <string name="card_info_content_for_wake_up_at_tab">Set hour and I will create a list of hours when you should go to sleep</string>
+    <string name="wake_up_at_card_info_title">Need to wake up on specific time?</string>
+    <string name="wake_up_at_card_info_summary">Set hour and I will create a list of hours when you should go to sleep</string>
 
-    <string name="card_info_title_for_alarms_tab">Manage your alarms.</string>
-    <string name="card_info_content_for_alarms_tab">List presents active alarms that are going to be executed in the future. Every, already used alarm will be removed, so you don\'t need to care about them.</string>
+    <string name="alarms_card_info_title">Manage your alarms.</string>
+    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Every, already used alarm will be removed, so you don\'t need to care about them.</string>
 
     <!-- BUTTON STRINGS -->
-    <string name="set_hour_button_text">Set hour</string>
+    <string name="wake_up_at_set_hour_button">Set hour</string>
 
     <!-- LIST STRINGS -->
-    <string name="set_alarm_helper_text_for_sleep_now_tab">Tap on any hour of listed below to set alarm</string>
-    <string name="set_alarm_helper_text_for_alarms_tab">Tap to edit, press and hold to select</string>
-
-    <string name="hour_mark_character">h</string>
-    <string name="minute_mark_character">min</string>
-
-    <string name="titleInListText">%1$s:%2$s</string>
-    <string name="sleep_subtitle_text">%1$s, %2$s</string>
-
-    <string name="empty_list_title">Oops&#8230; Nothing to see here.</string>
-    <string name="empty_list_subtitle">Set hour when you want to wake up at to see results.</string>
+    <string name="global_hour_mark">h</string>
+    <string name="global_minute_mark">min</string>
+    <string name="sleep_now_list_helper">Tap on any hour of listed below to set alarm</string>
+    <string name="alarms_list_helper">Tap to edit, press and hold to select</string>
+    <string name="list_element_title_changeable">%1$s:%2$s</string> <!-- HH:MM -->
+    <string name="list_element_summary_changeable">%1$s of sleep, %2$s</string> <!-- 4h 30min of sleep, Optimal -->
+    <string name="wake_up_at_empty_list_title">No results yet</string>
+    <string name="wake_up_at_empty_list_summary">Tap the \'Set hour\' button to pick your time and see results</string>
+    <string name="alarms_empty_list_title">No alarms yet</string>
+    <string name="alarms_empty_list_summary">Move to the first or second tab, to set everything up!</string>
 
     <!-- MENU STRINGS -->
     <string name="menu_settings">Settings</string>

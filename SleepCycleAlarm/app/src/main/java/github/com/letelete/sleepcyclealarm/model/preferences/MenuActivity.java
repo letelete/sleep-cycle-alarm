@@ -68,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
             finish();
         }
     }
-    
+
     @Override
     public void onDestroy() {
         super.onDestroy();
