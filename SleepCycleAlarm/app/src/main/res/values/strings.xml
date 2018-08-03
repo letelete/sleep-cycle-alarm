@@ -39,40 +39,35 @@
     <string name="menu_help">Help</string>
     <string name="menu_about">About</string>
 
-    <!-- PREFERENCE STRINGS
-
-    name template:
-    pref_<what>_<category / title / summary>
-
-    for summary with options:
-    pref_<what>_summary_changeable
-
-    for options dedicated for summaries:
-    pref_<what>_summary_<option description>_option
-    -->
+    <!-- PREFERENCE STRINGS -->
 
     <!-- GLOBAL PREF STRINGS-->
-    <string name="pref_global_1min_option">1 minute</string>
-    <string name="pref_global_5min_option">5 minutes</string>
-    <string name="pref_global_10min_option">10 minutes</string>
-    <string name="pref_global_15min_option">15 minutes</string>
-    <string name="pref_global_20min_option">20 minutes</string>
-    <string name="pref_global_25min_option">25 minutes</string>
-    <string name="pref_global_30min_option">30 minutes</string>
+    <string-array name="pref_global_minute_values">
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+    </string-array>
 
-    <string name="pref_global_1time_option">1 time</string>
-    <string name="pref_global_3times_option">3 times</string>
-    <string name="pref_global_5times_option">5 times</string>
-    <string name="pref_global_10times_option">10 times</string>
+    <string-array name="pref_global_repetition_values">
+        <item>1 time</item>
+        <item>3 times</item>
+        <item>5 times</item>
+        <item>10 times</item>
+    </string-array>
 
     <!-- NEW CATEGORY -->
 
     <string name="pref_language_category">Language</string>
 
     <string name="pref_language_title">Change language</string>
-    <string name="pref_language_summary_changeable">Current language is: %1$s</string>
-    <string name="pref_language_summary_text_english_option">English</string>
-    <string name="pref_language_summary_text_polish_option">Polish</string>
+    <string-array name="pref_language_values">
+        <item>English</item>
+        <item>Polish</item>
+    </string-array>
 
     <!-- NEW CATEGORY -->
     <string name="pref_wordclock_category">Word clock</string>
@@ -85,14 +80,17 @@
     <string name="pref_alarm_category">Alarm</string>
 
     <string name="pref_alarm_in_silent_mode_title">Alarm in silent mode</string>
-    <string name="pref_alarm_in_silent_mode_summary_changeable">%1$s</string>
-    <string name="pref_alarm_in_silent_mode_summary_play_option">Play alarm even when phone is in silent mode</string>
-    <string name="pref_alarm_in_silent_mode_summary_dont_play_option">Don\'t play alarm when phone is in silent mode</string>
+    <string-array name="pref_alarm_in_silent_mode_values">
+        <item>Play alarm even when phone is in silent mode</item>
+        <item>Don\'t play alarm when phone is in silent mode</item>
+    </string-array>
 
     <string name="pref_alarms_has_same_ringtone_switch_title">Alarms has the same ringtone</string>
-    <string name="pref_alarms_has_same_ringtone_switch_summary_changeable">Avoid configuring ringtone for every single alarm. Currently %1$s</string>
-    <string name="pref_alarms_has_same_ringtone_switch_summary_changeable_on_option">on</string>
-    <string name="pref_alarms_has_same_ringtone_switch_summary_changeable_off_option">off</string>
+    <string name="pref_alarms_has_same_ringtone_switch_summary_changeable">Avoid configuring ringtone for every single alarm. Currently: %1$s</string>
+    <string-array name="pref_alarms_has_same_ringtone_values">
+        <item>enabled</item>
+        <item>disabled</item>
+    </string-array>
 
     <string name="pref_alarms_has_same_ringtone_intent_title">Alarm ringtone</string>
     <string name="pref_alarms_has_same_ringtone_intent_summary_changeable">Current ringtone: %1$s</string>
@@ -107,9 +105,10 @@
     <string name="pref_theme_category">Theme</string>
 
     <string name="pref_change_theme_title">Manage application themes</string>
-    <string name="pref_change_theme_summary">Dark theme is %1$s</string>
-    <string name="pref_change_theme_summary_dark_theme_on_option">on</string>
-    <string name="pref_change_theme_summary_dark_theme_off_option">off</string>
+    <string-array name="pref_change_theme_values">
+        <item>Dark theme is on</item>
+        <item>Dark theme is off</item>
+    </string-array>
 
     <!-- ERROR CODES
     typo:
