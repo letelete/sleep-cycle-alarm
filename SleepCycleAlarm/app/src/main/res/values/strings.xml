@@ -44,21 +44,6 @@
 
     <!-- GLOBAL PREF STRINGS-->
 
-    <string-array name="pref_global_repetition_titles">
-        <item>1 time</item>
-        <item>3 times</item>
-        <item>5 times</item>
-        <item>10 times</item>
-    </string-array>
-    <string-array name="pref_global_repetition_values">
-        <item>1</item>
-        <item>3</item>
-        <item>5</item>
-        <item>10</item>
-    </string-array>
-
-    <!-- NEW CATEGORY -->
-
     <string name="pref_language_category">Language</string>
 
     <string name="pref_language_title">Change language</string>
@@ -113,21 +98,46 @@
         <item>30</item>
     </string-array>
 
-    <string name="pref_snooze_duration_title">Snooze duration</string>
-    <string name="pref_snooze_duration_summary">Alarms intervals of %1$s, auto-silence after %2$s</string>
+    <string name="pref_alarms_intervals_title">Alarms intervals</string>
+    <string-array name="pref_alarms_intervals_titles">
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+    </string-array>
+    <string-array name="pref_alarms_intervals_values">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+
+    <string name="pref_auto_silence_title">Auto silence</string>
+    <string-array name="pref_auto_silence_titles">
+        <item>After 1 time</item>
+        <item>After 3 times</item>
+        <item>After 5 times</item>
+        <item>After 10 times</item>
+    </string-array>
+    <string-array name="pref_auto_silence_values">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
 
     <!-- NEW CATEGORY -->
     <string name="pref_theme_category">Theme</string>
 
-    <string name="pref_change_theme_title">Manage application themes</string>
-    <string-array name="pref_change_theme_titles">
-        <item>Dark theme is on</item>
-        <item>Dark theme is off</item>
-    </string-array>
-    <string-array name="pref_change_theme_values">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="pref_change_theme_title">Apply dark theme</string>
+    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
+    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
 
     <!-- ERROR CODES
     typo:

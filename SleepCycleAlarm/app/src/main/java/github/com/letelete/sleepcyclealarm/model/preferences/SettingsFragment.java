@@ -15,7 +15,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
+
+        bindPreferenceSummaryToValue(findPreference("language_select"));
         bindPreferenceSummaryToValue(findPreference("ring_duration"));
+        bindPreferenceSummaryToValue(findPreference("alarms_intervals"));
+        bindPreferenceSummaryToValue(findPreference("auto_silence"));
     }
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {

@@ -2,6 +2,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+        android:title="@string/pref_language_category">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_language_titles"
+            android:entryValues="@array/pref_language_values"
+            android:key="language_select"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_language_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/pref_alarm_category">
 
         <SwitchPreference
@@ -18,6 +32,13 @@
             android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
             android:defaultValue="false" />
 
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:dependency="same_ringtone"
+            android:key="notifications_new_message_ringtone"
+            android:ringtoneType="notification"
+            android:title="@string/pref_alarms_has_same_ringtone_intent_title" />
+
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/pref_ring_duration_titles"
@@ -29,12 +50,33 @@
 
         <ListPreference
             android:defaultValue="1"
-            android:entries="@array/pref_ring_duration_titles"
-            android:entryValues="@array/pref_ring_duration_values"
-            android:key="ring_duration"
+            android:entries="@array/pref_alarms_intervals_titles"
+            android:entryValues="@array/pref_alarms_intervals_values"
+            android:key="alarms_intervals"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
-            android:title="@string/pref_ring_duration_title" />
+            android:title="@string/pref_alarms_intervals_title" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_auto_silence_titles"
+            android:entryValues="@array/pref_auto_silence_values"
+            android:key="auto_silence"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_auto_silence_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_theme_category">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="change_theme"
+            android:title="@string/pref_change_theme_title"
+            android:summaryOn="@string/pref_change_theme_summary_on"
+            android:summaryOff="@string/pref_change_theme_summary_off" />
 
     </PreferenceCategory>
 
