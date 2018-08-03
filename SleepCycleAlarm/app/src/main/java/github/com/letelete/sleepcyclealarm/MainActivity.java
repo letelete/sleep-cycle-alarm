@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity
     private void setupBottomNavigationBar() {
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab_text)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab_text)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab_text)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab)))
                 .setBarBackgroundColor(R.color.light_theme_color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
