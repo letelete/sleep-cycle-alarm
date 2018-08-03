@@ -8,34 +8,34 @@
             android:id="@+id/alarmInSilentMode"
             android:key="silent_mode"
             android:title="@string/pref_alarm_in_silent_mode_title"
-            android:summary="@string/silentmo"
-            android:defaultValue="false" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_language_category">
+            android:summary="@string/pref_alarm_in_silent_mode_summary"
+            android:defaultValue="true" />
 
         <SwitchPreference
-            android:id="@+id/changeTheme"
-            android:key="change_theme"
-            android:title="@string/pref_change_theme_title"
-            android:summary="@string/pref_change_theme_summary"
+            android:id="@+id/alarmsHasSameRingtone"
+            android:key="same_ringtone"
+            android:title="@string/pref_alarms_has_same_ringtone_switch_title"
+            android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
             android:defaultValue="false" />
 
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_ring_duration_titles"
+            android:entryValues="@array/pref_ring_duration_values"
+            android:key="ring_duration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_ring_duration_title" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_ring_duration_titles"
+            android:entryValues="@array/pref_ring_duration_values"
+            android:key="ring_duration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_ring_duration_title" />
+
     </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_theme_category">
-
-        <SwitchPreference
-            android:id="@+id/changeTheme"
-            android:key="change_theme"
-            android:title="@string/pref_change_theme_title"
-            android:summary="@string/pref_change_theme_summary"
-            android:defaultValue="false" />
-
-    </PreferenceCategory>
-
 
 </PreferenceScreen>
