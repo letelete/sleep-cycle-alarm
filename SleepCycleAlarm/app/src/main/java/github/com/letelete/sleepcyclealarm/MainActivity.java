@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
     Toolbar.OnMenuItemClickListener {
 
-    private BottomNavigationBar bottomNavigationBar;
-    private Toolbar appToolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +30,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupToolbar() {
-        appToolbar = findViewById(R.id.toolbar);
+        Toolbar appToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(appToolbar);
         appToolbar.setOnMenuItemClickListener(this);
     }
 
     private void setupBottomNavigationBar() {
-        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab)))

@@ -2,7 +2,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Theme">
+        android:title="@string/pref_alarm_category">
+
+        <SwitchPreference
+            android:id="@+id/alarmInSilentMode"
+            android:key="silent_mode"
+            android:title="@string/pref_alarm_in_silent_mode_title"
+            android:summary="@string/silentmo"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_language_category">
 
         <SwitchPreference
             android:id="@+id/changeTheme"
@@ -12,5 +24,18 @@
             android:defaultValue="false" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_theme_category">
+
+        <SwitchPreference
+            android:id="@+id/changeTheme"
+            android:key="change_theme"
+            android:title="@string/pref_change_theme_title"
+            android:summary="@string/pref_change_theme_summary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>
