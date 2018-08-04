@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.AppParentOfDarkTheme" parent="Theme.Design.NoActionBar">
+    <style name="Theme.AppParentOfDarkTheme" parent="PreferenceFixTheme.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
     </style>
 
-    <style name="Theme.AppParentOfLightTheme" parent="Theme.Design.Light.NoActionBar">
+    <style name="Theme.AppParentOfLightTheme" parent="PreferenceFixTheme.Light.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment

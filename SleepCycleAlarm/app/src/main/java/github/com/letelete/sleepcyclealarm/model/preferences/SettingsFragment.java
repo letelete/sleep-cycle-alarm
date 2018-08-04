@@ -1,18 +1,25 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.RingtonePreference;
+import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
-import android.support.v7.preference.PreferenceFragmentCompat;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
+import com.takisoft.fix.support.v7.preference.RingtonePreference;
 
 import github.com.letelete.sleepcyclealarm.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
 
         bindPreferenceSummaryToValue(findPreference("language_select"));
@@ -25,14 +32,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             String stringValue = newValue.toString();
+
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
-                preference.setSummary(index >= 0
-                        ? listPreference.getEntries()[index]
-                        : null);
-            }
+                preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
+            } else {
+                preference.setSummary(stringValue);
+
+            }
             return true;
         }
     };

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="@string/pref_language_category">
@@ -19,18 +20,28 @@
         android:title="@string/pref_alarm_category">
 
         <SwitchPreference
-            android:id="@+id/alarmInSilentMode"
             android:key="silent_mode"
             android:title="@string/pref_alarm_in_silent_mode_title"
             android:summary="@string/pref_alarm_in_silent_mode_summary"
             android:defaultValue="true" />
 
         <SwitchPreference
-            android:id="@+id/alarmsHasSameRingtone"
             android:key="same_ringtone"
             android:title="@string/pref_alarms_has_same_ringtone_switch_title"
             android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
             android:defaultValue="false" />
+
+        <RingtonePreference
+            android:dependency="same_ringtone"
+            android:key="ringtone_select"
+            android:persistent="true"
+            android:ringtoneType="alarm"
+            android:showDefault="true"
+            android:showSilent="true"
+            android:summary="@string/pref_ringtone_select_default_summary"
+            android:title="@string/pref_ringtone_select_title"
+            app:pref_showAdd="true"
+            app:pref_summaryHasRingtone="@string/pref_ringtone_select_selected_summary" />
 
         <ListPreference
             android:defaultValue="1"

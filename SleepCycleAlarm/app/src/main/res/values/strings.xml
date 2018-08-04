@@ -76,7 +76,9 @@
 
     <string name="pref_alarms_has_same_ringtone_switch_title">Alarms has the same ringtone</string>
     <string name="pref_alarms_has_same_ringtone_switch_summary">Avoid configuring ringtone for every single alarm.</string>
-    <string name="pref_alarms_has_same_ringtone_intent_title">Alarm ringtone</string>
+    <string name="pref_ringtone_select_title">Alarm ringtone</string>
+    <string name="pref_ringtone_select_default_summary">Tap to select ringtone</string>
+    <string name="pref_ringtone_select_selected_summary">Chosen ringtone: %s</string>
 
     <string name="pref_ring_duration_title">Ring duration</string>
     <string-array name="pref_ring_duration_titles">
