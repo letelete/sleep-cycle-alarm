@@ -1,12 +1,11 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
 import android.os.Bundle;
+import android.preference.RingtonePreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceFragmentCompat;
-
-import java.util.List;
 
 import github.com.letelete.sleepcyclealarm.R;
 
@@ -33,6 +32,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         ? listPreference.getEntries()[index]
                         : null);
             }
+
             return true;
         }
     };

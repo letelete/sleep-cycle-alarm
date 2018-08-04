@@ -32,13 +32,6 @@
             android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
             android:defaultValue="false" />
 
-        <RingtonePreference
-            android:defaultValue="content://settings/system/notification_sound"
-            android:dependency="same_ringtone"
-            android:key="notifications_new_message_ringtone"
-            android:ringtoneType="notification"
-            android:title="@string/pref_alarms_has_same_ringtone_intent_title" />
-
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/pref_ring_duration_titles"
