@@ -9,7 +9,7 @@
             android:defaultValue="1"
             android:entries="@array/pref_language_titles"
             android:entryValues="@array/pref_language_values"
-            android:key="language_select"
+            android:key="pref_language"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_language_title" />
@@ -20,20 +20,20 @@
         android:title="@string/pref_alarm_category">
 
         <SwitchPreference
-            android:key="silent_mode"
+            android:key="pref_alarm_in_silent_mode"
             android:title="@string/pref_alarm_in_silent_mode_title"
             android:summary="@string/pref_alarm_in_silent_mode_summary"
             android:defaultValue="true" />
 
         <SwitchPreference
-            android:key="same_ringtone"
+            android:key="pref_alarms_has_same_ringtone"
             android:title="@string/pref_alarms_has_same_ringtone_switch_title"
             android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
             android:defaultValue="false" />
 
         <RingtonePreference
             android:dependency="same_ringtone"
-            android:key="ringtone_select"
+            android:key="pref_ringtone_select"
             android:persistent="true"
             android:ringtoneType="alarm"
             android:showDefault="true"
@@ -47,7 +47,7 @@
             android:defaultValue="1"
             android:entries="@array/pref_ring_duration_titles"
             android:entryValues="@array/pref_ring_duration_values"
-            android:key="ring_duration"
+            android:key="pref_ring_duration"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_ring_duration_title" />
@@ -56,7 +56,7 @@
             android:defaultValue="1"
             android:entries="@array/pref_alarms_intervals_titles"
             android:entryValues="@array/pref_alarms_intervals_values"
-            android:key="alarms_intervals"
+            android:key="pref_alarms_intervals"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_alarms_intervals_title" />
@@ -65,7 +65,7 @@
             android:defaultValue="1"
             android:entries="@array/pref_auto_silence_titles"
             android:entryValues="@array/pref_auto_silence_values"
-            android:key="auto_silence"
+            android:key="pref_auto_silence"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_auto_silence_title" />
@@ -77,7 +77,7 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="change_theme"
+            android:key="pref_change_theme"
             android:title="@string/pref_change_theme_title"
             android:summaryOn="@string/pref_change_theme_summary_on"
             android:summaryOff="@string/pref_change_theme_summary_off" />

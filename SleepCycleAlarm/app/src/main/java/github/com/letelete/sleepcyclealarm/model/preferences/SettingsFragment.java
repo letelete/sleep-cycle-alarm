@@ -16,36 +16,43 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
 
-        bindPreferenceSummaryToValue(findPreference("language_select"));
-        bindPreferenceSummaryToValue(findPreference("ring_duration"));
-        bindPreferenceSummaryToValue(findPreference("alarms_intervals"));
-        bindPreferenceSummaryToValue(findPreference("auto_silence"));
+        bindPreferenceSummaryToValue(findPreference("pref_language"));
+        bindPreferenceSummaryToValue(findPreference("pref_ring_duration"));
+        bindPreferenceSummaryToValue(findPreference("pref_alarms_intervals"));
+        bindPreferenceSummaryToValue(findPreference("pref_auto_silence"));
     }
 
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String stringValue = newValue.toString();
-
-            if (preference instanceof ListPreference) {
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(stringValue);
-                preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
-
-            } else {
-                preference.setSummary(stringValue);
-
-            }
-            return true;
-        }
-    };
-
     private static void bindPreferenceSummaryToValue(Preference preference) {
-        preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+        preference.setOnPreferenceChangeListener(onPreferenceChangeListener);
 
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+        onPreferenceChangeListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
+    }
+
+    private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+        terminateActionForCurrentPreferenceIfNeeded(preference);
+
+        String stringValue = newValue.toString();
+
+        if (preference instanceof ListPreference) {
+            ListPreference listPreference = (ListPreference) preference;
+            int index = listPreference.findIndexOfValue(stringValue);
+            preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
+
+        } else {
+            preference.setSummary(stringValue);
+
+        }
+        return true;
+        }
+    };
+
+    private static void terminateActionForCurrentPreferenceIfNeeded(Preference preference) {
+        // TODO:
     }
 }
