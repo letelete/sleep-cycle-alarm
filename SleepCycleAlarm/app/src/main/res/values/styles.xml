@@ -25,10 +25,6 @@
         //android:gravity does not works here
     </style>
 
-    <style name="global_kebab_menu_button"></style>
-
-    <style name="global_kebab_menu_style"></style>
-
     <style name="global_toolbar_style" parent="Base.V7.Widget.AppCompat.Toolbar">
         <item name="android:background">@color/transparent</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
@@ -102,14 +98,20 @@
     <style name="global_bottom_navigation_style">
     </style>
 
-    <style name="global_icons_background"></style>
-
     <style name="global_floating_action_button_style" parent="Widget.Design.FloatingActionButton">
         <item name="android:layout_width">@dimen/fabSize</item>
         <item name="android:layout_height">@dimen/fabSize</item>
         <item name="android:layout_margin">@dimen/extra_large_margin_size</item>
         <item name="android:layout_gravity">right|bottom</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="global_close_activity_button_style">
+        <item name="android:layout_width">@dimen/iconsSize</item>
+        <item name="android:layout_height">@dimen/iconsSize</item>
+        <item name="android:layout_marginStart">@dimen/large_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/extra_large_margin_size</item>
+        <item name="android:background">@drawable/ic_close</item>
     </style>
 
     <style name="global_icons_style">
@@ -130,9 +132,9 @@
         <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
     </style>
 
-    <style name="dark_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
-
-    <style name="dark_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
+    <style name="dark_theme_kebab_menu_style">
+        <item name="android:popupBackground">@color/dark_theme_color_primary_dark</item>
+    </style>
 
     <style name="dark_theme_toolbar_style" parent="global_toolbar_style">
         <item name="android:textColorSecondary">@color/dark_theme_text_high_emphasis</item>
@@ -182,7 +184,7 @@
         <item name="backgroundTint">@color/dark_theme_color_accent</item>
     </style>
 
-    <style name="dark_theme_icons_background" parent="global_icons_background">
+    <style name="dark_theme_icons_background">
         <item name="android:background">@color/dark_theme_color_primary_dark</item>
     </style>
 
@@ -200,9 +202,9 @@
         <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
     </style>
 
-    <style name="light_theme_kebab_menu_button" parent="global_kebab_menu_button"></style>
-
-    <style name="light_theme_kebab_menu_style" parent="global_kebab_menu_style"></style>
+    <style name="light_theme_kebab_menu_style">
+        <item name="android:popupBackground">@color/light_theme_color_primary_dark</item>
+    </style>
 
     <style name="light_theme_toolbar_style" parent="global_toolbar_style">
         <item name="android:textColorSecondary">@color/light_theme_text_medium_emphasis</item>
@@ -252,7 +254,7 @@
         <item name="backgroundTint">@color/light_theme_color_accent</item>
     </style>
 
-    <style name="light_theme_icons_background" parent="global_icons_background">
+    <style name="light_theme_icons_background">
         <item name="android:background">@color/light_theme_color_primary_dark</item>
     </style>
 

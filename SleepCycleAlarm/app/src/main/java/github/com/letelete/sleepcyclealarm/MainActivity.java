@@ -3,8 +3,6 @@ package github.com.letelete.sleepcyclealarm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
@@ -20,9 +18,6 @@ public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
     Toolbar.OnMenuItemClickListener {
 
-    private BottomNavigationBar bottomNavigationBar;
-    private Toolbar appToolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +28,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupToolbar() {
-        appToolbar = findViewById(R.id.toolbar);
+        Toolbar appToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(appToolbar);
         appToolbar.setOnMenuItemClickListener(this);
     }
 
     private void setupBottomNavigationBar() {
-        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab_text)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab_text)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab_text)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab)))
                 .setBarBackgroundColor(R.color.light_theme_color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
@@ -74,10 +69,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         int id = item.getItemId();
-        String KEY = getResources().getString(R.string.MENU_ITEM_KEY);
+        String itemTittle = item.getTitle().toString();
+
+        String ID_KEY = getResources().getString(R.string.MENU_ITEM_ID_KEY);
+        String TITLE_KEY = getResources().getString(R.string.MENU_ITEM_TITLE_KEY);
 
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        intent.putExtra(KEY, id);
+        intent.putExtra(ID_KEY, id);
+        intent.putExtra(TITLE_KEY, itemTittle);
         startActivity(intent);
 
         return true;
