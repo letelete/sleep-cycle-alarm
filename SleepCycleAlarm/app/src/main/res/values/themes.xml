@@ -5,12 +5,17 @@
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
+        <item name="android:textColor">@color/color_primary_selector</item>
+        <item name="android:textColorSecondary">@color/color_secondary_selector</item>
+
     </style>
 
     <style name="Theme.AppParentOfLightTheme" parent="PreferenceFixTheme.Light.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
+        <item name="android:textColor">@color/color_primary_selector</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
+        <item name="android:textColorSecondary">@color/color_secondary_selector</item>
     </style>
 
     <!-- NIGHT THEME -->
@@ -19,12 +24,13 @@
         <item name="colorPrimary">@color/dark_theme_color_primary</item>
         <item name="colorPrimaryDark">@color/dark_theme_color_primary_dark</item>
         <item name="colorAccent">@color/dark_theme_color_accent</item>
+        <item name="colorDisabled">@color/dark_theme_text_disabled</item>
+        <item name="colorHighEmphasis">@color/dark_theme_text_high_emphasis</item>
+        <item name="colorMediumEmphasis">@color/dark_theme_text_medium_emphasis</item>
+
         <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
 
-        // generally used to change three dot menu color
-        <item name="android:textColorPrimary">@color/dark_theme_text_high_emphasis</item>
-        <item name="android:textColorSecondary">@color/dark_theme_text_medium_emphasis</item>
 
         <item name="headerAppNameText">@style/dark_theme_header_app_name_text</item>
         <item name="kebabMenuStyle">@style/dark_theme_kebab_menu_style</item>
@@ -57,12 +63,12 @@
         <item name="colorPrimary">@color/light_theme_color_primary</item>
         <item name="colorPrimaryDark">@color/light_theme_color_primary_dark</item>
         <item name="colorAccent">@color/light_theme_color_accent</item>
+        <item name="colorDisabled">@color/light_theme_text_disabled</item>
+        <item name="colorHighEmphasis">@color/light_theme_text_high_emphasis</item>
+        <item name="colorMediumEmphasis">@color/light_theme_text_medium_emphasis</item>
+
         <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
-
-        // generally used to change three dot menu icon color
-        <item name="android:textColorPrimary">@color/light_theme_text_high_emphasis</item>
-        <item name="android:textColorSecondary">@color/light_theme_text_medium_emphasis</item>
 
         <item name="headerAppNameText">@style/light_theme_header_app_name_text</item>
         <item name="kebabMenuStyle">@style/light_theme_kebab_menu_style</item>

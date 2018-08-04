@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="colorHighEmphasis" format="reference" />
+    <attr name="colorMediumEmphasis" format="reference" />
+    <attr name="colorDisabled" format="reference" />
+
     <attr name="headerAppNameText" format="reference" />
     <attr name="kebabMenuStyle" format="reference" />
     <attr name="toolbarStyle" format="reference" />
