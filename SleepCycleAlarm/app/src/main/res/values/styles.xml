@@ -106,6 +106,14 @@
         <item name="android:clickable">true</item>
     </style>
 
+    <style name="global_close_activity_button_style">
+        <item name="android:layout_width">@dimen/iconsSize</item>
+        <item name="android:layout_height">@dimen/iconsSize</item>
+        <item name="android:layout_marginStart">@dimen/large_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/extra_large_margin_size</item>
+        <item name="android:background">@drawable/ic_close</item>
+    </style>
+
     <style name="global_icons_style">
         <item name="android:layout_width">@dimen/iconsSize</item>
         <item name="android:layout_height">@dimen/iconsSize</item>

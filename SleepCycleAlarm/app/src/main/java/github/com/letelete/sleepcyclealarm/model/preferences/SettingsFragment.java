@@ -1,18 +1,12 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
-import com.takisoft.fix.support.v7.preference.RingtonePreference;
 
 import github.com.letelete.sleepcyclealarm.R;
 

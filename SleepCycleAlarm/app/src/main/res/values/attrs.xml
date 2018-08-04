@@ -24,6 +24,7 @@
     <attr name="appBackgroundStyle" format="reference" />
 
     <attr name="floatingActionButtonStyle" format="reference" />
+    <attr name="closeActivityButtonStyle" format="reference" />
 
     <attr name="colorForIcons" format="reference" />
     <attr name="colorForIconsNegative" format="reference" />

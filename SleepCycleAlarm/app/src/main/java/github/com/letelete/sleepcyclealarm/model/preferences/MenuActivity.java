@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.MissingResourceException;
@@ -15,9 +18,12 @@ import github.com.letelete.sleepcyclealarm.R;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final static int ERROR_CODE = -1;
+    private final static int WRONG_KEY_ERROR_CODE = -1;
+
     private Fragment fragment;
     private PreferenceFragmentCompat preferenceFragment;
+
+    private TextView activityTitle;
 
     @Override
     protected void onCreate(Bundle savedStateInstance) {
@@ -25,9 +31,13 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
-        int KEY = intent.getIntExtra(getResources().getString(R.string.MENU_ITEM_KEY), ERROR_CODE);
+        int ID_KEY = intent.getIntExtra(getResources().getString(R.string.MENU_ITEM_ID_KEY), WRONG_KEY_ERROR_CODE);
+        String ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.MENU_ITEM_TITLE_KEY));
 
-        switch (KEY) {
+        activityTitle = findViewById(R.id.activityTitleTextView);
+        setActivityTitle(ITEM_TITLE);
+
+        switch (ID_KEY) {
             case -1:
                 Log.wtf("MenuActivityLog", "Default value assigned to the key");
                 showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
@@ -37,7 +47,7 @@ public class MenuActivity extends AppCompatActivity {
                 break;
 
             default:
-                Log.wtf("MenuActivityLog", "Default case in switch terminated. Key value: " + KEY);
+                Log.wtf("MenuActivityLog", "Default case in switch terminated. Key value: " + ID_KEY);
                 showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
 
@@ -54,6 +64,14 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    private void setActivityTitle(String title) {
+        if(!TextUtils.isEmpty(title)) {
+            activityTitle.setText(title);
+        } else {
+            Log.wtf("MenuActivityLog",  "ActivityTitle is empty or null");
+        }
+    }
+
     private boolean isAnyFragmentDeclared() {
         return preferenceFragment != null || fragment != null;
     }
@@ -65,14 +83,23 @@ public class MenuActivity extends AppCompatActivity {
         } catch (MissingResourceException e) {
             e.fillInStackTrace();
         } finally {
-            finish();
+            closeActivity();
         }
+    }
+
+    public void onCloseActivityButtonClick(View view) {
+        Log.wtf("MenuActivityLog", "User close an activity");
+        closeActivity();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.i("MenuActivityLog", "Activity destroyed");
+        closeActivity();
+    }
+
+    private void closeActivity() {
         finish();
     }
 }

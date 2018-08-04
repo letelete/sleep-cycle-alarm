@@ -7,7 +7,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
         <item name="android:textColor">@color/color_primary_selector</item>
         <item name="android:textColorSecondary">@color/color_secondary_selector</item>
-
+        <item name="closeActivityButtonStyle">@style/global_close_activity_button_style</item>
     </style>
 
     <style name="Theme.AppParentOfLightTheme" parent="PreferenceFixTheme.Light.NoActionBar">
@@ -16,6 +16,7 @@
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
         <item name="android:textColorSecondary">@color/color_secondary_selector</item>
+        <item name="closeActivityButtonStyle">@style/global_close_activity_button_style</item>
     </style>
 
     <!-- NIGHT THEME -->
