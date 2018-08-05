@@ -1,6 +1,7 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -16,10 +17,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
 
-        bindPreferenceSummaryToValue(findPreference("pref_language"));
-        bindPreferenceSummaryToValue(findPreference("pref_ring_duration"));
-        bindPreferenceSummaryToValue(findPreference("pref_alarms_intervals"));
-        bindPreferenceSummaryToValue(findPreference("pref_auto_silence"));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_language)));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_ring_duration)));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_alarms_intervals)));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_auto_silence)));
     }
 
     private static void bindPreferenceSummaryToValue(Preference preference) {
@@ -54,5 +55,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private static void terminateActionForCurrentPreferenceIfNeeded(Preference preference) {
         // TODO:
+    }
+
+    private String getStringByResource(int stringID) {
+        return getResources().getString(stringID).toString();
     }
 }

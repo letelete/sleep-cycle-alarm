@@ -32,7 +32,7 @@
             android:defaultValue="false" />
 
         <RingtonePreference
-            android:dependency="same_ringtone"
+            android:dependency="@string/key_alarms_has_same_ringtone"
             android:key="@string/key_ringtone_select"
             android:persistent="true"
             android:ringtoneType="alarm"
