@@ -9,7 +9,7 @@
             android:defaultValue="1"
             android:entries="@array/pref_language_titles"
             android:entryValues="@array/pref_language_values"
-            android:key="pref_language"
+            android:key="@string/pref_lan"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_language_title" />
