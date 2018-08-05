@@ -36,8 +36,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-        terminateActionForCurrentPreferenceIfNeeded(preference);
-
         String stringValue = newValue.toString();
 
         if (preference instanceof ListPreference) {
@@ -49,13 +47,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             preference.setSummary(stringValue);
 
         }
+
         return true;
         }
     };
-
-    private static void terminateActionForCurrentPreferenceIfNeeded(Preference preference) {
-        // TODO:
-    }
 
     private String getStringByResource(int stringID) {
         return getResources().getString(stringID).toString();
