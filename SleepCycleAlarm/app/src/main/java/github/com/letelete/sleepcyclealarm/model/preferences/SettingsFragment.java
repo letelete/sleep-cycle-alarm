@@ -1,4 +1,4 @@
-package github.com.letelete.sleepcyclealarm.ui;
+package github.com.letelete.sleepcyclealarm.model.preferences;
 
 import android.content.Intent;
 import android.os.Bundle;

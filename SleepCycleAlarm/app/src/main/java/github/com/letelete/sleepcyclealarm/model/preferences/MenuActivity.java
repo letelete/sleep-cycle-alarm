@@ -1,6 +1,5 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
-import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import java.util.MissingResourceException;
 
 import github.com.letelete.sleepcyclealarm.R;
-import github.com.letelete.sleepcyclealarm.ui.SettingsFragment;
 
 public class MenuActivity extends AppCompatActivity {
 
