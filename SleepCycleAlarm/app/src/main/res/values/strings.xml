@@ -1,7 +1,4 @@
 <resources>
-
-    <string name="MENU_ITEM_ID_KEY" translatable="false">MENU_ITEM_ID_KEY</string>
-    <string name="MENU_ITEM_TITLE_KEY" translatable="false">MENU_ITEM_TITLE_KEY</string>
     <string-array name="empty"  translatable="false"/>
 
     <string name="app_name">Sleep Cycle Alarm</string>

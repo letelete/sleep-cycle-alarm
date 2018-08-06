@@ -2,12 +2,9 @@ package github.com.letelete.sleepcyclealarm;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
@@ -37,8 +34,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        menuItemIdKey = getResources().getString(R.string.MENU_ITEM_ID_KEY);
-        menuItemTitleKey = getResources().getString(R.string.MENU_ITEM_TITLE_KEY);
+        menuItemIdKey = getResources().getString(R.string.key_menu_item_id);
+        menuItemTitleKey = getResources().getString(R.string.key_menu_item_title);
 
         setupToolbar();
         setupBottomNavigationBar();

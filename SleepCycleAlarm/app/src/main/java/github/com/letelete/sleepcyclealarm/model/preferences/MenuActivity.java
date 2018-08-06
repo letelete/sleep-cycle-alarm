@@ -38,8 +38,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
-        int ID_KEY = intent.getIntExtra(getResources().getString(R.string.MENU_ITEM_ID_KEY), WRONG_KEY_ERROR_CODE);
-        String ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.MENU_ITEM_TITLE_KEY));
+        int ID_KEY = intent.getIntExtra(getResources().getString(R.string.key_menu_item_id), WRONG_KEY_ERROR_CODE);
+        String ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.key_menu_item_title));
 
         activityTitle = findViewById(R.id.activityTitleTextView);
         setActivityTitle(ITEM_TITLE);
