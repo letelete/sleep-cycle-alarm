@@ -39,7 +39,7 @@
     </style>
 
     <style name="global_title_info_text" parent="global_font_regular">
-        <item name="android:textSize">@dimen/extra_extra_large_text_size</item>
+        <item name="android:textSize">@dimen/extra_large_text_size</item>
         <item name="android:layout_marginBottom">@dimen/small_margin_size</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -55,10 +55,13 @@
     <style name="global_info_card_style">
         <item name="cardCornerRadius">@dimen/corner_radius_size</item>
         <item name="cardElevation">@dimen/elevation_size</item>
-        <item name="cardUseCompatPadding">true</item>
+        <item name="cardUseCompatPadding">false</item>
         <item name="contentPadding">@dimen/content_padding_info_board</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginLeft">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginRight">@dimen/normal_margin_size</item>
     </style>
 
     <style name="global_list_helper_text" parent="global_font_regular">
@@ -89,6 +92,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
+
+    <style name="global_list_card_style" parent="global_info_card_style"></style>
 
     <style name="global_bottom_navigation_text" parent="global_font_regular">
         <item name="android:textAllCaps">true</item>
@@ -168,6 +173,10 @@
         <item name="android:textColor">@color/dark_theme_text_medium_emphasis</item>
     </style>
 
+    <style name="dark_theme_list_card_style" parent="global_list_card_style">
+        <item name="android:backgroundTint">@color/dark_theme_color_primary</item>
+    </style>
+
     <style name="dark_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
         <item name="android:textColor">@color/dark_theme_color_accent</item>
     </style>
@@ -236,6 +245,10 @@
 
     <style name="light_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
         <item name="android:textColor">@color/light_theme_text_medium_emphasis</item>
+    </style>
+
+    <style name="light_theme_list_card_style" parent="global_list_card_style">
+        <item name="android:backgroundTint">@color/light_theme_color_primary</item>
     </style>
 
     <style name="light_theme_bottom_navigation_text" parent="global_bottom_navigation_text">

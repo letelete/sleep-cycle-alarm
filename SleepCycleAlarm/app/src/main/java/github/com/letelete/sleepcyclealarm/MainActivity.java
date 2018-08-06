@@ -1,10 +1,14 @@
 package github.com.letelete.sleepcyclealarm;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.support.v7.widget.Toolbar;
@@ -15,10 +19,16 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 import github.com.letelete.sleepcyclealarm.model.preferences.MenuActivity;
+import github.com.letelete.sleepcyclealarm.ui.SleepNowFragment;
 
 public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
+
+    private final static String TAG = "MainActivity";
+
+    private final FragmentManager fragmentManager = getFragmentManager();
+    private Fragment currentFragment = null;
 
     private SharedPreferences sharedPreferences;
 
@@ -63,6 +73,7 @@ public class MainActivity extends AppCompatActivity
                 .setBarBackgroundColor(getBottomBarBackgroundColor())
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
+        bottomNavigationBar.selectTab(0);
     }
 
     private int getBottomBarBackgroundColor() {
@@ -73,7 +84,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTabSelected(int position) {
+        Log.i(TAG, "tab selected, index: " + String.valueOf(position));
 
+        switch(position) {
+            case 0:
+                setSleepNowFragment();
+                break;
+            case 1:
+                setWakeUpAtFragment();
+                break;
+            case 2:
+                setAlarmsFragment();
+                break;
+            default:
+                Log.wtf(TAG, "Default tab selected. Position value: " + String.valueOf(position));
+                break;
+        }
+        if(this.currentFragment != null) {
+            FragmentTransaction ft = this.fragmentManager.beginTransaction();
+            ft.replace(R.id.main_activity_container, this.currentFragment);
+            ft.commit();
+        }
     }
 
     @Override
@@ -84,6 +115,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    private void setSleepNowFragment() {
+        this.currentFragment = new SleepNowFragment();
+    }
+
+    private void setWakeUpAtFragment() {
+        this.currentFragment = new SleepNowFragment();
+    }
+
+    private void setAlarmsFragment() {
+        this.currentFragment = new SleepNowFragment();
     }
 
     @Override

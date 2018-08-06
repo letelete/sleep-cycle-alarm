@@ -17,6 +17,7 @@
     <attr name="titleInListText" format="reference" />
     <attr name="subtitleInListText" format="reference" />
     <attr name="listStyle" format="reference" />
+    <attr name="listCardStyle" format="reference" />
 
     <attr name="bottomNavigationText" format="reference" />
     <attr name="bottomNavigationStyle" format="reference" />

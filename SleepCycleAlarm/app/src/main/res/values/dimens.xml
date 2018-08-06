@@ -7,7 +7,7 @@
     <dimen name="extra_extra_large_margin_size">48dp</dimen>
     <dimen name="extra_extra_extra_large_margin_size">64dp</dimen>
 
-    <dimen name="elevation_size">7dp</dimen>
+    <dimen name="elevation_size">3dp</dimen>
     <dimen name="corner_radius_size">7dp</dimen>
 
     <dimen name="small_text_size">12sp</dimen>

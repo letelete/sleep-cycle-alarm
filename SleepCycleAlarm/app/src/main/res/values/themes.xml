@@ -49,6 +49,7 @@
         <item name="listHelperText">@style/dark_theme_list_helper_text</item>
         <item name="titleInListText">@style/dark_theme_title_in_list_text</item>
         <item name="subtitleInListText">@style/dark_theme_subtitle_in_list_text</item>
+        <item name="listCardStyle">@style/dark_theme_list_card_style</item>
 
         <item name="bottomNavigationText">@style/dark_theme_bottom_navigation_text</item>
         <item name="bottomNavigationStyle">@style/dark_theme_bottom_navigation_style</item>
@@ -87,6 +88,7 @@
         <item name="listHelperText">@style/light_theme_list_helper_text</item>
         <item name="titleInListText">@style/light_theme_title_in_list_text</item>
         <item name="subtitleInListText">@style/light_theme_subtitle_in_list_text</item>
+        <item name="listCardStyle">@style/light_theme_list_card_style</item>
 
         <item name="bottomNavigationText">@style/light_theme_bottom_navigation_text</item>
         <item name="bottomNavigationStyle">@style/light_theme_bottom_navigation_style</item>
