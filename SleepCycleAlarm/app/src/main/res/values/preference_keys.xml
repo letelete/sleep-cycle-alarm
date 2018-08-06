@@ -2,13 +2,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
-    <string name="key_language" translatable="false">key_language</string>
+    <string name="key_change_theme" translatable="false">key_change_theme</string>
     <string name="key_alarm_in_silent_mode" translatable="false">key_alarm_in_silent_mode</string>
     <string name="key_alarms_has_same_ringtone" translatable="false">key_alarms_has_same_ringtone</string>
     <string name="key_ringtone_select" translatable="false">key_ringtone_select</string>
     <string name="key_ring_duration" translatable="false">key_ring_duration</string>
     <string name="key_alarms_intervals" translatable="false">key_alarms_intervals</string>
     <string name="key_auto_silence" translatable="false">key_auto_silence</string>
-    <string name="key_change_theme" translatable="false">key_change_theme</string>
 
 </resources>

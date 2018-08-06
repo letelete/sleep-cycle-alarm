@@ -43,19 +43,12 @@
 
     <!-- PREFERENCE STRINGS -->
 
-    <!-- GLOBAL PREF STRINGS-->
+    <!-- NEW CATEGORY -->
+    <string name="pref_theme_category">Theme</string>
 
-    <string name="pref_language_category">Language</string>
-
-    <string name="pref_language_title">Change language</string>
-    <string-array name="pref_language_titles">
-        <item>English</item>
-        <item>Polish</item>
-    </string-array>
-    <string-array name="pref_language_values">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="pref_change_theme_title">Apply dark theme</string>
+    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
+    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
 
     <!-- NEW CATEGORY -->
     <string name="pref_wordclock_category">Word clock</string>
@@ -134,13 +127,6 @@
         <item>5</item>
         <item>10</item>
     </string-array>
-
-    <!-- NEW CATEGORY -->
-    <string name="pref_theme_category">Theme</string>
-
-    <string name="pref_change_theme_title">Apply dark theme</string>
-    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
-    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
 
     <!-- ERROR CODES
     typo:

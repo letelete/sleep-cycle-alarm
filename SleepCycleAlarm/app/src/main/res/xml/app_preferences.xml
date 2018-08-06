@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="@string/pref_language_category">
+        android:title="@string/pref_theme_category">
 
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/pref_language_titles"
-            android:entryValues="@array/pref_language_values"
-            android:key="@string/key_language"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:title="@string/pref_language_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_change_theme"
+            android:title="@string/pref_change_theme_title"
+            android:summaryOn="@string/pref_change_theme_summary_on"
+            android:summaryOff="@string/pref_change_theme_summary_off" />
 
     </PreferenceCategory>
 
@@ -69,18 +67,6 @@
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_auto_silence_title" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_theme_category">
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="@string/key_change_theme"
-            android:title="@string/pref_change_theme_title"
-            android:summaryOn="@string/pref_change_theme_summary_on"
-            android:summaryOff="@string/pref_change_theme_summary_off" />
 
     </PreferenceCategory>
 
