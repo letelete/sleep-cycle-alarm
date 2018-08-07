@@ -1,6 +1,5 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
@@ -9,7 +8,6 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
-import github.com.letelete.sleepcyclealarm.MainActivity;
 import github.com.letelete.sleepcyclealarm.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".model.preferences.MenuActivity"
+        <activity android:name=".ui.menu.MenuActivity"
             android:label="@string/app_name" />
 
         <meta-data

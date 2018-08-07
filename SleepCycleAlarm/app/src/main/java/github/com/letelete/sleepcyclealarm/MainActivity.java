@@ -18,10 +18,10 @@ import android.view.MenuItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import github.com.letelete.sleepcyclealarm.model.preferences.MenuActivity;
-import github.com.letelete.sleepcyclealarm.ui.AlarmsFragment;
-import github.com.letelete.sleepcyclealarm.ui.SleepNowFragment;
-import github.com.letelete.sleepcyclealarm.ui.WakeUpAtFragment;
+import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
+import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
+import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
+import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 
 public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
