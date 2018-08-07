@@ -19,6 +19,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 import github.com.letelete.sleepcyclealarm.model.preferences.MenuActivity;
+import github.com.letelete.sleepcyclealarm.ui.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.WakeUpAtFragment;
 
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setAlarmsFragment() {
-        this.currentFragment = new SleepNowFragment();
+        this.currentFragment = new AlarmsFragment();
     }
 
     @Override

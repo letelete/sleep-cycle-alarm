@@ -16,7 +16,7 @@
     <string name="wake_up_at_card_info_summary">Set hour and I will create a list of hours when you should go to sleep</string>
 
     <string name="alarms_card_info_title">Manage your alarms.</string>
-    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Every, already used alarm will be removed, so you don\'t need to care about them.</string>
+    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
 
     <!-- BUTTON STRINGS -->
     <string name="wake_up_at_set_hour_button">Set hour</string>
