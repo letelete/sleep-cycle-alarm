@@ -68,16 +68,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void performPreferenceAction(Preference preference) {
 
-        if(preference.getKey()
-                .equals(getStringByResource(R.string.key_change_theme))) {
-            restartActivityAndOpenSettings();
-        }
-    }
-
-    private void restartActivityAndOpenSettings() {
-        Intent i = new Intent(getActivity(), MainActivity.class);
-        startActivity(i);
-        getActivity().finish();
     }
 
     private String getStringByResource(int stringID) {

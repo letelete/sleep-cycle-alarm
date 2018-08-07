@@ -1,5 +1,6 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
+import android.support.v4.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -108,10 +109,12 @@ public class MenuActivity extends AppCompatActivity {
         finish();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "Activity destroyed");
+
+        fragment = null;
+        preferenceFragment = null;
     }
 }
