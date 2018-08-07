@@ -13,6 +13,6 @@ public class WakeUpAtFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
+        return layoutInflater.inflate(R.layout.fragment_wake_up_at, container, false);
     }
 }

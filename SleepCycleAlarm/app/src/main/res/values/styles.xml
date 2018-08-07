@@ -46,7 +46,7 @@
     </style>
 
     <style name="global_content_info_text" parent="global_font_regular">
-        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textSize">@dimen/title</item>
         <item name="android:layout_marginBottom">@dimen/small_margin_size</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -65,7 +65,7 @@
     </style>
 
     <style name="global_list_helper_text" parent="global_font_regular">
-        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textSize">@dimen/title</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -78,43 +78,45 @@
     </style>
 
     <style name="global_subtitle_in_list_text" parent="global_font_regular">
-        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textSize">@dimen/title</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="global_list_style">
-        <item name="android:layout_marginStart">@dimen/large_margin_size</item>
-        <item name="android:layout_marginEnd">@dimen/large_margin_size</item>
+        <item name="android:layout_marginStart">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginEnd">@dimen/medium_margin_size</item>
         <item name="android:layout_marginTop">@dimen/small_margin_size</item>
         <item name="android:layout_marginBottom">@dimen/extra_large_margin_size</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="global_list_card_style" parent="global_info_card_style"></style>
+    <style name="global_list_card_style" parent="global_info_card_style">
+        <item name="android:layout_marginBottom">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginEnd">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginStart">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/medium_margin_size</item>
+    </style>
 
     <style name="global_bottom_navigation_text" parent="global_font_regular">
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textSize">@dimen/title</item>
     </style>
 
     <style name="global_bottom_navigation_style">
     </style>
 
     <style name="global_floating_action_button_style" parent="Widget.Design.FloatingActionButton">
-        <item name="android:layout_width">@dimen/fabSize</item>
-        <item name="android:layout_height">@dimen/fabSize</item>
-        <item name="android:layout_margin">@dimen/extra_large_margin_size</item>
-        <item name="android:layout_gravity">right|bottom</item>
-        <item name="android:clickable">true</item>
+        <item name="android:layout_width">@dimen/fabWidth</item>
+        <item name="android:layout_height">@dimen/fabHeight</item>
     </style>
 
     <style name="global_close_activity_button_style">
         <item name="android:layout_width">@dimen/iconsSize</item>
         <item name="android:layout_height">@dimen/iconsSize</item>
-        <item name="android:layout_marginStart">@dimen/large_margin_size</item>
+        <item name="android:layout_marginStart">@dimen/medium_margin_size</item>
         <item name="android:layout_marginTop">@dimen/extra_large_margin_size</item>
         <item name="android:background">@drawable/ic_close</item>
     </style>

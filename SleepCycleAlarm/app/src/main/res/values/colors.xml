@@ -10,6 +10,8 @@
     <color name="dark_theme_color_primary_dark">#232F34</color>
     <color name="dark_theme_color_accent">#f9aa33</color>
 
+    <color name="dark_theme_color_accent_lighter">#ffc265</color>
+
     <color name="dark_theme_text_high_emphasis">#DEFFFFFF</color>
     <color name="dark_theme_text_medium_emphasis">#99FFFFFF</color>
     <color name="dark_theme_text_disabled">#61FFFFFF</color>
@@ -26,6 +28,9 @@
     <color name="light_theme_color_primary">#FFFFFF</color>
     <color name="light_theme_color_primary_dark">#F5F5F5</color>
     <color name="light_theme_color_accent">#4768FD</color>
+
+    <color name="light_theme_color_accent_lighter">#6581ff</color>
+
 
     <color name="light_theme_text_high_emphasis">#DE000000</color>
     <color name="light_theme_text_medium_emphasis">#99000000</color>

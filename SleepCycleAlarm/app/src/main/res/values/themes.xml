@@ -32,6 +32,8 @@
         <item name="colorDisabled">@color/dark_theme_text_disabled</item>
         <item name="colorHighEmphasis">@color/dark_theme_text_high_emphasis</item>
         <item name="colorMediumEmphasis">@color/dark_theme_text_medium_emphasis</item>
+        <item name="colorAccentLighter">@color/dark_theme_color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/dark_theme_text_on_card_info</item>
 
         <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
@@ -72,6 +74,8 @@
         <item name="colorDisabled">@color/light_theme_text_disabled</item>
         <item name="colorHighEmphasis">@color/light_theme_text_high_emphasis</item>
         <item name="colorMediumEmphasis">@color/light_theme_text_medium_emphasis</item>
+        <item name="colorAccentLighter">@color/light_theme_color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/light_theme_text_on_card_info</item>
 
         <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
