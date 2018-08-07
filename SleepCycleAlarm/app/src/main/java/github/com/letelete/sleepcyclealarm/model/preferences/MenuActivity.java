@@ -1,11 +1,14 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
+import android.support.v4.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,28 +21,33 @@ import github.com.letelete.sleepcyclealarm.R;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private final static String TAG = "MenuActivity";
     private final static int WRONG_KEY_ERROR_CODE = -1;
 
-    private Fragment fragment;
-    private PreferenceFragmentCompat preferenceFragment;
+    private Fragment fragment = null;
+    private PreferenceFragmentCompat preferenceFragment = null;
 
+    private SharedPreferences sharedPreferences;
     private TextView activityTitle;
 
     @Override
     protected void onCreate(Bundle savedStateInstance) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        setTheme(getThemeForActivity());
+
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_menu);
 
         Intent intent = getIntent();
-        int ID_KEY = intent.getIntExtra(getResources().getString(R.string.MENU_ITEM_ID_KEY), WRONG_KEY_ERROR_CODE);
-        String ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.MENU_ITEM_TITLE_KEY));
+        int ID_KEY = intent.getIntExtra(getResources().getString(R.string.key_menu_item_id), WRONG_KEY_ERROR_CODE);
+        String ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.key_menu_item_title));
 
         activityTitle = findViewById(R.id.activityTitleTextView);
         setActivityTitle(ITEM_TITLE);
 
         switch (ID_KEY) {
-            case -1:
-                Log.wtf("MenuActivityLog", "Default value assigned to the key");
+            case WRONG_KEY_ERROR_CODE:
+                Log.wtf(TAG, "Default value assigned to the key");
                 showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
 
             case R.id.menu_settings:
@@ -47,28 +55,37 @@ public class MenuActivity extends AppCompatActivity {
                 break;
 
             default:
-                Log.wtf("MenuActivityLog", "Default case in switch terminated. Key value: " + ID_KEY);
+                Log.wtf(TAG, "Default case in switch terminated. Key value: " + ID_KEY);
                 showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
 
         if(isAnyFragmentDeclared()) {
-
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            if(preferenceFragment != null) {
-                ft.add(R.id.menu_activity_container, preferenceFragment);
-            } else if (fragment != null) {
-                ft.add(R.id.menu_activity_container, fragment);
-            }
-
-            ft.commit();
+            setupSpecificFragment();
         }
+    }
+
+    private void setupSpecificFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        if(preferenceFragment != null) {
+            ft.replace(R.id.menu_activity_container, preferenceFragment);
+        } else if (fragment != null) {
+            ft.replace(R.id.menu_activity_container, fragment);
+        }
+
+        ft.commit();
+    }
+
+    private int getThemeForActivity() {
+        return sharedPreferences.getBoolean(getResources().getString(R.string.key_change_theme), false)
+                ? R.style.Theme_DarkTheme
+                : R.style.Theme_LightTheme;
     }
 
     private void setActivityTitle(String title) {
         if(!TextUtils.isEmpty(title)) {
             activityTitle.setText(title);
         } else {
-            Log.wtf("MenuActivityLog",  "ActivityTitle is empty or null");
+            Log.wtf(TAG,"ActivityTitle is empty or null");
         }
     }
 
@@ -83,23 +100,21 @@ public class MenuActivity extends AppCompatActivity {
         } catch (MissingResourceException e) {
             e.fillInStackTrace();
         } finally {
-            closeActivity();
+            finish();
         }
     }
 
     public void onCloseActivityButtonClick(View view) {
-        Log.wtf("MenuActivityLog", "User close an activity");
-        closeActivity();
+        Log.i(TAG, "User close an activity");
+        finish();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("MenuActivityLog", "Activity destroyed");
-        closeActivity();
-    }
+        Log.i(TAG, "Activity destroyed");
 
-    private void closeActivity() {
-        finish();
+        fragment = null;
+        preferenceFragment = null;
     }
 }

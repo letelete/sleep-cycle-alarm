@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="pref_language" translatable="false">pref_language</string>
-    <string name="pref_alarm_in_silent_mode" translatable="false">pref_alarm_in_silent_mode</string>
-    <string name="pref_alarms_has_same_ringtone" translatable="false">pref_alarms_has_same_ringtone</string>
-    <string name="pref_ringtone_select" translatable="false">pref_ringtone_select</string>
-    <string name="pref_ring_duration" translatable="false">pref_ring_duration</string>
-    <string name="pref_alarms_intervals" translatable="false">pref_alarms_intervals</string>
-    <string name="pref_auto_silence" translatable="false">pref_auto_silence</string>
-    <string name="pref_change_theme" translatable="false">pref_change_theme</string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <string name="key_menu_item_id" translatable="false">key_menu_item_id</string>
+    <string name="key_menu_item_title" translatable="false">key_menu_item_title</string>
+
+    <string name="key_change_theme" translatable="false">key_change_theme</string>
+    <string name="key_alarm_in_silent_mode" translatable="false">key_alarm_in_silent_mode</string>
+    <string name="key_alarms_has_same_ringtone" translatable="false">key_alarms_has_same_ringtone</string>
+    <string name="key_ringtone_select" translatable="false">key_ringtone_select</string>
+    <string name="key_ring_duration" translatable="false">key_ring_duration</string>
+    <string name="key_alarms_intervals" translatable="false">key_alarms_intervals</string>
+    <string name="key_auto_silence" translatable="false">key_auto_silence</string>
 
 </resources>

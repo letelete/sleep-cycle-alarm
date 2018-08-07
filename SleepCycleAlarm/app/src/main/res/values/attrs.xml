@@ -3,6 +3,8 @@
     <attr name="colorHighEmphasis" format="reference" />
     <attr name="colorMediumEmphasis" format="reference" />
     <attr name="colorDisabled" format="reference" />
+    <attr name="colorAccentLighter" format="reference" />
+    <attr name="colorTextOnAccent" format="reference" />
 
     <attr name="headerAppNameText" format="reference" />
     <attr name="kebabMenuStyle" format="reference" />
@@ -17,6 +19,7 @@
     <attr name="titleInListText" format="reference" />
     <attr name="subtitleInListText" format="reference" />
     <attr name="listStyle" format="reference" />
+    <attr name="listCardStyle" format="reference" />
 
     <attr name="bottomNavigationText" format="reference" />
     <attr name="bottomNavigationStyle" format="reference" />

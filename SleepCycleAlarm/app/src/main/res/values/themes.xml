@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <style name="Theme.AppParentOfDarkTheme" parent="PreferenceFixTheme.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
@@ -8,6 +8,8 @@
         <item name="android:textColor">@color/color_primary_selector</item>
         <item name="android:textColorSecondary">@color/color_secondary_selector</item>
         <item name="closeActivityButtonStyle">@style/global_close_activity_button_style</item>
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <style name="Theme.AppParentOfLightTheme" parent="PreferenceFixTheme.Light.NoActionBar">
@@ -17,6 +19,8 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
         <item name="android:textColorSecondary">@color/color_secondary_selector</item>
         <item name="closeActivityButtonStyle">@style/global_close_activity_button_style</item>
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <!-- NIGHT THEME -->
@@ -28,6 +32,8 @@
         <item name="colorDisabled">@color/dark_theme_text_disabled</item>
         <item name="colorHighEmphasis">@color/dark_theme_text_high_emphasis</item>
         <item name="colorMediumEmphasis">@color/dark_theme_text_medium_emphasis</item>
+        <item name="colorAccentLighter">@color/dark_theme_color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/dark_theme_text_on_card_info</item>
 
         <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
@@ -45,6 +51,7 @@
         <item name="listHelperText">@style/dark_theme_list_helper_text</item>
         <item name="titleInListText">@style/dark_theme_title_in_list_text</item>
         <item name="subtitleInListText">@style/dark_theme_subtitle_in_list_text</item>
+        <item name="listCardStyle">@style/dark_theme_list_card_style</item>
 
         <item name="bottomNavigationText">@style/dark_theme_bottom_navigation_text</item>
         <item name="bottomNavigationStyle">@style/dark_theme_bottom_navigation_style</item>
@@ -67,6 +74,8 @@
         <item name="colorDisabled">@color/light_theme_text_disabled</item>
         <item name="colorHighEmphasis">@color/light_theme_text_high_emphasis</item>
         <item name="colorMediumEmphasis">@color/light_theme_text_medium_emphasis</item>
+        <item name="colorAccentLighter">@color/light_theme_color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/light_theme_text_on_card_info</item>
 
         <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
@@ -83,6 +92,7 @@
         <item name="listHelperText">@style/light_theme_list_helper_text</item>
         <item name="titleInListText">@style/light_theme_title_in_list_text</item>
         <item name="subtitleInListText">@style/light_theme_subtitle_in_list_text</item>
+        <item name="listCardStyle">@style/light_theme_list_card_style</item>
 
         <item name="bottomNavigationText">@style/light_theme_bottom_navigation_text</item>
         <item name="bottomNavigationStyle">@style/light_theme_bottom_navigation_style</item>

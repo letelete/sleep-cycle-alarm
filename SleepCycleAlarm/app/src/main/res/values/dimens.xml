@@ -2,16 +2,17 @@
 <resources>
     <dimen name="small_margin_size">4dp</dimen>
     <dimen name="normal_margin_size">8dp</dimen>
-    <dimen name="large_margin_size">16dp</dimen>
+    <dimen name="medium_margin_size">16dp</dimen>
+    <dimen name="large_margin_size">24dp</dimen>
     <dimen name="extra_large_margin_size">32dp</dimen>
     <dimen name="extra_extra_large_margin_size">48dp</dimen>
     <dimen name="extra_extra_extra_large_margin_size">64dp</dimen>
 
-    <dimen name="elevation_size">7dp</dimen>
+    <dimen name="elevation_size">3dp</dimen>
     <dimen name="corner_radius_size">7dp</dimen>
 
     <dimen name="small_text_size">12sp</dimen>
-    <dimen name="normal_text_size">14sp</dimen>
+    <dimen name="title">14sp</dimen>
     <dimen name="large_text_size">18sp</dimen>
     <dimen name="extra_large_text_size">20sp</dimen>
     <dimen name="extra_extra_large_text_size">24sp</dimen>
@@ -30,5 +31,7 @@
     <dimen name="smartTabTitleOffset">24dp</dimen>
     <dimen name="smartTabUnderlineThickness">1dp</dimen>
 
-    <dimen name="fabSize">56dp</dimen>
+    <dimen name="fabCornerRadius">24dp</dimen>
+    <dimen name="fabHeight">40dp</dimen>
+    <dimen name="fabWidth">144dp</dimen>
 </resources>

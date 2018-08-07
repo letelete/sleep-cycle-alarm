@@ -1,5 +1,6 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
@@ -8,6 +9,7 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
+import github.com.letelete.sleepcyclealarm.MainActivity;
 import github.com.letelete.sleepcyclealarm.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
@@ -16,26 +18,25 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
 
-        bindPreferenceSummaryToValue(findPreference("pref_language"));
-        bindPreferenceSummaryToValue(findPreference("pref_ring_duration"));
-        bindPreferenceSummaryToValue(findPreference("pref_alarms_intervals"));
-        bindPreferenceSummaryToValue(findPreference("pref_auto_silence"));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_ring_duration)));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_alarms_intervals)));
+        bindPreferenceSummaryToValue(findPreference(getStringByResource(R.string.key_auto_silence)));
+
+        bindPreferenceToPerformAction(findPreference(getStringByResource(R.string.key_change_theme)));
     }
 
-    private static void bindPreferenceSummaryToValue(Preference preference) {
-        preference.setOnPreferenceChangeListener(onPreferenceChangeListener);
+    private void bindPreferenceSummaryToValue(Preference preference) {
+        preference.setOnPreferenceChangeListener(changeSummaryOnPreferenceChange);
 
-        onPreferenceChangeListener.onPreferenceChange(preference,
+        changeSummaryOnPreferenceChange.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
     }
 
-    private static Preference.OnPreferenceChangeListener onPreferenceChangeListener = new Preference.OnPreferenceChangeListener() {
+    private Preference.OnPreferenceChangeListener changeSummaryOnPreferenceChange = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-        terminateActionForCurrentPreferenceIfNeeded(preference);
 
         String stringValue = newValue.toString();
 
@@ -46,13 +47,30 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         } else {
             preference.setSummary(stringValue);
-
         }
+
         return true;
         }
     };
 
-    private static void terminateActionForCurrentPreferenceIfNeeded(Preference preference) {
-        // TODO:
+    private void bindPreferenceToPerformAction(Preference preference) {
+        preference.setOnPreferenceChangeListener(performActionOnPreferenceChange);
+    }
+
+    private Preference.OnPreferenceChangeListener performActionOnPreferenceChange = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+            performPreferenceAction(preference);
+            return true;
+        }
+    };
+
+    private void performPreferenceAction(Preference preference) {
+
+    }
+
+    private String getStringByResource(int stringID) {
+        return getResources().getString(stringID).toString();
     }
 }

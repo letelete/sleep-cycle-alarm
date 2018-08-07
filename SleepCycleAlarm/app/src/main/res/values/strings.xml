@@ -1,7 +1,4 @@
 <resources>
-
-    <string name="MENU_ITEM_ID_KEY" translatable="false">MENU_ITEM_ID_KEY</string>
-    <string name="MENU_ITEM_TITLE_KEY" translatable="false">MENU_ITEM_TITLE_KEY</string>
     <string-array name="empty"  translatable="false"/>
 
     <string name="app_name">Sleep Cycle Alarm</string>
@@ -19,7 +16,7 @@
     <string name="wake_up_at_card_info_summary">Set hour and I will create a list of hours when you should go to sleep</string>
 
     <string name="alarms_card_info_title">Manage your alarms.</string>
-    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Every, already used alarm will be removed, so you don\'t need to care about them.</string>
+    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
 
     <!-- BUTTON STRINGS -->
     <string name="wake_up_at_set_hour_button">Set hour</string>
@@ -43,19 +40,12 @@
 
     <!-- PREFERENCE STRINGS -->
 
-    <!-- GLOBAL PREF STRINGS-->
+    <!-- NEW CATEGORY -->
+    <string name="pref_theme_category">Theme</string>
 
-    <string name="pref_language_category">Language</string>
-
-    <string name="pref_language_title">Change language</string>
-    <string-array name="pref_language_titles">
-        <item>English</item>
-        <item>Polish</item>
-    </string-array>
-    <string-array name="pref_language_values">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="pref_change_theme_title">Apply dark theme</string>
+    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
+    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
 
     <!-- NEW CATEGORY -->
     <string name="pref_wordclock_category">Word clock</string>
@@ -134,13 +124,6 @@
         <item>5</item>
         <item>10</item>
     </string-array>
-
-    <!-- NEW CATEGORY -->
-    <string name="pref_theme_category">Theme</string>
-
-    <string name="pref_change_theme_title">Apply dark theme</string>
-    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
-    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
 
     <!-- ERROR CODES
     typo:
