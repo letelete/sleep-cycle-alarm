@@ -1,4 +1,4 @@
-package github.com.letelete.sleepcyclealarm.ui;
+package github.com.letelete.sleepcyclealarm.ui.tabs;
 
 import android.app.Fragment;
 import android.os.Bundle;
