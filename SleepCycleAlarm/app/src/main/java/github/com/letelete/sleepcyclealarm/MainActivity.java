@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity
 
     private final static String TAG = "MainActivityLog";
 
+    private int currentTabIndex;
     private String menuItemIdKey;
     private String menuItemTitleKey;
 
+    private BottomNavigationBar bottomNavigationBar;
     private final FragmentManager fragmentManager = getFragmentManager();
     private Fragment currentFragment = null;
 
@@ -52,9 +54,16 @@ public class MainActivity extends AppCompatActivity
 
         menuItemIdKey = getString(R.string.key_menu_item_id);
         menuItemTitleKey = getString(R.string.key_menu_item_title);
+        currentTabIndex = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bottomNavigationBar.selectTab(currentTabIndex);
     }
 
     private void setAppTheme() {
@@ -68,7 +77,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBottomNavigationBar() {
-        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
@@ -76,13 +85,12 @@ public class MainActivity extends AppCompatActivity
                 .setBarBackgroundColor(R.color.color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
-        bottomNavigationBar.selectTab(0);
     }
 
     @Override
     public void onTabSelected(int position) {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
-
+        currentTabIndex = position;
         switch(position) {
             case 0:
                 setSleepNowFragment();
@@ -148,6 +156,12 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(menuItemIdKey, itemId);
         intent.putExtra(menuItemTitleKey, itemTitle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "Activity destroyed");
     }
 }
 
