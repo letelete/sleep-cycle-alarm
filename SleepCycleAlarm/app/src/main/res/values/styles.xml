@@ -1,7 +1,5 @@
 <resources>
 
-    <!-- STANDARD FOR EVERY THEME VARIABLES CONFIG -->
-
     <style name="global_font_light">
         <item name="android:fontFamily">@font/roboto_light</item>
     </style>
@@ -133,148 +131,73 @@
 
 
 
-    <!-- NIGHT THEME -->
 
-    <style name="dark_theme_header_app_name_text" parent="global_header_app_name_text">
-        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
+    <style name="header_app_name_text" parent="global_header_app_name_text">
+        <item name="android:textColor">@color/text_high_emphasis</item>
     </style>
 
-    <style name="dark_theme_kebab_menu_style">
-        <item name="android:popupBackground">@color/dark_theme_color_primary_dark</item>
-    </style>
-
-    <style name="dark_theme_toolbar_style" parent="global_toolbar_style">
-        <item name="android:textColorSecondary">@color/dark_theme_text_high_emphasis</item>
-    </style>
-
-    <style name="dark_theme_header_image" parent="global_header_image">
-        <item name="android:src">@drawable/dark_theme_header_image</item>
-    </style>
-
-    <style name="dark_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/dark_theme_text_on_card_info</item>
-    </style>
-
-    <style name="dark_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/dark_theme_text_on_card_info</item>
-    </style>
-
-    <style name="dark_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/dark_theme_color_accent</item>
-    </style>
-
-    <style name="dark_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
-    </style>
-
-    <style name="dark_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/dark_theme_text_high_emphasis</item>
-    </style>
-
-    <style name="dark_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/dark_theme_text_medium_emphasis</item>
-    </style>
-
-    <style name="dark_theme_list_card_style" parent="global_list_card_style">
-        <item name="android:backgroundTint">@color/dark_theme_color_primary</item>
-    </style>
-
-    <style name="dark_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/dark_theme_color_accent</item>
-    </style>
-
-    <style name="dark_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
-        <item name="android:background">@color/dark_theme_color_primary</item>
-    </style>
-
-    <style name="dark_theme_app_background_style">
-        <item name="android:background">@color/dark_theme_color_primary_dark</item>
-    </style>
-
-    <style name="dark_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/dark_theme_color_accent</item>
-    </style>
-
-    <style name="dark_theme_icons_background">
-        <item name="android:background">@color/dark_theme_color_primary_dark</item>
-    </style>
-
-    <style name="dark_theme_set_alarm_icon" parent="global_icons_style"></style>
-
-    <style name="dark_theme_access_alarm_icon" parent="global_icons_style"></style>
-
-
-
-
-
-    <!-- DAY THEME -->
-
-    <style name="light_theme_header_app_name_text" parent="global_header_app_name_text">
-        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
-    </style>
-
-    <style name="light_theme_kebab_menu_style">
+    <style name="kebab_menu_style">
         <item name="android:popupBackground">@color/color_primary_dark</item>
     </style>
 
-    <style name="light_theme_toolbar_style" parent="global_toolbar_style">
-        <item name="android:textColorSecondary">@color/light_theme_text_medium_emphasis</item>
+    <style name="toolbar_style" parent="global_toolbar_style">
+        <item name="android:textColorSecondary">@color/text_high_emphasis</item>
     </style>
 
-    <style name="light_theme_header_image" parent="global_header_image">
-        <item name="android:src">@drawable/light_theme_header_image</item>
+    <style name="header_image" parent="global_header_image">
+        <item name="android:src">@drawable/dark_theme_header_image</item>
     </style>
 
-    <style name="light_theme_title_info_text" parent="global_title_info_text">
-        <item name="android:textColor">@color/light_theme_text_on_card_info</item>
+    <style name="title_info_text" parent="global_title_info_text">
+        <item name="android:textColor">@color/text_on_card_info</item>
     </style>
 
-    <style name="light_theme_content_info_text" parent="global_content_info_text">
-        <item name="android:textColor">@color/light_theme_text_on_card_info</item>
+    <style name="content_info_text" parent="global_content_info_text">
+        <item name="android:textColor">@color/text_on_card_info</item>
     </style>
 
-    <style name="light_theme_info_card_style" parent="global_info_card_style">
-        <item name="cardBackgroundColor">@color/light_theme_color_accent</item>
+    <style name="info_card_style" parent="global_info_card_style">
+        <item name="cardBackgroundColor">@color/color_accent</item>
     </style>
 
-    <style name="light_theme_list_helper_text" parent="global_list_helper_text">
-        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
+    <style name="list_helper_text" parent="global_list_helper_text">
+        <item name="android:textColor">@color/text_high_emphasis</item>
     </style>
 
-    <style name="light_theme_title_in_list_text" parent="global_title_in_list_text">
-        <item name="android:textColor">@color/light_theme_text_high_emphasis</item>
+    <style name="title_in_list_text" parent="global_title_in_list_text">
+        <item name="android:textColor">@color/text_high_emphasis</item>
     </style>
 
-    <style name="light_theme_subtitle_in_list_text" parent="global_subtitle_in_list_text">
-        <item name="android:textColor">@color/light_theme_text_medium_emphasis</item>
+    <style name="subtitle_in_list_text" parent="global_subtitle_in_list_text">
+        <item name="android:textColor">@color/text_medium_emphasis</item>
     </style>
 
-    <style name="light_theme_list_card_style" parent="global_list_card_style">
+    <style name="list_card_style" parent="global_list_card_style">
         <item name="android:backgroundTint">@color/color_primary</item>
     </style>
 
-    <style name="light_theme_bottom_navigation_text" parent="global_bottom_navigation_text">
-        <item name="android:textColor">@color/light_theme_color_accent</item>
+    <style name="bottom_navigation_text" parent="global_bottom_navigation_text">
+        <item name="android:textColor">@color/color_accent</item>
     </style>
 
-    <style name="light_theme_bottom_navigation_style" parent="global_bottom_navigation_style">
+    <style name="bottom_navigation_style" parent="global_bottom_navigation_style">
         <item name="android:background">@color/color_primary</item>
     </style>
 
-    <style name="light_theme_app_background_style">
+    <style name="app_background_style">
         <item name="android:background">@color/color_primary_dark</item>
     </style>
 
-    <style name="light_theme_floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/light_theme_color_accent</item>
+    <style name="floating_action_button_style" parent="global_floating_action_button_style">
+        <item name="backgroundTint">@color/color_accent</item>
     </style>
 
-    <style name="light_theme_icons_background">
+    <style name="icons_background">
         <item name="android:background">@color/color_primary_dark</item>
     </style>
 
-    <style name="light_theme_set_alarm_icon" parent="global_icons_style"></style>
+    <style name="set_alarm_icon" parent="global_icons_style"></style>
 
-    <style name="light_theme_access_alarm_icon" parent="global_icons_style"></style>
+    <style name="access_alarm_icon" parent="global_icons_style"></style>
 
 </resources>
