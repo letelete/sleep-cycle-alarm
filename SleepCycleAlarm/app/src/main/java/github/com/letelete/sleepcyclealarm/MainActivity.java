@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
     private int getBottomBarBackgroundColor() {
         return isDarkThemeOn()
                 ? R.color.dark_theme_color_primary
-                : R.color.light_theme_color_primary;
+                : R.color.color_primary;
     }
 
     @Override

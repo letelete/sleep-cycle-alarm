@@ -68,8 +68,8 @@
     <!-- DAY THEME -->
 
     <style name="Theme.LightTheme" parent="Theme.AppParentOfLightTheme">
-        <item name="colorPrimary">@color/light_theme_color_primary</item>
-        <item name="colorPrimaryDark">@color/light_theme_color_primary_dark</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/light_theme_color_accent</item>
         <item name="colorDisabled">@color/light_theme_text_disabled</item>
         <item name="colorHighEmphasis">@color/light_theme_text_high_emphasis</item>
