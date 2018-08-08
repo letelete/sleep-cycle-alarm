@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -34,7 +35,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedStateInstance) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        setTheme(getThemeForActivity());
+        setAppTheme();
 
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_menu);
@@ -49,10 +50,15 @@ public class MenuActivity extends AppCompatActivity {
         performActionDependingOnKey(savedStateInstance);
     }
 
-    private int getThemeForActivity() {
-        return sharedPreferences.getBoolean(getResources().getString(R.string.key_change_theme), false)
-                ? R.style.Theme_SleepCycleTheme
-                : R.style.Theme_LightTheme;
+    private void setAppTheme() {
+        boolean isDarkThemeOn = sharedPreferences.getBoolean(getString(R.string.key_change_theme), false);
+
+        if(sharedPreferences.contains(getString(R.string.key_change_theme))) {
+            int newTheme = isDarkThemeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
+            getDelegate().setLocalNightMode(newTheme);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void setActivityTitle(String title) {
@@ -84,8 +90,6 @@ public class MenuActivity extends AppCompatActivity {
                 showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
     }
-
-
 
     private void showErrorAndFinish(int resourceMsgReference) {
         String errorMsg = getResources().getString(resourceMsgReference);

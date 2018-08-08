@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,18 +47,21 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        menuItemIdKey = getResources().getString(R.string.key_menu_item_id);
-        menuItemTitleKey = getResources().getString(R.string.key_menu_item_title);
+        menuItemIdKey = getString(R.string.key_menu_item_id);
+        menuItemTitleKey = getString(R.string.key_menu_item_title);
 
         setupToolbar();
         setupBottomNavigationBar();
     }
 
     private void setAppTheme() {
-        int themeId = isDarkThemeOn()
-                ? R.style.Theme_SleepCycleTheme
-                : R.style.Theme_LightTheme;
-        setTheme(themeId);
+        boolean isDarkThemeOn = sharedPreferences.getBoolean(getString(R.string.key_change_theme), false);
+
+        if(sharedPreferences.contains(getString(R.string.key_change_theme))) {
+            getDelegate().setLocalNightMode(isDarkThemeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void setupToolbar() {
@@ -69,19 +73,13 @@ public class MainActivity extends AppCompatActivity
     private void setupBottomNavigationBar() {
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab)))
-                .setBarBackgroundColor(getBottomBarBackgroundColor())
+                .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getString(R.string.alarms_tab)))
+                .setBarBackgroundColor(R.color.color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
         bottomNavigationBar.selectTab(0);
-    }
-
-    private int getBottomBarBackgroundColor() {
-        return isDarkThemeOn()
-                ? R.color.dark_theme_color_primary
-                : R.color.color_primary;
     }
 
     @Override
@@ -153,14 +151,6 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(menuItemIdKey, itemId);
         intent.putExtra(menuItemTitleKey, itemTitle);
         startActivity(intent);
-    }
-
-    private boolean isDarkThemeOn() {
-        return sharedPreferences.getBoolean(getStringByResource(R.string.key_change_theme), false);
-    }
-
-    private String getStringByResource(int resource) {
-        return getResources().getString(resource);
     }
 }
 
