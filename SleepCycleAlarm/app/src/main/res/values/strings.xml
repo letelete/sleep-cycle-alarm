@@ -43,9 +43,17 @@
     <!-- NEW CATEGORY -->
     <string name="pref_theme_category">Theme</string>
 
-    <string name="pref_change_theme_title">Apply dark theme</string>
-    <string name="pref_change_theme_summary_on">Dark theme is currently enabled</string>
-    <string name="pref_change_theme_summary_off">Dark theme is currently disabled</string>
+    <string name="pref_change_theme_title">Night mode schedule</string>
+    <string-array name="pref_change_theme_titles">
+        <item>Never</item>
+        <item>Auto</item>
+        <item>Always</item>
+    </string-array>
+    <string-array name="pref_change_theme_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
     <!-- NEW CATEGORY -->
     <string name="pref_wordclock_category">Word clock</string>

@@ -16,24 +16,27 @@ import android.widget.Toast;
 
 import github.com.letelete.sleepcyclealarm.R;
 import github.com.letelete.sleepcyclealarm.model.preferences.SettingsFragment;
+import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final static String TAG = "MenuActivity";
+    private final static String TAG = "MenuActivityLog";
     private final static int WRONG_KEY_ERROR_CODE = -1;
-
-    private Fragment fragment = null;
-    private PreferenceFragmentCompat preferenceFragment = null;
-
-    private SharedPreferences sharedPreferences;
-    private TextView activityTitle;
 
     private int MENU_ITEM_KEY;
     private String MENU_ITEM_TITLE;
 
+    private SharedPreferences sharedPreferences;
+    private TextView activityTitle;
+
+    private Fragment fragment = null;
+    private PreferenceFragmentCompat preferenceFragment = null;
+    private ThemeHelper themeHelper;
+
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        this.themeHelper = new ThemeHelper(sharedPreferences);
 
         setAppTheme();
 
@@ -51,15 +54,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setAppTheme() {
-        boolean isDarkThemeOn = sharedPreferences.getBoolean(getString(R.string.key_change_theme), false);
-
-        if(sharedPreferences.contains(getString(R.string.key_change_theme))) {
-            int newTheme = isDarkThemeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
-            getDelegate().setLocalNightMode(newTheme);
-        } else {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
+
 
     private void setActivityTitle(String title) {
         if(!TextUtils.isEmpty(title)) {

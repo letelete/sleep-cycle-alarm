@@ -23,24 +23,27 @@ import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
+import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
-    private final static String TAG = "MainActivity";
+    private final static String TAG = "MainActivityLog";
+
+    private String menuItemIdKey;
+    private String menuItemTitleKey;
 
     private final FragmentManager fragmentManager = getFragmentManager();
     private Fragment currentFragment = null;
 
     private SharedPreferences sharedPreferences;
-
-    private String menuItemIdKey;
-    private String menuItemTitleKey;
+    private ThemeHelper themeHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        this.themeHelper = new ThemeHelper(sharedPreferences);
 
         setAppTheme();
 
@@ -55,13 +58,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setAppTheme() {
-        boolean isDarkThemeOn = sharedPreferences.getBoolean(getString(R.string.key_change_theme), false);
-
-        if(sharedPreferences.contains(getString(R.string.key_change_theme))) {
-            getDelegate().setLocalNightMode(isDarkThemeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-        } else {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
 
     private void setupToolbar() {
