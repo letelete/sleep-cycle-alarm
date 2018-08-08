@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private int getThemeForActivity() {
         return sharedPreferences.getBoolean(getResources().getString(R.string.key_change_theme), false)
-                ? R.style.Theme_DarkTheme
+                ? R.style.Theme_SleepCycleTheme
                 : R.style.Theme_LightTheme;
     }
 

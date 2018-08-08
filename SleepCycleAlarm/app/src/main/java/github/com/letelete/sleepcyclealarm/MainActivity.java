@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setAppTheme() {
         int themeId = isDarkThemeOn()
-                ? R.style.Theme_DarkTheme
+                ? R.style.Theme_SleepCycleTheme
                 : R.style.Theme_LightTheme;
         setTheme(themeId);
     }
