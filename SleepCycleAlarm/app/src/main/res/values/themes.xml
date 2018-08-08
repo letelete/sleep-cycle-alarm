@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/tools">
 
-    <style name="Theme.ParentTheme" parent="PreferenceFixTheme.DayNight">
+    <style name="Theme.ParentTheme" parent="PreferenceFixTheme.DayNight.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
