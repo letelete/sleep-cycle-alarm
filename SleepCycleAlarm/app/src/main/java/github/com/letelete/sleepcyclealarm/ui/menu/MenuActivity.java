@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -15,26 +16,29 @@ import android.widget.Toast;
 
 import github.com.letelete.sleepcyclealarm.R;
 import github.com.letelete.sleepcyclealarm.model.preferences.SettingsFragment;
+import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final static String TAG = "MenuActivity";
+    private final static String TAG = "MenuActivityLog";
     private final static int WRONG_KEY_ERROR_CODE = -1;
-
-    private Fragment fragment = null;
-    private PreferenceFragmentCompat preferenceFragment = null;
-
-    private SharedPreferences sharedPreferences;
-    private TextView activityTitle;
 
     private int MENU_ITEM_KEY;
     private String MENU_ITEM_TITLE;
 
+    private SharedPreferences sharedPreferences;
+    private TextView activityTitle;
+
+    private Fragment fragment = null;
+    private PreferenceFragmentCompat preferenceFragment = null;
+    private ThemeHelper themeHelper;
+
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        this.themeHelper = new ThemeHelper(sharedPreferences);
 
-        setTheme(getThemeForActivity());
+        setAppTheme();
 
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_menu);
@@ -49,11 +53,10 @@ public class MenuActivity extends AppCompatActivity {
         performActionDependingOnKey(savedStateInstance);
     }
 
-    private int getThemeForActivity() {
-        return sharedPreferences.getBoolean(getResources().getString(R.string.key_change_theme), false)
-                ? R.style.Theme_DarkTheme
-                : R.style.Theme_LightTheme;
+    private void setAppTheme() {
+        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
+
 
     private void setActivityTitle(String title) {
         if(!TextUtils.isEmpty(title)) {
@@ -84,8 +87,6 @@ public class MenuActivity extends AppCompatActivity {
                 showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
     }
-
-
 
     private void showErrorAndFinish(int resourceMsgReference) {
         String errorMsg = getResources().getString(resourceMsgReference);

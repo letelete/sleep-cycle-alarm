@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,42 +23,51 @@ import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
+import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
     implements BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
-    private final static String TAG = "MainActivity";
+    private final static String TAG = "MainActivityLog";
 
+    private int currentTabIndex;
+    private String menuItemIdKey;
+    private String menuItemTitleKey;
+
+    private BottomNavigationBar bottomNavigationBar;
     private final FragmentManager fragmentManager = getFragmentManager();
     private Fragment currentFragment = null;
 
     private SharedPreferences sharedPreferences;
-
-    private String menuItemIdKey;
-    private String menuItemTitleKey;
+    private ThemeHelper themeHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        this.themeHelper = new ThemeHelper(sharedPreferences);
 
         setAppTheme();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        menuItemIdKey = getResources().getString(R.string.key_menu_item_id);
-        menuItemTitleKey = getResources().getString(R.string.key_menu_item_title);
+        menuItemIdKey = getString(R.string.key_menu_item_id);
+        menuItemTitleKey = getString(R.string.key_menu_item_title);
+        currentTabIndex = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        bottomNavigationBar.selectTab(currentTabIndex);
+    }
+
     private void setAppTheme() {
-        int themeId = isDarkThemeOn()
-                ? R.style.Theme_DarkTheme
-                : R.style.Theme_LightTheme;
-        setTheme(themeId);
+        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
 
     private void setupToolbar() {
@@ -67,27 +77,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBottomNavigationBar() {
-        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home, getResources().getString(R.string.sleep_now_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getResources().getString(R.string.wake_up_at_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getResources().getString(R.string.alarms_tab)))
-                .setBarBackgroundColor(getBottomBarBackgroundColor())
+                .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
+                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getString(R.string.alarms_tab)))
+                .setBarBackgroundColor(R.color.color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
-        bottomNavigationBar.selectTab(0);
-    }
-
-    private int getBottomBarBackgroundColor() {
-        return isDarkThemeOn()
-                ? R.color.dark_theme_color_primary
-                : R.color.light_theme_color_primary;
     }
 
     @Override
     public void onTabSelected(int position) {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
-
+        currentTabIndex = position;
         switch(position) {
             case 0:
                 setSleepNowFragment();
@@ -155,12 +158,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    private boolean isDarkThemeOn() {
-        return sharedPreferences.getBoolean(getStringByResource(R.string.key_change_theme), false);
-    }
-
-    private String getStringByResource(int resource) {
-        return getResources().getString(resource);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "Activity destroyed");
     }
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/tools">
 
-    <style name="Theme.AppParentOfDarkTheme" parent="PreferenceFixTheme.NoActionBar">
+    <style name="Theme.ParentTheme" parent="PreferenceFixTheme.DayNight.NoActionBar">
         <item name="listStyle">@style/global_list_style</item>
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
@@ -12,98 +12,44 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="Theme.AppParentOfLightTheme" parent="PreferenceFixTheme.Light.NoActionBar">
-        <item name="listStyle">@style/global_list_style</item>
-        <item name="android:textColor">@color/color_primary_selector</item>
-        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item> // must be here because of failed to find style 'coordinatorLayoutStyle' in current theme error...
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
-        <item name="android:textColorSecondary">@color/color_secondary_selector</item>
-        <item name="closeActivityButtonStyle">@style/global_close_activity_button_style</item>
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-    </style>
+    <style name="Theme.SleepCycleTheme" parent="Theme.ParentTheme">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorDisabled">@color/text_disabled</item>
+        <item name="colorHighEmphasis">@color/text_high_emphasis</item>
+        <item name="colorMediumEmphasis">@color/text_medium_emphasis</item>
+        <item name="colorAccentLighter">@color/color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/text_on_card_info</item>
 
-    <!-- NIGHT THEME -->
-
-    <style name="Theme.DarkTheme" parent="Theme.AppParentOfDarkTheme">
-        <item name="colorPrimary">@color/dark_theme_color_primary</item>
-        <item name="colorPrimaryDark">@color/dark_theme_color_primary_dark</item>
-        <item name="colorAccent">@color/dark_theme_color_accent</item>
-        <item name="colorDisabled">@color/dark_theme_text_disabled</item>
-        <item name="colorHighEmphasis">@color/dark_theme_text_high_emphasis</item>
-        <item name="colorMediumEmphasis">@color/dark_theme_text_medium_emphasis</item>
-        <item name="colorAccentLighter">@color/dark_theme_color_accent_lighter</item>
-        <item name="colorTextOnAccent">@color/dark_theme_text_on_card_info</item>
-
-        <item name="colorForIcons">@color/dark_theme_icons_active_unfocused</item>
-        <item name="colorForIconsNegative">@color/dark_theme_icons_active_focused_negative</item>
+        <item name="colorForIcons">@color/icons_active_unfocused</item>
+        <item name="colorForIconsNegative">@color/icons_active_focused_negative</item>
 
 
-        <item name="headerAppNameText">@style/dark_theme_header_app_name_text</item>
-        <item name="kebabMenuStyle">@style/dark_theme_kebab_menu_style</item>
-        <item name="toolbarStyle">@style/dark_theme_toolbar_style</item>
-        <item name="headerImage">@style/dark_theme_header_image</item>
+        <item name="headerAppNameText">@style/header_app_name_text</item>
+        <item name="kebabMenuStyle">@style/kebab_menu_style</item>
+        <item name="toolbarStyle">@style/toolbar_style</item>
+        <item name="headerImage">@style/header_image</item>
 
-        <item name="titleInfoText">@style/dark_theme_title_info_text</item>
-        <item name="contentInfoText">@style/dark_theme_content_info_text</item>
-        <item name="infoCardStyle">@style/dark_theme_info_card_style</item>
+        <item name="titleInfoText">@style/title_info_text</item>
+        <item name="contentInfoText">@style/content_info_text</item>
+        <item name="infoCardStyle">@style/info_card_style</item>
 
-        <item name="listHelperText">@style/dark_theme_list_helper_text</item>
-        <item name="titleInListText">@style/dark_theme_title_in_list_text</item>
-        <item name="subtitleInListText">@style/dark_theme_subtitle_in_list_text</item>
-        <item name="listCardStyle">@style/dark_theme_list_card_style</item>
+        <item name="listHelperText">@style/list_helper_text</item>
+        <item name="titleInListText">@style/title_in_list_text</item>
+        <item name="subtitleInListText">@style/subtitle_in_list_text</item>
+        <item name="listCardStyle">@style/list_card_style</item>
 
-        <item name="bottomNavigationText">@style/dark_theme_bottom_navigation_text</item>
-        <item name="bottomNavigationStyle">@style/dark_theme_bottom_navigation_style</item>
+        <item name="bottomNavigationText">@style/bottom_navigation_text</item>
+        <item name="bottomNavigationStyle">@style/bottom_navigation_style</item>
 
-        <item name="appBackgroundStyle">@style/dark_theme_app_background_style</item>
+        <item name="appBackgroundStyle">@style/app_background_style</item>
 
-        <item name="floatingActionButtonStyle">@style/dark_theme_floating_action_button_style</item>
+        <item name="floatingActionButtonStyle">@style/floating_action_button_style</item>
 
-        <item name="iconsBackground">@style/dark_theme_icons_background</item>
-        <item name="setAlarmIcon">@style/dark_theme_set_alarm_icon</item>
-        <item name="accessAlarmIcon">@style/dark_theme_access_alarm_icon</item>
-    </style>
-
-    <!-- DAY THEME -->
-
-    <style name="Theme.LightTheme" parent="Theme.AppParentOfLightTheme">
-        <item name="colorPrimary">@color/light_theme_color_primary</item>
-        <item name="colorPrimaryDark">@color/light_theme_color_primary_dark</item>
-        <item name="colorAccent">@color/light_theme_color_accent</item>
-        <item name="colorDisabled">@color/light_theme_text_disabled</item>
-        <item name="colorHighEmphasis">@color/light_theme_text_high_emphasis</item>
-        <item name="colorMediumEmphasis">@color/light_theme_text_medium_emphasis</item>
-        <item name="colorAccentLighter">@color/light_theme_color_accent_lighter</item>
-        <item name="colorTextOnAccent">@color/light_theme_text_on_card_info</item>
-
-        <item name="colorForIcons">@color/light_theme_icons_active_unfocused</item>
-        <item name="colorForIconsNegative">@color/light_theme_icons_active_focused_negative</item>
-
-        <item name="headerAppNameText">@style/light_theme_header_app_name_text</item>
-        <item name="kebabMenuStyle">@style/light_theme_kebab_menu_style</item>
-        <item name="toolbarStyle">@style/light_theme_toolbar_style</item>
-        <item name="headerImage">@style/light_theme_header_image</item>
-
-        <item name="titleInfoText">@style/light_theme_title_info_text</item>
-        <item name="contentInfoText">@style/light_theme_content_info_text</item>
-        <item name="infoCardStyle">@style/light_theme_info_card_style</item>
-
-        <item name="listHelperText">@style/light_theme_list_helper_text</item>
-        <item name="titleInListText">@style/light_theme_title_in_list_text</item>
-        <item name="subtitleInListText">@style/light_theme_subtitle_in_list_text</item>
-        <item name="listCardStyle">@style/light_theme_list_card_style</item>
-
-        <item name="bottomNavigationText">@style/light_theme_bottom_navigation_text</item>
-        <item name="bottomNavigationStyle">@style/light_theme_bottom_navigation_style</item>
-
-        <item name="appBackgroundStyle">@style/light_theme_app_background_style</item>
-
-        <item name="floatingActionButtonStyle">@style/light_theme_floating_action_button_style</item>
-
-        <item name="iconsBackground">@style/light_theme_icons_background</item>
-        <item name="setAlarmIcon">@style/light_theme_set_alarm_icon</item>
-        <item name="accessAlarmIcon">@style/light_theme_access_alarm_icon</item>
+        <item name="iconsBackground">@style/icons_background</item>
+        <item name="setAlarmIcon">@style/set_alarm_icon</item>
+        <item name="accessAlarmIcon">@style/access_alarm_icon</item>
     </style>
 
 </resources>

@@ -5,12 +5,14 @@
     <PreferenceCategory
         android:title="@string/pref_theme_category">
 
-        <SwitchPreference
-            android:defaultValue="false"
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_change_theme_titles"
+            android:entryValues="@array/pref_change_theme_values"
             android:key="@string/key_change_theme"
-            android:title="@string/pref_change_theme_title"
-            android:summaryOn="@string/pref_change_theme_summary_on"
-            android:summaryOff="@string/pref_change_theme_summary_off" />
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_change_theme_title" />
 
     </PreferenceCategory>
 
