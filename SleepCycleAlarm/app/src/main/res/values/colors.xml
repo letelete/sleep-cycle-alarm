@@ -5,11 +5,10 @@
     <color name="colorPrimaryThemeDependent">?colorPrimary</color>
     
     <color name="color_primary">#FFFFFF</color>
-    <color name="color_primary_dark">#F5F5F5</color>
-    <color name="color_accent">#4768FD</color>
+    <color name="color_primary_dark">#F9FAFC</color>
+    <color name="color_accent">#3b79e8</color>
 
     <color name="color_accent_lighter">#6581ff</color>
-
 
     <color name="text_high_emphasis">#DE000000</color>
     <color name="text_medium_emphasis">#99000000</color>
@@ -17,7 +16,7 @@
 
     <color name="text_on_card_info">#FFFFFF</color>
 
-    <color name="icons_active_focused">#4768FD</color>
+    <color name="icons_active_focused">#3b79e8</color>
     <color name="icons_active_focused_negative">#DEFFFFFF</color>
     <color name="icons_active_unfocused">#8A000000</color>
     <color name="icons_inactive">#61000000</color>
