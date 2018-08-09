@@ -3,7 +3,7 @@
 
     <color name="color_primary">#34495E</color>
     <color name="color_primary_dark">#2C3E50</color>
-    <color name="color_accent">#fdcb6e</color>
+    <color name="color_accent">#1dd1a1</color>
 
     <color name="color_accent_lighter">#b0fff7</color>
 
@@ -11,10 +11,10 @@
     <color name="text_medium_emphasis">#99FFFFFF</color>
     <color name="text_disabled">#61FFFFFF</color>
 
-    <color name="text_on_card_info">#c8000000</color>
-    <color name="icons_active_focused_negative">#c8000000</color>
+    <color name="text_on_card_info">#DEFFFFFF</color>
+    <color name="icons_active_focused_negative">#DEFFFFFF</color>
 
-    <color name="icons_active_focused">#fdcb6e</color>
+    <color name="icons_active_focused">#1dd1a1</color>
     <color name="icons_active_unfocused">#8AFFFFFF</color>
     <color name="icons_inactive">#61FFFFFF</color>
     
