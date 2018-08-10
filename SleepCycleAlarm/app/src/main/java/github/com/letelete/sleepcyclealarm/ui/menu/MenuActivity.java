@@ -53,7 +53,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setAppTheme() {
-        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
+        AppCompatDelegate.setDefaultNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
+        Log.i(TAG,"Set app theme");
     }
 
     private void setActivityTitle(String title) {

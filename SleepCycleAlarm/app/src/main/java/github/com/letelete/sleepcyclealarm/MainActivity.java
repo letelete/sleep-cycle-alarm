@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
 
     private final static String TAG = "MainActivityLog";
 
-    private int currentTabIndex;
     private String menuItemIdKey;
     private String menuItemTitleKey;
 
@@ -54,20 +53,13 @@ public class MainActivity extends AppCompatActivity
 
         menuItemIdKey = getString(R.string.key_menu_item_id);
         menuItemTitleKey = getString(R.string.key_menu_item_title);
-        currentTabIndex = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        bottomNavigationBar.selectTab(currentTabIndex);
-    }
-
     private void setAppTheme() {
-        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
+        AppCompatDelegate.setDefaultNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
 
     private void setupToolbar() {
@@ -85,12 +77,12 @@ public class MainActivity extends AppCompatActivity
                 .setBarBackgroundColor(R.color.color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
+        bottomNavigationBar.selectTab(0);
     }
 
     @Override
     public void onTabSelected(int position) {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
-        currentTabIndex = position;
         switch(position) {
             case 0:
                 setSleepNowFragment();

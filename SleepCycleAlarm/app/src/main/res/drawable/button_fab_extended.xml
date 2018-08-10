@@ -12,12 +12,8 @@
 
             <corners
                 android:radius="@dimen/fabCornerRadius" />
-        </shape>
-    </item>
 
-    <item android:state_focused="true">
-        <shape>
-            <solid android:color="#424242" />
+            <solid android:color="?colorAccentLighter" />
         </shape>
     </item>
 
@@ -32,23 +28,9 @@
 
             <corners
                 android:radius="@dimen/fabCornerRadius" />
-        </shape>
-    </item>
-
-    <item>
-        <shape
-
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="rectangle">
 
             <solid android:color="?colorAccent" />
-
-            <size
-                android:width="@dimen/fabWidth"
-                android:height="@dimen/fabHeight"/>
-
-            <corners
-                android:radius="@dimen/fabCornerRadius" />
         </shape>
     </item>
+
 </selector>
