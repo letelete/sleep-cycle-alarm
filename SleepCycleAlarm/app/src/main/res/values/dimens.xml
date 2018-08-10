@@ -31,7 +31,7 @@
     <dimen name="smartTabTitleOffset">24dp</dimen>
     <dimen name="smartTabUnderlineThickness">1dp</dimen>
 
-    <dimen name="fabCornerRadius">32dp</dimen>
-    <dimen name="fabHeight">32dp</dimen>
+    <dimen name="fabCornerRadius">38dp</dimen>
+    <dimen name="fabHeight">38dp</dimen>
     <dimen name="fabWidth">144dp</dimen>
 </resources>

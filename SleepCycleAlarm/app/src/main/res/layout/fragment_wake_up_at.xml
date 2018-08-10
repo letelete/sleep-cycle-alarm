@@ -87,9 +87,8 @@
     </android.support.v7.widget.CardView>
 
     <Button
+        style="?floatingActionButtonStyle"
         android:id="@+id/floatingActionButtonExtended"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="32dp"
         android:paddingStart="@dimen/medium_margin_size"
