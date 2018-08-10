@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
-import github.com.letelete.sleepcyclealarm.R;
-
 public class ThemeHelper {
 
     private final static String TAG = "ThemeManagerLog";
@@ -24,7 +22,7 @@ public class ThemeHelper {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
             case "2":
-                currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
+                currentTheme = AppCompatDelegate.MODE_NIGHT_AUTO;
                 break;
             case "3":
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
@@ -34,6 +32,7 @@ public class ThemeHelper {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }
+
         return currentTheme;
     }
 }
