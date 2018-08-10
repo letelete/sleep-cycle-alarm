@@ -46,11 +46,13 @@
     <string name="pref_change_theme_title">Night mode schedule</string>
     <string-array name="pref_change_theme_titles">
         <item>Never</item>
+        <item>Auto (Depends on time)</item>
         <item>Always</item>
     </string-array>
     <string-array name="pref_change_theme_values">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <!-- NEW CATEGORY -->
