@@ -24,9 +24,6 @@ public class ThemeHelper {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
             case "2":
-                currentTheme = AppCompatDelegate.MODE_NIGHT_AUTO;
-                break;
-            case "3":
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
             default:
@@ -34,7 +31,6 @@ public class ThemeHelper {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }
-
         return currentTheme;
     }
 }

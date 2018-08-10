@@ -24,7 +24,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         bindPreferenceToListener(findPreference(getString(R.string.key_auto_silence)));
 
         isFirstRun = !isFirstRun;
-    }
+        }
 
     private void bindPreferenceToListener(Preference preference) {
         preference.setOnPreferenceChangeListener(preferenceChangeListener);
@@ -46,12 +46,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             int index = listPreference.findIndexOfValue(stringValue);
             preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
-            if(preference.getKey().equals(getString(R.string.key_change_theme)) && !isFirstRun) {
-                getActivity().recreate();
-            }
-
         } else {
             preference.setSummary(stringValue);
+        }
+
+        if(preference.getKey().equals(getString(R.string.key_change_theme)) && !isFirstRun) {
+            getActivity().recreate();
         }
 
         return true;

@@ -37,7 +37,6 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedStateInstance) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         this.themeHelper = new ThemeHelper(sharedPreferences);
-
         setAppTheme();
 
         super.onCreate(savedStateInstance);
@@ -56,7 +55,6 @@ public class MenuActivity extends AppCompatActivity {
     private void setAppTheme() {
         getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
     }
-
 
     private void setActivityTitle(String title) {
         if(!TextUtils.isEmpty(title)) {
