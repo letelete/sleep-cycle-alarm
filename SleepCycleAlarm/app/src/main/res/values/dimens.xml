@@ -22,6 +22,7 @@
     <dimen name="divider_height">1dp</dimen>
     <dimen name="iconsSize">24dp</dimen>
     <dimen name="iconsBackgroundSize">30dp</dimen>
+    <dimen name="circleButtonsBackgroundSize">48dp</dimen>
 
     <dimen name="smartTabLayoutHeight">48dp</dimen>
     <dimen name="smartTabHorizontalPadding">16dp</dimen>
@@ -31,7 +32,7 @@
     <dimen name="smartTabTitleOffset">24dp</dimen>
     <dimen name="smartTabUnderlineThickness">1dp</dimen>
 
-    <dimen name="fabCornerRadius">24dp</dimen>
-    <dimen name="fabHeight">40dp</dimen>
+    <dimen name="fabCornerRadius">38dp</dimen>
+    <dimen name="fabHeight">38dp</dimen>
     <dimen name="fabWidth">144dp</dimen>
 </resources>

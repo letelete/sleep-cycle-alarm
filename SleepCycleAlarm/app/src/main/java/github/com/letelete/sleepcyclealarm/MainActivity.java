@@ -5,19 +5,19 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity
 
     private final static String TAG = "MainActivityLog";
 
-    private int currentTabIndex;
+    private int previousTabPosition;
+
     private String menuItemIdKey;
     private String menuItemTitleKey;
 
@@ -54,16 +55,11 @@ public class MainActivity extends AppCompatActivity
 
         menuItemIdKey = getString(R.string.key_menu_item_id);
         menuItemTitleKey = getString(R.string.key_menu_item_title);
-        currentTabIndex = 0;
+
+        previousTabPosition = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        bottomNavigationBar.selectTab(currentTabIndex);
     }
 
     private void setAppTheme() {
@@ -85,12 +81,12 @@ public class MainActivity extends AppCompatActivity
                 .setBarBackgroundColor(R.color.color_primary)
                 .initialise();
         bottomNavigationBar.setTabSelectedListener(this);
+        bottomNavigationBar.selectTab(0);
     }
 
     @Override
     public void onTabSelected(int position) {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
-        currentTabIndex = position;
         switch(position) {
             case 0:
                 setSleepNowFragment();
@@ -107,9 +103,21 @@ public class MainActivity extends AppCompatActivity
         }
         if(this.currentFragment != null) {
             FragmentTransaction ft = this.fragmentManager.beginTransaction();
-            ft.replace(R.id.main_activity_container, this.currentFragment);
-            ft.commit();
+
+            ArrayList<Integer> animationsOrder = getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(position);
+            ft.setCustomAnimations(animationsOrder.get(0), animationsOrder.get(1))
+                    .replace(R.id.main_activity_container, this.currentFragment)
+                    .commit();
         }
+    }
+
+    private ArrayList<Integer> getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(int position) {
+        ArrayList<Integer> orderedList = new ArrayList<>(position >= previousTabPosition
+                ? Arrays.asList(R.animator.slide_in_left, R.animator.slide_out_right)
+                : Arrays.asList(R.animator.slide_out_left, R.animator.slide_in_right));
+
+        previousTabPosition = position;
+        return orderedList;
     }
 
     @Override
@@ -136,8 +144,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.three_dot_menu, menu);
+        getMenuInflater().inflate(R.menu.three_dot_menu, menu);
         return true;
     }
 

@@ -9,31 +9,22 @@
     <TextView
         android:id="@+id/titleInListTextView"
         style="?attr/titleInListText"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/list_element_title_changeable"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sleepTimeTextView"
         style="?attr/subtitleInListText"
-        android:text="@string/list_element_summary_changeable"
         app:layout_constraintStart_toStartOf="@+id/titleInListTextView"
         app:layout_constraintTop_toBottomOf="@+id/titleInListTextView" />
 
     <ImageView
         android:id="@+id/imageView"
         style="?setAlarmIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/content_descriptions_set_alarm_icon"
         app:layout_constraintBottom_toBottomOf="@+id/sleepTimeTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/titleInListTextView"
-        app:srcCompat="@drawable/ic_shape_alarm_add" />
+        app:layout_constraintTop_toTopOf="@+id/titleInListTextView" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
-import github.com.letelete.sleepcyclealarm.R;
-
 public class ThemeHelper {
 
     private final static String TAG = "ThemeManagerLog";
