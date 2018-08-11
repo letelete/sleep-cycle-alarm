@@ -189,7 +189,14 @@
     </style>
 
     <style name="floating_action_button_style" parent="global_floating_action_button_style">
-        <item name="backgroundTint">@color/color_accent</item>
+        <item name="android:background">@drawable/button_fab_extended</item>
+        <item name="android:drawableStart">@drawable/ic_add</item>
+        <item name="android:textColor">@color/icons_active_focused_negative</item>
+        <item name="android:text">@string/wake_up_at_set_hour_button</item>
+        <item name="android:paddingStart">@dimen/medium_margin_size</item>
+        <item name="android:paddingEnd">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginBottom">@dimen/large_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/extra_large_margin_size</item>
     </style>
 
     <style name="icons_background">

@@ -1,36 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:state_pressed="true">
-        <shape
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="rectangle">
-
-            <size
-                android:width="@dimen/fabWidth"
-                android:height="@dimen/fabHeight"/>
-
-            <corners
-                android:radius="@dimen/fabCornerRadius" />
-
-            <solid android:color="?colorAccentLighter" />
-        </shape>
-    </item>
-
-    <item>
-        <shape
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="rectangle">
-
-            <size
-                android:width="@dimen/fabWidth"
-                android:height="@dimen/fabHeight"/>
-
-            <corners
-                android:radius="@dimen/fabCornerRadius" />
-
-            <solid android:color="?colorAccent" />
-        </shape>
-    </item>
-
-</selector>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?colorAccentLighter">
+    <item android:drawable="@drawable/button_fab_extended_drawable" />
+</ripple>

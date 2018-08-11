@@ -21,6 +21,7 @@
         <item name="colorMediumEmphasis">@color/text_medium_emphasis</item>
         <item name="colorAccentLighter">@color/color_accent_lighter</item>
         <item name="colorTextOnAccent">@color/text_on_card_info</item>
+        <item name="android:colorControlHighlight">@color/color_accent_lighter</item>
 
         <item name="colorForIcons">@color/icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/icons_active_focused_negative</item>
