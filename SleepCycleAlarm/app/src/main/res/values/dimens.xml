@@ -22,6 +22,7 @@
     <dimen name="divider_height">1dp</dimen>
     <dimen name="iconsSize">24dp</dimen>
     <dimen name="iconsBackgroundSize">30dp</dimen>
+    <dimen name="circleButtonsBackgroundSize">38dp</dimen>
 
     <dimen name="smartTabLayoutHeight">48dp</dimen>
     <dimen name="smartTabHorizontalPadding">16dp</dimen>
