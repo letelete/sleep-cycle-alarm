@@ -86,7 +86,7 @@
     <style name="list_helper_text" parent="global_font_regular">
         <item name="android:textSize">@dimen/title</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:layout_height"></item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/text_high_emphasis</item>
     </style>
@@ -169,8 +169,8 @@
     </style>
 
     <style name="set_alarm_icon" parent="global_icons_style">
-        <item name="layout_height">wrap_content</item>
-        <item name="layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
         <item name="android:src">@drawable/ic_shape_alarm_add</item>
