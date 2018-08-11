@@ -166,11 +166,15 @@
     </style>
 
     <style name="title_in_list_text" parent="global_title_in_list_text">
+        <item name="android:layout_marginStart">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
         <item name="android:textColor">@color/text_high_emphasis</item>
+        <item name="android:text">@string/list_element_title_changeable</item>
     </style>
 
     <style name="subtitle_in_list_text" parent="global_subtitle_in_list_text">
         <item name="android:textColor">@color/text_medium_emphasis</item>
+        <item name="android:text">@string/list_element_summary_changeable</item>
     </style>
 
     <style name="list_card_style" parent="global_list_card_style">
@@ -204,7 +208,13 @@
         <item name="android:background">@color/color_primary_dark</item>
     </style>
 
-    <style name="set_alarm_icon" parent="global_icons_style"></style>
+    <style name="set_alarm_icon" parent="global_icons_style">
+        <item name="layout_height">wrap_content</item>
+        <item name="layout_width">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
+        <item name="android:src">@drawable/ic_shape_alarm_add</item>
+    </style>
 
     <style name="access_alarm_icon" parent="global_icons_style"></style>
 

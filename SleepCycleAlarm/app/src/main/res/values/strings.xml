@@ -3,6 +3,8 @@
 
     <string name="app_name">Sleep Cycle Alarm</string>
 
+    <string name="content_descriptions_set_alarm_icon">Set alarm icon</string>
+
     <!-- TABS STRINGS -->
     <string name="sleep_now_tab">Sleep now</string>
     <string name="wake_up_at_tab">Wake up at</string>
