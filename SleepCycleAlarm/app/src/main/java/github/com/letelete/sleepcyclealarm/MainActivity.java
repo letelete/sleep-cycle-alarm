@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity
 
     private ArrayList<Integer> getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(int position) {
         ArrayList<Integer> orderedList = new ArrayList<>(position >= previousTabPosition
-                ? Arrays.asList(R.animator.slide_in_left, R.animator.slide_in_right)
-                : Arrays.asList(R.animator.slide_out_left, R.animator.slide_out_right));
+                ? Arrays.asList(R.animator.slide_in_left, R.animator.slide_out_right)
+                : Arrays.asList(R.animator.slide_out_left, R.animator.slide_in_right));
 
         previousTabPosition = position;
         return orderedList;
