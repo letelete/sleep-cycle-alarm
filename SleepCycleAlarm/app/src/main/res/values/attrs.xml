@@ -5,6 +5,7 @@
     <attr name="colorDisabled" format="reference" />
     <attr name="colorAccentLighter" format="reference" />
     <attr name="colorTextOnAccent" format="reference" />
+    <attr name="colorRipple" format="reference" />
 
     <attr name="headerAppNameText" format="reference" />
     <attr name="kebabMenuStyle" format="reference" />
