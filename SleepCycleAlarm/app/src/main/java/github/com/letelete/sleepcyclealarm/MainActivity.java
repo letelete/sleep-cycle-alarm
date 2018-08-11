@@ -1,29 +1,23 @@
 package github.com.letelete.sleepcyclealarm;
 
-import android.animation.Animator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
@@ -36,6 +30,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar.OnMenuItemClickListener {
 
     private final static String TAG = "MainActivityLog";
+
+    private int previousTabPosition;
 
     private String menuItemIdKey;
     private String menuItemTitleKey;
@@ -59,6 +55,8 @@ public class MainActivity extends AppCompatActivity
 
         menuItemIdKey = getString(R.string.key_menu_item_id);
         menuItemTitleKey = getString(R.string.key_menu_item_title);
+
+        previousTabPosition = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
@@ -105,10 +103,21 @@ public class MainActivity extends AppCompatActivity
         }
         if(this.currentFragment != null) {
             FragmentTransaction ft = this.fragmentManager.beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right);
-            ft.replace(R.id.main_activity_container, this.currentFragment);
-            ft.commit();
+
+            ArrayList<Integer> animationsOrder = getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(position);
+            ft.setCustomAnimations(animationsOrder.get(0), animationsOrder.get(1))
+                    .replace(R.id.main_activity_container, this.currentFragment)
+                    .commit();
         }
+    }
+
+    private ArrayList<Integer> getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(int position) {
+        ArrayList<Integer> orderedList = new ArrayList<>(position >= previousTabPosition
+                ? Arrays.asList(R.animator.slide_in_left, R.animator.slide_in_right)
+                : Arrays.asList(R.animator.slide_out_left, R.animator.slide_out_right));
+
+        previousTabPosition = position;
+        return orderedList;
     }
 
     @Override

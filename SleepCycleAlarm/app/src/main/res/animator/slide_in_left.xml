@@ -3,7 +3,7 @@
 
     <objectAnimator
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:duration="150"
+        android:duration="@integer/anim_duration"
         android:propertyName="x"
         android:valueFrom="1000"
         android:valueTo="0"
