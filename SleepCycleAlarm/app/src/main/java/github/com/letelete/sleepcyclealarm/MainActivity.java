@@ -1,5 +1,6 @@
 package github.com.letelete.sleepcyclealarm;
 
+import android.animation.Animator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity
         }
         if(this.currentFragment != null) {
             FragmentTransaction ft = this.fragmentManager.beginTransaction();
+            ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right);
             ft.replace(R.id.main_activity_container, this.currentFragment);
             ft.commit();
         }
