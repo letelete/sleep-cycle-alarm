@@ -9,6 +9,7 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
         <item name="android:colorControlHighlight">@color/color_ripple_material</item>
+        <item name="android:itemBackground">@color/color_primary_dark</item>
 
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -37,7 +38,6 @@
         <item name="listCardStyle">@style/list_card_style</item>
 
         <item name="bottomNavigationText">@style/bottom_navigation_text</item>
-        <item name="bottomNavigationStyle">@style/bottom_navigation_style</item>
 
         <item name="appBackgroundStyle">@style/app_background_style</item>
 
