@@ -23,35 +23,38 @@ public class MainPresenterTest {
     @Mock
     private MainContract.MvpView view;
     private MainPresenter presenter;
-    private Fragment fragment;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         presenter = new MainPresenter(view);
     }
 
     @Test
     public void handleBottomNavigationTabClick_Position0_SleepNowTab() {
-        this.fragment = new SleepNowFragment();
         int tabPosition = 0;
         presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToSpecificTab(fragment);
+        Mockito.verify(view).navigateToSleepNowTab();
     }
 
     @Test
     public void handleBottomNavigationTabClick_Position1_WakeUpAtTab() {
-        this.fragment = new WakeUpAtFragment();
         int tabPosition = 1;
         presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToSpecificTab(fragment);
+        Mockito.verify(view).navigateToWakeUpAtTab();
     }
 
     @Test
     public void handleBottomNavigationTabClick_Position2_AlarmsTab() {
-        this.fragment = new AlarmsFragment();
         int tabPosition = 2;
         presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToSpecificTab(fragment);
+        Mockito.verify(view).navigateToAlarmsTab();
+    }
+
+    @Test
+    public void handleBottomNavigationTabClick_PositionOutOfSwitchRange_SleepNowTab() {
+        int tabPosition = 999;
+        presenter.handleBottomNavigationTabClick(tabPosition);
+        Mockito.verify(view).navigateToSleepNowTab();
     }
 }

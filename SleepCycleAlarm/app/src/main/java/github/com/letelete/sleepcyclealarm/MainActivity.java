@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
+import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
+import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
+import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
@@ -90,9 +93,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void navigateToSpecificTab(Fragment tabFragment) {
+    public void navigateToSleepNowTab() {
+        replaceFragment(new SleepNowFragment());
+    }
+
+    @Override
+    public void navigateToWakeUpAtTab() {
+        replaceFragment(new WakeUpAtFragment());
+    }
+
+    @Override
+    public void navigateToAlarmsTab() {
+        replaceFragment(new AlarmsFragment());
+    }
+
+    private void replaceFragment(Fragment newFragment) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.replace(R.id.main_activity_container, tabFragment)
+        ft.replace(R.id.main_activity_container, newFragment)
                 .commit();
     }
 
@@ -129,6 +146,7 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
         Log.i(TAG, "Activity destroyed");
     }
+
 
 }
 

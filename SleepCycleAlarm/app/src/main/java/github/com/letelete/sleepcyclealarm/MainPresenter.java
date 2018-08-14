@@ -1,11 +1,6 @@
 package github.com.letelete.sleepcyclealarm;
 
-import android.app.Fragment;
 import android.util.Log;
-
-import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 
 public class MainPresenter implements MainContract.Presenter {
     private final static String TAG = "MainPresenterLog";
@@ -21,16 +16,16 @@ public class MainPresenter implements MainContract.Presenter {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
         switch (position) {
             case 0:
-                view.navigateToSpecificTab(new SleepNowFragment());
+                view.navigateToSleepNowTab();
                 break;
             case 1:
-                view.navigateToSpecificTab(new WakeUpAtFragment());
+                view.navigateToWakeUpAtTab();
                 break;
             case 2:
-                view.navigateToSpecificTab(new AlarmsFragment());
+                view.navigateToAlarmsTab();
                 break;
             default:
-                view.navigateToSpecificTab(new SleepNowFragment());
+                view.navigateToSleepNowTab();
                 Log.e(TAG, "Default tab selected. Position value: " + String.valueOf(position));
                 break;
         }
