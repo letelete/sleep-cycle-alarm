@@ -28,7 +28,7 @@ public class ThemeHelper {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
             default:
-                Log.wtf(TAG, "Default case in setAppTheme switch. selectedThemeOptionId = " + selectedThemeOptionId);
+                Log.e(TAG, "Default case in setAppTheme switch. selectedThemeOptionId = " + selectedThemeOptionId);
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }

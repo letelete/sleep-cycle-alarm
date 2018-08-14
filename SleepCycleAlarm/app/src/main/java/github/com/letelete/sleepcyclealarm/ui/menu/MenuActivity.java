@@ -62,14 +62,15 @@ public class MenuActivity extends AppCompatActivity {
         if(!TextUtils.isEmpty(title)) {
             activityTitle.setText(title);
         } else {
-            Log.wtf(TAG,"ActivityTitle is empty or null");
+            activityTitle.setText("Menu");
+            Log.e(TAG,"ActivityTitle is empty or null");
         }
     }
 
     private void performActionDependingOnKey(Bundle savedStateInstance) {
         switch (MENU_ITEM_KEY) {
             case WRONG_KEY_ERROR_CODE:
-                Log.wtf(TAG, "Default value assigned to the key");
+                Log.e(TAG, "Default value assigned to the key");
                 showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
 
             case R.id.menu_settings:
@@ -83,7 +84,7 @@ public class MenuActivity extends AppCompatActivity {
                 break;
 
             default:
-                Log.wtf(TAG, "Default case in switch terminated. Key value: " + MENU_ITEM_KEY);
+                Log.e(TAG, "Default case in switch terminated. Key value: " + MENU_ITEM_KEY);
                 showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
     }
