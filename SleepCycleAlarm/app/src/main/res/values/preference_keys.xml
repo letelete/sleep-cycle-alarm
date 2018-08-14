@@ -4,6 +4,9 @@
 
     <string name="key_menu_item_id" translatable="false">key_menu_item_id</string>
     <string name="key_menu_item_title" translatable="false">key_menu_item_title</string>
+    <string name="key_settings_tag" translatable="false">key_settings_tag</string>
+    <string name="key_help_tag" translatable="false">key_help_tag</string>
+    <string name="key_info_tag" translatable="false">key_info_tag</string>
 
     <string name="key_change_theme" translatable="false">key_select_theme</string>
     <string name="key_alarm_in_silent_mode" translatable="false">key_alarm_in_silent_mode</string>

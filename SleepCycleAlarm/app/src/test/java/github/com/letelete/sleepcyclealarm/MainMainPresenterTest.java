@@ -19,11 +19,11 @@ import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
     methodName_StateUnderTest_ExpectedBehavior
  */
 
-public class MainPresenterTest {
+public class MainMainPresenterTest {
 
     @Mock
-    private MainContract.MvpView view;
-    private MainPresenter presenter;
+    private MainContract.MainView view;
+    private MainMainPresenter presenter;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -31,7 +31,7 @@ public class MainPresenterTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        presenter = new MainPresenter(view);
+        presenter = new MainMainPresenter(view);
     }
 
     @Test

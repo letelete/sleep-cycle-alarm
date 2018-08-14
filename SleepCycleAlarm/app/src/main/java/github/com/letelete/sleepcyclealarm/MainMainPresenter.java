@@ -10,12 +10,12 @@ import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
-public class MainPresenter implements MainContract.Presenter {
+public class MainMainPresenter implements MainContract.MainPresenter {
     private final static String TAG = "MainPresenterLog";
 
-    private MainContract.MvpView view;
+    private MainContract.MainView view;
 
-    MainPresenter(MainContract.MvpView view) {
+    MainMainPresenter(MainContract.MainView view) {
         this.view = view;
     }
 

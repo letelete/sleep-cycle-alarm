@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +18,7 @@ import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
 
 public class MainActivity extends AppCompatActivity
         implements
-        MainContract.MvpView,
+        MainContract.MainView,
         BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
@@ -27,11 +26,11 @@ public class MainActivity extends AppCompatActivity
 
     private final FragmentManager fragmentManager = getFragmentManager();
     int previousTabPosition; // created for transition direction purposes
-    private MainPresenter mainPresenter;
+    private MainMainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mainPresenter = new MainPresenter(this);
+        mainPresenter = new MainMainPresenter(this);
 
         mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
                 PreferenceManager.getDefaultSharedPreferences(this));
