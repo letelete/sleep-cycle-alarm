@@ -1,107 +1,92 @@
 package github.com.letelete.sleepcyclealarm.ui.menu;
 
-import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import github.com.letelete.sleepcyclealarm.R;
 import github.com.letelete.sleepcyclealarm.model.preferences.SettingsFragment;
-import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity
+    implements MenuContract.MenuView {
 
-    private final static String TAG = "MenuActivityLog";
-    private final static int WRONG_KEY_ERROR_CODE = -1;
-
-    private int MENU_ITEM_KEY;
-    private String MENU_ITEM_TITLE;
-
-    private SharedPreferences sharedPreferences;
     private TextView activityTitle;
+    private MenuPresenter menuPresenter;
 
-    private Fragment fragment = null;
-    private PreferenceFragmentCompat preferenceFragment = null;
-    private ThemeHelper themeHelper;
+    private PreferenceFragmentCompat preferenceFragment;
+    private Fragment fragment;
 
     @Override
-    protected void onCreate(Bundle savedStateInstance) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        this.themeHelper = new ThemeHelper(sharedPreferences);
+    protected void onCreate(Bundle savedInstanceState) {
+        menuPresenter = new MenuPresenter(this);
+        menuPresenter.handleSetTheme(getString(R.string.key_change_theme),
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
 
-        setAppTheme();
-
-        super.onCreate(savedStateInstance);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Intent intent = getIntent();
+        menuPresenter.initializeValueByKeysAndPassedIntent(getString(R.string.key_menu_item_id),
+                getString(R.string.key_menu_item_title),
+                getIntent());
 
         this.activityTitle = findViewById(R.id.activityTitleTextView);
-        this.MENU_ITEM_KEY = intent.getIntExtra(getResources().getString(R.string.key_menu_item_id), WRONG_KEY_ERROR_CODE);
-        this.MENU_ITEM_TITLE = intent.getStringExtra(getResources().getString(R.string.key_menu_item_title));
+        menuPresenter.handleSetActivityTitle();
 
-        setActivityTitle(MENU_ITEM_TITLE);
-        performActionDependingOnKey(savedStateInstance);
+        menuPresenter.performActionDependingOnMenuItemIdKey(savedInstanceState);
     }
 
-    private void setAppTheme() {
-        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
+    public void onCloseActivityButtonClick(View view) {
+        menuPresenter.handleCloseActivityButton();
     }
 
-
-    private void setActivityTitle(String title) {
-        if(!TextUtils.isEmpty(title)) {
-            activityTitle.setText(title);
-        } else {
-            Log.wtf(TAG,"ActivityTitle is empty or null");
-        }
+    @Override
+    public void setAppTheme(int themeId) {
+        getDelegate().setLocalNightMode(themeId);
     }
 
-    private void performActionDependingOnKey(Bundle savedStateInstance) {
-        switch (MENU_ITEM_KEY) {
-            case WRONG_KEY_ERROR_CODE:
-                Log.wtf(TAG, "Default value assigned to the key");
-                showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
-
-            case R.id.menu_settings:
-                String settingsTag = getResources().getString(R.string.menu_settings);
-                if(savedStateInstance != null) {
-                    preferenceFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(settingsTag);
-                } else {
-                    preferenceFragment = new SettingsFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.menu_activity_container, preferenceFragment, settingsTag).commit();
-                }
-                break;
-
-            default:
-                Log.wtf(TAG, "Default case in switch terminated. Key value: " + MENU_ITEM_KEY);
-                showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
-        }
+    @Override
+    public void setActivityTitle(String title) {
+        activityTitle.setText(title);
     }
 
-    private void showErrorAndFinish(int resourceMsgReference) {
+    @Override
+    public void findPreferenceFragment() {
+        preferenceFragment = (SettingsFragment) getSupportFragmentManager()
+                .findFragmentByTag(getString(R.string.key_settings_tag));
+    }
+
+    @Override
+    public void openNewPreferenceFragment() {
+        preferenceFragment = new SettingsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.menu_activity_container, preferenceFragment, getString(R.string.key_settings_tag))
+                .commit();
+    }
+
+    @Override
+    public void findStandardFragment() {
+
+    }
+
+    @Override
+    public void openNewStandardFragment() {
+
+    }
+
+    @Override
+    public void showErrorAndFinish(int resourceMsgReference) {
         String errorMsg = getResources().getString(resourceMsgReference);
         Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
         finish();
     }
 
-    public void onCloseActivityButtonClick(View view) {
-        Log.i(TAG, "User close an activity");
-        finish();
-    }
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "Activity destroyed");
+    public void closeActivity() {
+        finish();
     }
 }

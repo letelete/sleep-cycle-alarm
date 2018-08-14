@@ -4,66 +4,47 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
-import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
-import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
-    implements BottomNavigationBar.OnTabSelectedListener,
+        implements
+        MainContract.MainView,
+        BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
     private final static String TAG = "MainActivityLog";
 
-    private int previousTabPosition;
-
-    private String menuItemIdKey;
-    private String menuItemTitleKey;
-
-    private BottomNavigationBar bottomNavigationBar;
     private final FragmentManager fragmentManager = getFragmentManager();
-    private Fragment currentFragment = null;
-
-    private SharedPreferences sharedPreferences;
-    private ThemeHelper themeHelper;
+    int previousTabPosition; // created for transition direction purposes
+    private MainMainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        this.themeHelper = new ThemeHelper(sharedPreferences);
+        mainPresenter = new MainMainPresenter(this);
 
-        setAppTheme();
+        mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
+                PreferenceManager.getDefaultSharedPreferences(this));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        menuItemIdKey = getString(R.string.key_menu_item_id);
-        menuItemTitleKey = getString(R.string.key_menu_item_title);
-
-        previousTabPosition = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
     }
 
-    private void setAppTheme() {
-        getDelegate().setLocalNightMode(themeHelper.getCurrentTheme(getString(R.string.key_change_theme)));
+    @Override
+    public void setAppTheme(int themeId) {
+        getDelegate().setLocalNightMode(themeId);
     }
 
     private void setupToolbar() {
@@ -73,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBottomNavigationBar() {
-        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
@@ -86,60 +67,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTabSelected(int position) {
-        Log.i(TAG, "tab selected, index: " + String.valueOf(position));
-        switch(position) {
-            case 0:
-                setSleepNowFragment();
-                break;
-            case 1:
-                setWakeUpAtFragment();
-                break;
-            case 2:
-                setAlarmsFragment();
-                break;
-            default:
-                Log.wtf(TAG, "Default tab selected. Position value: " + String.valueOf(position));
-                break;
-        }
-        if(this.currentFragment != null) {
-            FragmentTransaction ft = this.fragmentManager.beginTransaction();
-
-            ArrayList<Integer> animationsOrder = getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(position);
-            ft.setCustomAnimations(animationsOrder.get(0), animationsOrder.get(1))
-                    .replace(R.id.main_activity_container, this.currentFragment)
-                    .commit();
-        }
+        mainPresenter.handleBottomNavigationTabClick(position, previousTabPosition);
+        previousTabPosition = position;
     }
 
-    private ArrayList<Integer> getAnimationsByShiftDirectionAndUpdatePreviousTabPosition(int position) {
-        ArrayList<Integer> orderedList = new ArrayList<>(position >= previousTabPosition
-                ? Arrays.asList(R.animator.slide_in_left, R.animator.slide_out_right)
-                : Arrays.asList(R.animator.slide_out_left, R.animator.slide_in_right));
-
-        previousTabPosition = position;
-        return orderedList;
+    @Override
+    public void navigateToSpecificFragmentWithAnimation(Fragment newFragment, int[] enterExitAnimationPair) {
+        FragmentTransaction ft = this.fragmentManager.beginTransaction();
+        ft.setCustomAnimations(enterExitAnimationPair[0], enterExitAnimationPair[1])
+                .replace(R.id.main_activity_container, newFragment)
+                .commit();
     }
 
     @Override
     public void onTabUnselected(int position) {
-
     }
 
     @Override
     public void onTabReselected(int position) {
-
-    }
-
-    private void setSleepNowFragment() {
-        this.currentFragment = new SleepNowFragment();
-    }
-
-    private void setWakeUpAtFragment() {
-        this.currentFragment = new WakeUpAtFragment();
-    }
-
-    private void setAlarmsFragment() {
-        this.currentFragment = new AlarmsFragment();
     }
 
     @Override
@@ -150,25 +95,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        int id = item.getItemId();
-        String itemTittle = item.getTitle().toString();
-
-        openMenuActivityWithArguments(id, itemTittle);
-
+        mainPresenter.handleMenuItemClick(item);
         return true;
     }
 
-    private void openMenuActivityWithArguments(int itemId, String itemTitle) {
+    @Override
+    public void openMenuActivityWithItemVariables(int itemId, String itemTitle) {
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        intent.putExtra(menuItemIdKey, itemId);
-        intent.putExtra(menuItemTitleKey, itemTitle);
+        intent.putExtra(getString(R.string.key_menu_item_id), itemId)
+                .putExtra(getString(R.string.key_menu_item_title), itemTitle);
         startActivity(intent);
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "Activity destroyed");
-    }
 }
-
