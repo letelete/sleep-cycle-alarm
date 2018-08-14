@@ -26,39 +26,27 @@ import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
-    implements
+        implements
         MainContract.MvpView,
         BottomNavigationBar.OnTabSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
     private final static String TAG = "MainActivityLog";
 
-    private String menuItemIdKey;
-    private String menuItemTitleKey;
-
-    private BottomNavigationBar bottomNavigationBar;
-    private int previousTabPosition;
-
     private final FragmentManager fragmentManager = getFragmentManager();
-
-    private SharedPreferences sharedPreferences;
+    int previousTabPosition; // created for transition direction purposes
     private ThemeHelper themeHelper;
     private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        this.themeHelper = new ThemeHelper(sharedPreferences);
+        this.themeHelper = new ThemeHelper(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         this.mainPresenter = new MainPresenter(this);
 
         setAppTheme();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        menuItemIdKey = getString(R.string.key_menu_item_id);
-        menuItemTitleKey = getString(R.string.key_menu_item_title);
-        previousTabPosition = 0;
 
         setupToolbar();
         setupBottomNavigationBar();
@@ -76,7 +64,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupBottomNavigationBar() {
-        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
@@ -89,35 +77,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTabSelected(int position) {
-        mainPresenter.handleBottomNavigationTabClick(position);
+        mainPresenter.handleBottomNavigationTabClick(position, previousTabPosition);
+        previousTabPosition = position;
     }
 
     @Override
-    public void navigateToSleepNowTab() {
-        replaceFragment(new SleepNowFragment());
-    }
-
-    @Override
-    public void navigateToWakeUpAtTab() {
-        replaceFragment(new WakeUpAtFragment());
-    }
-
-    @Override
-    public void navigateToAlarmsTab() {
-        replaceFragment(new AlarmsFragment());
-    }
-
-    private void replaceFragment(Fragment newFragment) {
+    public void navigateToSpecificFragmentWithAnimation(Fragment newFragment, int[] enterExitAnimationPair) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.replace(R.id.main_activity_container, newFragment)
+        ft.setCustomAnimations(enterExitAnimationPair[0], enterExitAnimationPair[1])
+                .replace(R.id.main_activity_container, newFragment)
                 .commit();
     }
 
     @Override
-    public void onTabUnselected(int position) { }
+    public void onTabUnselected(int position) {
+    }
 
     @Override
-    public void onTabReselected(int position) { }
+    public void onTabReselected(int position) {
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,17 +105,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        int id = item.getItemId();
-        String itemTittle = item.getTitle().toString();
-
-        openMenuActivityWithArguments(id, itemTittle);
+        mainPresenter.handleMenuItemClick(item);
         return true;
     }
 
-    private void openMenuActivityWithArguments(int itemId, String itemTitle) {
+    @Override
+    public void openMenuActivityWithItemVariables(int itemId, String itemTitle) {
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        intent.putExtra(menuItemIdKey, itemId);
-        intent.putExtra(menuItemTitleKey, itemTitle);
+        intent.putExtra(getString(R.string.key_menu_item_id), itemId)
+                .putExtra(getString(R.string.key_menu_item_title), itemTitle);
         startActivity(intent);
     }
 
@@ -146,7 +122,5 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
         Log.i(TAG, "Activity destroyed");
     }
-
-
 }
 

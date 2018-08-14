@@ -1,13 +1,14 @@
 package github.com.letelete.sleepcyclealarm;
 
-import android.app.Fragment;
-
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
@@ -24,6 +25,9 @@ public class MainPresenterTest {
     private MainContract.MvpView view;
     private MainPresenter presenter;
 
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -31,30 +35,29 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_Position0_SleepNowTab() {
-        int tabPosition = 0;
-        presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToSleepNowTab();
+    public void handleBottomNavigationTabClick_NewPosition1PreviousPosition0_AnimationPairEqualsSlideInLeftSlideOutRight() {
+        presenter.handleBottomNavigationTabClick(1, 0);
+        ArgumentCaptor<WakeUpAtFragment> argument = ArgumentCaptor.forClass(WakeUpAtFragment.class);
+        int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};
+
+        Mockito.verify(view).navigateToSpecificFragmentWithAnimation(argument.capture(), Mockito.eq(correctAnimationPair));
     }
 
     @Test
-    public void handleBottomNavigationTabClick_Position1_WakeUpAtTab() {
-        int tabPosition = 1;
-        presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToWakeUpAtTab();
+    public void handleBottomNavigationTabClick_NewPosition0PreviousPosition1_AnimationPairEqualsSlideOutLeftSlideInRight() {
+        presenter.handleBottomNavigationTabClick(0, 1);
+        ArgumentCaptor<SleepNowFragment> argument = ArgumentCaptor.forClass(SleepNowFragment.class);
+        int[] correctAnimationPair = {R.animator.swipe_right_enter, R.animator.swipe_right_exit};
+
+        Mockito.verify(view).navigateToSpecificFragmentWithAnimation(argument.capture(), Mockito.eq(correctAnimationPair));
     }
 
     @Test
-    public void handleBottomNavigationTabClick_Position2_AlarmsTab() {
-        int tabPosition = 2;
-        presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToAlarmsTab();
-    }
+    public void handleBottomNavigationTabClick_NewPosition2PreviousPosition0_AnimationPairEqualsSlideOutLeftSlideInRight() {
+        presenter.handleBottomNavigationTabClick(2, 0);
+        ArgumentCaptor<AlarmsFragment> argument = ArgumentCaptor.forClass(AlarmsFragment.class);
+        int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};
 
-    @Test
-    public void handleBottomNavigationTabClick_PositionOutOfSwitchRange_SleepNowTab() {
-        int tabPosition = 999;
-        presenter.handleBottomNavigationTabClick(tabPosition);
-        Mockito.verify(view).navigateToSleepNowTab();
+        Mockito.verify(view).navigateToSpecificFragmentWithAnimation(argument.capture(), Mockito.eq(correctAnimationPair));
     }
 }
