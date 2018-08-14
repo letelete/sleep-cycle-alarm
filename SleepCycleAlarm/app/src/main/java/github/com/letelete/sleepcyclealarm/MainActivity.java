@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,14 +15,7 @@ import android.view.MenuItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
-import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
-import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
-import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -35,15 +27,14 @@ public class MainActivity extends AppCompatActivity
 
     private final FragmentManager fragmentManager = getFragmentManager();
     int previousTabPosition; // created for transition direction purposes
-    private ThemeHelper themeHelper;
     private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.themeHelper = new ThemeHelper(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
-        this.mainPresenter = new MainPresenter(this);
+        mainPresenter = new MainPresenter(this);
 
-        setAppTheme();
+        mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
+                PreferenceManager.getDefaultSharedPreferences(this));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -52,8 +43,8 @@ public class MainActivity extends AppCompatActivity
         setupBottomNavigationBar();
     }
 
-    public void setAppTheme() {
-        int themeId = themeHelper.getCurrentTheme(getString(R.string.key_change_theme));
+    @Override
+    public void setAppTheme(int themeId) {
         getDelegate().setLocalNightMode(themeId);
     }
 
@@ -116,11 +107,4 @@ public class MainActivity extends AppCompatActivity
                 .putExtra(getString(R.string.key_menu_item_title), itemTitle);
         startActivity(intent);
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "Activity destroyed");
-    }
 }
-

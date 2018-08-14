@@ -35,7 +35,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition1PreviousPosition0_AnimationPairEqualsSlideInLeftSlideOutRight() {
+    public void handleBottomNavigationTabClick_NewPosition1PreviousPosition0_WakeUpAtTabAndAnimPair() {
         presenter.handleBottomNavigationTabClick(1, 0);
         ArgumentCaptor<WakeUpAtFragment> argument = ArgumentCaptor.forClass(WakeUpAtFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};
@@ -44,7 +44,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition0PreviousPosition1_AnimationPairEqualsSlideOutLeftSlideInRight() {
+    public void handleBottomNavigationTabClick_NewPosition0PreviousPosition1_SleepNowTabAndAnimPair() {
         presenter.handleBottomNavigationTabClick(0, 1);
         ArgumentCaptor<SleepNowFragment> argument = ArgumentCaptor.forClass(SleepNowFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_right_enter, R.animator.swipe_right_exit};
@@ -53,7 +53,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition2PreviousPosition0_AnimationPairEqualsSlideOutLeftSlideInRight() {
+    public void handleBottomNavigationTabClick_NewPosition2PreviousPosition0_AlarmsTabAndAnimPair() {
         presenter.handleBottomNavigationTabClick(2, 0);
         ArgumentCaptor<AlarmsFragment> argument = ArgumentCaptor.forClass(AlarmsFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};

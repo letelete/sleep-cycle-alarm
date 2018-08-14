@@ -1,47 +1,55 @@
 package github.com.letelete.sleepcyclealarm;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MenuItem;
 
 import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
+import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainPresenter implements MainContract.Presenter {
     private final static String TAG = "MainPresenterLog";
 
     private MainContract.MvpView view;
-    private Fragment fragment = null;
 
     MainPresenter(MainContract.MvpView view) {
         this.view = view;
     }
 
     @Override
+    public void handleSetTheme(String changeThemeKey, SharedPreferences preferences) {
+        ThemeHelper themeHelper = new ThemeHelper(preferences);
+        int themeId = themeHelper.getCurrentTheme(changeThemeKey);
+        view.setAppTheme(themeId);
+    }
+
+    @Override
     public void handleBottomNavigationTabClick(int position, int previousPosition) {
         Log.i(TAG, "tab selected, index: " + String.valueOf(position));
 
+        Fragment fragment = null;
+
         switch (position) {
             case 0:
-                this.fragment = new SleepNowFragment();
+                fragment = new SleepNowFragment();
                 break;
             case 1:
-                this.fragment = new WakeUpAtFragment();
+                fragment = new WakeUpAtFragment();
                 break;
             case 2:
-                this.fragment = new AlarmsFragment();
+                fragment = new AlarmsFragment();
                 break;
             default:
-                this.fragment = new SleepNowFragment();
+                fragment = new SleepNowFragment();
                 Log.e(TAG, "Default tab selected. Position value: " + String.valueOf(position));
                 break;
         }
 
-        if(fragment != null) {
-            int[] animationPair = getAnimationPair(position, previousPosition);
-            view.navigateToSpecificFragmentWithAnimation(fragment, animationPair);
-        }
+        int[] animationPair = getAnimationPair(position, previousPosition);
+        view.navigateToSpecificFragmentWithAnimation(fragment, animationPair);
     }
 
     private int[] getAnimationPair(int position, int previousPosition) {
@@ -58,4 +66,5 @@ public class MainPresenter implements MainContract.Presenter {
         String itemTitle = item.getTitle().toString();
         view.openMenuActivityWithItemVariables(itemId, itemTitle);
     }
+
 }
