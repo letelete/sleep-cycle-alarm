@@ -1,4 +1,4 @@
-package github.com.letelete.sleepcyclealarm;
+package github.com.letelete.sleepcyclealarm.main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,7 +14,10 @@ import android.view.MenuItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import github.com.letelete.sleepcyclealarm.R;
+import github.com.letelete.sleepcyclealarm.model.DataHelper;
 import github.com.letelete.sleepcyclealarm.ui.menu.MenuActivity;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements

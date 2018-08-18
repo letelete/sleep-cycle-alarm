@@ -1,9 +1,6 @@
 package github.com.letelete.sleepcyclealarm.ui.menu;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -13,10 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-
-import github.com.letelete.sleepcyclealarm.MainContract;
-
-import static org.junit.Assert.*;
 
 /*
     Naming convention:

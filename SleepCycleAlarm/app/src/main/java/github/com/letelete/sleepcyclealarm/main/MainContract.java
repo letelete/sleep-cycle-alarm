@@ -1,4 +1,4 @@
-package github.com.letelete.sleepcyclealarm;
+package github.com.letelete.sleepcyclealarm.main;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;

@@ -10,7 +10,9 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
+import github.com.letelete.sleepcyclealarm.main.MainContract;
+import github.com.letelete.sleepcyclealarm.main.MainMainPresenter;
+import github.com.letelete.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 

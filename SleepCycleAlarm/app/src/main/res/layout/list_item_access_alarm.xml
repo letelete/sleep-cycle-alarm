@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="?listStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:layout_editor_absoluteX="16dp"
     tools:layout_editor_absoluteY="29dp">
 
     <TextView
         android:id="@+id/titleInListTextView"
         style="?attr/titleInListText"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/iconInList"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -19,8 +21,8 @@
         app:layout_constraintTop_toBottomOf="@+id/titleInListTextView" />
 
     <ImageView
-        android:id="@+id/imageView"
-        style="?setAlarmIcon"
+        android:id="@+id/iconInList"
+        style="?accessAlarmIcon"
         android:contentDescription="@string/content_descriptions_set_alarm_icon"
         app:layout_constraintBottom_toBottomOf="@+id/sleepTimeTextView"
         app:layout_constraintStart_toStartOf="parent"

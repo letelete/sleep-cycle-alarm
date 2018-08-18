@@ -54,7 +54,7 @@
 
             <TextView
                 style="?listHelperText"
-                android:id="@+id/listHelper"
+                android:id="@+id/alarmsListHelper"
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listHelper">
+                app:layout_constraintTop_toBottomOf="@+id/alarmsListHelper">
 
             </android.support.v7.widget.RecyclerView>
         </android.support.constraint.ConstraintLayout>

@@ -1,11 +1,12 @@
-package github.com.letelete.sleepcyclealarm;
+package github.com.letelete.sleepcyclealarm.main;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MenuItem;
 
-import github.com.letelete.sleepcyclealarm.ui.tabs.AlarmsFragment;
+import github.com.letelete.sleepcyclealarm.R;
+import github.com.letelete.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import github.com.letelete.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 import github.com.letelete.sleepcyclealarm.utils.ThemeHelper;

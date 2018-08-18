@@ -23,6 +23,7 @@
         <item name="android:layout_marginEnd">@dimen/extra_large_margin_size</item>
         <item name="android:layout_marginStart">@dimen/small_margin_size</item>
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
     </style>
 
     <!-- ATTRIBUTE STYLES -->
@@ -87,7 +88,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:textColor">@color/text_high_emphasis</item>
+        <item name="android:textColor">@color/text_medium_emphasis</item>
     </style>
 
     <style name="title_in_list_text" parent="global_font_regular">
@@ -110,10 +111,10 @@
     </style>
 
     <style name="list_style">
-        <item name="android:layout_marginStart">@dimen/medium_margin_size</item>
-        <item name="android:layout_marginEnd">@dimen/medium_margin_size</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">@dimen/normal_margin_size</item>
         <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
-        <item name="android:layout_marginBottom">@dimen/extra_large_margin_size</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_width">0dp</item>
     </style>
@@ -168,11 +169,13 @@
     <style name="set_alarm_icon" parent="global_icons_style">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
-        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
-        <item name="android:src">@drawable/ic_shape_alarm_add</item>
+        <item name="android:src">@drawable/shape_alarm_add</item>
     </style>
 
-    <style name="access_alarm_icon" parent="global_icons_style"></style>
+    <style name="access_alarm_icon" parent="global_icons_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@drawable/shape_alarm_access</item>
+    </style>
 
 </resources>

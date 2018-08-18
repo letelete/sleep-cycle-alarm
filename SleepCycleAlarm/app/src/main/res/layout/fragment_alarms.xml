@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -57,19 +58,23 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/alarmsListHelper"
                 style="?listHelperText"
-                android:id="@+id/listHelper"
-                app:layout_constraintBottom_toTopOf="@+id/list"
+                android:text="@string/alarms_list_helper"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/alarmsList"
                 style="?listStyle"
-                android:id="@+id/list"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listHelper">
+                app:layout_constraintTop_toBottomOf="@+id/alarmsListHelper">
 
             </android.support.v7.widget.RecyclerView>
         </android.support.constraint.ConstraintLayout>
