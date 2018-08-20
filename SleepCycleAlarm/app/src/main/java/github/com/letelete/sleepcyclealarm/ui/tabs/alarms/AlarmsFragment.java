@@ -66,9 +66,6 @@ public class AlarmsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        TextView listHelper = getActivity().findViewById(R.id.alarmsListHelper);
-        listHelper.setText(getString(R.string.alarms_list_helper));
-
         TouchHelperCallback touchHelperCallback = new TouchHelperCallback();
         ItemTouchHelper touchHelper = new ItemTouchHelper(touchHelperCallback);
         touchHelper.attachToRecyclerView(recyclerView);
