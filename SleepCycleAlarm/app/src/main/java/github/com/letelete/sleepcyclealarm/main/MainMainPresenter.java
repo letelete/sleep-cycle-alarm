@@ -21,9 +21,8 @@ public class MainMainPresenter implements MainContract.MainPresenter {
     }
 
     @Override
-    public void handleSetTheme(String changeThemeKey, SharedPreferences preferences) {
-        ThemeHelper themeHelper = new ThemeHelper(preferences);
-        int themeId = themeHelper.getCurrentTheme(changeThemeKey);
+    public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
+        int themeId = ThemeHelper.getCurrentTheme(changeThemeKey, sharedPreferences);
         view.setAppTheme(themeId);
     }
 

@@ -14,13 +14,8 @@ public class MyApplication extends Application {
         super.onCreate();
         Realm.init(this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .initialData(new Realm.Transaction() {
-                    @Override
-                    public void execute(@NonNull Realm realm) {
-                        realm.createObject(AlarmsParent.class);
-                    }
-                }).build();
-        Realm.deleteRealm(realmConfiguration);
-        Realm.setDefaultConfiguration(realmConfiguration);
+                .name(getString(R.string.realm_name))
+                .deleteRealmIfMigrationNeeded()
+                .build();
     }
 }

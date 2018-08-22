@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import github.com.letelete.sleepcyclealarm.R;
+import github.com.letelete.sleepcyclealarm.model.DataHelper;
+import io.realm.Realm;
 
 public class SleepNowFragment extends Fragment {
 
