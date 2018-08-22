@@ -14,29 +14,26 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
     private static final String TAG = "MenuPresenterLog";
 
     private MenuContract.MenuView view;
-    private Intent passedIntent;
 
     private static final int WRONG_KEY_ERROR_CODE = -1;
     private int menuItemIdValue;
     private String menuItemTitleValue;
 
-    public MenuPresenter(MenuContract.MenuView menuView) {
+    MenuPresenter(MenuContract.MenuView menuView) {
         this.view = menuView;
     }
 
     @Override
     public void initializeValueByKeysAndPassedIntent(String idKey, String titleKey, Intent intent) {
-        this.passedIntent = intent;
-        this.menuItemIdValue = passedIntent.getIntExtra(idKey, R.id.menu_settings);
+        this.menuItemIdValue = intent.getIntExtra(idKey, R.id.menu_settings);
         this.menuItemTitleValue = TextUtils.isEmpty(titleKey)
                 ? "key_settings_tag"
-                : passedIntent.getStringExtra(titleKey);
+                : intent.getStringExtra(titleKey);
     }
 
     @Override
-    public void handleSetTheme(String changeThemeKey, SharedPreferences preferences) {
-        ThemeHelper themeHelper = new ThemeHelper(preferences);
-        int themeId = themeHelper.getCurrentTheme(changeThemeKey);
+    public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
+        int themeId = ThemeHelper.getCurrentTheme(changeThemeKey, sharedPreferences);
         view.setAppTheme(themeId);
     }
 

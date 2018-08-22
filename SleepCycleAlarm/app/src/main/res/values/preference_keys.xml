@@ -2,6 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <string name="realm_name">sleepcyclealarm.realm</string>
+
     <string name="key_menu_item_id" translatable="false">key_menu_item_id</string>
     <string name="key_menu_item_title" translatable="false">key_menu_item_title</string>
     <string name="key_settings_tag" translatable="false">key_settings_tag</string>

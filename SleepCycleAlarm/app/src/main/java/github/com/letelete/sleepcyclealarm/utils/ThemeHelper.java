@@ -7,13 +7,8 @@ import android.util.Log;
 public class ThemeHelper {
 
     private final static String TAG = "ThemeManagerLog";
-    private SharedPreferences sharedPreferences;
 
-    public ThemeHelper(SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
-    }
-
-    public int getCurrentTheme(String themeKeyString) {
+    public static int getCurrentTheme(String themeKeyString, SharedPreferences sharedPreferences) {
         int currentTheme;
 
         String selectedThemeOptionId = sharedPreferences.getString(themeKeyString, "1");

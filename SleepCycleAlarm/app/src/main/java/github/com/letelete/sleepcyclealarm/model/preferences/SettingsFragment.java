@@ -1,18 +1,21 @@
 package github.com.letelete.sleepcyclealarm.model.preferences;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
+import android.view.View;
 
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 import github.com.letelete.sleepcyclealarm.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-
-    boolean isFirstRun = true;
+    private static final String TAG = "SettingsFragment";
+    private static boolean isFirstRun = true;
 
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
@@ -46,15 +49,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 int index = listPreference.findIndexOfValue(stringValue);
                 preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
-                if(preference.getKey().equals(getString(R.string.key_change_theme)) && !isFirstRun) {
-                    getActivity().recreate();
-                }
-
             } else {
                 preference.setSummary(stringValue);
+            }
+
+            if(isRecreateRequired(preference.getKey())) {
+                recreateIfActivityNotNull();
             }
 
             return true;
         }
     };
+
+    private boolean isRecreateRequired(String key) {
+        return key.equals(getString(R.string.key_change_theme)) && !isFirstRun;
+    }
+
+    private void recreateIfActivityNotNull() {
+        if (getActivity() != null) {
+            getActivity().recreate();
+        } else {
+            Log.e(TAG, "Activity is null");
+        }
+    }
 }
