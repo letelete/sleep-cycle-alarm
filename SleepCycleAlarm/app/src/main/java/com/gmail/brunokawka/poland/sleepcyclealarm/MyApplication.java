@@ -21,7 +21,7 @@ public class MyApplication extends Application {
                     public void execute(Realm realm) {
                         realm.createObject(AlarmsParent.class);
                     }})
-                .name("sleepcyclealarm.realm")
+                .name(getString(R.string.realm_name))
                 .build();
 
         Realm.setDefaultConfiguration(config);

@@ -1,5 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
 
     @Override
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
     }

@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import io.realm.Realm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.model.DataHelper;
-import com.gmail.brunokawka.poland.sleepcyclealarm.model.alarms.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.model.alarms.AlarmsParent;
+
+import io.realm.Realm;
 
 public class AlarmsFragment extends Fragment {
     private static final String TAG = "AlarmsFragmentLog";
@@ -41,7 +42,7 @@ public class AlarmsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
         realm = Realm.getDefaultInstance();
 

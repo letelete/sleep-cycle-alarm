@@ -1,5 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,12 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.model.alarms.Alarm;
 class AlarmsRecyclerViewAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsRecyclerViewAdapter.MyViewHolder> {
     private static final String TAG = "AlarmsRecyclerViewAdapterLog";
 
-    public AlarmsRecyclerViewAdapter(OrderedRealmCollection<Alarm> data) {
+    AlarmsRecyclerViewAdapter(OrderedRealmCollection<Alarm> data) {
         super(data, true);
         setHasStableIds(true);
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_access_alarm, parent, false);

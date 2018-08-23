@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.model.preferences.SettingsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeHelper;
 
 public class MenuPresenter implements MenuContract.MenuPresenter {

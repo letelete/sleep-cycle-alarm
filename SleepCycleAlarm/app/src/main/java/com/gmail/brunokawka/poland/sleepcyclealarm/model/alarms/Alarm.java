@@ -16,6 +16,7 @@ public class Alarm extends RealmObject {
     private static AtomicInteger INTEGER_COUNTER = new AtomicInteger(0);
 
     @PrimaryKey
+    @SuppressWarnings("unused")
     private int id;
 
     public int getId() {
