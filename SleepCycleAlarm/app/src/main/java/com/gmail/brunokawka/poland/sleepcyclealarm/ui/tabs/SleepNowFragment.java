@@ -15,27 +15,14 @@ import io.realm.Realm;
 public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
 
-    private Realm realm;
-    private Button testAddAlarm;
-
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        realm = Realm.getDefaultInstance();
-        View view = layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
-        testAddAlarm = view.findViewById(R.id.testAddAlarm);
-        testAddAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DataHelper.addItemAsync(realm);
-            }
-        });
-        return view;
+        return layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        realm.close();
     }
 }
