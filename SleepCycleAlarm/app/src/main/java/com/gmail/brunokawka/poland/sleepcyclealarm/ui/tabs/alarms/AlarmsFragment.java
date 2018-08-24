@@ -50,6 +50,7 @@ public class AlarmsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.alarmsList);
         setUpRecyclerView();
+        DataHelper.addItemAsync(realm);
         return view;
     }
 

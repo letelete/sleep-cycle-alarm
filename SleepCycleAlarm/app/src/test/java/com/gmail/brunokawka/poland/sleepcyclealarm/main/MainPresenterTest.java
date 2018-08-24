@@ -22,7 +22,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 public class MainPresenterTest {
 
     @Mock
-    private MainView view;
+    private MainContract.MainView view;
     private MainPresenter presenter;
 
     @Rule
