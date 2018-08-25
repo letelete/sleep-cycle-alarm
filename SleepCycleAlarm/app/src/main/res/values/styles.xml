@@ -105,7 +105,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">@dimen/title</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/text_medium_emphasis</item>
         <item name="android:text">@string/list_element_summary_changeable</item>
     </style>
