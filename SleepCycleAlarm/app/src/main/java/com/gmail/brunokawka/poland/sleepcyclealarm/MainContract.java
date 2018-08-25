@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.main;
+package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.support.v4.app.Fragment;
 import android.content.SharedPreferences;

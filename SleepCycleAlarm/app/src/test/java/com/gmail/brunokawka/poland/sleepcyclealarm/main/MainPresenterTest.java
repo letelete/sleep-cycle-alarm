@@ -10,8 +10,10 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.MainContract;
+import com.gmail.brunokawka.poland.sleepcyclealarm.MainPresenter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.alarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 /*

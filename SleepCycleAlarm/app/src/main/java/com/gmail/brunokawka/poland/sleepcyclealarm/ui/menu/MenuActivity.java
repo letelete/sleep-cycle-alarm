@@ -10,17 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.model.preferences.SettingsFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity
     implements MenuContract.MenuView {
     private static final String TAG = "MenuActivityLog";
 
-    private TextView activityTitle;
     private MenuPresenter menuPresenter;
 
     private PreferenceFragmentCompat preferenceFragment;
     private Fragment fragment;
+
+    @BindView(R.id.activityTitleTextView)
+    TextView activityTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,12 @@ public class MenuActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        ButterKnife.bind(this);
 
         menuPresenter.initializeValueByKeysAndPassedIntent(getString(R.string.key_menu_item_id),
                 getString(R.string.key_menu_item_title),
                 getIntent());
 
-        this.activityTitle = findViewById(R.id.activityTitleTextView);
         menuPresenter.handleSetActivityTitle();
 
         menuPresenter.performActionDependingOnMenuItemIdKey(savedInstanceState);

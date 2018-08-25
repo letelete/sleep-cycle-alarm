@@ -3,14 +3,15 @@
     package="com.gmail.brunokawka.poland.sleepcyclealarm">
 
     <application
-        android:name=".MyApplication"
+        android:name=".application.CustomApp"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SleepCycleTheme">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

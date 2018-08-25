@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.model.preferences;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
 import android.app.Activity;
 import android.os.Bundle;

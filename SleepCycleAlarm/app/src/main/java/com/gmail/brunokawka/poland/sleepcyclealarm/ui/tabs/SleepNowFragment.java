@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.model.DataHelper;
 
-import io.realm.Realm;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
@@ -19,7 +19,8 @@ public class SleepNowFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
+        View view =  layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
+        return view;
     }
 
     @Override

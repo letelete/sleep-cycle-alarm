@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.main;
+package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,8 +14,13 @@ import android.view.MenuItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.alarms.AlarmsPresenter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -29,15 +34,21 @@ public class MainActivity extends AppCompatActivity
     int previousTabPosition; // created for transition direction purposes
     private MainPresenter mainPresenter;
 
+    @BindView(R.id.toolbar)
+    Toolbar appToolbar;
+
+    @BindView(R.id.bottom_navigation_bar)
+    BottomNavigationBar bottomNavigationBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mainPresenter = new MainPresenter(this);
-
         mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
                 PreferenceManager.getDefaultSharedPreferences(this));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         setupToolbar();
         setupBottomNavigationBar();
@@ -49,13 +60,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupToolbar() {
-        Toolbar appToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(appToolbar);
         appToolbar.setOnMenuItemClickListener(this);
     }
 
     private void setupBottomNavigationBar() {
-        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
                 .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
