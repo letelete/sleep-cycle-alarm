@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.alarms.AlarmsFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.SleepNowFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeHelper;
 

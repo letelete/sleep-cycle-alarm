@@ -1,14 +1,10 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
-import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;

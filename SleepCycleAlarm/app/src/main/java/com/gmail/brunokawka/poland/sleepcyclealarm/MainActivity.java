@@ -14,13 +14,10 @@ import android.view.MenuItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.alarms.AlarmsPresenter;
-import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements

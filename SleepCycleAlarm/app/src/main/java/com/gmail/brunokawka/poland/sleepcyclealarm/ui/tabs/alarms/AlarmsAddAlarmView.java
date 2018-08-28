@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;

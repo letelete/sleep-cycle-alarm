@@ -1,8 +1,8 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.wakeupat;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

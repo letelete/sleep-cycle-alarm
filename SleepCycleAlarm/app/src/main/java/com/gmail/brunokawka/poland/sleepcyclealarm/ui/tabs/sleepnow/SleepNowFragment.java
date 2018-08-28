@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.sleepnow;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
