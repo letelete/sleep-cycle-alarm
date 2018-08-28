@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
-import android.content.Intent;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

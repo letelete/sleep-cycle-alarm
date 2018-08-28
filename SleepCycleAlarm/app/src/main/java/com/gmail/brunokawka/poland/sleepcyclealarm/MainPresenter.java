@@ -15,7 +15,7 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     private MainContract.MainView view;
 
-    MainPresenter(MainContract.MainView view) {
+    public MainPresenter(MainContract.MainView view) {
         this.view = view;
     }
 

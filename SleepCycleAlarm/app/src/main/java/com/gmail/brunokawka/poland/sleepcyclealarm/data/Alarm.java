@@ -1,6 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ListItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -87,11 +87,11 @@ public class Alarm extends RealmObject {
     }
 
     public String getTitle() {
-        return ListItemContentBuilder.getTitle(getHour(), getMinute());
+        return ItemContentBuilder.getTitle(getHour(), getMinute());
     }
 
     public String getSummary() {
-        return ListItemContentBuilder.getSummary(getHour(), getMinute());
+        return "TODO";
     }
 
 }
