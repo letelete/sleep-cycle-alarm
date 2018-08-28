@@ -3,8 +3,10 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 public class Item {
     private String title;
     private String summary;
-    private int hour;
-    private int minute;
+    private int currentHour;
+    private int currentMinute;
+    private int executionHour;
+    private int executionMinute;
 
     public String getTitle() {
         return title;
@@ -22,21 +24,36 @@ public class Item {
         this.summary = summary;
     }
 
-    public int getHour() {
-        return hour;
+    public int getCurrentHour() {
+        return currentHour;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
+    public void setCurrentHour(int currentHour) {
+        this.currentHour = currentHour;
     }
 
-    public int getMinute() {
-        return minute;
+    public int getCurrentMinute() {
+        return currentMinute;
     }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
+    public void setCurrentMinute(int currentMinute) {
+        this.currentMinute = currentMinute;
     }
 
+    public int getExecutionHour() {
+        return executionHour;
+    }
+
+    public void setExecutionHour(int executionHour) {
+        this.executionHour = executionHour;
+    }
+
+    public int getExecutionMinute() {
+        return executionMinute;
+    }
+
+    public void setExecutionMinute(int executionMinute) {
+        this.executionMinute = executionMinute;
+    }
 
 }

@@ -13,13 +13,48 @@ public class Alarm extends RealmObject {
     @Required
     private String id;
 
-    private int hour;
-    private int minute;
+    private int whenSetUpHour;
+    private int whenSetUpMinute;
+    private int executeHour;
+    private int executeMinute;
     private int snoozeDurationInMinutes;
     private boolean isRingingInSilentMode;
     private String Ringtone; // TODO : RINGTONE (Currently create some string for entry testing)
     private int ringDurationInMinutes;
     private int numberOfRepetitionsBeforeAutoSilence;
+
+    public int getWhenSetUpHour() {
+        return whenSetUpHour;
+    }
+
+    public void setWhenSetUpHour(int whenSetUpHour) {
+        this.whenSetUpHour = whenSetUpHour;
+    }
+
+    public int getWhenSetUpMinute() {
+        return whenSetUpMinute;
+    }
+
+    public void setWhenSetUpMinute(int whenSetUpMinute) {
+        this.whenSetUpMinute = whenSetUpMinute;
+    }
+
+    public int getExecuteHour() {
+        return executeHour;
+    }
+
+    public void setExecuteHour(int executeHour) {
+        this.executeHour = executeHour;
+    }
+
+    public int getExecuteMinute() {
+        return executeMinute;
+    }
+
+    public void setExecuteMinute(int executeMinute) {
+        this.executeMinute = executeMinute;
+    }
+
 
     public String getId() {
         return id;
@@ -27,22 +62,6 @@ public class Alarm extends RealmObject {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public int getHour() {
-        return hour;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
-    public int getMinute() {
-        return minute;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
     }
 
     public int getSnoozeDurationInMinutes() {
@@ -53,12 +72,13 @@ public class Alarm extends RealmObject {
         this.snoozeDurationInMinutes = snoozeDurationInMinutes;
     }
 
-    // TODO : RINGTONE (Currently create some string for entry testing)
     public String getRingtone() {
+        // TODO : RINGTONE (Currently create some string for entry testing)
         return Ringtone;
     }
-    // TODO : RINGTONE (Currently create some string for entry testing)
+
     public void setRingtone(String ringtone) {
+        // TODO : RINGTONE (Currently create some string for entry testing)
         Ringtone = ringtone;
     }
 
@@ -87,11 +107,11 @@ public class Alarm extends RealmObject {
     }
 
     public String getTitle() {
-        return ItemContentBuilder.getTitle(getHour(), getMinute());
+        return ItemContentBuilder.getTitle(getExecuteHour(), getExecuteMinute());
     }
 
     public String getSummary() {
-        return "TODO";
+        return ItemContentBuilder.getSummary(getWhenSetUpHour(), getWhenSetUpMinute(), getExecuteHour(), getExecuteMinute());
     }
 
 }
