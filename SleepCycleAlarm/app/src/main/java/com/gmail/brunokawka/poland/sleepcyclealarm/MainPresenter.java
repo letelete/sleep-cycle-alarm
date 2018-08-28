@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.sleepnow.SleepNowFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeHelper;
 
 public class MainPresenter implements MainContract.MainPresenter {

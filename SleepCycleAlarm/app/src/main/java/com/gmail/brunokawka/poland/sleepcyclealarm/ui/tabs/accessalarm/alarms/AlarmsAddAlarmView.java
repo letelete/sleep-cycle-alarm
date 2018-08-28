@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.annotation.TargetApi;
 import android.content.Context;

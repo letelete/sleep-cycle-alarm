@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.support.v4.app.Fragment;
 

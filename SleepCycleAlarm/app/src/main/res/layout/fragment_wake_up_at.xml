@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/infoCardView"
+        android:id="@+id/sleepNowInfoCardView"
         style="?infoCardStyle"
         android:layout_width="0dp"
         android:layout_marginTop="32dp"
@@ -18,20 +18,20 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/cardInfoTitle"
+                android:id="@+id/sleepNowCardInfoTitle"
                 style="?titleInfoText"
                 android:text="@string/wake_up_at_card_info_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/cardInfoSummary"
+                android:id="@+id/sleepNowCardInfoSummary"
                 style="?contentInfoText"
                 android:text="@string/wake_up_at_card_info_summary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/cardInfoTitle"
-                app:layout_constraintTop_toBottomOf="@+id/cardInfoTitle" />
+                app:layout_constraintStart_toStartOf="@+id/sleepNowCardInfoTitle"
+                app:layout_constraintTop_toBottomOf="@+id/sleepNowCardInfoTitle" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -39,14 +39,14 @@
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/listCardView"
+        android:id="@+id/sleepNowListCardView"
         style="?listCardStyle"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonExtended"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoCardView">
+        app:layout_constraintTop_toBottomOf="@+id/sleepNowInfoCardView">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
 
             <TextView
                 style="?listHelperText"
-                android:id="@+id/alarmsListHelper"
+                android:id="@+id/sleepNowListHelper"
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/alarmsListHelper">
+                app:layout_constraintTop_toBottomOf="@+id/sleepNowListHelper">
 
             </android.support.v7.widget.RecyclerView>
         </android.support.constraint.ConstraintLayout>
@@ -78,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/sleepNowListCardView" />
 
 
 </android.support.constraint.ConstraintLayout>

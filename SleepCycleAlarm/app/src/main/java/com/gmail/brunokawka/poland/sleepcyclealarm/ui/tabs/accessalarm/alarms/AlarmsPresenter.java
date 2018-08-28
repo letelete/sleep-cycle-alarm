@@ -1,16 +1,21 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
+import org.joda.time.DateTime;
+
+import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
@@ -71,33 +76,31 @@ public class AlarmsPresenter {
         }
     }
 
-    public void saveAlarm(ViewContract.DialogContract dialogContract, final SharedPreferences sharedPreferences, final int hour, final int minute) {
+    public void saveAlarm(ViewContract.DialogContract dialogContract, final DateTime whenSetUpDate, final DateTime executionDate) {
         if(hasView()) {
             Realm realm = RealmManager.getRealm();
             Context ctx = CustomApp.getContext();
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-            Uri ringtoneUri = Uri.parse(sharedPreferences.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_RINGTONE_URI"));
+            Uri ringtoneUri = Uri.parse(pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_RINGTONE_URI"));
             Ringtone ringtone = RingtoneManager.getRingtone(ctx, ringtoneUri);
 
-            final boolean isSameRingtoneForEveryAlarm = sharedPreferences.getBoolean(ctx.getString(R.string.key_alarms_has_same_ringtone), false);
+            final boolean isSameRingtoneForEveryAlarm = pref.getBoolean(ctx.getString(R.string.key_alarms_has_same_ringtone), false);
 
             final String id = UUID.randomUUID().toString();
-            final int snoozeDuration = sharedPreferences.getInt(ctx.getString(R.string.key_alarms_intervals), 5);
-            final boolean isRingingInSilentMode = sharedPreferences.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
-            // TODO : RINGTONE (Currently create some string for entry testing)
-            final String ringtoneTitle = isSameRingtoneForEveryAlarm
-                    ? ringtone.getTitle(ctx)
-                    : dialogContract.getRingtone();
-            final int ringDuration = sharedPreferences.getInt(ctx.getString(R.string.key_ring_duration), 5);
-            final int numberOfRepetitions = sharedPreferences.getInt(ctx.getString(R.string.key_auto_silence), 3);
+            final String ringtoneTitle = isSameRingtoneForEveryAlarm ? ringtone.getTitle(ctx) : dialogContract.getRingtone(); // TODO : RINGTONE (Currently create some string for entry testing)
+            final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
+            final int snoozeDuration = pref.getInt(ctx.getString(R.string.key_alarms_intervals), 5);
+            final int ringDuration = pref.getInt(ctx.getString(R.string.key_ring_duration), 5);
+            final int numberOfRepetitions = pref.getInt(ctx.getString(R.string.key_auto_silence), 3);
 
             realm.executeTransactionAsync(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
                     Alarm alarm = new Alarm();
                     alarm.setId(id);
-                    alarm.setHour(hour);
-                    alarm.setMinute(minute);
+                    alarm.setTitle(ItemContentBuilder.getTitle(executionDate));
+                    alarm.setSummary(ItemContentBuilder.getSummary(whenSetUpDate, executionDate));
                     alarm.setSnoozeDurationInMinutes(snoozeDuration);
                     alarm.setRingingInSilentMode(isRingingInSilentMode);
                     alarm.setRingtone(ringtoneTitle);

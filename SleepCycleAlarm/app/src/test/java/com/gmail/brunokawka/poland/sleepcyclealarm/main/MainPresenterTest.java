@@ -13,9 +13,9 @@ import org.mockito.junit.MockitoRule;
 import com.gmail.brunokawka.poland.sleepcyclealarm.MainContract;
 import com.gmail.brunokawka.poland.sleepcyclealarm.MainPresenter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms.AlarmsFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.sleepnow.SleepNowFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.WakeUpAtFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
 /*
     Naming convention:
     methodName_StateUnderTest_ExpectedBehavior

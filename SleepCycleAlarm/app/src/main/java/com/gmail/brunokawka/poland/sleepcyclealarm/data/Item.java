@@ -1,12 +1,14 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 
+import org.joda.time.DateTime;
+
+import java.util.Date;
+
 public class Item {
     private String title;
     private String summary;
-    private int currentHour;
-    private int currentMinute;
-    private int executionHour;
-    private int executionMinute;
+    private DateTime currentDate;
+    private DateTime executionDate;
 
     public String getTitle() {
         return title;
@@ -24,36 +26,19 @@ public class Item {
         this.summary = summary;
     }
 
-    public int getCurrentHour() {
-        return currentHour;
+    public DateTime getCurrentDate() {
+        return currentDate;
     }
 
-    public void setCurrentHour(int currentHour) {
-        this.currentHour = currentHour;
+    public void setCurrentDate(DateTime currentDate) {
+        this.currentDate = currentDate;
     }
 
-    public int getCurrentMinute() {
-        return currentMinute;
+    public DateTime getExecutionDate() {
+        return executionDate;
     }
 
-    public void setCurrentMinute(int currentMinute) {
-        this.currentMinute = currentMinute;
+    public void setExecutionDate(DateTime executionDate) {
+        this.executionDate = executionDate;
     }
-
-    public int getExecutionHour() {
-        return executionHour;
-    }
-
-    public void setExecutionHour(int executionHour) {
-        this.executionHour = executionHour;
-    }
-
-    public int getExecutionMinute() {
-        return executionMinute;
-    }
-
-    public void setExecutionMinute(int executionMinute) {
-        this.executionMinute = executionMinute;
-    }
-
 }

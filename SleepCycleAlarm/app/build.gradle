@@ -47,5 +47,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0-rc01'
     implementation 'io.realm:android-adapters:3.0.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation group: 'joda-time', name: 'joda-time', version: '2.10'
+
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

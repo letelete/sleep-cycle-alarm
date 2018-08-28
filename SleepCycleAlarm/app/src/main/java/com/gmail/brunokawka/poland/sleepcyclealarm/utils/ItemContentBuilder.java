@@ -1,16 +1,12 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 
 public class ItemContentBuilder {
 
@@ -21,71 +17,38 @@ public class ItemContentBuilder {
         return ctx.getString(resourceId);
     }
 
-    public static String getTitle(int executionHour, int executionMinute) {
-        return getFormattedTime(executionHour, executionMinute);
+    public static String getTitle(DateTime executionDate) {
+        return getFormattedTime(executionDate);
     }
 
-    public static String getSummary(int currentHour, int currentMinute, int executionHour, int executionMinute) {
+    public static String getSummary(DateTime currentDate, DateTime executionDate) {
         String itemSummary = getString(R.string.list_element_summary_changeable);
 
-        String currentTimeFormatted = getFormattedTime(currentHour, currentMinute);
-        String executeTimeFormatted = getFormattedTime(executionHour, executionMinute);
-        String dateFormat = "HH:mm";
-
-        if (isDateFormatToCalculateTimeDifferenceNeeded(currentHour, executionHour)) {
-            currentTimeFormatted = "01/01/0001 " + currentTimeFormatted;
-            executeTimeFormatted = "01/02/0001 " + executeTimeFormatted;
-            dateFormat = "MM/dd/yyyy " + dateFormat;
-        }
-
-        long difference = getTimeDifference(dateFormat, currentTimeFormatted, executeTimeFormatted);
-        long diffHours = getHour(difference);
-        long diffMinutes = getMinute(difference);
+        Period periodOfTime = getPeriodOfTime(currentDate, executionDate);
+        long diffHours = periodOfTime.getHours();
+        long diffMinutes = periodOfTime.getMinutes();
 
         return String.format(itemSummary,
                 getSleepDurationString(diffHours, diffMinutes), getSleepHealthStatus(diffHours));
     }
 
-    private static String getFormattedTime(int hour, int minute) {
+    private static String getFormattedTime(DateTime date) {
+        long hour = date.getHourOfDay();
+        long minute = date.getMinuteOfHour();
         return getFormattedHourOrMinute(hour)
                 + ":"
                 + getFormattedHourOrMinute(minute);
-
     }
 
-    private static long getTimeDifference(String dateFormat, String currentTime, String executeTime) {
-        SimpleDateFormat format = new SimpleDateFormat(dateFormat, Locale.UK);
-
-        try {
-            Date currentDate = format.parse(currentTime);
-            Date executionDate = format.parse(executeTime);
-            return executionDate.getTime() - currentDate.getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return 0;
+    private static Period getPeriodOfTime(DateTime currentDate, DateTime executionDate) {
+        return new Period(currentDate, executionDate);
     }
 
-    private static long getHour(long difference) {
-        return difference / (60 * 60 * 1000) % 24;
-    }
-
-    private static long getMinute(long difference) {
-        return difference / (60 * 1000) % 60;
-    }
-
-    private static boolean isDateFormatToCalculateTimeDifferenceNeeded(int currentHour, int executionHour) {
-        return currentHour > executionHour;
-    }
-
-    private static String getFormattedHourOrMinute(int hourOrMinute) {
+    private static String getFormattedHourOrMinute(long hourOrMinute) {
         return hourOrMinute < 10 ? "0" + String.valueOf(hourOrMinute) : String.valueOf(hourOrMinute);
     }
 
     private static String getSleepDurationString(long hour, long minute) {
-
-
         String hourMark = getString(R.string.global_hour_mark);
         String minuteMark = getString(R.string.global_minute_mark);
 
@@ -97,8 +60,6 @@ public class ItemContentBuilder {
     }
 
     private static String getSleepHealthStatus(long hoursOfSleep) {
-
-
         String stateUnhealthy = getString(R.string.sleep_state_unhealthy);
         String stateOptimal = getString(R.string.sleep_state_optimal);
         String stateHealthy = getString(R.string.sleep_state_healthy);

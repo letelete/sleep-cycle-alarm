@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.wakeupat;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

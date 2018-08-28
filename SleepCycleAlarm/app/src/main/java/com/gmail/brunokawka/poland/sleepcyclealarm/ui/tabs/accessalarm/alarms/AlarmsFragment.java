@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.alarms;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+
+import org.joda.time.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,8 +89,8 @@ public class AlarmsFragment extends Fragment
         final SharedPreferences preferencesToPass = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         //TODO: passing data from 'Sleep now' or "Wake up at' fragment
-        final int hour = 6;
-        final int minute = 30;
+        final DateTime whenSetUp = DateTime.now();
+        final DateTime executionDate = DateTime.now();
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(content)
@@ -96,14 +98,14 @@ public class AlarmsFragment extends Fragment
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, preferencesToPass, hour, minute);
+                        alarmsPresenter.saveAlarm(dialogContract, whenSetUp, executionDate);
                         alarmsPresenter.dismissAddDialog();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, preferencesToPass, hour, minute);
+                        alarmsPresenter.saveAlarm(dialogContract, whenSetUp, executionDate);
                         alarmsPresenter.dismissAddDialog();
                     }
                 });
