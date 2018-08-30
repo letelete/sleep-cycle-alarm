@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -24,12 +25,6 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class getSummary {
-
-    @Before
-    public void setUp() {
-        String dateFormat = "MM/dd/yyyy HH:mm";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.UK);
-    }
 
     private DateTime getDateTimeFormatted(String executionHour) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
