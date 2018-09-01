@@ -50,6 +50,7 @@
     <!-- DIALOG STRINGS -->
     <string name="dialog_add_new_alarm">Add alarm</string>
     <string name="dialog_edit_alarm">Edit alarm</string>
+    <string name="dialog_set_hour_to_wake_up_at">Set hour when you want to wake up at</string>
 
     <!-- PREFERENCE STRINGS -->
 

@@ -84,9 +84,8 @@ public class AlarmsFragment extends Fragment
 
     @Override
     public void showAddAlarmDialog() {
-        final View content = getLayoutInflater().inflate(R.layout.edit_item, root, false);
+        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
         final DialogContract dialogContract = (DialogContract) content;
-        final SharedPreferences preferencesToPass = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         //TODO: passing data from 'Sleep now' or "Wake up at' fragment
         final DateTime whenSetUp = DateTime.now();
@@ -116,7 +115,7 @@ public class AlarmsFragment extends Fragment
         if(!alarm.isValid()) {
             return;
         }
-        final View content = getLayoutInflater().inflate(R.layout.edit_item, root, false);
+        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
         final AlarmsPresenter.ViewContract.DialogContract dialogContract = (AlarmsPresenter.ViewContract.DialogContract) content;
         dialogContract.bind(alarm);
 

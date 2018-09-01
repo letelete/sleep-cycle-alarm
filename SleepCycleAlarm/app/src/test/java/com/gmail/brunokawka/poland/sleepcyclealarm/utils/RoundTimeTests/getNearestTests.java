@@ -1,6 +1,7 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilderTests;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTimeTests;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTime;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -9,7 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class getNearestRoundOfTimeTests {
+public class getNearestTests {
 
     private DateTime getDateTimeFormatted(String executionHour) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
@@ -23,7 +24,7 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -43,7 +44,7 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -53,7 +54,7 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -63,7 +64,7 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -73,6 +74,6 @@ public class getNearestRoundOfTimeTests {
 
         DateTime dateToRound = getDateTimeFormatted(hourToRound);
         DateTime dateExpected = getDateTimeFormatted(expected);
-        assertEquals(dateExpected, ItemBuilder.getNearestRoundOfTime(dateToRound));
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 }

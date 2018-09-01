@@ -11,13 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 
 import org.joda.time.DateTime;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,8 +43,11 @@ public class SleepNowFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setItemAnimator(new DefaultItemAnimator());
 
-        DateTime currentDate = DateTime.now();
-        recycler.setAdapter(new ListAdapter(ItemBuilder.getItemsForCurrentDate(currentDate), recycler));
+        recycler.setAdapter(new ListAdapter(SleepNowItemBuilder.getItemsForCurrentDate(getCurrentDateTime()), recycler));
+    }
+
+    private DateTime getCurrentDateTime() {
+        return DateTime.now();
     }
 
     @Override
