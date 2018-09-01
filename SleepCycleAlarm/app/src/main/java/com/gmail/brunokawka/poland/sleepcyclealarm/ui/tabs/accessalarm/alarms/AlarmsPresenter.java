@@ -15,7 +15,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
 import org.joda.time.DateTime;
 
-import java.util.Date;
 import java.util.UUID;
 
 import io.realm.Realm;
@@ -44,7 +43,7 @@ public class AlarmsPresenter {
 
     private boolean isDialogShowing;
 
-    boolean hasView() {
+    private boolean hasView() {
         return viewContract != null;
     }
 
@@ -59,7 +58,7 @@ public class AlarmsPresenter {
         this.viewContract = null;
     }
 
-    public void showAddDialog() {
+    private void showAddDialog() {
         if(hasView()) {
             isDialogShowing = true;
             viewContract.showAddAlarmDialog();

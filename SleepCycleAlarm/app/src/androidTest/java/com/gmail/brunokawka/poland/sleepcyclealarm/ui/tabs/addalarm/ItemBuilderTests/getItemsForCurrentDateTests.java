@@ -1,6 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilderTests;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemBuilder;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -30,7 +30,7 @@ public class getItemsForCurrentDateTests {
         int itemIndex = 6;
 
         DateTime dateCurrent = getDateTimeFormatted(currentHour);
-        assertEquals(dateCurrent, ItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getCurrentDate());
+        assertEquals(dateCurrent, SleepNowItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getCurrentDate());
     }
 
     @Test
@@ -41,6 +41,6 @@ public class getItemsForCurrentDateTests {
 
         DateTime dateCurrent = getDateTimeFormatted(currentHour);
         DateTime dateExecution = getDateTimeFormatted(executionHour);
-        assertEquals(dateExecution, ItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getExecutionDate());
+        assertEquals(dateExecution, SleepNowItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getExecutionDate());
     }
 }
