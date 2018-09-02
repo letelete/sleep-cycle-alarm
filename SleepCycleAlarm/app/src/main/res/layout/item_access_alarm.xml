@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/accessAlarm"
+    style="?listStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="29dp">
+
+    <TextView
+        android:id="@+id/accessAlarmTitle"
+        style="?attr/titleInListText"
+        app:layout_constraintStart_toEndOf="@+id/accessAlarmIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accessAlarmSummary"
+        style="?attr/subtitleInListText"
+        app:layout_constraintStart_toStartOf="@+id/accessAlarmTitle"
+        app:layout_constraintTop_toBottomOf="@+id/accessAlarmTitle" />
+
+    <ImageView
+        android:id="@+id/accessAlarmIcon"
+        style="?accessAlarmIcon"
+        android:contentDescription="@string/content_descriptions_set_alarm_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/accessAlarmSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/accessAlarmTitle" />
+
+
+</android.support.constraint.ConstraintLayout>

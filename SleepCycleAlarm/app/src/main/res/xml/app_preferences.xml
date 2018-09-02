@@ -37,7 +37,7 @@
             android:persistent="true"
             android:ringtoneType="alarm"
             android:showDefault="true"
-            android:showSilent="true"
+            android:showSilent="false"
             android:summary="@string/pref_ringtone_select_default_summary"
             android:title="@string/pref_ringtone_select_title"
             app:pref_showAdd="true"

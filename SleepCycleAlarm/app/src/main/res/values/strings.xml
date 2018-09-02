@@ -6,6 +6,12 @@
     <string name="content_descriptions_set_alarm_icon">Set alarm icon</string>
     <string name="content_descriptions_header_image">Header image</string>
 
+    <!-- SLEEP QUALITY STATES-->
+    <string name="sleep_state_unhealthy">Unhealthy</string>
+    <string name="sleep_state_optimal">Optimal</string>
+    <string name="sleep_state_healthy">Healthy</string>
+    <string name="sleep_state_notrecommended">Not recommended</string>
+
     <!-- TABS STRINGS -->
     <string name="sleep_now_tab">Sleep now</string>
     <string name="wake_up_at_tab">Wake up at</string>
@@ -29,7 +35,7 @@
     <string name="global_minute_mark">min</string>
     <string name="sleep_now_list_helper">Tap on any hour of listed below to set alarm</string>
     <string name="alarms_list_helper">Tap to edit, press and hold to select</string>
-    <string name="list_element_title_changeable">%1$s:%2$s</string> <!-- HH:MM -->
+    <string name="list_element_title_changeable">%1$d:%2$d</string> <!-- HH:MM -->
     <string name="list_element_summary_changeable">%1$s of sleep, %2$s</string> <!-- 4h 30min of sleep, Optimal -->
     <string name="wake_up_at_empty_list_title">No results yet</string>
     <string name="wake_up_at_empty_list_summary">Tap the \'Set hour\' button to pick your time and see results</string>
@@ -40,6 +46,11 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_help">Help</string>
     <string name="menu_about">About</string>
+
+    <!-- DIALOG STRINGS -->
+    <string name="dialog_add_new_alarm">Add alarm</string>
+    <string name="dialog_edit_alarm">Edit alarm</string>
+    <string name="dialog_set_hour_to_wake_up_at">Set hour when you want to wake up at</string>
 
     <!-- PREFERENCE STRINGS -->
 
@@ -102,7 +113,7 @@
         <item>30</item>
     </string-array>
 
-    <string name="pref_alarms_intervals_title">Alarms intervals</string>
+    <string name="pref_alarms_intervals_title">Snooze duration</string>
     <string-array name="pref_alarms_intervals_titles">
         <item>1 minute</item>
         <item>5 minutes</item>

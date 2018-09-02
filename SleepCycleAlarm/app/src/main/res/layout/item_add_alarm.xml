@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?listStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="29dp">
+
+    <TextView
+        android:id="@+id/addAlarmTitle"
+        style="?attr/titleInListText"
+        app:layout_constraintStart_toEndOf="@+id/addAlarmIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addAlarmSummary"
+        style="?attr/subtitleInListText"
+        app:layout_constraintStart_toStartOf="@+id/addAlarmTitle"
+        app:layout_constraintTop_toBottomOf="@+id/addAlarmTitle" />
+
+    <ImageView
+        android:id="@+id/addAlarmIcon"
+        style="?setAlarmIcon"
+        android:contentDescription="@string/content_descriptions_set_alarm_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/addAlarmSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addAlarmTitle" />
+
+
+</android.support.constraint.ConstraintLayout>
