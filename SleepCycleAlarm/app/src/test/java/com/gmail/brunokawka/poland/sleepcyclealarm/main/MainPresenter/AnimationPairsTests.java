@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.main;
+package com.gmail.brunokawka.poland.sleepcyclealarm.main.MainPresenter;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,12 +16,11 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
 
-public class MainPresenterTest {
+// This class use the following naming convention:
+// Should_ExpectedBehavior_When_StateUnderTest
+
+public class AnimationPairsTests {
 
     @Mock
     private MainContract.MainView view;
@@ -37,7 +36,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition1PreviousPosition0_WakeUpAtTabAndAnimPair() {
+    public void Should_SwipeLeftPair_When_SwipingFromFirstToSecondsTab() {
         presenter.handleBottomNavigationTabClick(1, 0);
         ArgumentCaptor<WakeUpAtFragment> argument = ArgumentCaptor.forClass(WakeUpAtFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};
@@ -46,7 +45,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition0PreviousPosition1_SleepNowTabAndAnimPair() {
+    public void Should_SwipeRightPair_When_SwipingFromSecondToFirstTab() {
         presenter.handleBottomNavigationTabClick(0, 1);
         ArgumentCaptor<SleepNowFragment> argument = ArgumentCaptor.forClass(SleepNowFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_right_enter, R.animator.swipe_right_exit};
@@ -55,7 +54,7 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void handleBottomNavigationTabClick_NewPosition2PreviousPosition0_AlarmsTabAndAnimPair() {
+    public void Should_SwipeLeftPair_When_SwipingFromThirdToFirstTab() {
         presenter.handleBottomNavigationTabClick(2, 0);
         ArgumentCaptor<AlarmsFragment> argument = ArgumentCaptor.forClass(AlarmsFragment.class);
         int[] correctAnimationPair = {R.animator.swipe_left_enter, R.animator.swipe_left_exit};

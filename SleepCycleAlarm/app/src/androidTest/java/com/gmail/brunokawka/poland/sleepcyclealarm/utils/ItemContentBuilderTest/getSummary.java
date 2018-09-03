@@ -18,10 +18,8 @@ import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
+// This class use the following naming convention:
+// Should_ExpectedBehavior_When_StateUnderTest
 
 @RunWith(MockitoJUnitRunner.class)
 public class getSummary {
@@ -32,7 +30,7 @@ public class getSummary {
     }
 
     @Test
-    public void getSummary_10and30and12and0_1h30minOfSleepUnhealthy() {
+    public void Should_Return1h30minOfSleepAndUnHealthy_When_SleepDurationEquals1h30min() {
         String currentDateString = "01/01/1111 10:30";
         String executionDateString = "02/01/1111 12:00";
         String sleepDuration = "1h 30min";
@@ -45,7 +43,7 @@ public class getSummary {
     }
 
     @Test
-    public void getSummary_2and0and8and0_6hOfSleepHealthy() {
+    public void Should_Return6hOfSleepAndOptimal_When_SleepDurationEquals6h() {
         String currentDateString = "01/01/1111 02:00";
         String executionDateString = "01/01/1111 08:00";
         String sleepDuration = "6h";
@@ -58,7 +56,7 @@ public class getSummary {
     }
 
     @Test
-    public void getSummary_23and0and8and30_9h30minOfSleepHealthy() {
+    public void Should_Return9h30minOfSleepAndHealthy_When_SleepDurationEquals9h30min() {
         String currentDateString = "01/01/1111 23:00";
         String executionDateString = "02/01/1111 08:30";
         String sleepDuration = "9h 30min";
@@ -71,7 +69,7 @@ public class getSummary {
     }
 
     @Test
-    public void getSummary_1and30and12and30_11hOfSleepNotRecommended() {
+    public void Should_Return11hOfSleepAndNotRecommended_When_SleepDurationEquals11h() {
         String currentDateString = "01/01/1111 01:30";
         String executionDateString = "01/01/1111 12:30";
         String sleepDuration = "11h";

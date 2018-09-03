@@ -11,10 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
+// This class use the following naming convention:
+// test[Feature being tested]
 
 @RunWith(MockitoJUnitRunner.class)
 public class getItemsForCurrentDateTests {
@@ -25,7 +23,7 @@ public class getItemsForCurrentDateTests {
     }
 
     @Test
-    public void getItemsForCurrentDate_12and00_fifthItemCurrentDateEquals12and00() {
+    public void testIfCanReturnCurrentDate() {
         String currentHour = "01/01/1111 12:00";
         int itemIndex = 6;
 
@@ -34,7 +32,7 @@ public class getItemsForCurrentDateTests {
     }
 
     @Test
-    public void getItemsForCurrentDate_12and00_secondItemExecutionDateEquals15and15() {
+    public void testIfCanReturnExecutionDate() {
         String currentHour = "01/01/1111 12:00";
         String executionHour = "01/01/1111 15:15"; // +15 min for time to fall asleep
         int itemIndex = 1;

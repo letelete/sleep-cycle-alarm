@@ -9,10 +9,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
+// This class use the following naming convention:
+// test[Feature being tested]
 
 public class getTitleTests {
 
@@ -22,7 +20,7 @@ public class getTitleTests {
     }
 
     @Test
-    public void getTitle_6and30_6Colon30() {
+    public void testIfAddAColonBetweenHourAndMinuteAndIfInFrontOfHourIs0() {
         String executionHour = "04/02/2011 06:30";
         String expected = "06:30";
 
@@ -31,7 +29,7 @@ public class getTitleTests {
     }
 
     @Test
-    public void getTitle_0and3_00Colon03() {
+    public void testIfAddAColonBetweenHourAndMinuteAndIfInFrontOfHourAndMinuteIs0() {
         String executionHour = "04/02/2011 00:03";
         String expected = "00:03";
 
@@ -40,7 +38,7 @@ public class getTitleTests {
     }
 
     @Test
-    public void getTitle_23and59_23Colon59() {
+    public void testIfAddAColonBetweenHourAndMinuteAndIf2DigitsHourIsSavedCorrectly() {
         String executionHour = "04/02/2011 23:59";
         String expected = "23:59";
 
@@ -49,16 +47,7 @@ public class getTitleTests {
     }
 
     @Test
-    public void getTitle_12and3_12Colon03() {
-        String executionHour = "04/02/2011 12:03";
-        String expected = "12:03";
-
-        DateTime dateTime = getDateTimeFormatted(executionHour);
-        assertEquals(expected, ItemContentBuilder.getTitle(dateTime));
-    }
-
-    @Test
-    public void getTitle_0and0_00Colon00() {
+    public void testIfAddAColonBetweenHourAndMinuteAndIfAll4DigitsAreEquals0() {
         String executionHour = "04/02/2011 00:00";
         String expected = "00:00";
 
