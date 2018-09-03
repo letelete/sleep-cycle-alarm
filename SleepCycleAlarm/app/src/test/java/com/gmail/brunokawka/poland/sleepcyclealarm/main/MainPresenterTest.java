@@ -16,10 +16,9 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
+
+// This class use the following naming convention:
+// Should_ExpectedBehavior_When_StateUnderTest
 
 public class MainPresenterTest {
 
