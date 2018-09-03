@@ -11,10 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
-/*
-    Naming convention:
-    methodName_StateUnderTest_ExpectedBehavior
- */
+// This class use the following naming convention:
+// Should_ExpectedBehavior_When_StateUnderTest
 
 @RunWith(MockitoJUnitRunner.class)
 public class getItemsForCurrentDateTests {
