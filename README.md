@@ -1,5 +1,5 @@
-![Platform supported](https://img.shields.io/badge/version-0.9-blue.svg)
-![Platform supported](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-brightgreen.svg)
+[![Version](https://img.shields.io/badge/version-0.9-blue.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
+[![Platform Support](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-brightgreen.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/BrunoKawka/5)
 
 **IT'S NOT STABLE VERSION YET**: App is still under heavy development. First stable version will be available on Google Play.
