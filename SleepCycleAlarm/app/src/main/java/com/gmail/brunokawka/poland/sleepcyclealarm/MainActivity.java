@@ -1,18 +1,18 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 
@@ -22,20 +22,19 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements
         MainContract.MainView,
-        BottomNavigationBar.OnTabSelectedListener,
+        BottomNavigationView.OnNavigationItemSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
     private final static String TAG = "MainActivityLog";
 
     private final FragmentManager fragmentManager = getSupportFragmentManager();
-    int previousTabPosition; // created for transition direction purposes
     private MainPresenter mainPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar appToolbar;
 
     @BindView(R.id.bottom_navigation_bar)
-    BottomNavigationBar bottomNavigationBar;
+    BottomNavigationView bottomNavigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        setUpBottomNavigationBar();
         setupToolbar();
-        setupBottomNavigationBar();
     }
 
     @Override
@@ -56,42 +55,28 @@ public class MainActivity extends AppCompatActivity
         getDelegate().setLocalNightMode(themeId);
     }
 
+    private void setUpBottomNavigationBar() {
+        bottomNavigationBar.setOnNavigationItemSelectedListener(this);
+        bottomNavigationBar.setSelectedItemId(R.id.action_sleepnow);
+    }
+
     private void setupToolbar() {
         setSupportActionBar(appToolbar);
         appToolbar.setOnMenuItemClickListener(this);
     }
 
-    private void setupBottomNavigationBar() {
-        bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_home, getString(R.string.sleep_now_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_watch, getString(R.string.wake_up_at_tab)))
-                .addItem(new BottomNavigationItem(R.drawable.ic_access_alarm, getString(R.string.alarms_tab)))
-                .setBarBackgroundColor(R.color.color_primary)
-                .initialise();
-        bottomNavigationBar.setTabSelectedListener(this);
-        bottomNavigationBar.selectTab(0);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        mainPresenter.handleBottomNavigationTabClick(menuItem);
+        return true;
     }
 
     @Override
-    public void onTabSelected(int position) {
-        mainPresenter.handleBottomNavigationTabClick(position, previousTabPosition);
-        previousTabPosition = position;
-    }
-
-    @Override
-    public void navigateToSpecificFragmentWithAnimation(Fragment newFragment, int[] enterExitAnimationPair) {
+    public void replaceFragment(Fragment newFragment) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.setCustomAnimations(enterExitAnimationPair[0], enterExitAnimationPair[1])
+        ft.setCustomAnimations(R.animator.fragment_open_enter, R.animator.fragment_open_exit)
                 .replace(R.id.main_activity_container, newFragment)
                 .commit();
-    }
-
-    @Override
-    public void onTabUnselected(int position) {
-    }
-
-    @Override
-    public void onTabReselected(int position) {
     }
 
     @Override

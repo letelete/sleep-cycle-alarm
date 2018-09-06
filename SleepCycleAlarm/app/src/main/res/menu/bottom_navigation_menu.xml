@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_sleepnow"
+        android:icon="@drawable/ic_home"
+        android:title="@string/sleep_now_tab"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_wakeupat"
+        android:icon="@drawable/ic_watch"
+        android:title="@string/wake_up_at_tab"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_alarms"
+        android:icon="@drawable/ic_access_alarm"
+        android:title="@string/alarms_tab"
+        app:showAsAction="ifRoom" />
+</menu>
