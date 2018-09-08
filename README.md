@@ -1,5 +1,9 @@
 # Sleep-Cycle-Alarm
 
+<h1 align=center>
+<img src="Logo/logohorizontal.png" width=70%>
+</h1>
+
 Android app that helps waking up during light sleep
 
 __It's under heavy active development__
