@@ -37,13 +37,19 @@
 
     </FrameLayout>
 
-    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+    <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="?colorPrimary"
+        app:itemBackground="?colorPrimary"
+        app:itemIconTint="@color/navigation_bar_selector"
+        app:itemTextColor="@color/navigation_bar_selector"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </android.support.constraint.ConstraintLayout>
