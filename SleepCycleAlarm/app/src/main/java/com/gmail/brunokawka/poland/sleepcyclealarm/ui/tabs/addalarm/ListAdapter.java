@@ -10,31 +10,31 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListAdapter extends RecyclerView.Adapter {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHolder> {
 
     private final static String TAG = "ListAdapterLog";
 
     private ArrayList<Item> listItems;
     private RecyclerView recycler;
 
-    public class ListAdapterHolder extends RecyclerView.ViewHolder {
+    public Item getItem(int position) {
+        return listItems != null ? listItems.get(position) : null;
+    }
 
-        @BindView(R.id.addAlarmTitle)
-        TextView textTitle;
-
-        @BindView(R.id.addAlarmSummary)
-        TextView textSummary;
-
-        public ListAdapterHolder(View item) {
-            super(item);
-            ButterKnife.bind(this, item);
-        }
+    @Override
+    public int getItemCount() {
+        return listItems.size();
     }
 
     public ListAdapter(ArrayList<Item> listItems, RecyclerView recycler) {
@@ -44,30 +44,39 @@ public class ListAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_add_alarm, viewGroup, false);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: add alarm to realm database (EventBus might do the job)
-                Log.d(TAG, "User clicked on item in list with id: " + String.valueOf(view.getId()));
-            }
-        });
-
-        return new ListAdapterHolder(view);
+    public ListAdapterHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, final int index) {
+        return new ListAdapterHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_add_alarm, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        Item item = listItems.get(i);
-        ((ListAdapterHolder) viewHolder).textTitle.setText(item.getTitle());
-        ((ListAdapterHolder) viewHolder).textSummary.setText(item.getSummary());
+    public void onBindViewHolder(@NonNull ListAdapterHolder listAdapterHolder, int position) {
+        Item item = listItems.get(position);
+        listAdapterHolder.item = getItem(position);
+
+        listAdapterHolder.textTitle.setText(item.getTitle());
+        listAdapterHolder.textSummary.setText(item.getSummary());
     }
 
-    @Override
-    public int getItemCount() {
-        return listItems.size();
+    public class ListAdapterHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
+        private Item item;
+
+        @BindView(R.id.addAlarmTitle)
+        TextView textTitle;
+
+        @BindView(R.id.addAlarmSummary)
+        TextView textSummary;
+
+        public ListAdapterHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+        }
+
+        public void onClick(View view) {
+            EventBus.getDefault().postSticky(new SetAlarmEvent(listItems.get(this.getAdapterPosition())));
+            Log.d(TAG, String.valueOf(this.getAdapterPosition()));
+        }
     }
 }

@@ -66,8 +66,6 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
             textTitle.setText(alarm.getTitle());
             textSummary.setText(alarm.getSummary());
 
-            Log.wtf(TAG, alarmsPresenter == null ? "alarmsPresenter is null" : "alarmsPresenter is not null");
-
             itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

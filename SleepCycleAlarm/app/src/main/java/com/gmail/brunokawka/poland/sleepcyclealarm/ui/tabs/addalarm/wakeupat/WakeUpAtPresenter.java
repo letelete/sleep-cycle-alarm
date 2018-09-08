@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-
 import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter {

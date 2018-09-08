@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,12 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 
 import butterknife.BindView;
@@ -25,8 +31,9 @@ import io.realm.Realm;
 
 public class AlarmsFragment extends Fragment
     implements AlarmsPresenter.ViewContract {
-
     private static final String TAG = "AlarmsFragmentLog";
+
+    private Item item;
 
     @BindView(R.id.alarms_root)
     ViewGroup root;
@@ -57,8 +64,6 @@ public class AlarmsFragment extends Fragment
             getFragmentManager().beginTransaction().add(fragment, "SCOPE_LISTENER").commit();
         }
 
-        Realm realm = RealmManager.getRealm();
-
         alarmsPresenter = fragment.getPresenter();
 
         recycler.setHasFixedSize(true);
@@ -66,9 +71,23 @@ public class AlarmsFragment extends Fragment
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler.setLayoutManager(layoutManager);
 
-        recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
-
         alarmsPresenter.bindView(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+        Log.d(TAG, "On start");
+
+        Realm realm = RealmManager.getRealm();
+        recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -87,24 +106,20 @@ public class AlarmsFragment extends Fragment
         final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
         final DialogContract dialogContract = (DialogContract) content;
 
-        //TODO: passing data from 'Sleep now' or "Wake up at' fragment
-        final DateTime whenSetUp = DateTime.now();
-        final DateTime executionDate = DateTime.now();
-
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(content)
                 .setTitle(getString(R.string.dialog_add_new_alarm))
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, whenSetUp, executionDate);
+                        alarmsPresenter.saveAlarm(dialogContract, item);
                         alarmsPresenter.dismissAddDialog();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, whenSetUp, executionDate);
+                        alarmsPresenter.saveAlarm(dialogContract, item);
                         alarmsPresenter.dismissAddDialog();
                     }
                 });
@@ -142,5 +157,12 @@ public class AlarmsFragment extends Fragment
 
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.ASYNC)
+    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
+        Log.d(TAG, "Event received");
+        this.item = setAlarmEvent.getItem();
+        alarmsPresenter.saveAlarmSilent(item);
     }
 }
