@@ -25,6 +25,7 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
         super(alarms, true);
     }
 
+    @NonNull
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AlarmViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_access_alarm, parent, false));
@@ -65,8 +66,6 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
             final String id = alarm.getId();
             textTitle.setText(alarm.getTitle());
             textSummary.setText(alarm.getSummary());
-
-            Log.wtf(TAG, alarmsPresenter == null ? "alarmsPresenter is null" : "alarmsPresenter is not null");
 
             itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
