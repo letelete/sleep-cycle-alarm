@@ -46,7 +46,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="trimmed" value="true" />
+                                                <entry key="scalingPercent" value="74" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -69,11 +69,10 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="foregroundImage" value="D:\_programming\my-projects\on-git\Sleep-Cycle-Alarm\preview\logo\logomark.png" />
-                                      <entry key="legacyIconShape" value="NONE" />
-                                      <entry key="previewDensity" value="XXXHIGH" />
+                                      <entry key="foregroundImage" value="D:\_programming\my-projects\on-git\Sleep-Cycle-Alarm\preview\logo\logo.svg" />
+                                      <entry key="legacyIconShape" value="CIRCLE" />
                                       <entry key="showSafeZone" value="false" />
-                                      <entry key="webIconShape" value="NONE" />
+                                      <entry key="webIconShape" value="CIRCLE" />
                                     </map>
                                   </option>
                                 </PersistentState>
