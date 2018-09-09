@@ -68,7 +68,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
 
     @Override
     public void handleCloseActivityButton() {
-        Log.i(TAG, "User close an activity");
+        Log.d(TAG, "User close an activity");
         view.closeActivity();
     }
 }

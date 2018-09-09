@@ -75,8 +75,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         }
 
         public void onClick(View view) {
-            EventBus.getDefault().postSticky(new SetAlarmEvent(listItems.get(this.getAdapterPosition())));
-            Log.d(TAG, String.valueOf(this.getAdapterPosition()));
+            int position = this.getAdapterPosition();
+            Item item = listItems.get(position);
+            EventBus.getDefault().postSticky(new SetAlarmEvent(item));
+            Log.d(TAG, String.valueOf(position));
         }
     }
 }

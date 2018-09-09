@@ -75,7 +75,6 @@ public class SleepNowFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
-        String alarmExecutionTime = setAlarmEvent.getItem().getTitle();
-        Toast.makeText(getActivity(), "Alarm will ring at: " + alarmExecutionTime, Toast.LENGTH_SHORT).show();
+        // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
     }
 }

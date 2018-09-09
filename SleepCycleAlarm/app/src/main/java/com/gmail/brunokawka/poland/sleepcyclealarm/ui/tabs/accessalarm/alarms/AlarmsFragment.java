@@ -2,14 +2,11 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +15,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-import org.joda.time.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +32,7 @@ public class AlarmsFragment extends Fragment
     @BindView(R.id.alarmsList)
     RecyclerView recycler;
 
+    private AlarmScopeListener alarmScopeListener;
     static AlarmsPresenter alarmsPresenter;
     AlertDialog dialog;
 
@@ -58,37 +50,33 @@ public class AlarmsFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
         RealmManager.initializeRealmConfig();
 
-        AlarmScopeListener fragment = (AlarmScopeListener) getFragmentManager().findFragmentByTag("SCOPE_LISTENER");
-        if(fragment == null) {
-            fragment = new AlarmScopeListener();
-            getFragmentManager().beginTransaction().add(fragment, "SCOPE_LISTENER").commit();
-        }
+        addScopeListener();
+        alarmsPresenter = alarmScopeListener.getPresenter();
 
-        alarmsPresenter = fragment.getPresenter();
+        setUpRecycler();
+
+        alarmsPresenter.bindView(this);
+    }
+
+    private void addScopeListener() {
+        alarmScopeListener = (AlarmScopeListener) getFragmentManager().findFragmentByTag("SCOPE_LISTENER");
+        if (alarmScopeListener == null) {
+            alarmScopeListener = new AlarmScopeListener();
+            getFragmentManager().beginTransaction().add(alarmScopeListener, "SCOPE_LISTENER").commit();
+        }
+    }
+
+    private void setUpRecycler() {
+        Realm realm = RealmManager.getRealm();
 
         recycler.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler.setLayoutManager(layoutManager);
 
-        alarmsPresenter.bindView(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-        Log.d(TAG, "On start");
-
-        Realm realm = RealmManager.getRealm();
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
 
     @Override
     public void onDestroyView() {
@@ -157,12 +145,5 @@ public class AlarmsFragment extends Fragment
 
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
-    }
-
-    @Subscribe(sticky = true, threadMode = ThreadMode.ASYNC)
-    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
-        Log.d(TAG, "Event received");
-        this.item = setAlarmEvent.getItem();
-        alarmsPresenter.saveAlarmSilent(item);
     }
 }

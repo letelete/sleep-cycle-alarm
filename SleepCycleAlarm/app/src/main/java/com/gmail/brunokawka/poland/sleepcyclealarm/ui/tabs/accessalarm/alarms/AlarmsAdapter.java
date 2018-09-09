@@ -25,6 +25,7 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
         super(alarms, true);
     }
 
+    @NonNull
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AlarmViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_access_alarm, parent, false));
