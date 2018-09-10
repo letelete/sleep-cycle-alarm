@@ -5,12 +5,15 @@ import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
 import org.joda.time.DateTime;
@@ -58,7 +61,7 @@ public class AlarmsPresenter {
         this.viewContract = null;
     }
 
-    private void showAddDialog() {
+    public void showAddDialog() {
         if(hasView()) {
             isDialogShowing = true;
             viewContract.showAddAlarmDialog();
@@ -75,40 +78,51 @@ public class AlarmsPresenter {
         }
     }
 
-    public void saveAlarm(ViewContract.DialogContract dialogContract, final DateTime whenSetUpDate, final DateTime executionDate) {
-        if(hasView()) {
+    public void saveAlarm(ViewContract.DialogContract dialogContract, final Item item) {
+        if (hasView()) {
             Realm realm = RealmManager.getRealm();
-            Context ctx = CustomApp.getContext();
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
-
-            Uri ringtoneUri = Uri.parse(pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_RINGTONE_URI"));
-            Ringtone ringtone = RingtoneManager.getRingtone(ctx, ringtoneUri);
-
-            final boolean isSameRingtoneForEveryAlarm = pref.getBoolean(ctx.getString(R.string.key_alarms_has_same_ringtone), false);
-
-            final String id = UUID.randomUUID().toString();
-            final String ringtoneTitle = isSameRingtoneForEveryAlarm ? ringtone.getTitle(ctx) : dialogContract.getRingtone(); // TODO : RINGTONE (Currently create some string for entry testing)
-            final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
-            final int snoozeDuration = pref.getInt(ctx.getString(R.string.key_alarms_intervals), 5);
-            final int ringDuration = pref.getInt(ctx.getString(R.string.key_ring_duration), 5);
-            final int numberOfRepetitions = pref.getInt(ctx.getString(R.string.key_auto_silence), 3);
+            final Alarm alarm = getAlarmDependingOnGivenItemAndContract(item, dialogContract);
 
             realm.executeTransactionAsync(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    Alarm alarm = new Alarm();
-                    alarm.setId(id);
-                    alarm.setTitle(ItemContentBuilder.getTitle(executionDate));
-                    alarm.setSummary(ItemContentBuilder.getSummary(whenSetUpDate, executionDate));
-                    alarm.setSnoozeDurationInMinutes(snoozeDuration);
-                    alarm.setRingingInSilentMode(isRingingInSilentMode);
-                    alarm.setRingtone(ringtoneTitle);
-                    alarm.setRingDurationInMinutes(ringDuration);
-                    alarm.setNumberOfRepetitionsBeforeAutoSilence(numberOfRepetitions);
                     realm.insertOrUpdate(alarm);
                 }
             });
         }
+    }
+
+    private Alarm getAlarmDependingOnGivenItemAndContract(Item item, ViewContract.DialogContract dialogContract) {
+        Context ctx = CustomApp.getContext();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
+
+        final String id = UUID.randomUUID().toString();
+
+        final String title = item.getTitle();
+
+        final String summary = item.getSummary();
+
+        final String ringtoneTitle = dialogContract.getRingtone(); // TODO : RINGTONE (Currently create some string for entry testing)
+
+        final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
+
+        final int snoozeDuration = pref.getInt(ctx.getString(R.string.key_alarms_intervals), 5);
+
+        final int ringDuration = pref.getInt(ctx.getString(R.string.key_ring_duration), 5);
+
+        final int numberOfRepetitions = pref.getInt(ctx.getString(R.string.key_auto_silence), 3);
+
+        Alarm alarm = new Alarm();
+        alarm.setId(id);
+        alarm.setTitle(title);
+        alarm.setSummary(summary);
+        alarm.setSnoozeDurationInMinutes(snoozeDuration);
+        alarm.setRingingInSilentMode(isRingingInSilentMode);
+        alarm.setRingtone(ringtoneTitle);
+        alarm.setRingDurationInMinutes(ringDuration);
+        alarm.setNumberOfRepetitionsBeforeAutoSilence(numberOfRepetitions);
+
+        return alarm;
     }
 
     public void deleteAlarmByIdWithDialog(final String id) {
@@ -135,7 +149,7 @@ public class AlarmsPresenter {
             public void execute(Realm realm) {
                 Alarm alarm = realm.where(Alarm.class).equalTo("id", id).findFirst();
                 if(alarm != null) {
-                    // TODO: RINGTONE + TIME FOR FALL ASLEEP
+                    // TODO: RINGTONE
                     // Currently create some string for entry testing
                     alarm.setRingtone(dialogContract.getRingtone());
                 }

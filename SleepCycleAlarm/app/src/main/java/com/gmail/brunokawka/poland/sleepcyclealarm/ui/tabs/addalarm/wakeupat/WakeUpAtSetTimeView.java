@@ -3,18 +3,14 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 
 import org.joda.time.DateTime;
-
-import java.text.DateFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
