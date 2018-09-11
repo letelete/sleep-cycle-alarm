@@ -10,11 +10,16 @@ public interface MainContract {
         void setAppTheme(int themeId);
         void replaceFragment(Fragment fragment);
         void openMenuActivityWithItemVariables(int itemId, String itemTitle);
+        void showToastWithDoubleBackMessage();
+        void countDownInMilliseconds(int seconds);
+        void moveAppToBack();
     }
 
     interface MainPresenter {
         void handleSetTheme(String changeThemeKey, SharedPreferences preferences);
         void handleBottomNavigationTabClick(MenuItem menuItem);
         void handleMenuItemClick(MenuItem item);
+        void handleBackPress();
+        void onCountedDown();
     }
 }

@@ -52,6 +52,9 @@
     <string name="dialog_edit_alarm">Edit alarm</string>
     <string name="dialog_set_hour_to_wake_up_at">Set hour when you want to wake up at</string>
 
+    <!-- TOAST STRINGS -->
+    <string name="toast_double_back_to_exit">Press once again to exit</string>
+
     <!-- PREFERENCE STRINGS -->
 
     <!-- NEW CATEGORY -->
