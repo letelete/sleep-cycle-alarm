@@ -66,7 +66,6 @@ public class WakeUpAtFragment extends Fragment
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(content)
-                .setTitle(getString(R.string.dialog_set_hour_to_wake_up_at))
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
