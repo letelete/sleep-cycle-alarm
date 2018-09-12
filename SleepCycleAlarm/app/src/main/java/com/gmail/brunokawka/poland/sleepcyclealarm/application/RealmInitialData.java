@@ -8,10 +8,7 @@ import io.realm.Realm;
 public class RealmInitialData implements Realm.Transaction {
     @Override
     public void execute(Realm realm) {
-        Alarm alarm = new Alarm();
-        alarm.setTitle("halo");
-        alarm.setSummary("halohalo");
-        realm.insertOrUpdate(alarm);
+
     }
 
     @Override
