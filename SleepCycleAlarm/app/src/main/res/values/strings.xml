@@ -54,6 +54,7 @@
 
     <!-- TOAST STRINGS -->
     <string name="toast_double_back_to_exit">Press once again to exit</string>
+    <string name="toast_what_if_theme_didnt_apply">If the theme didn\'t apply correctly, please kill and open the app manually</string>
 
     <!-- PREFERENCE STRINGS -->
 
