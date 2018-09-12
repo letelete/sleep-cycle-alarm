@@ -50,7 +50,15 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         setUpBottomNavigationBar();
+        openLatestFragmentOrDefault(savedInstanceState);
+
         setupToolbar();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(getString(R.string.save_instance_state_fragment), bottomNavigationBar.getSelectedItemId());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -60,7 +68,14 @@ public class MainActivity extends AppCompatActivity
 
     private void setUpBottomNavigationBar() {
         bottomNavigationBar.setOnNavigationItemSelectedListener(this);
-        bottomNavigationBar.setSelectedItemId(R.id.action_sleepnow);
+    }
+
+    private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
+        final int defaultPosition = R.id.action_sleepnow;
+        final int bottomNavigationPosition = savedInstanceState != null
+                ? savedInstanceState.getInt(getString(R.string.save_instance_state_fragment))
+                : defaultPosition;
+        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
     }
 
     private void setupToolbar() {
