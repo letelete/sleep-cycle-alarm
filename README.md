@@ -5,8 +5,8 @@
 [![Donate](https://img.shields.io/badge/donate-paypal-7289DA.svg)](https://www.paypal.me/BrunoKawka/)
 [![chat](https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat)](https://discord.gg/7Rgg5Zc)
 
-⚠️ **IT'S NOT STABLE VERSION YET** ⚠️
-App is still under heavy development. First stable version will be available on Google Play. 
+📌 **IT'S NOT STABLE VERSION YET**
+* App is still under heavy development. First stable version will be available on Google Play.
 
 Sleep Cycle Alarm is a material-designed Android app which helps waking up during a light sleep, it also is ad-free and open source under GPLv3 license. It has it's own alarm management system so the user doesn't need to care about removing already used alarms.<br/>
 
