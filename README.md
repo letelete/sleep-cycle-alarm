@@ -1,15 +1,12 @@
+![logo](preview/logo/logohorizontal.png)
+
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Platform Support](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Donate](https://img.shields.io/badge/donate-paypal-7289DA.svg)](https://www.paypal.me/BrunoKawka/)
 [![chat](https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat)](https://discord.gg/7Rgg5Zc)
 
-⚠️ **IT'S NOT STABLE VERSION YET** ⚠️
-App is still under heavy development. First stable version will be available on Google Play. 
-
-
-<h1 align=center>
-    <img src="./preview/logo/logohorizontal.png" width=75%>
-</h1>
+📌 **IT'S NOT STABLE VERSION YET**
+* App is still under heavy development. First stable version will be available on Google Play.
 
 Sleep Cycle Alarm is a material-designed Android app which helps waking up during a light sleep, it also is ad-free and open source under GPLv3 license. It has it's own alarm management system so the user doesn't need to care about removing already used alarms.<br/>
 
@@ -25,7 +22,7 @@ Sleep Cycle Alarm is a material-designed Android app which helps waking up durin
 
 </br></br>
 
-#### 🐣 Screenshots
+#### :camera: Screenshots
 <div style="display:flex;" >
 <img  src="./preview/screenshots/0.png" width="19%" >
 <img style="margin-left:10px;" src="./preview/screenshots/1.png" width="19%" >
@@ -35,7 +32,7 @@ Sleep Cycle Alarm is a material-designed Android app which helps waking up durin
 
 </div>
 
-#### 💛 Contributing
+#### :octocat: Contributing
 
 ###### Code 
 
@@ -61,7 +58,7 @@ If you are able to contribute with a new translation of a missing language or if
 The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that allows anybody to contribute to translating the app
 -->
 
-#### ⚡️ Features
+#### :gem: Features
 
 * Custom alarm management system
 * Alarms customatization
@@ -73,7 +70,6 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 * Informs user about sleep duration and quality of specific alarm
   <!-- * TODO: List sort functions (Issue #1) -->
 
-
 #### ⭐️ Third-Party Dependencies Used
 
 * [Butterknife](https://github.com/JakeWharton/butterknife)
@@ -82,7 +78,7 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 * [Joda-time](https://github.com/JodaOrg/joda-time)
 * [EventBus](https://github.com/greenrobot/EventBus)
 
-#### 📒 Licensing
+#### :books: Licensing
 
 Sleep Cycle Alarm is licensed under the [GNU v3 Public License](https://github.com/letelete/Sleep-Cycle-Alarm/blob/master/LICENSE).
 In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
