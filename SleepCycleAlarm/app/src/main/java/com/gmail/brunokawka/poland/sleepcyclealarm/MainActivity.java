@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -11,13 +12,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
-
-import java.util.Observable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(getString(R.string.save_instance_state_fragment), bottomNavigationBar.getSelectedItemId());
+        outState.putInt(getString(R.string.key_last_execution_date), bottomNavigationBar.getSelectedItemId());
         super.onSaveInstanceState(outState);
     }
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
     private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
         final int defaultPosition = R.id.action_sleepnow;
         final int bottomNavigationPosition = savedInstanceState != null
-                ? savedInstanceState.getInt(getString(R.string.save_instance_state_fragment))
+                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
                 : defaultPosition;
         bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
     }

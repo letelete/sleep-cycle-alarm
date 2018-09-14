@@ -10,7 +10,20 @@ public class WakeUpAtPresenter {
 
         void showSetTimeDialog();
 
+        void showList();
+
+        void hideList();
+
+        void showEmptyListHint();
+
+        void hideEmptyListHint();
+
+        void showListHelper();
+
+        void hideListHelper();
+
         void generateList(DateTime executionDate);
+
 
         interface DialogContract {
             DateTime getDateTime();

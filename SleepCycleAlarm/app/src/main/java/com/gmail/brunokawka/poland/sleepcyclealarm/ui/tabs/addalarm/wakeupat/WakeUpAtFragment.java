@@ -2,9 +2,12 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 
 import org.joda.time.DateTime;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,10 +33,15 @@ public class WakeUpAtFragment extends Fragment
     implements WakeUpAtPresenter.ViewContract {
     private static final String TAG = "WakeUpAtFragmentLog";
 
-    private DateTime lastExecutionDate = null;
+    private DateTime lastExecutionDate;
+
+    ArrayList<Item> items;
 
     @BindView(R.id.wakeUpAtRoot)
     ViewGroup root;
+
+    @BindView(R.id.wakeUpAtListCardView)
+    CardView listCardView;
 
     @BindView(R.id.wakeUpAtFragmentRecycler)
     RecyclerView recycler;
@@ -59,6 +70,27 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        lastExecutionDate = getExecutionDateFromPreferences();
+        setUpRecycler();
+        setUpAdapterAndCheckForContentUpdate();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (wakeUpAtPresenter != null) {
+            wakeUpAtPresenter.unbindView();
+        }
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
     public void showSetTimeDialog() {
         final View content = getLayoutInflater().inflate(R.layout.dialog_set_hour_to_wake_up_at, root, false);
         final DialogContract dialogContract = (DialogContract) content;
@@ -84,19 +116,65 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
+    public void showList() {
+
+    }
+
+    @Override
+    public void hideList() {
+
+    }
+
+    @Override
+    public void showEmptyListHint() {
+
+    }
+
+    @Override
+    public void hideEmptyListHint() {
+
+    }
+
+    @Override
+    public void showListHelper() {
+
+    }
+
+    @Override
+    public void hideListHelper() {
+
+    }
+
+    @Override
     public void generateList(DateTime executionDate) {
         if (executionDate != null) {
-            if (lastExecutionDate == null || lastExecutionDate != executionDate) {
-                lastExecutionDate = executionDate;
-            }
-
-            Log.d(TAG, lastExecutionDate.toString());
-
-            setUpRecycler();
-            recycler.setAdapter(new ListAdapter(WakeUpAtItemsBuilder.getItemsForExecutionDate(lastExecutionDate), recycler));
+            updateLastExecutionDate(executionDate);
+            setUpAdapterAndCheckForContentUpdate();
         } else {
             Log.e(TAG, "executionDate is null");
         }
+    }
+
+    private void updateLastExecutionDate(DateTime newDate) {
+        if (lastExecutionDate == null || lastExecutionDate != newDate) {
+            lastExecutionDate = newDate;
+            saveExecutionDateToPreferencesAsString();
+        }
+    }
+
+    private void saveExecutionDateToPreferencesAsString() {
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
+                .apply();
+    }
+
+    private DateTime getExecutionDateFromPreferences() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (pref.contains(getString(R.string.key_last_execution_date))) {
+            return DateTime.parse(pref.getString(getString(R.string.key_last_execution_date), null));
+        }
+
+        return null;
     }
 
     private void setUpRecycler() {
@@ -105,15 +183,10 @@ public class WakeUpAtFragment extends Fragment
         recycler.setItemAnimator(new DefaultItemAnimator());
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        if (wakeUpAtPresenter != null) {
-            wakeUpAtPresenter.unbindView();
-        }
-        if (dialog != null) {
-            dialog.dismiss();
+    private void setUpAdapterAndCheckForContentUpdate() {
+        if (lastExecutionDate != null) {
+            items = WakeUpAtItemsBuilder.getItemsForExecutionDate(getExecutionDateFromPreferences());
+            recycler.setAdapter(new ListAdapter(items, recycler));
         }
     }
 }
