@@ -11,7 +11,7 @@ public interface MainContract {
         void replaceFragment(Fragment fragment);
         void openMenuActivityWithItemVariables(int itemId, String itemTitle);
         void showToastWithDoubleBackMessage();
-        void countDownInMilliseconds(int seconds);
+        void countDownInMillisecondsAndEmitSignalBackAtTheEnd(int seconds);
         void moveAppToBack();
     }
 

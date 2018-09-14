@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void countDownInMilliseconds(int milliseconds) {
+    public void countDownInMillisecondsAndEmitSignalBackAtTheEnd(int milliseconds) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

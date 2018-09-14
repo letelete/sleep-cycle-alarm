@@ -63,7 +63,7 @@ public class MainPresenter implements MainContract.MainPresenter {
         } else {
             view.showToastWithDoubleBackMessage();
             isAfterFirstPress = true;
-            view.countDownInMilliseconds(milliseconds);
+            view.countDownInMillisecondsAndEmitSignalBackAtTheEnd(milliseconds);
         }
     }
 
