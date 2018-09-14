@@ -13,7 +13,7 @@ import org.joda.time.Period;
 import java.util.ArrayList;
 
 public class SleepNowItemBuilder {
-    private static final String TAG = "ItemBuilderLog";
+    private static final String TAG = "SleepNowItemBuilderLog";
 
     private static ArrayList<Item> items = new ArrayList<>();
     private static DateTime lastUpdateTime;
