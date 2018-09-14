@@ -12,7 +12,7 @@ import org.joda.time.Period;
 
 import java.util.ArrayList;
 
-public class WakeUpAtItemBuilder {
+public class WakeUpAtItemsBuilder {
     private static final String TAG = "WakeUpAtItemBuilderLog";
 
     private static ArrayList<Item> items = new ArrayList<>();
@@ -21,16 +21,21 @@ public class WakeUpAtItemBuilder {
     private static DateTime executionDate;
 
     public static ArrayList<Item> getItemsForExecutionDate(DateTime executionDate) {
-        setCurrentDate();
-        setExecutionDate(executionDate);
+        if (executionDate != null) {
+            setCurrentDate();
+            setExecutionDate(executionDate);
 
-        if (isUpdateNeeded()) {
-            lastUpdateDate = currentDate;
-            clearArrayIfNotEmpty();
-            fillArrayWithItemsBasedOnExecutionDate();
+            if (isUpdateNeeded()) {
+                lastUpdateDate = currentDate;
+                clearArrayIfNotEmpty();
+                fillArrayWithItemsBasedOnExecutionDate();
+            } else {
+                Log.d(TAG, "Update not needed");
+            }
         } else {
-            Log.d(TAG, "Update not needed");
+            Log.d(TAG, "Execution date is null");
         }
+
         return items;
     }
 

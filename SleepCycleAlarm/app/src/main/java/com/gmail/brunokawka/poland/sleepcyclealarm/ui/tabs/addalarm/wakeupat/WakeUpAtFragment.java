@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 
 import org.joda.time.DateTime;
@@ -94,7 +93,7 @@ public class WakeUpAtFragment extends Fragment
             Log.d(TAG, lastExecutionDate.toString());
 
             setUpRecycler();
-            recycler.setAdapter(new ListAdapter(WakeUpAtItemBuilder.getItemsForExecutionDate(lastExecutionDate), recycler));
+            recycler.setAdapter(new ListAdapter(WakeUpAtItemsBuilder.getItemsForExecutionDate(lastExecutionDate), recycler));
         } else {
             Log.e(TAG, "executionDate is null");
         }
