@@ -17,20 +17,32 @@ public class WakeUpAtItemBuilder {
 
     private static ArrayList<Item> items = new ArrayList<>();
     private static DateTime lastUpdateDate;
+    private static DateTime currentDate;
+    private static DateTime executionDate;
 
     public static ArrayList<Item> getItemsForExecutionDate(DateTime executionDate) {
-        DateTime currentDate = DateTime.now();
-        if (isUpdateNeeded(currentDate, executionDate)) {
+        setCurrentDate();
+        setExecutionDate(executionDate);
+
+        if (isUpdateNeeded()) {
             lastUpdateDate = currentDate;
-            clearGivenArrayIfNotEmpty();
-            fillArrayWithItemsBasedOnExecutionDate(executionDate);
+            clearArrayIfNotEmpty();
+            fillArrayWithItemsBasedOnExecutionDate();
         } else {
             Log.d(TAG, "Update not needed");
         }
         return items;
     }
 
-    private static boolean isUpdateNeeded(DateTime currentDate, DateTime executionDate) {
+    private static void setCurrentDate() {
+        currentDate = DateTime.now();
+    }
+
+    private static void setExecutionDate(DateTime newExecutionDate) {
+        executionDate = newExecutionDate;
+    }
+
+    private static boolean isUpdateNeeded() {
         int minutesBetweenLastUpdate = new Period(lastUpdateDate, currentDate).getMinutes();
         int updateIntervalInMinutes = ItemsBuilderData.getUpdateIntervalInMinutes();
 
@@ -39,7 +51,7 @@ public class WakeUpAtItemBuilder {
                 || executionDate.getMillis() != currentDate.getMillis();
     }
 
-    private static void clearGivenArrayIfNotEmpty() {
+    private static void clearArrayIfNotEmpty() {
         if (!items.isEmpty()) {
             items.clear();
         } else {
@@ -47,31 +59,28 @@ public class WakeUpAtItemBuilder {
         }
     }
 
-    private static void fillArrayWithItemsBasedOnExecutionDate(DateTime executionDate) {
+    private static void fillArrayWithItemsBasedOnExecutionDate() {
         DateTime timeToGoToSleep = executionDate;
-        DateTime currentDate = DateTime.now();
 
         int maxAmountOfItemsInList = ItemsBuilderData.getMaxAmountOfItemsInList();
-        Log.d(TAG, "maxAmountOfItemsInList: " + String.valueOf(maxAmountOfItemsInList));
-
         for (int itemCounter = 0; itemCounter < maxAmountOfItemsInList; itemCounter++) {
 
-            timeToGoToSleep = getNextAlarmTime(timeToGoToSleep);
+            timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
 
-            if (isPossibleToCreateNextItem(timeToGoToSleep, currentDate)) {
-                createNextItemAndAddItToArray(timeToGoToSleep, executionDate);
+            if (isPossibleToCreateNextItem(timeToGoToSleep)) {
+                createNextItemAndAddItToArray(timeToGoToSleep);
             } else {
                 break;
             }
         }
     }
 
-    private static DateTime getNextAlarmTime(DateTime currentExecutionDate) {
+    private static DateTime getNextAlarmDate(DateTime timeToGoToSleep) {
         int sleepCycleDuration = ItemsBuilderData.getOneSleepCycleDurationInMinutes();
-        return currentExecutionDate.minusMinutes(sleepCycleDuration);
+        return timeToGoToSleep.minusMinutes(sleepCycleDuration);
     }
 
-    public static boolean isPossibleToCreateNextItem(DateTime timeToGoToSleep, DateTime currentDate) {
+    public static boolean isPossibleToCreateNextItem(DateTime timeToGoToSleep) {
         if (timeToGoToSleep.getDayOfYear() == currentDate.getDayOfYear()) {
             return timeToGoToSleep.getMillis() > currentDate.getMillis();
         } else {
@@ -79,7 +88,7 @@ public class WakeUpAtItemBuilder {
         }
     }
 
-    private static void createNextItemAndAddItToArray(DateTime timeToGoToSleep, DateTime executionDate) {
+    private static void createNextItemAndAddItToArray(DateTime timeToGoToSleep) {
         int timeForFallAsleepInMinutes = ItemsBuilderData.getTimeForFallAsleepInMinutes();
         DateTime roundedTime = RoundTime.getNearest(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
 

@@ -16,21 +16,33 @@ public class SleepNowItemBuilder {
     private static final String TAG = "SleepNowItemBuilderLog";
 
     private static ArrayList<Item> items = new ArrayList<>();
-    private static DateTime lastUpdateTime;
+    private static DateTime lastUpdateDate;
+    private static DateTime currentDate;
+    private static DateTime executionDate;
 
-    public static ArrayList<Item> getItemsForCurrentDate(DateTime currentTime) {
-        if (isUpdateNeeded(currentTime)) {
-            lastUpdateTime = currentTime;
+    public static ArrayList<Item> getItemsForCurrentDate(DateTime currentDate) {
+        setCurrentDate();
+
+        if (isUpdateNeeded()) {
+            lastUpdateDate = currentDate;
             clearArrayIfNotEmpty();
-            fillArrayWithItemsBasedOnCurrentTime(currentTime);
+            fillArrayWithItemsBasedOnCurrentDate();
         } else {
             Log.d(TAG, "Update not needed");
         }
         return items;
     }
 
-    private static boolean isUpdateNeeded(DateTime newTime) {
-        int minutesBetweenLastUpdate = new Period(lastUpdateTime, newTime).getMinutes();
+    private static void setCurrentDate() {
+        currentDate = DateTime.now();
+    }
+
+    private static void setExecutionDate(DateTime newExecutionDate) {
+        executionDate = newExecutionDate;
+    }
+
+    private static boolean isUpdateNeeded() {
+        int minutesBetweenLastUpdate = new Period(lastUpdateDate, currentDate).getMinutes();
         return minutesBetweenLastUpdate >= ItemsBuilderData.getUpdateIntervalInMinutes() || items.isEmpty();
     }
 
@@ -42,21 +54,20 @@ public class SleepNowItemBuilder {
         }
     }
 
-    private static void fillArrayWithItemsBasedOnCurrentTime(DateTime currentTime) {
-        DateTime executionTime = currentTime;
-        DateTime roundedTime;
+    private static void fillArrayWithItemsBasedOnCurrentDate() {
+        setExecutionDate(currentDate);
 
         for (int i = 0; i < ItemsBuilderData.getMaxAmountOfItemsInList(); i++) {
-            executionTime = getNextAlarmTime(executionTime);
-            createNextItemAndAddItToArray(currentTime, executionTime);
+            setExecutionDate(getNextAlarmDate());
+            createNextItemAndAddItToArray();
         }
     }
 
-    private static DateTime getNextAlarmTime(DateTime currentExecutionTime) {
-        return currentExecutionTime.plusMinutes(ItemsBuilderData.getOneSleepCycleDurationInMinutes());
+    private static DateTime getNextAlarmDate() {
+        return executionDate.plusMinutes(ItemsBuilderData.getOneSleepCycleDurationInMinutes());
     }
 
-    private static void createNextItemAndAddItToArray(DateTime currentDate, DateTime executionDate) {
+    private static void createNextItemAndAddItToArray() {
         int timeForFallAsleepInMinutes = ItemsBuilderData.getTimeForFallAsleepInMinutes();
         DateTime roundedTime = RoundTime.getNearest(executionDate.plusMinutes(timeForFallAsleepInMinutes));
 
