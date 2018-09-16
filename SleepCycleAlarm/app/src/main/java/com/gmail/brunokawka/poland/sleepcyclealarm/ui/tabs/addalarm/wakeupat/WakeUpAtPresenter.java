@@ -10,6 +10,10 @@ public class WakeUpAtPresenter {
 
     public interface ViewContract {
 
+        void updateCurrentDate();
+
+        void setUpRecycler();
+
         void showSetTimeDialog();
 
         void showList();
@@ -24,9 +28,21 @@ public class WakeUpAtPresenter {
 
         void hideEmptyListHint();
 
-        void updateCardInfoContent();
+        void tryToUpdateCardInfoContent();
 
-        void generateList(DateTime executionDate);
+        void generateListAndShowLayoutElements(DateTime executionDate);
+
+        void updateLastExecutionDate(DateTime newDate);
+
+        void setLastExecutionDateFromPreferences();
+
+        void setUpAdapterAndCheckForContentUpdate();
+
+        void saveExecutionDateToPreferencesAsString();
+
+        void updateCardInfoTitle();
+
+        void updateCardInfoSummary();
 
         interface DialogContract {
             DateTime getDateTime();
@@ -35,6 +51,19 @@ public class WakeUpAtPresenter {
 
     private ViewContract viewContract;
     private boolean isDialogShowing;
+
+    public void handleFloatingActionButtonClicked() {
+        viewContract.updateCurrentDate();
+        showTimeDialog();
+    }
+
+    public void showOrHideElementsDependingOnGivenAmountOfItems(int amount) {
+        if (amount <= 0) {
+            hideWakeUpAtElements();
+        } else {
+            showWakeUpAtElements();
+        }
+    }
 
     private boolean hasView() {
         return viewContract != null;
@@ -51,6 +80,29 @@ public class WakeUpAtPresenter {
         this.viewContract = null;
     }
 
+    public void onActivityCreatedSetUp() {
+        viewContract.updateCurrentDate();
+        viewContract.setLastExecutionDateFromPreferences();
+        viewContract.setUpRecycler();
+    }
+
+    public void hideWakeUpAtElements() {
+        viewContract.hideList();
+        viewContract.showEmptyListHint();
+        viewContract.hideCardInfo();
+    }
+
+    public void showWakeUpAtElements() {
+        viewContract.showList();
+        viewContract.hideEmptyListHint();
+        viewContract.showCardInfo();
+        viewContract.tryToUpdateCardInfoContent();
+    }
+
+    public void setUpAdapterAndItsContent() {
+        viewContract.setUpAdapterAndCheckForContentUpdate();
+    }
+
     public void showTimeDialog() {
         if (hasView() && !isDialogShowing) {
             isDialogShowing = true;
@@ -62,25 +114,35 @@ public class WakeUpAtPresenter {
         isDialogShowing = false;
     }
 
-    public void generateList(ViewContract.DialogContract dialogContract) {
-        viewContract.generateList(dialogContract.getDateTime());
+    public void passDialogValueToListGenerator(ViewContract.DialogContract dialogContract) {
+        viewContract.generateListAndShowLayoutElements(dialogContract.getDateTime());
     }
 
-    public void showWakeUpAtElements() {
-        viewContract.showList();
-        viewContract.hideEmptyListHint();
-        viewContract.showCardInfo();
-        viewContract.updateCardInfoContent();
+    public void tryToGenerateAListWithGivenValues(DateTime currentDate, DateTime executionDate) {
+        if (executionDate != null) {
+            if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, executionDate)) {
+                showWakeUpAtElements();
+                generateList(executionDate);
+            } else {
+                showTheClosestAlarmToDefinedHour(executionDate);
+            }
+        } else {
+            Log.e(TAG, "executionDate is null");
+        }
     }
 
-    public void hideWakeUpAtElements() {
-        viewContract.hideList();
-        viewContract.showEmptyListHint();
-        viewContract.hideCardInfo();
+    private void generateList(DateTime executionDate) {
+        viewContract.updateLastExecutionDate(executionDate);
+        viewContract.setUpAdapterAndCheckForContentUpdate();
     }
 
     public void showTheClosestAlarmToDefinedHour(DateTime definedHour) {
         Log.d(TAG, "Showing the closest alarm to defined hour which is: " + definedHour.toString());
         // TODO: issue #6 - github.com/letelete/Sleep-Cycle-Alarm/issues/6
+    }
+
+    public void updateCardInfoContent() {
+        viewContract.updateCardInfoTitle();
+        viewContract.updateCardInfoSummary();
     }
 }

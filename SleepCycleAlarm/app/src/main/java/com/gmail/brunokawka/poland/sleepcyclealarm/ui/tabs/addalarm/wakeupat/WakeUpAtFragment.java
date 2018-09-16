@@ -78,23 +78,14 @@ public class WakeUpAtFragment extends Fragment
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onFloatingActionButtonClick() {
         if (wakeUpAtPresenter != null) {
-            updateCurrentDate();
-            wakeUpAtPresenter.showTimeDialog();
+            wakeUpAtPresenter.handleFloatingActionButtonClicked();
         }
-    }
-
-    private void updateCurrentDate() {
-        currentDate = DateTime.now();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
         int amount = itemsAmountChangedEvent.getItemsAmount();
-        if (amount <= 0) {
-            wakeUpAtPresenter.hideWakeUpAtElements();
-        } else {
-            wakeUpAtPresenter.showWakeUpAtElements();
-        }
+        wakeUpAtPresenter.showOrHideElementsDependingOnGivenAmountOfItems(amount);
     }
 
     @Override
@@ -113,14 +104,12 @@ public class WakeUpAtFragment extends Fragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        updateCurrentDate();
-        setLastExecutionDateFromPreferences();
-        setUpRecycler();
+        wakeUpAtPresenter.onActivityCreatedSetUp();
 
         if (lastExecutionDate == null) {
             wakeUpAtPresenter.hideWakeUpAtElements();
         } else {
-            setUpAdapterAndCheckForContentUpdate();
+            wakeUpAtPresenter.setUpAdapterAndItsContent();
         }
     }
 
@@ -131,29 +120,12 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
+    public void updateCurrentDate() {
+        currentDate = DateTime.now();
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        if (wakeUpAtPresenter != null) {
-            wakeUpAtPresenter.unbindView();
-        }
-
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-
-        if (lastExecutionDate != null) {
-            lastExecutionDate = null;
-        }
-    }
-
-    private void setUpRecycler() {
+    public void setUpRecycler() {
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setItemAnimator(new DefaultItemAnimator());
@@ -169,7 +141,7 @@ public class WakeUpAtFragment extends Fragment
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        wakeUpAtPresenter.generateList(dialogContract);
+                        wakeUpAtPresenter.passDialogValueToListGenerator(dialogContract);
                         wakeUpAtPresenter.dismissTimeDialog();
                     }
                 })
@@ -185,71 +157,48 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void generateList(DateTime executionDate) {
-        if (executionDate != null) {
-            if (isPossibleToCreateAlarm(executionDate)) {
-                wakeUpAtPresenter.showWakeUpAtElements();
-                updateLastExecutionDate(executionDate);
-                setUpAdapterAndCheckForContentUpdate();
-            } else {
-                Log.e(TAG, "Its not possible to create a next alarm");
-                // TODO:
-                // THIS SOLUTION IS JUST TEMPORARY
-                wakeUpAtPresenter.hideWakeUpAtElements();
-                // SOLUTION BELOW IS A CORRECT ONE (see issue #6 - github.com/letelete/Sleep-Cycle-Alarm/issues/6)
-                // wakeUpAtPresenter.showTheClosestAlarmToDefinedHour(executionDate);
-            }
-        } else {
-            Log.e(TAG, "executionDate is null");
-        }
+    public void generateListAndShowLayoutElements(DateTime executionDate) {
+        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(currentDate, executionDate);
     }
 
-    private void updateLastExecutionDate(DateTime newDate) {
-        if (lastExecutionDate == null || lastExecutionDate != newDate) {
+    @Override
+    public void updateLastExecutionDate(DateTime newDate) {
+        if (lastExecutionDate != newDate) {
             lastExecutionDate = newDate;
             saveExecutionDateToPreferencesAsString();
         }
     }
 
-    private boolean isPossibleToCreateAlarm(DateTime executionDate) {
-
-        return WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, executionDate);
-    }
-
     @Override
-    public void updateCardInfoContent() {
+    public void tryToUpdateCardInfoContent() {
         if (lastExecutionDate != null) {
-            updateCardInfoTitle();
-            updateCardInfoSummary();
+            wakeUpAtPresenter.updateCardInfoContent();
         } else {
-            Log.d(TAG, "lastExecutionDate is null");
+            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
         }
     }
 
-    private void updateCardInfoTitle() {
+    @Override
+    public void updateCardInfoTitle() {
         String title = getString(R.string.wake_up_at_card_info_title_when_user_defined_hour);
         String titleFormatted = String.format(title, ItemContentBuilder.getTitle(lastExecutionDate));
         cardInfoTitle.setText(titleFormatted);
     }
 
-    private void updateCardInfoSummary() {
+    @Override
+    public void updateCardInfoSummary() {
         String summary = getString(R.string.wake_up_at_card_info_summary_when_user_defined_hour);
         cardInfoSummary.setText(summary);
     }
 
-    private void setUpAdapterAndCheckForContentUpdate() {
+    @Override
+    public void setUpAdapterAndCheckForContentUpdate() {
         if (lastExecutionDate != null) {
             items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
             recycler.setAdapter(new ListAdapter(items, recycler));
         } else {
             Log.d(TAG, "lastExecutionDate is null. At setUpAdapterAndCheckForContentUpdate()");
         }
-    }
-
-    private void saveExecutionDateToPreferencesAsString() {
-        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
-                .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
-                .apply();
     }
 
     @Override
@@ -296,18 +245,37 @@ public class WakeUpAtFragment extends Fragment
         }
     }
 
-    private void setLastExecutionDateFromPreferences() {
-        lastExecutionDate = getExecutionDateFromPreferences();
+    @Override
+    public void saveExecutionDateToPreferencesAsString() {
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
+                .apply();
     }
 
-    private DateTime getExecutionDateFromPreferences() {
+    @Override
+    public void setLastExecutionDateFromPreferences() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if (pref.contains(getString(R.string.key_last_execution_date))) {
-            return DateTime.parse(pref.getString(getString(R.string.key_last_execution_date), null));
+            lastExecutionDate = DateTime.parse(pref.getString(getString(R.string.key_last_execution_date), null));
         }
-
-        return null;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (wakeUpAtPresenter != null) {
+            wakeUpAtPresenter.unbindView();
+        }
+
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
 }
