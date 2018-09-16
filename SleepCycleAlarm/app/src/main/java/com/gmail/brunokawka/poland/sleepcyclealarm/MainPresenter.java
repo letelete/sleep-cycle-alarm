@@ -1,9 +1,11 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
@@ -63,7 +65,7 @@ public class MainPresenter implements MainContract.MainPresenter {
         } else {
             view.showToastWithDoubleBackMessage();
             isAfterFirstPress = true;
-            view.countDownInMilliseconds(milliseconds);
+            view.countDownInMillisecondsAndEmitSignalBackAtTheEnd(milliseconds);
         }
     }
 

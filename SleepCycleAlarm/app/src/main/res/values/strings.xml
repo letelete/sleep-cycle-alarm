@@ -23,6 +23,8 @@
 
     <string name="wake_up_at_card_info_title">Need to wake up on specific time?</string>
     <string name="wake_up_at_card_info_summary">Set hour and I will create a list of hours when you should go to sleep</string>
+    <string name="wake_up_at_card_info_title_when_user_defined_hour">You want to wake up at %1$s?</string>
+    <string name="wake_up_at_card_info_summary_when_user_defined_hour">I\'ve created a list of hours when you should go to sleep to wake up fully rested at defined hour</string>
 
     <string name="alarms_card_info_title">Manage your alarms.</string>
     <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
@@ -34,6 +36,7 @@
     <string name="global_hour_mark">h</string>
     <string name="global_minute_mark">min</string>
     <string name="sleep_now_list_helper">Tap on any hour of listed below to set alarm</string>
+    <string name="wake_up_at_list_helper">Tap on any hour of listed below to set alarm</string>
     <string name="alarms_list_helper">Tap to edit, press and hold to select</string>
     <string name="list_element_title_changeable">%1$d:%2$d</string> <!-- HH:MM -->
     <string name="list_element_summary_changeable">%1$s of sleep, %2$s</string> <!-- 4h 30min of sleep, Optimal -->

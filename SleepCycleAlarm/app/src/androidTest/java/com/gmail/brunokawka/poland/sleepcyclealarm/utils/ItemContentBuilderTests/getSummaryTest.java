@@ -1,28 +1,21 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilderTest;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilderTests;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import static org.junit.Assert.assertEquals;
 
-// This class use the following naming convention:
+// This class uses the following naming convention:
 // Should_ExpectedBehavior_When_StateUnderTest
 
 @RunWith(MockitoJUnitRunner.class)
-public class getSummary {
+public class getSummaryTest {
 
     private DateTime getDateTimeFormatted(String executionHour) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");

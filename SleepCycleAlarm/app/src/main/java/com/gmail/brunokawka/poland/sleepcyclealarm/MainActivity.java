@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -11,13 +12,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
-
-import java.util.Observable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private MainPresenter mainPresenter;
 
+    private SharedPreferences sharedPreferences;
+
     @BindView(R.id.toolbar)
     Toolbar appToolbar;
 
@@ -41,9 +43,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         mainPresenter = new MainPresenter(this);
-        mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
-                PreferenceManager.getDefaultSharedPreferences(this));
+        mainPresenter.handleSetTheme(getString(R.string.key_change_theme), sharedPreferences);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(getString(R.string.save_instance_state_fragment), bottomNavigationBar.getSelectedItemId());
+        outState.putInt(getString(R.string.key_last_execution_date), bottomNavigationBar.getSelectedItemId());
         super.onSaveInstanceState(outState);
     }
 
@@ -73,13 +76,14 @@ public class MainActivity extends AppCompatActivity
     private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
         final int defaultPosition = R.id.action_sleepnow;
         final int bottomNavigationPosition = savedInstanceState != null
-                ? savedInstanceState.getInt(getString(R.string.save_instance_state_fragment))
+                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
                 : defaultPosition;
         bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
     }
 
     private void setupToolbar() {
         setSupportActionBar(appToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         appToolbar.setOnMenuItemClickListener(this);
     }
 
@@ -128,7 +132,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void countDownInMilliseconds(int milliseconds) {
+    public void countDownInMillisecondsAndEmitSignalBackAtTheEnd(int milliseconds) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -140,5 +144,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void moveAppToBack() {
         moveTaskToBack(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        removeWakeUpAtPreferences();
+        super.onDestroy();
+    }
+
+    private void removeWakeUpAtPreferences() {
+        SharedPreferences wakeUpAtPreferences = getSharedPreferences(getString(R.string.wakeupat_preferences_name), MODE_PRIVATE);
+        wakeUpAtPreferences.edit().clear().commit();
     }
 }

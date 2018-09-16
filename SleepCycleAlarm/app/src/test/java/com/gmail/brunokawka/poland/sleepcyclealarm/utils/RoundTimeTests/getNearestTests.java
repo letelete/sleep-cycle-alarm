@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-// This class use the following naming convention:
+// This class uses the following naming convention:
 // Should_ExpectedBehavior_When_StateUnderTest
 
 public class getNearestTests {

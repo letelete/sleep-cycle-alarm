@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout android:id="@+id/wakeUpAtRoot"
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wakeUpAtRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -10,6 +11,7 @@
         style="?infoCardStyle"
         android:layout_width="0dp"
         android:layout_marginTop="32dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/sleepNowCardInfoTitle"
+                android:id="@+id/wakeUpAtCardInfoTitle"
                 style="?titleInfoText"
                 android:text="@string/wake_up_at_card_info_title"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +33,8 @@
                 android:text="@string/wake_up_at_card_info_summary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/sleepNowCardInfoTitle"
-                app:layout_constraintTop_toBottomOf="@+id/sleepNowCardInfoTitle" />
+                app:layout_constraintStart_toStartOf="@+id/wakeUpAtCardInfoTitle"
+                app:layout_constraintTop_toBottomOf="@+id/wakeUpAtCardInfoTitle" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -43,6 +45,7 @@
         android:id="@+id/wakeUpAtListCardView"
         style="?listCardStyle"
         android:layout_marginBottom="32dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/wakeUpAtFloatingActionButtonExtended"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,15 +57,15 @@
             android:layout_height="match_parent">
 
             <TextView
-                style="?listHelperText"
                 android:id="@+id/wakeUpAtListHelper"
-                app:layout_constraintBottom_toTopOf="@+id/wakeUpAtFragmentRecycler"
+                style="?listHelperText"
+                android:text="@string/wake_up_at_list_helper"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.RecyclerView
-                style="?listStyle"
                 android:id="@+id/wakeUpAtFragmentRecycler"
+                style="?listStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,13 +76,31 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
-        style="?floatingActionButtonStyle"
-        android:id="@+id/wakeUpAtFloatingActionButtonExtended"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/wakeUpAtEmptyListPlaceHolder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="TODO"
+        android:cropToPadding="false"
+        android:scaleType="centerInside"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/wakeUpAtFloatingActionButtonExtended"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wakeUpAtListCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/wakeUpAtInfoCardView"
+        app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
+
+    <Button
+        android:id="@+id/wakeUpAtFloatingActionButtonExtended"
+        style="?floatingActionButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
