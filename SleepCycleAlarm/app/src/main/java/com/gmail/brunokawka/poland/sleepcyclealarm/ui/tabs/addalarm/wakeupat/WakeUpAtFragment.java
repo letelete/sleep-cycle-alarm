@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -174,14 +175,15 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void saveExecutionDateToPreferencesAsString() {
         Log.d(TAG, "Saving execution date to preferences");
-        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+        SharedPreferences pref = getActivity().getSharedPreferences(getString(R.string.wakeupat_preferences_name), Context.MODE_PRIVATE);
+        pref.edit()
                 .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
                 .apply();
     }
 
     @Override
     public void setLastExecutionDateFromPreferences() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences pref = getActivity().getSharedPreferences(getString(R.string.wakeupat_preferences_name), Context.MODE_PRIVATE);
         if (pref.contains(getString(R.string.key_last_execution_date))) {
             String notFormattedDate = pref.getString(getString(R.string.key_last_execution_date), null);
             if (!TextUtils.isEmpty(notFormattedDate)) {
@@ -289,6 +291,10 @@ public class WakeUpAtFragment extends Fragment
 
         if (dialog != null) {
             dialog.dismiss();
+        }
+
+        if (lastExecutionDate != null) {
+            lastExecutionDate = null;
         }
     }
 }

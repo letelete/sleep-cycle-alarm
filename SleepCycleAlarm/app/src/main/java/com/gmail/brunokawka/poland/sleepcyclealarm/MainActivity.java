@@ -148,12 +148,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDestroy() {
+        removeWakeUpAtPreferences();
         super.onDestroy();
+    }
 
-        if (sharedPreferences.contains(getString(R.string.key_last_execution_date))) {
-            sharedPreferences.edit()
-                    .remove(getString(R.string.key_last_execution_date))
-                    .apply();
-        }
+    private void removeWakeUpAtPreferences() {
+        SharedPreferences wakeUpAtPreferences = getSharedPreferences(getString(R.string.wakeupat_preferences_name), MODE_PRIVATE);
+        wakeUpAtPreferences.edit().clear().commit();
     }
 }

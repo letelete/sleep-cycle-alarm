@@ -4,6 +4,7 @@
 
     <string name="realm_name">sleepcyclealarm.realm</string>
 
+    <string name="wakeupat_preferences_name">wakeupat_preferences</string>
     <string name="key_last_execution_date">key_last_execution_date</string>
 
     <string name="key_menu_item_id" translatable="false">key_menu_item_id</string>

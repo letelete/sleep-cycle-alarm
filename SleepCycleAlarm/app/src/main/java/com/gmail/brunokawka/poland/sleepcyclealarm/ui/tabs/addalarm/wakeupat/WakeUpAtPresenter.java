@@ -123,8 +123,8 @@ public class WakeUpAtPresenter {
 
     public void tryToGenerateAListWithGivenValues(DateTime currentDate, DateTime executionDate) {
         if (executionDate != null) {
-            viewContract.updateLastExecutionDate(executionDate);
             if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, executionDate)) {
+                viewContract.updateLastExecutionDate(executionDate);
                 showWakeUpAtElements();
                 generateList(executionDate);
             } else {
