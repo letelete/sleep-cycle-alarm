@@ -1,6 +1,6 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ItemBuilderTests;
+package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemsBuilderTest;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowItemsBuilder;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -11,7 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
-// This class use the following naming convention:
+// This class uses the following naming convention:
 // test[Feature being tested]
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,7 +28,7 @@ public class getItemsForCurrentDateTests {
         int itemIndex = 6;
 
         DateTime dateCurrent = getDateTimeFormatted(currentHour);
-        assertEquals(dateCurrent, SleepNowItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getCurrentDate());
+        assertEquals(dateCurrent, SleepNowItemsBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getCurrentDate());
     }
 
     @Test
@@ -39,6 +39,6 @@ public class getItemsForCurrentDateTests {
 
         DateTime dateCurrent = getDateTimeFormatted(currentHour);
         DateTime dateExecution = getDateTimeFormatted(executionHour);
-        assertEquals(dateExecution, SleepNowItemBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getExecutionDate());
+        assertEquals(dateExecution, SleepNowItemsBuilder.getItemsForCurrentDate(dateCurrent).get(itemIndex).getExecutionDate());
     }
 }

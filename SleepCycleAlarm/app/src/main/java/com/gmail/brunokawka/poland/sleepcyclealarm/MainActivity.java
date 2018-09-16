@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity
     private final FragmentManager fragmentManager = getSupportFragmentManager();
     private MainPresenter mainPresenter;
 
+    private SharedPreferences sharedPreferences;
+
     @BindView(R.id.toolbar)
     Toolbar appToolbar;
 
@@ -41,9 +43,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         mainPresenter = new MainPresenter(this);
-        mainPresenter.handleSetTheme(getString(R.string.key_change_theme),
-                PreferenceManager.getDefaultSharedPreferences(this));
+        mainPresenter.handleSetTheme(getString(R.string.key_change_theme), sharedPreferences);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setupToolbar() {
         setSupportActionBar(appToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         appToolbar.setOnMenuItemClickListener(this);
     }
 

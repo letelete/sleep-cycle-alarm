@@ -50,7 +50,6 @@ public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtPresent
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute) {
-                Log.d(TAG, "Current hour: " + String.valueOf(hourOfDay) + " Current minute: " + String.valueOf(minute));
                 setDateTime(hourOfDay, minute);
             }
         });

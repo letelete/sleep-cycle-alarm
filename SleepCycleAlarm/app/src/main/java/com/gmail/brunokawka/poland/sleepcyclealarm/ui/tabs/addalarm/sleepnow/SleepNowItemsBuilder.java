@@ -21,7 +21,7 @@ public class SleepNowItemsBuilder {
     private static DateTime executionDate;
 
     public static ArrayList<Item> getItemsForCurrentDate(DateTime currentDate) {
-        setCurrentDate();
+        setCurrentDate(currentDate);
 
         if (isUpdateNeeded()) {
             lastUpdateDate = currentDate;
@@ -33,12 +33,12 @@ public class SleepNowItemsBuilder {
         return items;
     }
 
-    private static void setCurrentDate() {
-        currentDate = DateTime.now();
+    private static void setCurrentDate(DateTime currentDate) {
+        SleepNowItemsBuilder.currentDate = currentDate;
     }
 
-    private static void setExecutionDate(DateTime newExecutionDate) {
-        executionDate = newExecutionDate;
+    private static void setExecutionDate(DateTime executionDate) {
+        SleepNowItemsBuilder.executionDate = executionDate;
     }
 
     private static boolean isUpdateNeeded() {

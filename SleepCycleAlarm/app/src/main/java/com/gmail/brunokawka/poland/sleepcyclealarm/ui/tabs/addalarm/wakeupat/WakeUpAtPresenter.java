@@ -1,5 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
+import android.util.Log;
+
 import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter {
@@ -14,16 +16,17 @@ public class WakeUpAtPresenter {
 
         void hideList();
 
+        void showCardInfo();
+
+        void hideCardInfo();
+
         void showEmptyListHint();
 
         void hideEmptyListHint();
 
-        void showListHelper();
-
-        void hideListHelper();
+        void updateCardInfoContent();
 
         void generateList(DateTime executionDate);
-
 
         interface DialogContract {
             DateTime getDateTime();
@@ -49,7 +52,7 @@ public class WakeUpAtPresenter {
     }
 
     public void showTimeDialog() {
-        if (hasView()) {
+        if (hasView() && !isDialogShowing) {
             isDialogShowing = true;
             viewContract.showSetTimeDialog();
         }
@@ -61,5 +64,23 @@ public class WakeUpAtPresenter {
 
     public void generateList(ViewContract.DialogContract dialogContract) {
         viewContract.generateList(dialogContract.getDateTime());
+    }
+
+    public void showWakeUpAtElements() {
+        viewContract.showList();
+        viewContract.hideEmptyListHint();
+        viewContract.showCardInfo();
+        viewContract.updateCardInfoContent();
+    }
+
+    public void hideWakeUpAtElements() {
+        viewContract.hideList();
+        viewContract.showEmptyListHint();
+        viewContract.hideCardInfo();
+    }
+
+    public void showTheClosestAlarmToDefinedHour(DateTime definedHour) {
+        Log.d(TAG, "Showing the closest alarm to defined hour which is: " + definedHour.toString());
+        // TODO: issue #6 - github.com/letelete/Sleep-Cycle-Alarm/issues/6
     }
 }

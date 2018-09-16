@@ -8,25 +8,26 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTime;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.joda.time.Period;
 
 import java.util.ArrayList;
 
 public class WakeUpAtItemsBuilder {
-    private static final String TAG = "WakeUpAtItemBuilderLog";
+    private static final String TAG = "WakeUpAtItemsBuilderLog";
 
     private static ArrayList<Item> items = new ArrayList<>();
     private static DateTime lastUpdateDate;
     private static DateTime currentDate;
     private static DateTime executionDate;
 
-    public static ArrayList<Item> getItemsForExecutionDate(DateTime executionDate) {
+    public static ArrayList<Item> getItemsForExecutionDate(DateTime currentDate, DateTime executionDate) {
         if (executionDate != null) {
-            setCurrentDate();
+            setCurrentDate(currentDate);
             setExecutionDate(executionDate);
 
             if (isUpdateNeeded()) {
-                lastUpdateDate = currentDate;
+                updateLastUpdateDate();
                 clearArrayIfNotEmpty();
                 fillArrayWithItemsBasedOnExecutionDate();
             } else {
@@ -39,12 +40,12 @@ public class WakeUpAtItemsBuilder {
         return items;
     }
 
-    private static void setCurrentDate() {
-        currentDate = DateTime.now();
+    private static void setCurrentDate(DateTime currentDate) {
+        WakeUpAtItemsBuilder.currentDate = currentDate;
     }
 
-    private static void setExecutionDate(DateTime newExecutionDate) {
-        executionDate = newExecutionDate;
+    private static void setExecutionDate(DateTime executionDate) {
+        WakeUpAtItemsBuilder.executionDate = executionDate;
     }
 
     private static boolean isUpdateNeeded() {
@@ -54,6 +55,10 @@ public class WakeUpAtItemsBuilder {
         return minutesBetweenLastUpdate >= updateIntervalInMinutes
                 || items.isEmpty()
                 || executionDate.getMillis() != currentDate.getMillis();
+    }
+
+    private static void updateLastUpdateDate() {
+        lastUpdateDate = currentDate;
     }
 
     private static void clearArrayIfNotEmpty() {
@@ -69,12 +74,11 @@ public class WakeUpAtItemsBuilder {
 
         int maxAmountOfItemsInList = ItemsBuilderData.getMaxAmountOfItemsInList();
         for (int itemCounter = 0; itemCounter < maxAmountOfItemsInList; itemCounter++) {
-
-            timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
-
-            if (isPossibleToCreateNextItem(timeToGoToSleep)) {
+            if (isPossibleToCreateNextItem(currentDate, timeToGoToSleep)) {
+                timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
                 createNextItemAndAddItToArray(timeToGoToSleep);
             } else {
+                Log.d(TAG, "Its not possible to create next item");
                 break;
             }
         }
@@ -85,11 +89,14 @@ public class WakeUpAtItemsBuilder {
         return timeToGoToSleep.minusMinutes(sleepCycleDuration);
     }
 
-    public static boolean isPossibleToCreateNextItem(DateTime timeToGoToSleep) {
-        if (timeToGoToSleep.getDayOfYear() == currentDate.getDayOfYear()) {
-            return timeToGoToSleep.getMillis() > currentDate.getMillis();
+    public static boolean isPossibleToCreateNextItem(DateTime currentDate, DateTime timeToGoToSleep) {
+        if (timeToGoToSleep.isAfter(currentDate)) {
+            long oneMinuteInMillis = 1000 * 60;
+            long periodInMinutes = new Interval(currentDate, timeToGoToSleep).toDurationMillis() / oneMinuteInMillis;
+            int sleepCycleDurationInTotal = ItemsBuilderData.getTotalOneSleepCycleDurationInMinutes();
+            return (periodInMinutes >= sleepCycleDurationInTotal);
         } else {
-            return timeToGoToSleep.getDayOfYear() > currentDate.getDayOfYear();
+            return false;
         }
     }
 
@@ -101,7 +108,7 @@ public class WakeUpAtItemsBuilder {
 
         item.setTitle(ItemContentBuilder.getTitle(roundedTime));
         item.setSummary(ItemContentBuilder.getSummary(timeToGoToSleep, executionDate));
-        item.setCurrentDate(timeToGoToSleep);
+        item.setCurrentDate(roundedTime);
         item.setExecutionDate(executionDate);
 
         items.add(0, item); // every new item's being add at the beginning of array because we want our array to be sorted by hour descending

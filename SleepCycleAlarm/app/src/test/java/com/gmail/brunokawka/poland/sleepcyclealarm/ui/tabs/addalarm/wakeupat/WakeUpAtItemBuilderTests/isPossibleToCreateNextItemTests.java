@@ -1,6 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtItemBuilderTests;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtItemBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtItemsBuilder;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-// This class use the following naming convention:
+// This class uses the following naming convention:
 // Should_ExpectedBehavior_When_StateUnderTest
 
 public class isPossibleToCreateNextItemTests {
@@ -21,32 +21,62 @@ public class isPossibleToCreateNextItemTests {
     }
 
     @Test
-    public void Should_True_When_CurrentDateIsBeforeTimeToGoToSleep() {
+    public void Should_True_When_CurrentDateIsBeforeDateToGoToSleepAndHasEnoughTimeToReachSleepCycle() {
         String currentDate = "04/02/2011 18:30";
-        String timeToGoToSleep = "04/02/2011 21:50";
+        String dateToGoToSleep = "04/02/2011 23:00";
 
-        DateTime timeToGoToSleepDate = getDateTimeFormatted(timeToGoToSleep);
-        DateTime currentDateDate = getDateTimeFormatted(currentDate);
-        assertTrue(WakeUpAtItemBuilder.isPossibleToCreateNextItem(timeToGoToSleepDate, currentDateDate));
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertTrue(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
     }
 
     @Test
-    public void Should_False_When_CurrentDateIsAfterTimeToGoToSleep() {
+    public void Should_False_When_CurrentDateIsAfterDateToGoToSleep() {
         String currentDate = "04/02/2011 20:30";
-        String timeToGoToSleep = "04/02/2011 20:20";
+        String dateToGoToSleep = "04/02/2011 20:20";
 
-        DateTime timeToGoToSleepDate = getDateTimeFormatted(timeToGoToSleep);
-        DateTime currentDateDate = getDateTimeFormatted(currentDate);
-        assertFalse(WakeUpAtItemBuilder.isPossibleToCreateNextItem(timeToGoToSleepDate, currentDateDate));
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertFalse(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
     }
 
     @Test
-    public void Should_True_When_DateOfCurrentDateIsBeforeDateOfTimeToGoToSleep() {
+    public void Should_True_When_DateOfCurrentDateIsBeforeDateOfDateToGoToSleep() {
         String currentDate = "04/02/2011 20:30";
-        String timeToGoToSleep = "05/02/2011 20:20";
+        String dateToGoToSleep = "05/02/2011 20:20";
 
-        DateTime timeToGoToSleepDate = getDateTimeFormatted(timeToGoToSleep);
-        DateTime currentDateDate = getDateTimeFormatted(currentDate);
-        assertTrue(WakeUpAtItemBuilder.isPossibleToCreateNextItem(timeToGoToSleepDate, currentDateDate));
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertTrue(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
+    }
+
+    @Test
+    public void Should_False_When_CurrentDateIsBeforeDateToGoToSleepButLengthBetweenTheseTwoIsLessThanSleepCycleDuration() {
+        String currentDate = "04/02/2011 23:53";
+        String dateToGoToSleep = "05/02/2011 00:53";
+
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertFalse(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
+    }
+
+    @Test
+    public void Should_True_When_CurrentDateIsBeforeDateToGoToSleepAndHasEnoughTimeToReachSleepCycle2() {
+        String currentDate = "04/02/2011 00:30";
+        String dateToGoToSleep = "04/02/2011 02:30";
+
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertTrue(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
+    }
+
+    @Test
+    public void Should_True_When_CurrentDateIsBeforeDateToGoToSleepAndHasEnoughTimeToReachSleepCycle3() {
+        String currentDate = "04/02/2011 11:54";
+        String dateToGoToSleep = "04/02/2011 14:54";
+
+        DateTime formattedCurrentDate = getDateTimeFormatted(currentDate);
+        DateTime formattedDateToGoToSleep = getDateTimeFormatted(dateToGoToSleep);
+        assertTrue(WakeUpAtItemsBuilder.isPossibleToCreateNextItem(formattedCurrentDate, formattedDateToGoToSleep));
     }
 }
