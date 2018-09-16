@@ -145,4 +145,15 @@ public class MainActivity extends AppCompatActivity
     public void moveAppToBack() {
         moveTaskToBack(true);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (sharedPreferences.contains(getString(R.string.key_last_execution_date))) {
+            sharedPreferences.edit()
+                    .remove(getString(R.string.key_last_execution_date))
+                    .apply();
+        }
+    }
 }

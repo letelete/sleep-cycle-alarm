@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.joda.time.DateTime;
 
@@ -43,6 +44,8 @@ public class WakeUpAtPresenter {
         void updateCardInfoTitle();
 
         void updateCardInfoSummary();
+
+        void showToast(DateTime definedHour);
 
         interface DialogContract {
             DateTime getDateTime();
@@ -120,6 +123,7 @@ public class WakeUpAtPresenter {
 
     public void tryToGenerateAListWithGivenValues(DateTime currentDate, DateTime executionDate) {
         if (executionDate != null) {
+            viewContract.updateLastExecutionDate(executionDate);
             if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, executionDate)) {
                 showWakeUpAtElements();
                 generateList(executionDate);
@@ -137,8 +141,7 @@ public class WakeUpAtPresenter {
     }
 
     public void showTheClosestAlarmToDefinedHour(DateTime definedHour) {
-        Log.d(TAG, "Showing the closest alarm to defined hour which is: " + definedHour.toString());
-        // TODO: issue #6 - github.com/letelete/Sleep-Cycle-Alarm/issues/6
+        viewContract.showToast(definedHour);
     }
 
     public void updateCardInfoContent() {

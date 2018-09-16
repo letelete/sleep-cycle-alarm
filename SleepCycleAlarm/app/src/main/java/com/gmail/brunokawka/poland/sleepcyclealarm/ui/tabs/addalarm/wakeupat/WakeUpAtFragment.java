@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
@@ -170,6 +172,26 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
+    public void saveExecutionDateToPreferencesAsString() {
+        Log.d(TAG, "Saving execution date to preferences");
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
+                .apply();
+    }
+
+    @Override
+    public void setLastExecutionDateFromPreferences() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (pref.contains(getString(R.string.key_last_execution_date))) {
+            String notFormattedDate = pref.getString(getString(R.string.key_last_execution_date), null);
+            if (!TextUtils.isEmpty(notFormattedDate)) {
+                lastExecutionDate = DateTime.parse(notFormattedDate);
+                wakeUpAtPresenter.showWakeUpAtElements();
+            }
+        }
+    }
+
+    @Override
     public void tryToUpdateCardInfoContent() {
         if (lastExecutionDate != null) {
             wakeUpAtPresenter.updateCardInfoContent();
@@ -246,18 +268,9 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void saveExecutionDateToPreferencesAsString() {
-        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
-                .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
-                .apply();
-    }
+    public void showToast(DateTime definedHour) {
+        Toast.makeText(getActivity(), "Couldn't generate a list with given hour("+ ItemContentBuilder.getTitle(definedHour) + ") There will be displayed the nearest hour to defined...", Toast.LENGTH_LONG).show();
 
-    @Override
-    public void setLastExecutionDateFromPreferences() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (pref.contains(getString(R.string.key_last_execution_date))) {
-            lastExecutionDate = DateTime.parse(pref.getString(getString(R.string.key_last_execution_date), null));
-        }
     }
 
     @Override
