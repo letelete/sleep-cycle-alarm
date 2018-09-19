@@ -5,80 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        style="?headerImage"
-        android:id="@+id/headerImage"
-        android:contentDescription="@string/content_descriptions_header_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.v7.widget.CardView
-        android:id="@+id/sleepNowInfoCardView"
+        android:id="@+id/alarmsInfoCardView"
         style="?infoCardStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerImage">
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/sleepNowCardInfoTitle"
+                android:id="@+id/alarmsCardInfoTitle"
                 style="?titleInfoText"
                 android:text="@string/alarms_card_info_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/sleepNowCardInfoSummary"
+                android:id="@+id/alarmsCardInfoSummary"
                 style="?contentInfoText"
                 android:text="@string/alarms_card_info_summary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/sleepNowCardInfoTitle"
-                app:layout_constraintTop_toBottomOf="@+id/sleepNowCardInfoTitle" />
+                app:layout_constraintStart_toStartOf="@+id/alarmsCardInfoTitle"
+                app:layout_constraintTop_toBottomOf="@+id/alarmsCardInfoTitle" />
 
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/sleepNowListCardView"
+        android:id="@+id/cardView"
         style="?listCardStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/alarmsPreventListCardViewFromOverdrawing"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sleepNowInfoCardView">
+        app:layout_constraintTop_toBottomOf="@+id/alarmsInfoCardView"
+        app:layout_constraintVertical_bias="0.0">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/listCardViewMinHeight"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/sleepNowListHelper"
+                android:id="@+id/alarmsListHelper"
                 style="?listHelperText"
                 android:text="@string/alarms_list_helper"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/alarmsList"
                 style="?listStyle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sleepNowListHelper">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            </android.support.v7.widget.RecyclerView>
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:id="@+id/alarmsListPlaceHolder"
+        style="?emptyListPlaceHolderStyle"
+        android:contentDescription="@string/content_descriptions_empty_list_placeholder"
+        app:layout_constraintBottom_toTopOf="@+id/alarmsPreventListCardViewFromOverdrawing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alarmsInfoCardView"
+        app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
+
+    <!-- SIMPLE TRICK TO PREVENT LIST CARD VIEW FROM RESIZING TOO MUCH AND DRAWING ON FLOATING ACTION BUTTON -->
+    <FrameLayout
+        android:id="@+id/alarmsPreventListCardViewFromOverdrawing"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/listCardViewMinHeight"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

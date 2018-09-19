@@ -24,7 +24,8 @@
         <item name="headerAppNameText">@style/header_app_name_text</item>
         <item name="kebabMenuStyle">@style/kebab_menu_style</item>
         <item name="toolbarStyle">@style/toolbar_style</item>
-        <item name="headerImage">@style/header_image</item>
+
+        <item name="emptyListPlaceHolderStyle">@style/empty_list_placeholder_style</item>
 
         <item name="titleInfoText">@style/title_info_text</item>
         <item name="contentInfoText">@style/content_info_text</item>
