@@ -148,4 +148,6 @@ public class WakeUpAtPresenter {
         viewContract.updateCardInfoTitle();
         viewContract.updateCardInfoSummary();
     }
+
+
 }

@@ -1,5 +1,8 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationView bottomNavigationBar;
+
+    @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
+    Button wakeUpAtActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +108,38 @@ public class MainActivity extends AppCompatActivity
         ft.setCustomAnimations(R.animator.fragment_open_enter, R.animator.fragment_open_exit)
                 .replace(R.id.main_activity_container, newFragment)
                 .commit();
+    }
+
+    @Override
+    public void showWakeUpAtActionButton() {
+        if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationX", 100f);
+            animation.setDuration(1000);
+            animation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    wakeUpAtActionButton.setVisibility(View.VISIBLE);
+                }
+            });
+        } else {
+            Log.e(TAG, "at: showWakeUpAtActionButton() - wake up at action button is already visible");
+        }
+    }
+
+    @Override
+    public void hideWakeUpAtActionButton() {
+        if (wakeUpAtActionButton.getVisibility() != View.GONE) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationX", 0f);
+            animation.setDuration(1000);
+            animation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    wakeUpAtActionButton.setVisibility(View.GONE);
+                }
+            });
+        } else {
+            Log.e(TAG, "at: hideWakeUpAtActionButton() - wake up at action button is already gone");
+        }
     }
 
     @Override

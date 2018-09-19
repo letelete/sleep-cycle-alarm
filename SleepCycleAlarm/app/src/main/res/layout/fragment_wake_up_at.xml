@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <android.support.v7.widget.CardView
         android:id="@+id/wakeUpAtInfoCardView"
@@ -83,24 +84,18 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:contentDescription="TODO"
         android:cropToPadding="false"
         android:scaleType="centerInside"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/wakeUpAtFloatingActionButtonExtended"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wakeUpAtInfoCardView"
         app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
 
-    <Button
-        android:id="@+id/wakeUpAtFloatingActionButtonExtended"
-        style="?floatingActionButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

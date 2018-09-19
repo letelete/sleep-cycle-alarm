@@ -9,6 +9,8 @@ public interface MainContract {
     interface MainView {
         void setAppTheme(int themeId);
         void replaceFragment(Fragment fragment);
+        void showWakeUpAtActionButton();
+        void hideWakeUpAtActionButton();
         void openMenuActivityWithItemVariables(int itemId, String itemTitle);
         void showToastWithDoubleBackMessage();
         void countDownInMillisecondsAndEmitSignalBackAtTheEnd(int seconds);

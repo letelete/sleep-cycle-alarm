@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -38,6 +37,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtPresenter.ViewContract {
@@ -77,7 +77,7 @@ public class WakeUpAtFragment extends Fragment
 
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
-
+    
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onFloatingActionButtonClick() {
         if (wakeUpAtPresenter != null) {
