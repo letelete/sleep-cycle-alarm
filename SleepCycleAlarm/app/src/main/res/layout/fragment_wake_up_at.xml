@@ -47,7 +47,7 @@
         style="?listCardStyle"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/preventListCardViewFromOverdrawing"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,8 +72,7 @@
                 android:id="@+id/wakeUpAtFragmentRecycler"
                 style="?listStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
@@ -92,7 +91,7 @@
         android:contentDescription="TODO"
         android:cropToPadding="false"
         android:scaleType="centerInside"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/preventListCardViewFromOverdrawing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
