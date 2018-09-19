@@ -100,7 +100,7 @@
         app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
 
     <!-- SIMPLE TRICK TO PREVENT LIST CARD VIEW FROM RESIZING TOO MUCH AND DRAWING ON FLOATING ACTION BUTTON -->
-    <ImageView
+    <FrameLayout
         android:id="@+id/preventListCardViewFromOverdrawing"
         android:layout_width="0dp"
         android:layout_height="@dimen/listCardViewMinHeight"
@@ -111,8 +111,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:contentDescription="TODO" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>
