@@ -22,10 +22,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -49,6 +55,16 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
     Button wakeUpAtActionButton;
 
+    @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
+    public void onWakeUpAtFloatingActionButtonExtendedClicked() {
+        EventBus.getDefault().post(new WakeUpAtActionButtonClickedEvent());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void wakeUpAtActionButtonClickedEvent(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+        Log.d(TAG, "Event received");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +81,12 @@ public class MainActivity extends AppCompatActivity
         openLatestFragmentOrDefault(savedInstanceState);
 
         setupToolbar();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -112,33 +134,35 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void showWakeUpAtActionButton() {
-        if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationX", 100f);
-            animation.setDuration(1000);
-            animation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    wakeUpAtActionButton.setVisibility(View.VISIBLE);
-                }
-            });
-        } else {
-            Log.e(TAG, "at: showWakeUpAtActionButton() - wake up at action button is already visible");
-        }
+        animateWakeUpAtButton(View.VISIBLE, 200f, -150f);
     }
 
     @Override
     public void hideWakeUpAtActionButton() {
-        if (wakeUpAtActionButton.getVisibility() != View.GONE) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationX", 0f);
-            animation.setDuration(1000);
+        animateWakeUpAtButton(View.GONE, -150f, 200f);
+    }
+
+    private void animateWakeUpAtButton(final int finalViewType, final float startPositionY, final float endPositionY) {
+        if (wakeUpAtActionButton.getVisibility() != finalViewType) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
+            animation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
             animation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    wakeUpAtActionButton.setVisibility(View.GONE);
+                    if (finalViewType != View.VISIBLE) {
+                        wakeUpAtActionButton.setVisibility(View.GONE);
+                    }
+                }
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
+                        wakeUpAtActionButton.setVisibility(View.VISIBLE);
+                    }
                 }
             });
+            animation.start();
         } else {
-            Log.e(TAG, "at: hideWakeUpAtActionButton() - wake up at action button is already gone");
+            Log.e(TAG, "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
         }
     }
 
@@ -185,6 +209,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void moveAppToBack() {
         moveTaskToBack(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
