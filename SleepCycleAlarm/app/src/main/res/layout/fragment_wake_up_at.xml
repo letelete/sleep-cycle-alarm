@@ -49,7 +49,7 @@
         android:layout_width="0dp"
         android:visibility="gone"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/preventListCardViewFromOverdrawing"
+        app:layout_constraintBottom_toTopOf="@+id/wakeupatPreventListCardViewFromOverdrawing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wakeUpAtInfoCardView"
@@ -83,7 +83,7 @@
         style="?emptyListPlaceHolderStyle"
         android:contentDescription="@string/content_descriptions_empty_list_placeholder"
         android:id="@+id/wakeUpAtEmptyListPlaceHolder"
-        app:layout_constraintBottom_toTopOf="@+id/preventListCardViewFromOverdrawing"
+        app:layout_constraintBottom_toTopOf="@+id/wakeupatPreventListCardViewFromOverdrawing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
 
     <!-- SIMPLE TRICK TO PREVENT LIST CARD VIEW FROM RESIZING TOO MUCH AND DRAWING ON FLOATING ACTION BUTTON -->
     <FrameLayout
-        android:id="@+id/preventListCardViewFromOverdrawing"
+        android:id="@+id/wakeupatPreventListCardViewFromOverdrawing"
         android:layout_width="0dp"
         android:layout_height="@dimen/listCardViewMinHeight"
         android:layout_marginTop="8dp"
