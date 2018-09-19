@@ -47,10 +47,17 @@
         <item name="android:textColorSecondary">@color/text_high_emphasis</item>
     </style>
 
-    <style name="header_image">
+    <style name="empty_list_placeholder_style">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">155dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
+        <item name="android:layout_marginEnd">@dimen/extra_large_margin_size</item>
+        <item name="android:layout_marginStart">@dimen/extra_large_margin_size</item>
+        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
         <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">false</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:visibility">visible</item>
     </style>
 
     <style name="title_info_text" parent="global_font_regular">
