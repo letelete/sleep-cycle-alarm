@@ -1,5 +1,8 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,12 +18,20 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -41,6 +52,20 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationView bottomNavigationBar;
 
+    @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
+    Button wakeUpAtActionButton;
+
+    @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
+    public void onWakeUpAtFloatingActionButtonExtendedClicked() {
+        EventBus.getDefault().post(new WakeUpAtActionButtonClickedEvent());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void wakeUpAtActionButtonClickedEvent(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+        Log.d(TAG, "Event received");
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -56,6 +81,12 @@ public class MainActivity extends AppCompatActivity
         openLatestFragmentOrDefault(savedInstanceState);
 
         setupToolbar();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -102,6 +133,40 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void showWakeUpAtActionButton() {
+        animateWakeUpAtButton(View.VISIBLE, 200f, -150f);
+    }
+
+    @Override
+    public void hideWakeUpAtActionButton() {
+        animateWakeUpAtButton(View.GONE, -150f, 200f);
+    }
+
+    private void animateWakeUpAtButton(final int finalViewType, final float startPositionY, final float endPositionY) {
+        if (wakeUpAtActionButton.getVisibility() != finalViewType) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
+            animation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
+            animation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (finalViewType != View.VISIBLE) {
+                        wakeUpAtActionButton.setVisibility(View.GONE);
+                    }
+                }
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
+                        wakeUpAtActionButton.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+            animation.start();
+        } else {
+            Log.e(TAG, "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.three_dot_menu, menu);
         return true;
@@ -144,6 +209,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void moveAppToBack() {
         moveTaskToBack(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

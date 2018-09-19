@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -17,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +23,7 @@ import android.widget.Toast;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
@@ -37,7 +36,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtPresenter.ViewContract {
@@ -63,9 +61,6 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtFragmentRecycler)
     RecyclerView recycler;
 
-    @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
-    Button floatingActionButtonExtended;
-
     @BindView(R.id.wakeUpAtCardInfoTitle)
     TextView cardInfoTitle;
 
@@ -78,17 +73,18 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
 
-    @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
-    public void onFloatingActionButtonClick() {
-        if (wakeUpAtPresenter != null) {
-            wakeUpAtPresenter.handleFloatingActionButtonClicked();
-        }
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
         int amount = itemsAmountChangedEvent.getItemsAmount();
         wakeUpAtPresenter.showOrHideElementsDependingOnGivenAmountOfItems(amount);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onWakeUpAtActivityButtonClicked(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+        if (wakeUpAtPresenter != null) {
+            wakeUpAtPresenter.handleFloatingActionButtonClicked();
+        }
     }
 
     @Override
