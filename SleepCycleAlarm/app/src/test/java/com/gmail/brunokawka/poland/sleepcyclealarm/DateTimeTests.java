@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTime;
-
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormat;

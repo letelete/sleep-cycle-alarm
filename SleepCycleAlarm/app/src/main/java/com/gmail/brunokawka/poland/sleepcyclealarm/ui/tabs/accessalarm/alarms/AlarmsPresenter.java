@@ -2,21 +2,13 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
-
-import org.joda.time.DateTime;
 
 import java.util.UUID;
 

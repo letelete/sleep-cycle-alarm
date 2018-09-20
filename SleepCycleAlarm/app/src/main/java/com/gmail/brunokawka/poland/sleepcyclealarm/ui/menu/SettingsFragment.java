@@ -8,9 +8,8 @@ import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
-
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final String TAG = "SettingsFragment";

@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 
-import org.joda.time.DateTime;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;

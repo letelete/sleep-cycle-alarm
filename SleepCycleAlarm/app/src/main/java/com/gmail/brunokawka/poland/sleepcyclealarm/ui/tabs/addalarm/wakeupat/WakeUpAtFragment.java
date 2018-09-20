@@ -38,16 +38,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WakeUpAtFragment extends Fragment
-    implements WakeUpAtPresenter.ViewContract {
+    implements WakeUpAtContract.WakeUpAtView {
     private static final String TAG = "WakeUpAtFragmentLog";
 
-    private DateTime lastExecutionDate;
-    private DateTime currentDate;
-
+    static WakeUpAtPresenter wakeUpAtPresenter;
     ArrayList<Item> items;
     AlertDialog dialog;
-
-    static WakeUpAtPresenter wakeUpAtPresenter;
 
     @BindView(R.id.wakeUpAtRoot)
     ViewGroup root;
@@ -73,11 +69,13 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
 
+    private DateTime lastExecutionDate;
+    private DateTime currentDate;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
         int amount = itemsAmountChangedEvent.getItemsAmount();
-        wakeUpAtPresenter.showOrHideElementsDependingOnGivenAmountOfItems(amount);
+        wakeUpAtPresenter.showOrHideElementsDependingOnAmountOfListItems(amount, lastExecutionDate);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -102,14 +100,8 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        wakeUpAtPresenter.onActivityCreatedSetUp();
-
-        if (lastExecutionDate == null) {
-            wakeUpAtPresenter.hideWakeUpAtElements();
-        } else {
-            wakeUpAtPresenter.setUpAdapterAndItsContent();
-        }
+        wakeUpAtPresenter.setUpEnvironment();
+        wakeUpAtPresenter.setUpUIElements(lastExecutionDate);
     }
 
     @Override
@@ -133,14 +125,14 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void showSetTimeDialog() {
         final View content = getLayoutInflater().inflate(R.layout.dialog_set_hour_to_wake_up_at, root, false);
-        final DialogContract dialogContract = (DialogContract) content;
+        final WakeUpAtContract.WakeUpAtView.DialogContract dialogContract = (WakeUpAtContract.WakeUpAtView.DialogContract) content;
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(content)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        wakeUpAtPresenter.passDialogValueToListGenerator(dialogContract);
+                        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(dialogContract, currentDate, lastExecutionDate);
                         wakeUpAtPresenter.dismissTimeDialog();
                     }
                 })
@@ -156,16 +148,8 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void generateListAndShowLayoutElements(DateTime executionDate) {
-        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(currentDate, executionDate);
-    }
-
-    @Override
-    public void updateLastExecutionDate(DateTime newDate) {
-        if (lastExecutionDate != newDate) {
-            lastExecutionDate = newDate;
-            saveExecutionDateToPreferencesAsString();
-        }
+    public void setLastExecutionDate(DateTime newDate) {
+        lastExecutionDate = newDate;
     }
 
     @Override
@@ -184,17 +168,8 @@ public class WakeUpAtFragment extends Fragment
             String notFormattedDate = pref.getString(getString(R.string.key_last_execution_date), null);
             if (!TextUtils.isEmpty(notFormattedDate)) {
                 lastExecutionDate = DateTime.parse(notFormattedDate);
-                wakeUpAtPresenter.showWakeUpAtElements();
+                wakeUpAtPresenter.showWakeUpAtElements(lastExecutionDate);
             }
-        }
-    }
-
-    @Override
-    public void tryToUpdateCardInfoContent() {
-        if (lastExecutionDate != null) {
-            wakeUpAtPresenter.updateCardInfoContent();
-        } else {
-            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
         }
     }
 
@@ -213,12 +188,8 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void setUpAdapterAndCheckForContentUpdate() {
-        if (lastExecutionDate != null) {
-            items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
-            recycler.setAdapter(new ListAdapter(items, recycler));
-        } else {
-            Log.d(TAG, "lastExecutionDate is null. At setUpAdapterAndCheckForContentUpdate()");
-        }
+        items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
+        recycler.setAdapter(new ListAdapter(items, recycler));
     }
 
     @Override
@@ -268,7 +239,6 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void showToast(DateTime definedHour) {
         Toast.makeText(getActivity(), "Couldn't generate a list with given hour("+ ItemContentBuilder.getTitle(definedHour) + ") There will be displayed the nearest hour to defined...", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
