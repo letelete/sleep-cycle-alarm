@@ -1,8 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.application;
 
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
-
 import io.realm.Realm;
 
 public class RealmInitialData implements Realm.Transaction {

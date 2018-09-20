@@ -1,7 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import android.support.v4.app.Fragment;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 public interface MainContract {

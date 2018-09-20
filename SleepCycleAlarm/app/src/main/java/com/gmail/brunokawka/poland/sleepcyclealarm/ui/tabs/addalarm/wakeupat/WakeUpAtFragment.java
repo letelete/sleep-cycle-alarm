@@ -38,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WakeUpAtFragment extends Fragment
-    implements WakeUpAtPresenter.ViewContract {
+    implements WakeUpAtContract.WakeUpAtView {
     private static final String TAG = "WakeUpAtFragmentLog";
 
     private DateTime lastExecutionDate;
@@ -102,7 +102,6 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         wakeUpAtPresenter.setUpUIElement(lastExecutionDate);
     }
 
@@ -127,7 +126,7 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void showSetTimeDialog() {
         final View content = getLayoutInflater().inflate(R.layout.dialog_set_hour_to_wake_up_at, root, false);
-        final DialogContract dialogContract = (DialogContract) content;
+        final WakeUpAtContract.WakeUpAtView.DialogContract dialogContract = (WakeUpAtContract.WakeUpAtView.DialogContract) content;
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(content)
@@ -262,7 +261,6 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void showToast(DateTime definedHour) {
         Toast.makeText(getActivity(), "Couldn't generate a list with given hour("+ ItemContentBuilder.getTitle(definedHour) + ") There will be displayed the nearest hour to defined...", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
