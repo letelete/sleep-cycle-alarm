@@ -103,13 +103,7 @@ public class WakeUpAtFragment extends Fragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        wakeUpAtPresenter.onActivityCreatedSetUp();
-
-        if (lastExecutionDate == null) {
-            wakeUpAtPresenter.hideWakeUpAtElements();
-        } else {
-            wakeUpAtPresenter.setUpAdapterAndItsContent();
-        }
+        wakeUpAtPresenter.setUpUIElement(lastExecutionDate);
     }
 
     @Override

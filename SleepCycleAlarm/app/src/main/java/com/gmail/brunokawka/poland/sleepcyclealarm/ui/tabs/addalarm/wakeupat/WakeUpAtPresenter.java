@@ -83,10 +83,16 @@ public class WakeUpAtPresenter {
         this.viewContract = null;
     }
 
-    public void onActivityCreatedSetUp() {
+    public void setUpUIElement(DateTime lastExecutionDate) {
         viewContract.updateCurrentDate();
         viewContract.setLastExecutionDateFromPreferences();
         viewContract.setUpRecycler();
+
+        if (lastExecutionDate == null) {
+            hideWakeUpAtElements();
+        } else {
+            viewContract.setUpAdapterAndCheckForContentUpdate();
+        }
     }
 
     public void hideWakeUpAtElements() {
@@ -100,10 +106,6 @@ public class WakeUpAtPresenter {
         viewContract.hideEmptyListHint();
         viewContract.showCardInfo();
         viewContract.tryToUpdateCardInfoContent();
-    }
-
-    public void setUpAdapterAndItsContent() {
-        viewContract.setUpAdapterAndCheckForContentUpdate();
     }
 
     public void showTimeDialog() {
