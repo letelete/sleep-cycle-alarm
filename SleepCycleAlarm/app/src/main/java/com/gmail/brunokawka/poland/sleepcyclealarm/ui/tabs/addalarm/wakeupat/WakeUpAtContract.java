@@ -1,5 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
+
 import org.joda.time.DateTime;
 
 public interface WakeUpAtContract {
@@ -23,12 +25,8 @@ public interface WakeUpAtContract {
         void showEmptyListHint();
 
         void hideEmptyListHint();
-
-        void tryToUpdateCardInfoContent();
-
-        void generateListAndShowLayoutElements(DateTime executionDate);
-
-        void updateLastExecutionDate(DateTime newDate);
+        
+        void setLastExecutionDate(DateTime newDate);
 
         void setLastExecutionDateFromPreferences();
 
@@ -50,25 +48,25 @@ public interface WakeUpAtContract {
     interface WakeUpAtPresenter {
         void handleFloatingActionButtonClicked();
 
-        void showOrHideElementsDependingOnGivenAmountOfItems(int amount);
+        void showOrHideElementsDependingOnAmountOfListItems(int amount, DateTime lastExecutionDate);
 
         void bindView(WakeUpAtContract.WakeUpAtView view);
 
         void unbindView();
 
-        void setUpUIElement(DateTime lastExecutionDate);
+        void setUpEnvironment();
 
-        void hideWakeUpAtElements();
-
-        void showWakeUpAtElements();
+        void setUpUIElements(DateTime lastExecutionDate);
 
         void showTimeDialog();
 
         void dismissTimeDialog();
 
-        void passDialogValueToListGenerator(WakeUpAtContract.WakeUpAtView.DialogContract dialogContract);
+        void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate);
 
-        void tryToGenerateAListWithGivenValues(DateTime currentDate, DateTime executionDate);
+        void hideWakeUpAtElements();
+
+        void showWakeUpAtElements(DateTime lastExecutionDate);
 
         void showTheClosestAlarmToDefinedHour(DateTime definedHour);
 

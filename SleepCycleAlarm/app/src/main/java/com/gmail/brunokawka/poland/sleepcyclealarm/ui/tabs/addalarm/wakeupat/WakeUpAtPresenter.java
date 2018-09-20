@@ -2,6 +2,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.util.Log;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
+
 import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
@@ -19,11 +21,11 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     }
 
     @Override
-    public void showOrHideElementsDependingOnGivenAmountOfItems(int amount) {
+    public void showOrHideElementsDependingOnAmountOfListItems(int amount, DateTime lastExecutionDate) {
         if (amount <= 0) {
             hideWakeUpAtElements();
         } else {
-            showWakeUpAtElements();
+            showWakeUpAtElements(lastExecutionDate);
         }
     }
 
@@ -44,31 +46,19 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     }
 
     @Override
-    public void setUpUIElement(DateTime lastExecutionDate) {
+    public void setUpEnvironment() {
         view.updateCurrentDate();
         view.setLastExecutionDateFromPreferences();
         view.setUpRecycler();
+    }
 
+    @Override
+    public void setUpUIElements(DateTime lastExecutionDate) {
         if (lastExecutionDate == null) {
             hideWakeUpAtElements();
         } else {
             view.setUpAdapterAndCheckForContentUpdate();
         }
-    }
-
-    @Override
-    public void hideWakeUpAtElements() {
-        view.hideList();
-        view.showEmptyListHint();
-        view.hideCardInfo();
-    }
-
-    @Override
-    public void showWakeUpAtElements() {
-        view.showList();
-        view.hideEmptyListHint();
-        view.showCardInfo();
-        view.tryToUpdateCardInfoContent();
     }
 
     @Override
@@ -85,28 +75,47 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     }
 
     @Override
-    public void passDialogValueToListGenerator(WakeUpAtContract.WakeUpAtView.DialogContract dialogContract) {
-        view.generateListAndShowLayoutElements(dialogContract.getDateTime());
-    }
+    public void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate) {
+        DateTime newExecutionDate = newChosenExecutionDate.getDateTime();
 
-    @Override
-    public void tryToGenerateAListWithGivenValues(DateTime currentDate, DateTime executionDate) {
-        if (executionDate != null) {
-            if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, executionDate)) {
-                view.updateLastExecutionDate(executionDate);
-                showWakeUpAtElements();
-                generateList(executionDate);
+        if (newExecutionDate != null) {
+            if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
+                updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
+                showWakeUpAtElements(newExecutionDate);
+                view.setUpAdapterAndCheckForContentUpdate();
             } else {
-                showTheClosestAlarmToDefinedHour(executionDate);
+                showTheClosestAlarmToDefinedHour(newExecutionDate);
             }
         } else {
             Log.e(TAG, "executionDate is null");
         }
     }
 
-    private void generateList(DateTime executionDate) {
-        view.updateLastExecutionDate(executionDate);
-        view.setUpAdapterAndCheckForContentUpdate();
+    private void updateLastExecutionDateAndSaveItToPreferencesIfPossible(DateTime lastExecutionDate, DateTime newExecutionDate) {
+        if (newExecutionDate != lastExecutionDate) {
+            view.setLastExecutionDate(newExecutionDate);
+            view.saveExecutionDateToPreferencesAsString();
+        }
+    }
+
+    @Override
+    public void hideWakeUpAtElements() {
+        view.hideList();
+        view.showEmptyListHint();
+        view.hideCardInfo();
+    }
+
+    @Override
+    public void showWakeUpAtElements(DateTime lastExecutionDate) {
+        view.showList();
+        view.hideEmptyListHint();
+        view.showCardInfo();
+
+        if (lastExecutionDate != null) {
+            updateCardInfoContent();
+        } else {
+            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
+        }
     }
 
     @Override

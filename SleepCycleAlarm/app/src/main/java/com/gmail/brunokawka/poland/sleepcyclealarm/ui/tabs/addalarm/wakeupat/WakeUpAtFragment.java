@@ -41,13 +41,9 @@ public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
     private static final String TAG = "WakeUpAtFragmentLog";
 
-    private DateTime lastExecutionDate;
-    private DateTime currentDate;
-
+    static WakeUpAtPresenter wakeUpAtPresenter;
     ArrayList<Item> items;
     AlertDialog dialog;
-
-    static WakeUpAtPresenter wakeUpAtPresenter;
 
     @BindView(R.id.wakeUpAtRoot)
     ViewGroup root;
@@ -73,11 +69,13 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
 
+    private DateTime lastExecutionDate;
+    private DateTime currentDate;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
         int amount = itemsAmountChangedEvent.getItemsAmount();
-        wakeUpAtPresenter.showOrHideElementsDependingOnGivenAmountOfItems(amount);
+        wakeUpAtPresenter.showOrHideElementsDependingOnAmountOfListItems(amount, lastExecutionDate);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -102,7 +100,8 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        wakeUpAtPresenter.setUpUIElement(lastExecutionDate);
+        wakeUpAtPresenter.setUpEnvironment();
+        wakeUpAtPresenter.setUpUIElements(lastExecutionDate);
     }
 
     @Override
@@ -133,7 +132,7 @@ public class WakeUpAtFragment extends Fragment
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        wakeUpAtPresenter.passDialogValueToListGenerator(dialogContract);
+                        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(dialogContract, currentDate, lastExecutionDate);
                         wakeUpAtPresenter.dismissTimeDialog();
                     }
                 })
@@ -149,16 +148,8 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void generateListAndShowLayoutElements(DateTime executionDate) {
-        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(currentDate, executionDate);
-    }
-
-    @Override
-    public void updateLastExecutionDate(DateTime newDate) {
-        if (lastExecutionDate != newDate) {
-            lastExecutionDate = newDate;
-            saveExecutionDateToPreferencesAsString();
-        }
+    public void setLastExecutionDate(DateTime newDate) {
+        lastExecutionDate = newDate;
     }
 
     @Override
@@ -177,18 +168,13 @@ public class WakeUpAtFragment extends Fragment
             String notFormattedDate = pref.getString(getString(R.string.key_last_execution_date), null);
             if (!TextUtils.isEmpty(notFormattedDate)) {
                 lastExecutionDate = DateTime.parse(notFormattedDate);
-                wakeUpAtPresenter.showWakeUpAtElements();
+                wakeUpAtPresenter.showWakeUpAtElements(lastExecutionDate);
             }
         }
     }
 
     @Override
     public void tryToUpdateCardInfoContent() {
-        if (lastExecutionDate != null) {
-            wakeUpAtPresenter.updateCardInfoContent();
-        } else {
-            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
-        }
     }
 
     @Override
@@ -206,12 +192,8 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void setUpAdapterAndCheckForContentUpdate() {
-        if (lastExecutionDate != null) {
-            items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
-            recycler.setAdapter(new ListAdapter(items, recycler));
-        } else {
-            Log.d(TAG, "lastExecutionDate is null. At setUpAdapterAndCheckForContentUpdate()");
-        }
+        items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
+        recycler.setAdapter(new ListAdapter(items, recycler));
     }
 
     @Override
