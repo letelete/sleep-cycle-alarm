@@ -25,7 +25,7 @@ public interface WakeUpAtContract {
         void showEmptyListHint();
 
         void hideEmptyListHint();
-        
+
         void setLastExecutionDate(DateTime newDate);
 
         void setLastExecutionDateFromPreferences();

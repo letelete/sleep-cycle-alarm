@@ -174,10 +174,6 @@ public class WakeUpAtFragment extends Fragment
     }
 
     @Override
-    public void tryToUpdateCardInfoContent() {
-    }
-
-    @Override
     public void updateCardInfoTitle() {
         String title = getString(R.string.wake_up_at_card_info_title_when_user_defined_hour);
         String titleFormatted = String.format(title, ItemContentBuilder.getTitle(lastExecutionDate));
