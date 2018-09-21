@@ -26,6 +26,8 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEven
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,9 +43,13 @@ public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
     private static final String TAG = "WakeUpAtFragmentLog";
 
+    private ItemsBuilder itemsBuilder;
     static WakeUpAtPresenter wakeUpAtPresenter;
     ArrayList<Item> items;
     AlertDialog dialog;
+
+    private DateTime lastExecutionDate;
+    private DateTime currentDate;
 
     @BindView(R.id.wakeUpAtRoot)
     ViewGroup root;
@@ -69,9 +75,6 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
 
-    private DateTime lastExecutionDate;
-    private DateTime currentDate;
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
         int amount = itemsAmountChangedEvent.getItemsAmount();
@@ -93,6 +96,9 @@ public class WakeUpAtFragment extends Fragment
 
         wakeUpAtPresenter = new WakeUpAtPresenter();
         wakeUpAtPresenter.bindView(this);
+
+        itemsBuilder = new ItemsBuilder();
+        itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
 
         return view;
     }
@@ -188,7 +194,7 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void setUpAdapterAndCheckForContentUpdate() {
-        items = WakeUpAtItemsBuilder.getItemsForExecutionDate(currentDate, lastExecutionDate);
+        items = itemsBuilder.getItems(currentDate, lastExecutionDate);
         recycler.setAdapter(new ListAdapter(items, recycler));
     }
 
