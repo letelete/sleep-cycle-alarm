@@ -7,7 +7,9 @@
         android:id="@+id/dateTimeSelect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/normal_margin_size"
+        android:numbersBackgroundColor="?colorPrimary"
+        android:background="?colorPrimaryDark"
+        android:headerBackground="?colorAccent"
         android:animateLayoutChanges="true" />
 
 </com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtSetTimeView>

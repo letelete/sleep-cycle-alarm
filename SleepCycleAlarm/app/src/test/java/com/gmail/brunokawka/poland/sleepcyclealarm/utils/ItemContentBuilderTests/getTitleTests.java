@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilderTest;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilderTests;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-// This class use the following naming convention:
+// This class uses the following naming convention:
 // test[Feature being tested]
 
 public class getTitleTests {
