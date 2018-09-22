@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
@@ -20,6 +21,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     private AlarmsContract.AlarmsView view;
     private MyAlarmManager myAlarmManager;
     private boolean isDialogShowing;
+
     private boolean hasView() {
         return view != null;
     }
@@ -36,6 +38,37 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void unbindView() {
         this.view = null;
+    }
+
+
+    @Override
+    public void setUpUIDependingOnDatabaseItemAmount() {
+        view.setUpRecycler();
+        if (!isRealmEmpty()) {
+            view.setUpRecycler();
+            showUiElements();
+            Log.d(TAG, "Realm is NOT empty. Showing UI elements and setting up adapter...");
+            view.setUpAdapter();
+        } else {
+            hideUiElements();
+            Log.d(TAG, "Realm is empty. Hiding UI elements...");
+        }
+    }
+
+    private void showUiElements() {
+        view.hideEmptyListHint();
+        view.showList();
+        view.showInfoCard();
+    }
+
+    private void hideUiElements() {
+        view.hideList();
+        view.hideInfoCard();
+        view.showEmptyListHint();
+    }
+
+    private boolean isRealmEmpty() {
+        return RealmManager.getRealm().where(Alarm.class).findAllAsync().isEmpty();
     }
 
     @Override

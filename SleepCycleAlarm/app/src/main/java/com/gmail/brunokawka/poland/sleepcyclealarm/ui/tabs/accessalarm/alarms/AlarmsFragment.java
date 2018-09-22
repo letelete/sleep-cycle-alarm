@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
@@ -19,6 +22,8 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class AlarmsFragment extends Fragment
     implements AlarmsContract.AlarmsView {
@@ -31,6 +36,15 @@ public class AlarmsFragment extends Fragment
 
     @BindView(R.id.alarmsList)
     RecyclerView recycler;
+
+    @BindView(R.id.alarmsListCardView)
+    CardView listCardView;
+
+    @BindView(R.id.alarmsEmptyListPlaceHolder)
+    ImageView emptyListPlaceHolder;
+
+    @BindView(R.id.alarmsInfoCardView)
+    CardView infoCard;
 
     private AlarmScopeListener alarmScopeListener;
     static AlarmsPresenter alarmsPresenter;
@@ -52,10 +66,9 @@ public class AlarmsFragment extends Fragment
 
         addScopeListener();
         alarmsPresenter = alarmScopeListener.getPresenter();
-
-        setUpRecycler();
-
         alarmsPresenter.bindView(this);
+
+        alarmsPresenter.setUpUIDependingOnDatabaseItemAmount();
     }
 
     public void addScopeListener() {
@@ -66,14 +79,18 @@ public class AlarmsFragment extends Fragment
         }
     }
 
-    private void setUpRecycler() {
-        Realm realm = RealmManager.getRealm();
-
+    @Override
+    public void setUpRecycler() {
         recycler.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler.setLayoutManager(layoutManager);
 
+    }
+
+    @Override
+    public void setUpAdapter() {
+        Realm realm = RealmManager.getRealm();
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
     }
 
@@ -130,6 +147,49 @@ public class AlarmsFragment extends Fragment
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    @Override
+    public void showList() {
+        showIfNotVisible(listCardView);
+    }
+
+    @Override
+    public void hideList() {
+        hideIfNotGone(listCardView);
+    }
+
+    @Override
+    public void showInfoCard() {
+        showIfNotVisible(infoCard);
+    }
+
+    @Override
+    public void hideInfoCard() {
+        hideIfNotGone(infoCard);
+    }
+
+    @Override
+    public void showEmptyListHint() {
+        showIfNotVisible(emptyListPlaceHolder);
+    }
+
+    @Override
+    public void hideEmptyListHint() {
+        hideIfNotGone(emptyListPlaceHolder);
+    }
+
+    private void showIfNotVisible(View view) {
+        if (view.getVisibility() != View.VISIBLE) {
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideIfNotGone(View view) {
+        if (view.getVisibility() != View.GONE) {
+            view.setVisibility(View.GONE);
+        }
+    }
+
 
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
