@@ -2,6 +2,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 
 import org.joda.time.DateTime;
 
+import java.util.Date;
+
 public class Item {
     private String title;
     private String summary;

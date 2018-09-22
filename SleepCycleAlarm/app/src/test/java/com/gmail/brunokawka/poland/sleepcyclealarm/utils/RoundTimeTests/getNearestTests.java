@@ -1,6 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTimeTests;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.TestsHelper;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTime;
 
 import org.joda.time.DateTime;
@@ -10,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-// This class uses the following naming convention:
+// This class use the following naming convention:
 // Should_ExpectedBehavior_When_StateUnderTest
 
 public class getNearestTests {
@@ -24,9 +23,10 @@ public class getNearestTests {
     public void Should_RoundToFullHour_When_3MinutesAfterFullHour() {
         String hourToRound = "04/02/2011 06:03";
         String expected = "04/02/2011 06:00";
-        
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -34,8 +34,9 @@ public class getNearestTests {
         String hourToRound = "04/02/2011 06:04";
         String expected = "04/02/2011 06:00";
 
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -43,8 +44,9 @@ public class getNearestTests {
         String hourToRound = "04/02/2011 06:34";
         String expected = "04/02/2011 06:35";
 
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -52,8 +54,9 @@ public class getNearestTests {
         String hourToRound = "04/02/2011 06:36";
         String expected = "04/02/2011 06:35";
 
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -61,8 +64,9 @@ public class getNearestTests {
         String hourToRound = "04/02/2011 06:57";
         String expected = "04/02/2011 06:55";
 
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 
     @Test
@@ -70,7 +74,8 @@ public class getNearestTests {
         String hourToRound = "04/02/2011 06:59";
         String expected = "04/02/2011 07:00";
 
-        assertEquals(TestsHelper.getDateTimeFromString(expected),
-                RoundTime.getNearest(TestsHelper.getDateTimeFromString(hourToRound)));
+        DateTime dateToRound = getDateTimeFormatted(hourToRound);
+        DateTime dateExpected = getDateTimeFormatted(expected);
+        assertEquals(dateExpected, RoundTime.getNearest(dateToRound));
     }
 }

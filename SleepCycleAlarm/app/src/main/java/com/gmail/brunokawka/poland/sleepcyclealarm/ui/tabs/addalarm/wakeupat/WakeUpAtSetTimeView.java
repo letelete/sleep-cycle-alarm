@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
@@ -14,7 +15,7 @@ import org.joda.time.DateTime;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContract.WakeUpAtView.DialogContract {
+public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtPresenter.ViewContract.DialogContract {
 
     private static final String TAG = "ChooseHourViewLog";
 
@@ -49,6 +50,7 @@ public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContrac
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute) {
+                Log.d(TAG, "Current hour: " + String.valueOf(hourOfDay) + " Current minute: " + String.valueOf(minute));
                 setDateTime(hourOfDay, minute);
             }
         });

@@ -22,8 +22,4 @@ public class ItemsBuilderData {
         return TIME_FOR_FALL_ASLEEP_IN_MINUTES;
     }
 
-    public static int getTotalOneSleepCycleDurationInMinutes() {
-        return ONE_SLEEP_CYCLE_DURATION_IN_MINUTES + TIME_FOR_FALL_ASLEEP_IN_MINUTES;
-    }
-
 }

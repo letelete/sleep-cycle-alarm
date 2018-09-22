@@ -35,6 +35,4 @@
     <dimen name="fabCornerRadius">38dp</dimen>
     <dimen name="fabHeight">38dp</dimen>
     <dimen name="fabWidth">144dp</dimen>
-
-    <dimen name="listCardViewMinHeight">70dp</dimen>
 </resources>

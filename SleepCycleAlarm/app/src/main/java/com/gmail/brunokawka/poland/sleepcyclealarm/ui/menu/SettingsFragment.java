@@ -1,32 +1,32 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final String TAG = "SettingsFragment";
-    private static boolean isFirstRun;
+    private static boolean isFirstRun = true;
 
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
-
-        isFirstRun = true;
 
         bindPreferenceToListener(findPreference(getString(R.string.key_change_theme)));
         bindPreferenceToListener(findPreference(getString(R.string.key_ring_duration)));
         bindPreferenceToListener(findPreference(getString(R.string.key_alarms_intervals)));
         bindPreferenceToListener(findPreference(getString(R.string.key_auto_silence)));
 
-        isFirstRun = false;
+        isFirstRun = !isFirstRun;
     }
 
     private void bindPreferenceToListener(Preference preference) {
@@ -49,36 +49,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 int index = listPreference.findIndexOfValue(stringValue);
                 preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
-                if(isRecreateRequired(preference)) {
-                    recreateAndShowToastIfActivityNotNull();
-                }
-
             } else {
                 preference.setSummary(stringValue);
+            }
+
+            if(isRecreateRequired(preference.getKey())) {
+                recreateIfActivityNotNull();
             }
 
             return true;
         }
     };
 
-    private boolean isRecreateRequired(Preference preference) {
-        String key = preference.getKey();
-        Log.d(TAG, isFirstRun ? "Is first run" : "Its not a first run");
+    private boolean isRecreateRequired(String key) {
         return key.equals(getString(R.string.key_change_theme)) && !isFirstRun;
     }
 
-    private void recreateAndShowToastIfActivityNotNull() {
+    private void recreateIfActivityNotNull() {
         if (getActivity() != null) {
-            Log.d(TAG, "Recreating...");
-
-            showInformativeToast();
             getActivity().recreate();
         } else {
-            Log.d(TAG, "Activity is null");
+            Log.e(TAG, "Activity is null");
         }
-    }
-
-    private void showInformativeToast() {
-        Toast.makeText(getActivity(), getString(R.string.toast_what_if_theme_didnt_apply), Toast.LENGTH_SHORT).show();
     }
 }

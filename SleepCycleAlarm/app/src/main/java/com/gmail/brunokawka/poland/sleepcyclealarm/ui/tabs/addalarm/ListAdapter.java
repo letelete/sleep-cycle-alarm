@@ -10,10 +10,11 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
     @Override
     public int getItemCount() {
-        EventBus.getDefault().post(new ItemsAmountChangedEvent(listItems.size()));
         return listItems.size();
     }
 
