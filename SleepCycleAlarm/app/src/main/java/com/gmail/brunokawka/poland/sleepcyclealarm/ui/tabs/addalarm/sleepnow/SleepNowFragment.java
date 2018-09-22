@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.SleepNowBuildingStrategy;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,6 +27,8 @@ import butterknife.ButterKnife;
 public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
 
+    private ItemsBuilder itemsBuilder;
+
     @BindView(R.id.sleepNowFragmentRecycler)
     RecyclerView recycler;
 
@@ -33,6 +37,10 @@ public class SleepNowFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  layoutInflater.inflate(R.layout.fragment_sleep_now, container, false);
         ButterKnife.bind(this, view);
+
+        itemsBuilder = new ItemsBuilder();
+        itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
+
         return view;
     }
 
@@ -47,7 +55,7 @@ public class SleepNowFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setItemAnimator(new DefaultItemAnimator());
 
-        recycler.setAdapter(new ListAdapter(SleepNowItemsBuilder.getItemsForCurrentDate(getCurrentDateTime()), recycler));
+        recycler.setAdapter(new ListAdapter(itemsBuilder.getItems(getCurrentDateTime(), null), recycler));
     }
 
     private DateTime getCurrentDateTime() {

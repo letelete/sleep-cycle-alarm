@@ -1,13 +1,15 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilderTests;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.TestsHelper;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,60 +19,33 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class getSummaryTest {
 
-    private DateTime getDateTimeFormatted(String executionHour) {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
-        return formatter.parseDateTime(executionHour);
-    }
+    private static final String CURRENT_DATE_STRING = "01/01/1111 22:20";
+
+    private static final List<String> SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220 = Arrays.asList(
+            "02/01/1111 00:05", "1h 30min", "Unhealthy",
+            "02/01/1111 01:35", "3h", "Unhealthy",
+            "02/01/1111 03:05", "4h 30min", "Optimal",
+            "02/01/1111 04:35", "6h", "Optimal",
+            "02/01/1111 06:05", "7h 30min", "Healthy",
+            "02/01/1111 07:35", "9h", "Healthy",
+            "02/01/1111 09:05", "10h 30min", "Not recommended",
+            "02/01/1111 10:35", "12h", "Not recommended"
+    );
 
     @Test
-    public void Should_Return1h30minOfSleepAndUnHealthy_When_SleepDurationEquals1h30min() {
-        String currentDateString = "01/01/1111 10:30";
-        String executionDateString = "02/01/1111 12:00";
-        String sleepDuration = "1h 30min";
-        String sleepQuality = "Unhealthy";
+    public void testIfCanReturnSummaries() {
+        int amountOfUsedItemsOnOneLoopRun = 3;
+        int maxIndex = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.size() - 1;
 
-        String expected = String.format("%1$s of sleep, %2$s", sleepDuration, sleepQuality);
-        DateTime currentDate = getDateTimeFormatted(currentDateString);
-        DateTime executionDate = getDateTimeFormatted(executionDateString);
-        assertEquals(expected, ItemContentBuilder.getSummary(currentDate, executionDate));
-    }
+        for (int index = 0; index < maxIndex; index += amountOfUsedItemsOnOneLoopRun) {
+            String executionDateString = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.get(index);
+            String sleepDurationString = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.get(index+1);
+            String sleepQuality = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.get(index+2);
 
-    @Test
-    public void Should_Return6hOfSleepAndOptimal_When_SleepDurationEquals6h() {
-        String currentDateString = "01/01/1111 02:00";
-        String executionDateString = "01/01/1111 08:00";
-        String sleepDuration = "6h";
-        String sleepQuality = "Optimal";
-
-        String expected = String.format("%1$s of sleep, %2$s", sleepDuration, sleepQuality);
-        DateTime currentDate = getDateTimeFormatted(currentDateString);
-        DateTime executionDate = getDateTimeFormatted(executionDateString);
-        assertEquals(expected, ItemContentBuilder.getSummary(currentDate, executionDate));
-    }
-
-    @Test
-    public void Should_Return9h30minOfSleepAndHealthy_When_SleepDurationEquals9h30min() {
-        String currentDateString = "01/01/1111 23:00";
-        String executionDateString = "02/01/1111 08:30";
-        String sleepDuration = "9h 30min";
-        String sleepQuality = "Healthy";
-
-        String expected = String.format("%1$s of sleep, %2$s", sleepDuration, sleepQuality);
-        DateTime currentDate = getDateTimeFormatted(currentDateString);
-        DateTime executionDate = getDateTimeFormatted(executionDateString);
-        assertEquals(expected, ItemContentBuilder.getSummary(currentDate, executionDate));
-    }
-
-    @Test
-    public void Should_Return11hOfSleepAndNotRecommended_When_SleepDurationEquals11h() {
-        String currentDateString = "01/01/1111 01:30";
-        String executionDateString = "01/01/1111 12:30";
-        String sleepDuration = "11h";
-        String sleepQuality = "Not recommended";
-
-        String expected = String.format("%1$s of sleep, %2$s", sleepDuration, sleepQuality);
-        DateTime currentDate = getDateTimeFormatted(currentDateString);
-        DateTime executionDate = getDateTimeFormatted(executionDateString);
-        assertEquals(expected, ItemContentBuilder.getSummary(currentDate, executionDate));
+            String expected = String.format("%1$s of sleep, %2$s", sleepDurationString, sleepQuality);
+            assertEquals(expected, ItemContentBuilder.getSummary(
+                    TestsHelper.getDateTimeFromString(CURRENT_DATE_STRING),
+                    TestsHelper.getDateTimeFromString(executionDateString).minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes())));
+        }
     }
 }

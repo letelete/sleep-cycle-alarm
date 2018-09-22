@@ -3,6 +3,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
 
 import org.joda.time.DateTime;
 
@@ -13,6 +15,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
 
     private WakeUpAtContract.WakeUpAtView view;
     private boolean isDialogShowing;
+    private ItemsBuilder itemsBuilder;
 
     @Override
     public void handleFloatingActionButtonClicked() {
@@ -36,6 +39,10 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     @Override
     public void bindView(WakeUpAtContract.WakeUpAtView view) {
         this.view = view;
+
+        this.itemsBuilder = new ItemsBuilder();
+        itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
+
         if (isDialogShowing) {
             showTimeDialog();
         }
@@ -79,7 +86,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
         DateTime newExecutionDate = newChosenExecutionDate.getDateTime();
 
         if (newExecutionDate != null) {
-            if (WakeUpAtItemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
+            if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
                 updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
                 showWakeUpAtElements(newExecutionDate);
                 view.setUpAdapterAndCheckForContentUpdate();
