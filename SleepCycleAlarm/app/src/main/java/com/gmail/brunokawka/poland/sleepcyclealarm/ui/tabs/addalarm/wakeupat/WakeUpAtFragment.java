@@ -21,8 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
@@ -44,6 +46,7 @@ public class WakeUpAtFragment extends Fragment
     private static final String TAG = "WakeUpAtFragmentLog";
 
     private ItemsBuilder itemsBuilder;
+    private MyAlarmManager myAlarmManager;
     static WakeUpAtPresenter wakeUpAtPresenter;
     ArrayList<Item> items;
     AlertDialog dialog;
@@ -77,14 +80,23 @@ public class WakeUpAtFragment extends Fragment
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
-        int amount = itemsAmountChangedEvent.getItemsAmount();
-        wakeUpAtPresenter.showOrHideElementsDependingOnAmountOfListItems(amount, lastExecutionDate);
+        if (wakeUpAtPresenter != null) {
+            int amount = itemsAmountChangedEvent.getItemsAmount();
+            wakeUpAtPresenter.showOrHideElementsDependingOnAmountOfListItems(amount, lastExecutionDate);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onWakeUpAtActivityButtonClicked(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
         if (wakeUpAtPresenter != null) {
             wakeUpAtPresenter.handleFloatingActionButtonClicked();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
+        if (myAlarmManager != null) {
+            myAlarmManager.generateAlarmAndSaveItToRealm(setAlarmEvent.getItem());
         }
     }
 
@@ -99,6 +111,8 @@ public class WakeUpAtFragment extends Fragment
 
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
+
+        myAlarmManager = new MyAlarmManager();
 
         return view;
     }
@@ -267,6 +281,10 @@ public class WakeUpAtFragment extends Fragment
 
         if (lastExecutionDate != null) {
             lastExecutionDate = null;
+        }
+
+        if (myAlarmManager != null) {
+            myAlarmManager = null;
         }
     }
 }
