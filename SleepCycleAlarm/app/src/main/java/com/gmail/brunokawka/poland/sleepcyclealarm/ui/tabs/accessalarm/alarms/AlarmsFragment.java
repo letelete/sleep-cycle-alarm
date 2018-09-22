@@ -18,6 +18,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.MyViewManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -161,44 +162,32 @@ public class AlarmsFragment extends Fragment
 
     @Override
     public void showList() {
-        showIfNotVisible(listCardView);
+        MyViewManager.showIfNotVisible(listCardView);
     }
 
     @Override
     public void hideList() {
-        hideIfNotGone(listCardView);
+        MyViewManager.hideIfNotGone(listCardView);
     }
 
     @Override
     public void showInfoCard() {
-        showIfNotVisible(infoCard);
+        MyViewManager.showIfNotVisible(infoCard);
     }
 
     @Override
     public void hideInfoCard() {
-        hideIfNotGone(infoCard);
+        MyViewManager.hideIfNotGone(infoCard);
     }
 
     @Override
     public void showEmptyListHint() {
-        showIfNotVisible(emptyListPlaceHolder);
+        MyViewManager.showIfNotVisible(emptyListPlaceHolder);
     }
 
     @Override
     public void hideEmptyListHint() {
-        hideIfNotGone(emptyListPlaceHolder);
-    }
-
-    private void showIfNotVisible(View view) {
-        if (view.getVisibility() != View.VISIBLE) {
-            view.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void hideIfNotGone(View view) {
-        if (view.getVisibility() != View.GONE) {
-            view.setVisibility(View.GONE);
-        }
+        MyViewManager.hideIfNotGone(emptyListPlaceHolder);
     }
 
 
