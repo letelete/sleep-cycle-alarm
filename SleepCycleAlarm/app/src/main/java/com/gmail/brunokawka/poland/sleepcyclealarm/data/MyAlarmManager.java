@@ -15,22 +15,26 @@ import io.realm.Realm;
 
 public class MyAlarmManager {
     private static final String TAG = "AlarmsManagerLog";
-    private Realm realm;
+
 
     public MyAlarmManager() {
+        RealmManager.initializeRealmConfig();
     }
 
     public void generateAlarmAndSaveItToRealm(Item item, String ringtone) {
+        Log.d(TAG, "Generating alarm and saving it to realm... (Base on item and ringtone)");
         Alarm alarm = getAlarmFromItemAndRingtone(item, ringtone);
         saveToRealm(alarm);
     }
 
     public void generateAlarmAndSaveItToRealm(Item item) {
+        Log.d(TAG, "Generating alarm and saving it to realm... (Base on item only)");
         Alarm alarm = getAlarmFromItem(item);
         saveToRealm(alarm);
     }
 
     public Alarm getAlarmFromItemAndRingtone(Item item, String ringtone) {
+        Log.d(TAG, "Returning alarm from item and ringtone...");
         Alarm alarm = getAlarmFromItem(item);
         alarm.setRingtone(ringtone);
         return alarm;
@@ -50,11 +54,11 @@ public class MyAlarmManager {
 
         final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
 
-        final int snoozeDuration = pref.getInt(ctx.getString(R.string.key_alarms_intervals), 5);
+        final int snoozeDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_alarms_intervals), "5"));
 
-        final int ringDuration = pref.getInt(ctx.getString(R.string.key_ring_duration), 5);
+        final int ringDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_ring_duration), "5"));
 
-        final int numberOfRepetitions = pref.getInt(ctx.getString(R.string.key_auto_silence), 3);
+        final int numberOfRepetitions = Integer.parseInt(pref.getString(ctx.getString(R.string.key_auto_silence), "3"));
 
         Alarm alarm = new Alarm();
         alarm.setId(id);
@@ -70,17 +74,27 @@ public class MyAlarmManager {
     }
 
     public void saveToRealm(final Alarm alarm) {
-        initializeRealm();
+        Log.d(TAG, "Saving to realm...");
+
+        RealmManager.incrementCount();
+        Realm realm = RealmManager.getRealm();
+
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 realm.insertOrUpdate(alarm);
             }
         });
+
+        RealmManager.decrementCount();
     }
 
     public void removeFromRealmById(final String id) {
-        initializeRealm();
+        Log.d(TAG, "Removing from realm...");
+
+        RealmManager.incrementCount();
+        Realm realm = RealmManager.getRealm();
+
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -90,14 +104,7 @@ public class MyAlarmManager {
                 }
             }
         });
-    }
 
-    private void initializeRealm() {
-        Log.d(TAG, "Initializing realm...");
-        if (realm == null) {
-            realm = RealmManager.getRealm();
-        } else {
-            Log.d(TAG, "Realm is already initialized");
-        }
+        RealmManager.decrementCount();
     }
 }

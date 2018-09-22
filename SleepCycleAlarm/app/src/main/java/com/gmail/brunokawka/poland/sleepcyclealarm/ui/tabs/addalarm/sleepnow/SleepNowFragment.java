@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.MyAlarmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
@@ -28,9 +29,16 @@ public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
 
     private ItemsBuilder itemsBuilder;
+    private MyAlarmManager myAlarmManager;
 
     @BindView(R.id.sleepNowFragmentRecycler)
     RecyclerView recycler;
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
+        // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
+        myAlarmManager.generateAlarmAndSaveItToRealm(setAlarmEvent.getItem());
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -40,6 +48,8 @@ public class SleepNowFragment extends Fragment {
 
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
+
+        myAlarmManager = new MyAlarmManager();
 
         return view;
     }
@@ -77,10 +87,5 @@ public class SleepNowFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
-        // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
     }
 }
