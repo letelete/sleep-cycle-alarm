@@ -30,6 +30,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.MyViewManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -214,46 +215,34 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void showList() {
-        if (listCardView.getVisibility() != View.VISIBLE) {
-            listCardView.setVisibility(View.VISIBLE);
-        }
+        MyViewManager.showIfNotVisible(listCardView);
     }
 
     @Override
     public void hideList() {
-        if (listCardView.getVisibility() != View.GONE) {
-            listCardView.setVisibility(View.GONE);
-        }
+        MyViewManager.hideIfNotGone(listCardView);
     }
 
     @Override
     public void showCardInfo() {
-        if (cardInfo.getVisibility() != View.VISIBLE) {
-            cardInfo.setVisibility(View.VISIBLE);
-        }
+        MyViewManager.showIfNotVisible(cardInfo);
     }
 
     @Override
     public void hideCardInfo() {
-        if (cardInfo.getVisibility() != View.GONE) {
-            cardInfo.setVisibility(View.GONE);
-        }
+        MyViewManager.hideIfNotGone(cardInfo);
     }
 
     @Override
     public void showEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        if (emptyListPlaceHolder.getVisibility() != View.VISIBLE) {
-            emptyListPlaceHolder.setVisibility(View.VISIBLE);
-        }
+        MyViewManager.showIfNotVisible(emptyListPlaceHolder);
     }
 
     @Override
     public void hideEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        if (emptyListPlaceHolder.getVisibility() != View.GONE) {
-            emptyListPlaceHolder.setVisibility(View.GONE);
-        }
+        MyViewManager.hideIfNotGone(emptyListPlaceHolder);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
 import android.view.View;
 
