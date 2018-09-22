@@ -14,7 +14,7 @@ import java.util.UUID;
 
 import io.realm.Realm;
 
-public class AlarmsPresenter {
+public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     public static AlarmsPresenter getService(Context context) {
         return AlarmsFragment.getAlarmsPresenter();
@@ -22,55 +22,49 @@ public class AlarmsPresenter {
 
     public static final String TAG = "AlarmsPresenterLog";
 
-    public interface ViewContract {
-        void showAddAlarmDialog();
-
-        void showEditAlarmDialog(Alarm alarm);
-
-        interface DialogContract {
-            String getRingtone(); // TODO: not sure how ringtone will be passed like so setted up String for entry testing
-
-            void bind(Alarm alarm);
-        }
-    }
-
-    private ViewContract viewContract;
+    private AlarmsContract.AlarmsView view;
 
     private boolean isDialogShowing;
 
     private boolean hasView() {
-        return viewContract != null;
+        return view != null;
     }
 
-    public void bindView(ViewContract viewContract) {
-        this.viewContract = viewContract;
+    @Override
+    public void bindView(AlarmsContract.AlarmsView view) {
+        this.view = view;
         if(isDialogShowing) {
             showAddDialog();
         }
     }
 
+    @Override
     public void unbindView() {
-        this.viewContract = null;
+        this.view = null;
     }
 
+    @Override
     public void showAddDialog() {
         if(hasView()) {
             isDialogShowing = true;
-            viewContract.showAddAlarmDialog();
+            view.showAddAlarmDialog();
         }
     }
 
+    @Override
     public void dismissAddDialog() {
         isDialogShowing = false;
     }
 
+    @Override
     public void showEditDialog(Alarm alarm) {
         if(hasView()) {
-            viewContract.showEditAlarmDialog(alarm);
+            view.showEditAlarmDialog(alarm);
         }
     }
 
-    public void saveAlarm(ViewContract.DialogContract dialogContract, final Item item) {
+    @Override
+    public void saveAlarm(AlarmsContract.AlarmsView.DialogContract dialogContract, final Item item) {
         if (hasView()) {
             Realm realm = RealmManager.getRealm();
             final Alarm alarm = getAlarmDependingOnGivenItemAndContract(item, dialogContract);
@@ -84,7 +78,7 @@ public class AlarmsPresenter {
         }
     }
 
-    private Alarm getAlarmDependingOnGivenItemAndContract(Item item, ViewContract.DialogContract dialogContract) {
+    private Alarm getAlarmDependingOnGivenItemAndContract(Item item, AlarmsContract.AlarmsView.DialogContract dialogContract) {
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
@@ -117,10 +111,12 @@ public class AlarmsPresenter {
         return alarm;
     }
 
+    @Override
     public void deleteAlarmByIdWithDialog(final String id) {
         // TODO: if user swipes list item confirmation dialog will be displayed
     }
 
+    @Override
     public void deleteAlarmById(final String id) {
         Realm realm = RealmManager.getRealm();
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -134,7 +130,8 @@ public class AlarmsPresenter {
         });
     }
 
-    public void editAlarm(final ViewContract.DialogContract dialogContract, final String id) {
+    @Override
+    public void editAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final String id) {
         Realm realm = RealmManager.getRealm();
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override

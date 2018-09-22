@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 import io.realm.Realm;
 
 public class AlarmsFragment extends Fragment
-    implements AlarmsPresenter.ViewContract {
+    implements AlarmsContract.AlarmsView {
     private static final String TAG = "AlarmsFragmentLog";
 
     private Item item;
@@ -58,7 +58,7 @@ public class AlarmsFragment extends Fragment
         alarmsPresenter.bindView(this);
     }
 
-    private void addScopeListener() {
+    public void addScopeListener() {
         alarmScopeListener = (AlarmScopeListener) getFragmentManager().findFragmentByTag("SCOPE_LISTENER");
         if (alarmScopeListener == null) {
             alarmScopeListener = new AlarmScopeListener();
@@ -75,18 +75,6 @@ public class AlarmsFragment extends Fragment
         recycler.setLayoutManager(layoutManager);
 
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        if(alarmsPresenter != null) {
-            alarmsPresenter.unbindView();
-        }
-        if(dialog != null) {
-            dialog.dismiss();
-        }
-        super.onDestroyView();
     }
 
     @Override
@@ -119,7 +107,7 @@ public class AlarmsFragment extends Fragment
             return;
         }
         final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
-        final AlarmsPresenter.ViewContract.DialogContract dialogContract = (AlarmsPresenter.ViewContract.DialogContract) content;
+        final AlarmsContract.AlarmsView.DialogContract dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
         dialogContract.bind(alarm);
 
         final String id = alarm.getId();
@@ -146,4 +134,16 @@ public class AlarmsFragment extends Fragment
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
     }
+
+    @Override
+    public void onDestroyView() {
+        if(alarmsPresenter != null) {
+            alarmsPresenter.unbindView();
+        }
+        if(dialog != null) {
+            dialog.dismiss();
+        }
+        super.onDestroyView();
+    }
+
 }
