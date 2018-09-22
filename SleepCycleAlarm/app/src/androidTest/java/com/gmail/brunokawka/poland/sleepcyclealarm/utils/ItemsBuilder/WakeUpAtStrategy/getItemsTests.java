@@ -18,6 +18,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+// This class uses the following naming convention:
+// test[Functionality]
+
 public class getItemsTests {
 
     private ItemsBuilder itemsBuilder;
@@ -46,7 +49,7 @@ public class getItemsTests {
     }
 
     @Test
-    public void areVariablesInitialized() {
+    public void testIfVariablesInitialized() {
         assertNotEquals(null, currentDate);
         assertNotEquals(null, executionDate);
         assertNotEquals(null, itemsBuilder);
