@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.MyAlarmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 
 import io.realm.Realm;
@@ -38,14 +38,25 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void unbindView() {
         this.view = null;
+        myAlarmManager.cleanUp();
     }
 
+
+    @Override
+    public void handleRealmChange() {
+        if (hasView()) {
+            if (isRealmEmpty()) {
+                hideUiElements();
+            } else {
+                showUiElements();
+            }
+        }
+    }
 
     @Override
     public void setUpUIDependingOnDatabaseItemAmount() {
         view.setUpRecycler();
         if (!isRealmEmpty()) {
-            view.setUpRecycler();
             showUiElements();
             Log.d(TAG, "Realm is NOT empty. Showing UI elements and setting up adapter...");
             view.setUpAdapter();
@@ -53,6 +64,10 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
             hideUiElements();
             Log.d(TAG, "Realm is empty. Hiding UI elements...");
         }
+    }
+
+    private boolean isRealmEmpty() {
+        return RealmManager.getRealm().isEmpty();
     }
 
     private void showUiElements() {
@@ -65,10 +80,6 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         view.hideList();
         view.hideInfoCard();
         view.showEmptyListHint();
-    }
-
-    private boolean isRealmEmpty() {
-        return RealmManager.getRealm().where(Alarm.class).findAllAsync().isEmpty();
     }
 
     @Override

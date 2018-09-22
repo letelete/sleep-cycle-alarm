@@ -8,25 +8,24 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import io.realm.RealmChangeListener;
 
 public class AlarmsFragment extends Fragment
-    implements AlarmsContract.AlarmsView {
+    implements AlarmsContract.AlarmsView, RealmChangeListener{
     private static final String TAG = "AlarmsFragmentLog";
 
     private Item item;
@@ -49,6 +48,17 @@ public class AlarmsFragment extends Fragment
     private AlarmScopeListener alarmScopeListener;
     static AlarmsPresenter alarmsPresenter;
     AlertDialog dialog;
+
+    @Override
+    public void onChange(Object o) {
+        Log.d(TAG, "Realm change event received.");
+        if (alarmsPresenter != null) {
+            Log.d(TAG, "Handling realm change...");
+            alarmsPresenter.handleRealmChange();
+        } else {
+            Log.d(TAG, "Couldn't handle realm change. AlarmsPresenter is null.");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -91,6 +101,7 @@ public class AlarmsFragment extends Fragment
     @Override
     public void setUpAdapter() {
         Realm realm = RealmManager.getRealm();
+        realm.addChangeListener(this);
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
     }
 
@@ -205,5 +216,4 @@ public class AlarmsFragment extends Fragment
         }
         super.onDestroyView();
     }
-
 }

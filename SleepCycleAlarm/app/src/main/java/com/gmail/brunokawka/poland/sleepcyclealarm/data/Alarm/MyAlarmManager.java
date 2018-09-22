@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.data;
+package com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import android.util.Log;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ public class MyAlarmManager {
 
     public MyAlarmManager() {
         RealmManager.initializeRealmConfig();
+        RealmManager.incrementCount();
     }
 
     public void generateAlarmAndSaveItToRealm(Item item, String ringtone) {
@@ -36,11 +38,15 @@ public class MyAlarmManager {
     public Alarm getAlarmFromItemAndRingtone(Item item, String ringtone) {
         Log.d(TAG, "Returning alarm from item and ringtone...");
         Alarm alarm = getAlarmFromItem(item);
+
+        Log.d(TAG, "Overriding ringtone to given one...");
         alarm.setRingtone(ringtone);
         return alarm;
     }
 
     private Alarm getAlarmFromItem(Item item) {
+        Log.d(TAG, "Getting alarm from item...");
+
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
@@ -75,8 +81,6 @@ public class MyAlarmManager {
 
     public void saveToRealm(final Alarm alarm) {
         Log.d(TAG, "Saving to realm...");
-
-        RealmManager.incrementCount();
         Realm realm = RealmManager.getRealm();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -85,14 +89,10 @@ public class MyAlarmManager {
                 realm.insertOrUpdate(alarm);
             }
         });
-
-        RealmManager.decrementCount();
     }
 
     public void removeFromRealmById(final String id) {
         Log.d(TAG, "Removing from realm...");
-
-        RealmManager.incrementCount();
         Realm realm = RealmManager.getRealm();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -104,7 +104,10 @@ public class MyAlarmManager {
                 }
             }
         });
+    }
 
+    public void cleanUp() {
         RealmManager.decrementCount();
     }
+
 }

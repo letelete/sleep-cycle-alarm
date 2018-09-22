@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

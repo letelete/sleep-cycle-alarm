@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.MyAlarmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
@@ -86,6 +86,7 @@ public class SleepNowFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        myAlarmManager.cleanUp();
         super.onDestroyView();
     }
 }

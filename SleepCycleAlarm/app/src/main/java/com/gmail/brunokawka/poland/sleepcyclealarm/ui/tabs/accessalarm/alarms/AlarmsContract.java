@@ -1,6 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
 
 public interface AlarmsContract {
@@ -39,6 +39,8 @@ public interface AlarmsContract {
         void unbindView();
 
         void setUpUIDependingOnDatabaseItemAmount();
+
+        void handleRealmChange();
 
         void showAddDialog();
 

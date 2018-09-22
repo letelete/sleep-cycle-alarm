@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
