@@ -37,7 +37,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/alarmsListCardView"
         style="?listCardStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
     </android.support.v7.widget.CardView>
 
     <ImageView
-        android:id="@+id/alarmsListPlaceHolder"
+        android:id="@+id/alarmsEmptyListPlaceHolder"
         style="?emptyListPlaceHolderStyle"
         android:contentDescription="@string/content_descriptions_empty_list_placeholder"
         app:layout_constraintBottom_toTopOf="@+id/alarmsPreventListCardViewFromOverdrawing"
