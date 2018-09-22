@@ -10,6 +10,22 @@ public interface AlarmsContract {
 
         void showEditAlarmDialog(Alarm alarm);
 
+        void setUpRecycler();
+
+        void setUpAdapter();
+
+        void showList();
+
+        void hideList();
+
+        void showInfoCard();
+
+        void hideInfoCard();
+
+        void showEmptyListHint();
+
+        void hideEmptyListHint();
+
         interface DialogContract {
             String getRingtone(); // TODO: not sure how ringtone will be passed like so setted up String for entry testing
 
@@ -21,6 +37,8 @@ public interface AlarmsContract {
         void bindView(AlarmsContract.AlarmsView viewContract);
 
         void unbindView();
+
+        void setUpUIDependingOnDatabaseItemAmount();
 
         void showAddDialog();
 
