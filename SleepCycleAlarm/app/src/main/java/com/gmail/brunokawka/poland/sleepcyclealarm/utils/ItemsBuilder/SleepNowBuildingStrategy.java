@@ -21,8 +21,6 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
     private DateTime currentDate;
     private DateTime executionDate;
 
-    private boolean isFirstAlarmDate = true;
-
     @Override
     public ArrayList<Item> getArrayOfItems(DateTime currentDate, @Nullable DateTime executionDate) {
         items = new ArrayList<>();
@@ -36,10 +34,6 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
             } else {
                 Log.e(TAG, "Its not possible to create next item");
             }
-
-            if (isFirstAlarmDate) {
-                isFirstAlarmDate = false;
-            }
         }
 
         return items;
@@ -47,10 +41,7 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
 
     @Override
     public DateTime getNextAlarmDate(DateTime executionDate) {
-        return executionDate.plusMinutes(isFirstAlarmDate
-                ? ItemsBuilderData.getTotalOneSleepCycleDurationInMinutes()
-                : ItemsBuilderData.getOneSleepCycleDurationInMinutes()
-        );
+        return executionDate.plusMinutes(ItemsBuilderData.getOneSleepCycleDurationInMinutes());
     }
 
     @Override
@@ -59,14 +50,14 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
     }
 
     private void createNextItemAndAddItToArray() {
-        DateTime executionDateWithRoundedTime = RoundTime.getNearest(executionDate);
+        DateTime executionDatePlusTimeToFallAsleepWithRoundedTime = RoundTime.getNearest(executionDate.plusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes()));
 
         Item item = new Item();
 
-        item.setTitle(ItemContentBuilder.getTitle(executionDateWithRoundedTime));
-        item.setSummary(ItemContentBuilder.getSummary(currentDate, executionDate.minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes())));
+        item.setTitle(ItemContentBuilder.getTitle(executionDatePlusTimeToFallAsleepWithRoundedTime));
+        item.setSummary(ItemContentBuilder.getSummary(currentDate, executionDate));
         item.setCurrentDate(currentDate);
-        item.setExecutionDate(executionDateWithRoundedTime);
+        item.setExecutionDate(executionDatePlusTimeToFallAsleepWithRoundedTime);
 
         items.add(item);
     }

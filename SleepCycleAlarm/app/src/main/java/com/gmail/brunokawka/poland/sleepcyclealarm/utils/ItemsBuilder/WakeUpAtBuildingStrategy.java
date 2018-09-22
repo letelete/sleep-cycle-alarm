@@ -30,7 +30,7 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
 
         for (int itemCounter = 0; itemCounter < maxAmountOfItemsInList; itemCounter++) {
             if (isPossibleToCreateNextItem(currentDate, timeToGoToSleep)) {
-                timeToGoToSleep = getNextAlarmDate(executionDate);
+                timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
                 createNextItemAndAddItToArray();
             } else {
                 Log.d(TAG, "Its not possible to create next item");
@@ -43,7 +43,7 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
 
     @Override
     public DateTime getNextAlarmDate(DateTime executionDate) {
-        return executionDate.minusMinutes(ItemsBuilderData.getTotalOneSleepCycleDurationInMinutes());
+        return executionDate.minusMinutes(ItemsBuilderData.getOneSleepCycleDurationInMinutes());
     }
 
     @Override
@@ -59,16 +59,16 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
     }
 
     private void createNextItemAndAddItToArray() {
-        DateTime dateToGoToSleepWithoutTimeToForAsleep = executionDate.minus(ItemsBuilderData.getTimeForFallAsleepInMinutes());
-        DateTime dateToGoToSleepWithRoundedTime = RoundTime.getNearest(dateToGoToSleepWithoutTimeToForAsleep);
+        int timeForFallAsleepInMinutes = ItemsBuilderData.getTimeForFallAsleepInMinutes();
+        DateTime dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime = RoundTime.getNearest(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
 
         Item item = new Item();
 
-        item.setTitle(ItemContentBuilder.getTitle(dateToGoToSleepWithRoundedTime));
-        item.setSummary(ItemContentBuilder.getSummary(dateToGoToSleepWithoutTimeToForAsleep, executionDate));
-        item.setCurrentDate(dateToGoToSleepWithRoundedTime);
+        item.setTitle(ItemContentBuilder.getTitle(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime));
+        item.setSummary(ItemContentBuilder.getSummary(timeToGoToSleep, executionDate));
+        item.setCurrentDate(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime);
         item.setExecutionDate(executionDate);
 
-        items.add(0, item);
+        items.add(0, item); // every new item's being add at the beginning of array because we want our array to be sorted by hour descending
     }
 }

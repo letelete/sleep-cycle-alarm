@@ -25,7 +25,7 @@ public class getNextAlarmDateTests {
 
     @Test
     public void testIfCanReturnNextAlarmDate() {
-        String nextAlarmDate = "04/02/2011 23:15";
+        String nextAlarmDate = "04/02/2011 23:30";
         String executionDate = "05/02/2011 01:00";
 
         assertEquals(TestsHelper.getDateTimeFromString(nextAlarmDate), itemsBuilder
@@ -34,7 +34,7 @@ public class getNextAlarmDateTests {
 
     @Test
     public void testIfCanReturnNextAlarmDate2() {
-        String nextAlarmDate = "04/02/2011 13:15";
+        String nextAlarmDate = "04/02/2011 13:30";
         String executionDate = "04/02/2011 15:00";
 
         assertEquals(TestsHelper.getDateTimeFromString(nextAlarmDate), itemsBuilder
@@ -43,7 +43,7 @@ public class getNextAlarmDateTests {
 
     @Test
     public void testIfCanReturnNextAlarmDate3() {
-        String nextAlarmDate = "04/02/2011 22:17";
+        String nextAlarmDate = "04/02/2011 22:32";
         String executionDate = "05/02/2011 00:02";
 
         assertEquals(TestsHelper.getDateTimeFromString(nextAlarmDate), itemsBuilder
