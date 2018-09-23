@@ -1,22 +1,28 @@
-language: android
 jdk: oraclejdk8
-sudo: false
-
-android:
-  components:
-    - platform-tools
+language: android
+android: 
+  components: 
     - tools
-    - build-tools-28.0.0
-    - android-21
+    - platform-tools
+    - build-tools-28.0.2
     - android-28
-    - sys-img-armeabi-v7a-android-26
     - extra-android-m2repository
-
+    - extra-android-support
+    - sys-img-armeabi-v7a-android-28
+    - extra-google-google_play_services
+  licenses: 
+    - android-sdk-preview-license-52d11cd2
+    - android-sdk-license-c81a61d9
+    - android-sdk-license-.+
+    - google-gdk-license-.+
 before_script:
-  # Create and start emulator
-  - echo no | android create avd --force -n test -t android-26 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-28 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-
-script: ./SleepCycleAlarm/gradlew connectedAndroidTest
+before_cache: 
+  - "rm -f $HOME/.gradle/caches/modules-2/modules-2.lock"
+before_install: 
+  - "chmod +x ./SleepCycleAlarm/gradlew"
+script: 
+- "./SleepCycleAlarm/gradlew build connectedCheck --stacktrace"
