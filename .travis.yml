@@ -18,4 +18,3 @@ install:
 script:
   - adb devices
   - ./SleepCycleAlarm/gradlew assembleDebug
-  - ./SleepCycleAlarm/gradlew :testDebug
