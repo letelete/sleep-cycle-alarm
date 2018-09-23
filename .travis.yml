@@ -13,6 +13,3 @@ android:
 
 before_install: 
   - "chmod +x ./SleepCycleAlarm/gradlew"
-  
-script: 
-- "./SleepCycleAlarm/gradlew build connectedCheck --stacktrace"
