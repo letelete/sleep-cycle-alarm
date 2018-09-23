@@ -1,20 +1,22 @@
-sudo: false
 language: android
-jdk:
-  - oraclejdk8
-  
-before_install:
-  - chmod +x ./SleepCycleAlarm/gradlew
-  
-install:
-- yes | sdkmanager --verbose "build-tools;26.0.2"
-- yes | sdkmanager --verbose "platform-tools"
-- yes | sdkmanager --verbose "tools"
-- yes | sdkmanager --verbose "platforms;android-28"
-- yes | sdkmanager --verbose "extras;android;m2repository"
+jdk: oraclejdk8
+sudo: false
 
-- yes | sdkmanager --list
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-28.0.0
+    - android-21
+    - android-28
+    - sys-img-armeabi-v7a-android-26
+    - extra-android-m2repository
 
-script:
-  - adb devices
-  - ./SleepCycleAlarm/gradlew assembleDebug
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t android-26 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
+script: ./SleepCycleAlarm/gradlew connectedAndroidTest
