@@ -2,7 +2,10 @@ sudo: false
 language: android
 jdk:
   - oraclejdk8
-
+  
+before_install:
+  - chmod +x ./SleepCycleAlarm/gradlew
+  
 install:
 - yes | sdkmanager --verbose "build-tools;26.0.2"
 - yes | sdkmanager --verbose "platform-tools"
