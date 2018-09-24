@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.SleepCycleTheme" parent="PreferenceFixTheme.DayNight.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> // for settings fragment
+        <item name="android:textColor">@color/color_primary_selector</item>
+        <item name="android:textColorSecondary">@color/color_secondary_selector</item>
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="android:colorControlHighlight">@color/color_ripple_material</item>
+        <item name="android:itemBackground">@color/color_primary_dark</item>
+
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+
+        <item name="colorHighEmphasis">@color/text_high_emphasis</item>
+        <item name="colorMediumEmphasis">@color/text_medium_emphasis</item>
+        <item name="colorDisabled">@color/text_disabled</item>
+        <item name="colorAccentLighter">@color/color_accent_lighter</item>
+        <item name="colorTextOnAccent">@color/text_on_card_info</item>
+        <item name="colorRipple">@color/color_ripple_material</item>
+
+        <item name="headerAppNameText">@style/header_app_name_text</item>
+        <item name="kebabMenuStyle">@style/kebab_menu_style</item>
+        <item name="toolbarStyle">@style/toolbar_style</item>
+
+        <item name="emptyListPlaceHolderStyle">@style/empty_list_placeholder_style</item>
+
+        <item name="titleInfoText">@style/title_info_text</item>
+        <item name="contentInfoText">@style/content_info_text</item>
+        <item name="infoCardStyle">@style/info_card_style</item>
+
+        <item name="listHelperText">@style/list_helper_text</item>
+        <item name="titleInListText">@style/title_in_list_text</item>
+        <item name="subtitleInListText">@style/subtitle_in_list_text</item>
+        <item name="listStyle">@style/list_style</item>
+        <item name="listCardStyle">@style/list_card_style</item>
+
+        <item name="bottomNavigationText">@style/bottom_navigation_text</item>
+
+        <item name="appBackgroundStyle">@style/app_background_style</item>
+
+        <item name="closeActivityButtonStyle">@style/close_activity_button_style</item>
+        <item name="floatingActionButtonStyle">@style/floating_action_button_style</item>
+
+        <item name="colorForIcons">@color/icons_active_unfocused</item>
+        <item name="colorForIconsNegative">@color/icons_active_focused_negative</item>
+        <item name="iconsBackground">@style/icons_background</item>
+        <item name="setAlarmIcon">@style/set_alarm_icon</item>
+        <item name="accessAlarmIcon">@style/access_alarm_icon</item>
+    </style>
+
+</resources>
