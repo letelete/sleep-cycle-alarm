@@ -10,3 +10,6 @@ android:
     - android-28
 
     - sys-img-armeabi-v7a-android-26
+  
+before_install:
+ - chmod +x gradlew
