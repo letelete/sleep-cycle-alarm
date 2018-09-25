@@ -1,5 +1,6 @@
 ![logo](preview/logo/logohorizontal.png)
 
+[![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Platform Support](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Donate](https://img.shields.io/badge/donate-paypal-7289DA.svg)](https://www.paypal.me/BrunoKawka/)
