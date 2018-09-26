@@ -85,6 +85,9 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 Sleep Cycle Alarm is licensed under the [GNU v3 Public License](https://github.com/letelete/Sleep-Cycle-Alarm/blob/master/LICENSE).
 In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fletelete%2FSleep-Cycle-Alarm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fletelete%2FSleep-Cycle-Alarm?ref=badge_large)
+
 #### If you like this project you can share your love by buying me a coffee!
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
-
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fletelete%2FSleep-Cycle-Alarm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fletelete%2FSleep-Cycle-Alarm?ref=badge_shield)
