@@ -1,6 +1,7 @@
 ![logo](preview/logo/logohorizontal.png)
 
 [![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
+[![codecov](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg)](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm)
 ![Files](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm?category=files)
 ![Lines Of Code](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm)
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
