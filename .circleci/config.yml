@@ -29,7 +29,7 @@ jobs:
       - store_test_results:
           path: app/build/test-results
 
-    test_and_report:
+  test_and_report:
     docker:
       - image: circleci/node:latest
     working_directory: ~/circleci-deployment
@@ -46,4 +46,4 @@ jobs:
           path: coverage
           prefix: coverage
       - store_test_results:
-        path: ./coverage/clover.xml
+      path: ./coverage/clover.xml
