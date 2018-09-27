@@ -46,4 +46,4 @@ jobs:
           path: coverage
           prefix: coverage
       - store_test_results:
-      path: ./coverage/clover.xml
+          path: ./coverage/clover.xml
