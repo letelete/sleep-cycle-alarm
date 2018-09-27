@@ -1,7 +1,6 @@
 ![logo](preview/logo/logohorizontal.png)
 
 [![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
-[![codecov](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg)](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm)
 ![Files](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm?category=files)
 ![Lines Of Code](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm)
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
@@ -83,9 +82,9 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 
 #### :books: Licensing
 
-Sleep Cycle Alarm is licensed under the GNU v3 Public License. In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
+Sleep Cycle Alarm is licensed under the [GNU v3 Public License](https://github.com/letelete/Sleep-Cycle-Alarm/blob/master/LICENSE).
+In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
 
 #### If you like this project you can share your love by buying me a coffee!
-
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
 
