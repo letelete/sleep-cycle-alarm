@@ -21,6 +21,9 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
+          name: Run jococoTestReport
+          command: ./gradlew build jacocoTestReport assembleAndroidTest
+      - run:
           name: Run Tests
           command: ./gradlew lint test
       - store_artifacts:
@@ -31,3 +34,6 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: ./coverage/clover.xml
+      - run:
+          name: After Success
+          command: bash <(curl -s https://codecov.io/bash)
