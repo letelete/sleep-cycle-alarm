@@ -23,19 +23,6 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - store_test_results:
-          path: app/build/test-results
-
-  test_and_report:
-    docker:
-      - image: circleci/node:latest
-    working_directory: ~/circleci-deployment
-    steps:
-      - attach_workspace:
-          at: ~/circleci-deployment
       - run: yarn install
       - run: CI=true yarn test:coverage
       - run: yarn reportCoverage
