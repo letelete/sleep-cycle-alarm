@@ -23,9 +23,6 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
-      - run: yarn install
-      - run: CI=true yarn test:coverage
-      - run: yarn reportCoverage
       - store_artifacts:
           path: ./coverage/clover.xml
           prefix: tests
