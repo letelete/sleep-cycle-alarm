@@ -7,8 +7,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - run: |
-          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
@@ -25,9 +23,6 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
-      - run:
-          command: fossa
-          working_directory: $~/
       - store_artifacts:
           path: app/build/reports
           destination: reports
