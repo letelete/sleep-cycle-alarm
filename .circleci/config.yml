@@ -28,3 +28,22 @@ jobs:
           destination: reports
       - store_test_results:
           path: app/build/test-results
+
+  test_and_report:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/circleci-deployment
+    steps:
+      - attach_workspace:
+          at: ~/circleci-deployment
+      - run: yarn install
+      - run: CI=true yarn test:coverage
+      - run: yarn reportCoverage
+      - store_artifacts:
+          path: ./coverage/clover.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: ./coverage/clover.xml
