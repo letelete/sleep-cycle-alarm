@@ -21,24 +21,11 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
+          name: Run jococoTestReport
+          command: ./gradlew build jacocoTestReport assembleAndroidTest
+      - run:
           name: Run Tests
           command: ./gradlew lint test
-      - store_artifacts:
-          path: app/build/reports
-          destination: reports
-      - store_test_results:
-          path: app/build/test-results
-
-  test_and_report:
-    docker:
-      - image: circleci/node:latest
-    working_directory: ~/circleci-deployment
-    steps:
-      - attach_workspace:
-          at: ~/circleci-deployment
-      - run: yarn install
-      - run: CI=true yarn test:coverage
-      - run: yarn reportCoverage
       - store_artifacts:
           path: ./coverage/clover.xml
           prefix: tests
@@ -47,3 +34,6 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: ./coverage/clover.xml
+      - run:
+          name: After Success
+          command: bash <(curl -s https://codecov.io/bash)
