@@ -30,6 +30,9 @@ public class AlarmsFragment extends Fragment
     private static final String TAG = "AlarmsFragmentLog";
 
     private Item item;
+    private AlarmScopeListener alarmScopeListener;
+    static AlarmsPresenter alarmsPresenter;
+    AlertDialog dialog;
 
     @BindView(R.id.alarms_root)
     ViewGroup root;
@@ -41,14 +44,10 @@ public class AlarmsFragment extends Fragment
     CardView listCardView;
 
     @BindView(R.id.alarmsEmptyListPlaceHolder)
-    ImageView emptyListPlaceHolder;
+    View emptyListPlaceHolder;
 
     @BindView(R.id.alarmsInfoCardView)
     CardView infoCard;
-
-    private AlarmScopeListener alarmScopeListener;
-    static AlarmsPresenter alarmsPresenter;
-    AlertDialog dialog;
 
     @Override
     public void onChange(Object o) {

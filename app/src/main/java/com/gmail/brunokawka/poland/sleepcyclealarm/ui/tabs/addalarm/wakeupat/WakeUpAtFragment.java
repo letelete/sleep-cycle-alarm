@@ -49,8 +49,8 @@ public class WakeUpAtFragment extends Fragment
     private ItemsBuilder itemsBuilder;
     private MyAlarmManager myAlarmManager;
     static WakeUpAtPresenter wakeUpAtPresenter;
-    ArrayList<Item> items;
-    AlertDialog dialog;
+    private ArrayList<Item> items;
+    private AlertDialog dialog;
 
     private DateTime lastExecutionDate;
     private DateTime currentDate;
@@ -74,7 +74,7 @@ public class WakeUpAtFragment extends Fragment
     TextView cardInfoSummary;
 
     @BindView(R.id.wakeUpAtEmptyListPlaceHolder)
-    ImageView emptyListPlaceHolder;
+    View emptyListPlaceHolder;
 
     @BindView(R.id.wakeUpAtInfoCardView)
     CardView cardInfo;
