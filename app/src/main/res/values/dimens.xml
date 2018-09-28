@@ -37,4 +37,6 @@
     <dimen name="fabWidth">144dp</dimen>
 
     <dimen name="listCardViewMinHeight">70dp</dimen>
+
+    <dimen name="emptyListHintSize">100dp</dimen>
 </resources>
