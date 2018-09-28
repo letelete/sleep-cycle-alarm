@@ -27,13 +27,10 @@ jobs:
           name: Run Tests
           command: ./gradlew lint test
       - store_artifacts:
-          path: ./coverage/clover.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
+          path: app/build/reports
+          destination: reports
       - store_test_results:
-          path: ./coverage/clover.xml
+          path: app/build/test-results
       - run:
           name: After Success
           command: bash <(curl -s https://codecov.io/bash)
