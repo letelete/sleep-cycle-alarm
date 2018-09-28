@@ -41,12 +41,11 @@ Sleep Cycle Alarm is a material-designed Android app which helps waking up durin
 
 If you wish to contribute to the project, please do the following steps:
 1. Fork a project
-2. Move to develop branch: `git checkout develop`
-3. Create your feature branch: `git checkout -b feature-name`
-4. Add your changes `git add .`
-5. Commit your changes `git commit -m "Commit message"`
-6. Push to the branch: `git push origin feature-name`
-7. Submit a pull request on the [develop branch](https://github.com/letelete/Sleep-Cycle-Alarm/tree/develop)!
+2. Create your feature branch: `git checkout -b feature-name`
+3. Add your changes `git add .`
+4. Commit your changes `git commit -m "Commit message"`
+5. Push to the branch: `git push origin feature-name`
+6. Submit a pull request
 
 ###### Issues
 
