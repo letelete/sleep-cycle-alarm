@@ -9,10 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-// This class uses the following naming convention:
-// Should_ExpectedBehavior_When_StateUnderTest
-
-
 public class MenuPresenterTest {
 
     @Mock
