@@ -75,7 +75,7 @@
 
     <include
         android:id="@+id/AlarmsEmptyListPlaceHolder"
-        layout="@layout/hint_empty_list"
+        layout="@layout/hint_alarms_empty_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
