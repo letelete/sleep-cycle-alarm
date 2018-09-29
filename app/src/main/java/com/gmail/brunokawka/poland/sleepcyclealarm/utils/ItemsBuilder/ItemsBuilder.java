@@ -1,6 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import org.joda.time.DateTime;
 

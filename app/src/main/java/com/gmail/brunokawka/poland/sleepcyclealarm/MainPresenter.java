@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeHelper;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 
 public class MainPresenter implements MainContract.MainPresenter {
@@ -22,7 +22,7 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     @Override
     public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
-        int themeId = ThemeHelper.getCurrentTheme(changeThemeKey, sharedPreferences);
+        int themeId = ThemeCoordinator.getCurrentTheme(changeThemeKey, sharedPreferences);
         view.setAppTheme(themeId);
     }
 

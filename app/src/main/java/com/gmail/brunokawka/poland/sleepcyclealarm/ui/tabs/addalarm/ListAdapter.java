@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -33,7 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
     @Override
     public int getItemCount() {
-        EventBus.getDefault().post(new ItemsAmountChangedEvent(listItems.size()));
+        EventBus.getDefault().post(new AmountOfItemsChangedEvent(listItems.size()));
         return listItems.size();
     }
 
@@ -77,7 +77,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         public void onClick(View view) {
             int position = this.getAdapterPosition();
             Item item = listItems.get(position);
-            EventBus.getDefault().postSticky(new SetAlarmEvent(item));
+            EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
             Log.d(TAG, String.valueOf(position));
         }
     }

@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ChangeVisibility;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -160,32 +160,32 @@ public class AlarmsFragment extends Fragment
 
     @Override
     public void showList() {
-        ChangeVisibility.showIfNotVisible(listCardView);
+        VisibilityHandler.showIfNotVisible(listCardView);
     }
 
     @Override
     public void hideList() {
-        ChangeVisibility.hideIfNotGone(listCardView);
+        VisibilityHandler.hideIfNotGone(listCardView);
     }
 
     @Override
     public void showInfoCard() {
-        ChangeVisibility.showIfNotVisible(infoCard);
+        VisibilityHandler.showIfNotVisible(infoCard);
     }
 
     @Override
     public void hideInfoCard() {
-        ChangeVisibility.hideIfNotGone(infoCard);
+        VisibilityHandler.hideIfNotGone(infoCard);
     }
 
     @Override
     public void showEmptyListHint() {
-        ChangeVisibility.showIfNotVisible(emptyListPlaceHolder);
+        VisibilityHandler.showIfNotVisible(emptyListPlaceHolder);
     }
 
     @Override
     public void hideEmptyListHint() {
-        ChangeVisibility.hideIfNotGone(emptyListPlaceHolder);
+        VisibilityHandler.hideIfNotGone(emptyListPlaceHolder);
     }
 
 

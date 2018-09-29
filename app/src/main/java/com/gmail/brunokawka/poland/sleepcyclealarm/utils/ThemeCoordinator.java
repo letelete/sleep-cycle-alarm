@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
-public class ThemeHelper {
+public class ThemeCoordinator {
 
     private final static String TAG = "ThemeManagerLog";
 

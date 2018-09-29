@@ -2,10 +2,10 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
 
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.RoundTime;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.TimeRounder;
 
 import org.joda.time.DateTime;
 
@@ -50,7 +50,7 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
     }
 
     private void createNextItemAndAddItToArray() {
-        DateTime executionDatePlusTimeToFallAsleepWithRoundedTime = RoundTime.getNearest(executionDate.plusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes()));
+        DateTime executionDatePlusTimeToFallAsleepWithRoundedTime = TimeRounder.getNearest(executionDate.plusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes()));
 
         Item item = new Item();
 

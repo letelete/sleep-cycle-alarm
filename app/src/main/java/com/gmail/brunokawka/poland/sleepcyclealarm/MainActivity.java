@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,11 +57,11 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
-        EventBus.getDefault().post(new WakeUpAtActionButtonClickedEvent());
+        EventBus.getDefault().post(new SetHourButtonClickedEvent());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void wakeUpAtActionButtonClickedEvent(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+    public void wakeUpAtActionButtonClickedEvent(SetHourButtonClickedEvent setHourButtonClickedEvent) {
         Log.d(TAG, "Event received");
     }
 

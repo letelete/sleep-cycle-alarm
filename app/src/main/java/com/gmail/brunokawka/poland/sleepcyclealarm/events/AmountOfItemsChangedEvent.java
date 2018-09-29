@@ -1,11 +1,11 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.events;
 
-public class ItemsAmountChangedEvent {
+public class AmountOfItemsChangedEvent {
     private static final String LOG = "SetAlarmEventLog";
 
     private int itemsAmount;
 
-    public ItemsAmountChangedEvent(int itemsAmount) {
+    public AmountOfItemsChangedEvent(int itemsAmount) {
         this.itemsAmount = itemsAmount;
     }
 

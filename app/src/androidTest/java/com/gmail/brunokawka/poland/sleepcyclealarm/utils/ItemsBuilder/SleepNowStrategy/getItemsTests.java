@@ -1,7 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.SleepNowStrategy;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.TestsHelper;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;

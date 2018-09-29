@@ -4,9 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import io.realm.Realm;
 
@@ -19,7 +19,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     public static final String TAG = "AlarmsPresenterLog";
 
     private AlarmsContract.AlarmsView view;
-    private MyAlarmManager myAlarmManager;
+    private AlarmDAO alarmDAO;
     private boolean isDialogShowing;
 
     private boolean hasView() {
@@ -32,13 +32,13 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         if(isDialogShowing) {
             showAddDialog();
         }
-        myAlarmManager = new MyAlarmManager();
+        alarmDAO = new AlarmDAO();
     }
 
     @Override
     public void unbindView() {
         this.view = null;
-        myAlarmManager.cleanUp();
+        alarmDAO.cleanUp();
     }
 
 
@@ -105,7 +105,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void saveAlarm(AlarmsContract.AlarmsView.DialogContract dialogContract, final Item item) {
         if (hasView()) {
-            myAlarmManager.generateAlarmAndSaveItToRealm(item, dialogContract.getRingtone());
+            alarmDAO.generateAlarmAndSaveItToRealm(item, dialogContract.getRingtone());
         }
     }
 
@@ -116,7 +116,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     @Override
     public void deleteAlarmById(final String id) {
-        myAlarmManager.removeFromRealmById(id);
+        alarmDAO.removeFromRealmById(id);
     }
 
     @Override

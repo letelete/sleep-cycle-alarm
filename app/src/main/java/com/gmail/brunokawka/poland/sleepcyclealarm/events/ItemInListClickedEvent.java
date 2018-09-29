@@ -2,17 +2,17 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.events;
 
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
-public class SetAlarmEvent {
+public class ItemInListClickedEvent {
 
     private static final String LOG = "SetAlarmEventLog";
 
     private Item item;
 
-    public SetAlarmEvent(Item item) {
+    public ItemInListClickedEvent(Item item) {
         this.item = item;
-        Log.d("SetAlarmEvent", item.getTitle());
+        Log.d("ItemInListClickedEvent", item.getTitle());
     }
 
     public Item getItem() {

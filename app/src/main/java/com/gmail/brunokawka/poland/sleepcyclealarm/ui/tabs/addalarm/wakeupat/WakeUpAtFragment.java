@@ -20,16 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemsAmountChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ChangeVisibility;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -46,7 +46,7 @@ public class WakeUpAtFragment extends Fragment
     private static final String TAG = "WakeUpAtFragmentLog";
 
     private ItemsBuilder itemsBuilder;
-    private MyAlarmManager myAlarmManager;
+    private AlarmDAO alarmDAO;
     static WakeUpAtPresenter wakeUpAtPresenter;
     private ArrayList<Item> items;
     private AlertDialog dialog;
@@ -79,24 +79,24 @@ public class WakeUpAtFragment extends Fragment
     CardView cardInfo;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onItemsAmountChangedEvent(ItemsAmountChangedEvent itemsAmountChangedEvent) {
+    public void onItemsAmountChangedEvent(AmountOfItemsChangedEvent amountOfItemsChangedEvent) {
         if (wakeUpAtPresenter != null) {
-            int amount = itemsAmountChangedEvent.getItemsAmount();
+            int amount = amountOfItemsChangedEvent.getItemsAmount();
             wakeUpAtPresenter.showOrHideElementsDependingOnAmountOfListItems(amount, lastExecutionDate);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onWakeUpAtActivityButtonClicked(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+    public void onWakeUpAtActivityButtonClicked(SetHourButtonClickedEvent setHourButtonClickedEvent) {
         if (wakeUpAtPresenter != null) {
             wakeUpAtPresenter.handleFloatingActionButtonClicked();
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
-        if (myAlarmManager != null) {
-            myAlarmManager.generateAlarmAndSaveItToRealm(setAlarmEvent.getItem());
+    public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
+        if (alarmDAO != null) {
+            alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
         }
     }
 
@@ -112,7 +112,7 @@ public class WakeUpAtFragment extends Fragment
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
 
-        myAlarmManager = new MyAlarmManager();
+        alarmDAO = new AlarmDAO();
 
         return view;
     }
@@ -214,34 +214,34 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void showList() {
-        ChangeVisibility.showIfNotVisible(listCardView);
+        VisibilityHandler.showIfNotVisible(listCardView);
     }
 
     @Override
     public void hideList() {
-        ChangeVisibility.hideIfNotGone(listCardView);
+        VisibilityHandler.hideIfNotGone(listCardView);
     }
 
     @Override
     public void showCardInfo() {
-        ChangeVisibility.showIfNotVisible(cardInfo);
+        VisibilityHandler.showIfNotVisible(cardInfo);
     }
 
     @Override
     public void hideCardInfo() {
-        ChangeVisibility.hideIfNotGone(cardInfo);
+        VisibilityHandler.hideIfNotGone(cardInfo);
     }
 
     @Override
     public void showEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        ChangeVisibility.showIfNotVisible(emptyListPlaceHolder);
+        VisibilityHandler.showIfNotVisible(emptyListPlaceHolder);
     }
 
     @Override
     public void hideEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        ChangeVisibility.hideIfNotGone(emptyListPlaceHolder);
+        VisibilityHandler.hideIfNotGone(emptyListPlaceHolder);
     }
 
     @Override
@@ -271,8 +271,8 @@ public class WakeUpAtFragment extends Fragment
             lastExecutionDate = null;
         }
 
-        if (myAlarmManager != null) {
-            myAlarmManager = null;
+        if (alarmDAO != null) {
+            alarmDAO = null;
         }
     }
 }

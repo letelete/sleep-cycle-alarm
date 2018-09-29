@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.data;
+package com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo;
 
 import org.joda.time.DateTime;
 
