@@ -1,6 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
@@ -8,11 +7,10 @@ public class ThemeCoordinator {
 
     private final static String TAG = "ThemeManagerLog";
 
-    public static int getCurrentTheme(String themeKeyString, SharedPreferences sharedPreferences) {
+    public static int getCurrentTheme(String themeId) {
         int currentTheme;
 
-        String selectedThemeOptionId = sharedPreferences.getString(themeKeyString, "1");
-        switch(selectedThemeOptionId) {
+        switch(themeId) {
             case "1":
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
@@ -23,7 +21,7 @@ public class ThemeCoordinator {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
             default:
-                Log.wtf(TAG, "Default case in setAppTheme switch. selectedThemeOptionId = " + selectedThemeOptionId);
+                Log.wtf(TAG, "Default case in setAppTheme switch");
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }
