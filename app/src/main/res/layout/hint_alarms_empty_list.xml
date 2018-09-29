@@ -8,20 +8,21 @@
 
     <ImageView
         android:id="@+id/alarmsEmptyListPlaceHolder"
-        style="?emptyListPlaceHolderStyle"
+        style="?attr/emptyListImageStyle"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:contentDescription="@string/content_descriptions_empty_list_placeholder"
-        android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
 
     <TextView
+        style="?emptyListTitleStyle"
         android:id="@+id/alarmsEmptyListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alarms_empty_list_title" />
 
     <TextView
+        style="?emptyListSummaryStyle"
         android:id="@+id/alarmsEmptyListSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

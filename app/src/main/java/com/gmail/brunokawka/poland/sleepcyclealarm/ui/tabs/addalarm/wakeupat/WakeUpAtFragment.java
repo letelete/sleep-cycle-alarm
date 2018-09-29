@@ -72,7 +72,7 @@ public class WakeUpAtFragment extends Fragment
     @BindView(R.id.wakeUpAtCardInfoSummary)
     TextView cardInfoSummary;
 
-    @BindView(R.id.wakeUpAtEmptyListPlaceHolder)
+    @BindView(R.id.wakeUpAtEmptyListImage)
     View emptyListPlaceHolder;
 
     @BindView(R.id.wakeUpAtInfoCardView)

@@ -24,5 +24,5 @@
 
     <dimen name="listCardViewMinHeight">70dp</dimen>
 
-    <dimen name="emptyListHintSize">100dp</dimen>
+    <dimen name="emptyListHintSize">125dp</dimen>
 </resources>

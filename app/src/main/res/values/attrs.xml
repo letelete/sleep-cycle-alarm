@@ -11,7 +11,9 @@
     <attr name="kebabMenuStyle" format="reference" />
     <attr name="toolbarStyle" format="reference" />
 
-    <attr name="emptyListPlaceHolderStyle" format="reference" />
+    <attr name="emptyListImageStyle" format="reference" />
+    <attr name="emptyListTitleStyle" format="reference" />
+    <attr name="emptyListSummaryStyle" format="reference" />
 
     <attr name="titleInfoText" format="reference" />
     <attr name="contentInfoText" format="reference" />

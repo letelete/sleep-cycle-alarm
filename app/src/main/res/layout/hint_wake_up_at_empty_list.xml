@@ -7,21 +7,22 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/wakeUpAtEmptyListPlaceHolder"
-        style="?emptyListPlaceHolderStyle"
+        android:id="@+id/wakeUpAtEmptyListImage"
+        style="?emptyListImageStyle"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:contentDescription="@string/content_descriptions_empty_list_placeholder"
-        android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_wake_up_at_empty_list" />
 
     <TextView
+        style="?emptyListTitleStyle"
         android:id="@+id/wakeUpAtEmptyListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wake_up_at_empty_list_title" />
 
     <TextView
+        style="?emptyListSummaryStyle"
         android:id="@+id/wakeUpAtEmptyListSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
