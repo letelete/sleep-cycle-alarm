@@ -23,6 +23,15 @@ jobs:
       - run:
           name: Run Coverage reports
           command: ./gradlew build jacocoTestReport
+        # start the emulator
+      - emulator -avd circleci-android25 -no-audio -no-window:
+          background: true
+          parallel: true
+          # wait for it to have booted
+          - circle-android wait-for-boot
+          # unlock the emulator screen
+          - sleep 30
+          - adb shell input keyevent 82
       - run:
           name: Run Instrumentation tests coverage reports
           command: ./gradlew build connectedCheck
