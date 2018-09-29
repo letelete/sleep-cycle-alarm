@@ -2,7 +2,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
 import android.view.View;
 
-public class MyViewManager {
+public class ChangeVisibility {
 
     public static void showIfNotVisible(View view) {
         if (view.getVisibility() != View.VISIBLE) {

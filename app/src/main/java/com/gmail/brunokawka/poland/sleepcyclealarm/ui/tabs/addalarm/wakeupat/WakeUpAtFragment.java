@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +29,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.MyViewManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ChangeVisibility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -215,34 +214,34 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void showList() {
-        MyViewManager.showIfNotVisible(listCardView);
+        ChangeVisibility.showIfNotVisible(listCardView);
     }
 
     @Override
     public void hideList() {
-        MyViewManager.hideIfNotGone(listCardView);
+        ChangeVisibility.hideIfNotGone(listCardView);
     }
 
     @Override
     public void showCardInfo() {
-        MyViewManager.showIfNotVisible(cardInfo);
+        ChangeVisibility.showIfNotVisible(cardInfo);
     }
 
     @Override
     public void hideCardInfo() {
-        MyViewManager.hideIfNotGone(cardInfo);
+        ChangeVisibility.hideIfNotGone(cardInfo);
     }
 
     @Override
     public void showEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        MyViewManager.showIfNotVisible(emptyListPlaceHolder);
+        ChangeVisibility.showIfNotVisible(emptyListPlaceHolder);
     }
 
     @Override
     public void hideEmptyListHint() {
         // TODO: show some fancy image (issue #3) - github.com/letelete/Sleep-Cycle-Alarm/issues/3 (I've created some temporary image for now)
-        MyViewManager.hideIfNotGone(emptyListPlaceHolder);
+        ChangeVisibility.hideIfNotGone(emptyListPlaceHolder);
     }
 
     @Override
