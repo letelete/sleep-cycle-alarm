@@ -3,6 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -223,6 +224,8 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    @SuppressLint("ApplySharedPref")
+    // It has to be .commit(); .apply() doesn't clear preferences on destroy
     private void removeWakeUpAtPreferences() {
         SharedPreferences wakeUpAtPreferences = getSharedPreferences(getString(R.string.wakeupat_preferences_name), MODE_PRIVATE);
         wakeUpAtPreferences.edit().clear().commit();
