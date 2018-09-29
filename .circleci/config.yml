@@ -21,8 +21,11 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run jococoTestReport
-          command: ./gradlew build jacocoTestReport assembleAndroidTest
+          name: Run Coverage reports
+          command: ./gradlew build jacocoTestReport
+      - run:
+          name: Run Instrumentation tests coverage reports
+          command: ./gradlew build connectedCheck
       - run:
           name: Run Tests
           command: ./gradlew lint test
