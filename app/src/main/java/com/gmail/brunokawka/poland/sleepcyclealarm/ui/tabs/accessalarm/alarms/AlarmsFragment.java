@@ -25,7 +25,7 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
 public class AlarmsFragment extends Fragment
-    implements AlarmsContract.AlarmsView, RealmChangeListener{
+    implements AlarmsContract.AlarmsView {
     private static final String TAG = "AlarmsFragmentLog";
 
     private Item item;
@@ -47,17 +47,6 @@ public class AlarmsFragment extends Fragment
 
     @BindView(R.id.alarmsInfoCardView)
     CardView infoCard;
-
-    @Override
-    public void onChange(Object o) {
-        Log.d(TAG, "Realm change event received.");
-        if (alarmsPresenter != null) {
-            Log.d(TAG, "Handling realm change...");
-            alarmsPresenter.handleRealmChange();
-        } else {
-            Log.d(TAG, "Couldn't handle realm change. AlarmsPresenter is null.");
-        }
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -100,7 +89,12 @@ public class AlarmsFragment extends Fragment
     @Override
     public void setUpAdapter() {
         Realm realm = RealmManager.getRealm();
-        realm.addChangeListener(this);
+        realm.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm realm) {
+                onRealmChangeEvent();
+            }
+        });
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
     }
 
@@ -188,7 +182,6 @@ public class AlarmsFragment extends Fragment
         VisibilityHandler.hideIfNotGone(emptyListPlaceHolder);
     }
 
-
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
     }
@@ -202,5 +195,15 @@ public class AlarmsFragment extends Fragment
             dialog.dismiss();
         }
         super.onDestroyView();
+    }
+
+    private void onRealmChangeEvent() {
+        Log.d(TAG, "Realm change event received.");
+        if (alarmsPresenter != null) {
+            Log.d(TAG, "Handling realm change...");
+            alarmsPresenter.handleRealmChange();
+        } else {
+            Log.d(TAG, "Couldn't handle realm change. AlarmsPresenter is null.");
+        }
     }
 }
