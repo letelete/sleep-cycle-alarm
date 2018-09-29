@@ -22,7 +22,7 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     @Override
     public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
-        int themeId = ThemeCoordinator.getCurrentTheme(changeThemeKey, sharedPreferences);
+        int themeId = ThemeCoordinator.getCurrentTheme(sharedPreferences.getString(changeThemeKey, "1"));
         view.setAppTheme(themeId);
     }
 
