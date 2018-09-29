@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm;
+package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,17 +8,18 @@ import android.util.Log;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import java.util.UUID;
 
 import io.realm.Realm;
 
-public class MyAlarmManager {
+public class AlarmDAO {
     private static final String TAG = "AlarmsManagerLog";
 
 
-    public MyAlarmManager() {
+    public AlarmDAO() {
         RealmManager.initializeRealmConfig();
         RealmManager.incrementCount();
     }

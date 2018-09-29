@@ -5,36 +5,24 @@
     <dimen name="medium_margin_size">16dp</dimen>
     <dimen name="large_margin_size">24dp</dimen>
     <dimen name="extra_large_margin_size">32dp</dimen>
-    <dimen name="extra_extra_large_margin_size">48dp</dimen>
-    <dimen name="extra_extra_extra_large_margin_size">64dp</dimen>
 
     <dimen name="elevation_size">3dp</dimen>
     <dimen name="corner_radius_size">7dp</dimen>
 
-    <dimen name="small_text_size">12sp</dimen>
     <dimen name="title">14sp</dimen>
     <dimen name="large_text_size">18sp</dimen>
     <dimen name="extra_large_text_size">20sp</dimen>
-    <dimen name="extra_extra_large_text_size">24sp</dimen>
-    <dimen name="extra_extra_extra_large_text_size">36sp</dimen>
 
     <dimen name="content_padding_info_board">12dp</dimen>
-    <dimen name="divider_height">1dp</dimen>
     <dimen name="iconsSize">24dp</dimen>
     <dimen name="iconsBackgroundSize">36dp</dimen>
     <dimen name="circleButtonsBackgroundSize">48dp</dimen>
-
-    <dimen name="smartTabLayoutHeight">48dp</dimen>
-    <dimen name="smartTabHorizontalPadding">16dp</dimen>
-    <dimen name="smartTabDividerThickness">0dp</dimen>
-    <dimen name="smartTabIndicatorThickness">4dp</dimen>
-    <dimen name="smartTabOverlineThickness">0dp</dimen>
-    <dimen name="smartTabTitleOffset">24dp</dimen>
-    <dimen name="smartTabUnderlineThickness">1dp</dimen>
 
     <dimen name="fabCornerRadius">38dp</dimen>
     <dimen name="fabHeight">38dp</dimen>
     <dimen name="fabWidth">144dp</dimen>
 
     <dimen name="listCardViewMinHeight">70dp</dimen>
+
+    <dimen name="emptyListHintSize">125dp</dimen>
 </resources>

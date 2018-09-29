@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.MyAlarmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetAlarmEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.SleepNowBuildingStrategy;
@@ -29,15 +29,15 @@ public class SleepNowFragment extends Fragment {
     private static final String TAG = "SleepNowFragmentLog";
 
     private ItemsBuilder itemsBuilder;
-    private MyAlarmManager myAlarmManager;
+    private AlarmDAO alarmDAO;
 
     @BindView(R.id.sleepNowFragmentRecycler)
     RecyclerView recycler;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSetAlarmEvent(SetAlarmEvent setAlarmEvent) {
+    public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
         // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
-        myAlarmManager.generateAlarmAndSaveItToRealm(setAlarmEvent.getItem());
+        alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SleepNowFragment extends Fragment {
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
 
-        myAlarmManager = new MyAlarmManager();
+        alarmDAO = new AlarmDAO();
 
         return view;
     }
@@ -86,7 +86,7 @@ public class SleepNowFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        myAlarmManager.cleanUp();
+        alarmDAO.cleanUp();
         super.onDestroyView();
     }
 }

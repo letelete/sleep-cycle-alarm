@@ -2,7 +2,6 @@
 <resources>
 
     <color name="transparent">#00FFFFFF</color>
-    <color name="colorPrimaryThemeDependent">?colorPrimary</color>
     
     <color name="color_primary">#FFFFFF</color>
     <color name="color_primary_dark">#F9FAFC</color>
@@ -17,9 +16,7 @@
 
     <color name="text_on_card_info">#FFFFFF</color>
 
-    <color name="icons_active_focused">#3b79e8</color>
     <color name="icons_active_focused_negative">#DEFFFFFF</color>
     <color name="icons_active_unfocused">#8A000000</color>
-    <color name="icons_inactive">#61000000</color>
 
 </resources>

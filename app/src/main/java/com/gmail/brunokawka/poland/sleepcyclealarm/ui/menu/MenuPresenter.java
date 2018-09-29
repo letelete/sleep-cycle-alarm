@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeHelper;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 public class MenuPresenter implements MenuContract.MenuPresenter {
     private static final String TAG = "MenuPresenterLog";
@@ -32,7 +32,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
 
     @Override
     public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
-        int themeId = ThemeHelper.getCurrentTheme(changeThemeKey, sharedPreferences);
+        int themeId = ThemeCoordinator.getCurrentTheme(changeThemeKey, sharedPreferences);
         view.setAppTheme(themeId);
     }
 

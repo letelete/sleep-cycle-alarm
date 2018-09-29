@@ -1,5 +1,4 @@
 <resources>
-    <string-array name="empty"  translatable="false"/>
 
     <string name="app_name">Sleep Cycle Alarm</string>
 

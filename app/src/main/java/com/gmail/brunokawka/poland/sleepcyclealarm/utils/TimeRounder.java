@@ -2,7 +2,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
 import org.joda.time.DateTime;
 
-public class RoundTime {
+public class TimeRounder {
     public static DateTime getNearest(DateTime dt) {
         if (isRoundToFullHourNeeded(dt)) {
             return dt.hourOfDay().roundHalfFloorCopy();

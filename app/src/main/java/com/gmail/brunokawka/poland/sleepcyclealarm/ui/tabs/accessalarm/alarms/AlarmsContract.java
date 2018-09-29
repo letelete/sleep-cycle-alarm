@@ -1,7 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Alarm.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 public interface AlarmsContract {
     interface AlarmsView {

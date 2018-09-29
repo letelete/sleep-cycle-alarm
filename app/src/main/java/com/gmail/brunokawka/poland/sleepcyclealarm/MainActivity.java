@@ -3,6 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.WakeUpAtActionButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,11 +58,11 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
-        EventBus.getDefault().post(new WakeUpAtActionButtonClickedEvent());
+        EventBus.getDefault().post(new SetHourButtonClickedEvent());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void wakeUpAtActionButtonClickedEvent(WakeUpAtActionButtonClickedEvent wakeUpAtActionButtonClickedEvent) {
+    public void wakeUpAtActionButtonClickedEvent(SetHourButtonClickedEvent setHourButtonClickedEvent) {
         Log.d(TAG, "Event received");
     }
 
@@ -223,6 +224,8 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    @SuppressLint("ApplySharedPref")
+    // It has to be .commit(); .apply() doesn't clear preferences on destroy
     private void removeWakeUpAtPreferences() {
         SharedPreferences wakeUpAtPreferences = getSharedPreferences(getString(R.string.wakeupat_preferences_name), MODE_PRIVATE);
         wakeUpAtPreferences.edit().clear().commit();
