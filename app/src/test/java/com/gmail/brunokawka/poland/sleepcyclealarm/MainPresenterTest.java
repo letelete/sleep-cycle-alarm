@@ -35,7 +35,6 @@ public class MainPresenterTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         presenter = new MainPresenter(view);
     }
 
