@@ -4,7 +4,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ItemsBuilderAbstraction {
     private static final String TAG = "ItemsBuilderLog";
@@ -19,7 +19,7 @@ public abstract class ItemsBuilderAbstraction {
         return this.buildingStrategy;
     }
 
-    abstract ArrayList<Item> getItems(DateTime currentDate, DateTime executionDate);
+    abstract List<Item> getItems(DateTime currentDate, DateTime executionDate);
 
     abstract DateTime getNextAlarmDate(DateTime executionDate);
 
