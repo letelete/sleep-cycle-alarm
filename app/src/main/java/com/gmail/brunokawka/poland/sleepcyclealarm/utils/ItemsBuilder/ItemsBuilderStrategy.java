@@ -4,10 +4,10 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ItemsBuilderStrategy {
-    ArrayList<Item> getArrayOfItems(DateTime currentDate, DateTime executionDate);
+    List<Item> getArrayOfItems(DateTime currentDate, DateTime executionDate);
 
     DateTime getNextAlarmDate(DateTime executionDate);
 

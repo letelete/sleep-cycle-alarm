@@ -36,7 +36,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +48,7 @@ public class WakeUpAtFragment extends Fragment
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;
     static WakeUpAtPresenter wakeUpAtPresenter;
-    private ArrayList<Item> items;
+    private List<Item> items;
     private AlertDialog dialog;
 
     private DateTime lastExecutionDate;

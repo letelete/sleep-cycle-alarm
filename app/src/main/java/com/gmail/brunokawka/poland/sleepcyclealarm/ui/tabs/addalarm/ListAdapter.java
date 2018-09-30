@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +24,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
     private final static String TAG = "ListAdapterLog";
 
-    private ArrayList<Item> listItems;
+    private List<Item> listItems;
     private RecyclerView recycler;
 
     public Item getItem(int position) {
@@ -37,7 +37,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         return listItems.size();
     }
 
-    public ListAdapter(ArrayList<Item> listItems, RecyclerView recycler) {
+    public ListAdapter(List<Item> listItems, RecyclerView recycler) {
         this.listItems = listItems;
         this.recycler = recycler;
     }

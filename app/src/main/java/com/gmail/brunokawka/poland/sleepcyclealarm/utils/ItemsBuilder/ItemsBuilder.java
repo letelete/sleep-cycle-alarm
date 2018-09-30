@@ -4,15 +4,15 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ItemsBuilder extends ItemsBuilderAbstraction {
     private static final String TAG = "ItemsBuilderLog";
 
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     @Override
-    public ArrayList<Item> getItems(DateTime currentDate, DateTime executionDate) {
+    public List<Item> getItems(DateTime currentDate, DateTime executionDate) {
         return getBuildingStrategy().getArrayOfItems(currentDate, executionDate);
     }
 

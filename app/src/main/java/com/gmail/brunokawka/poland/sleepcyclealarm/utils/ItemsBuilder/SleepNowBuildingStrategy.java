@@ -2,27 +2,28 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
 
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.TimeRounder;
 
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
 public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
     private static final String TAG = "SleepNowStrategyLog";
 
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     private DateTime currentDate;
     private DateTime executionDate;
 
     @Override
-    public ArrayList<Item> getArrayOfItems(DateTime currentDate, @Nullable DateTime executionDate) {
+    public List<Item> getArrayOfItems(DateTime currentDate, @Nullable DateTime executionDate) {
         items = new ArrayList<>();
         this.currentDate = currentDate;
         this.executionDate = currentDate;

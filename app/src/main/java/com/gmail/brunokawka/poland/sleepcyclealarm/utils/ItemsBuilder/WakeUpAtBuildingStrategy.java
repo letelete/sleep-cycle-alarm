@@ -11,17 +11,18 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
     private static final String TAG = "WakeUpAtStrategyLog";
 
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     private DateTime executionDate;
     private DateTime timeToGoToSleep;
 
     @Override
-    public ArrayList<Item> getArrayOfItems(DateTime currentDate, DateTime executionDate) {
+    public List<Item> getArrayOfItems(DateTime currentDate, DateTime executionDate) {
         items = new ArrayList<>();
         this.executionDate = executionDate;
         this.timeToGoToSleep = executionDate;
