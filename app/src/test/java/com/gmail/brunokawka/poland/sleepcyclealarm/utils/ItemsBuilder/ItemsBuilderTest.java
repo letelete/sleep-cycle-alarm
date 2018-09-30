@@ -1,12 +1,17 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class ItemsBuilderTest {
@@ -60,5 +65,13 @@ public class ItemsBuilderTest {
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
         assertFalse(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 20:30"), getDateTime("04/02/2011 20:20")));
         assertFalse(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 23:53"), getDateTime("05/02/2011 00:53")));
+    }
+
+    @Test
+    public void testIfCanReturnEmptyListWhenItsNotPossibleToCreateNextItem_For_WakeUpAtBuildingStrategy() {
+        itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
+        List<Item> returnedList = itemsBuilder.getItems(getDateTime("04/02/2011 20:00"), getDateTime("04/02/2011 21:00"));
+        assertTrue(returnedList.isEmpty());
+        assertNotNull(returnedList);
     }
 }
