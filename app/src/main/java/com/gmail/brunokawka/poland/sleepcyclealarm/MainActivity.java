@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "Event received");
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -121,7 +120,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        mainPresenter.handleBottomNavigationTabClick(menuItem);
+        int menuItemId = menuItem.getItemId();
+        mainPresenter.handleBottomNavigationTabClick(menuItemId);
         return true;
     }
 
