@@ -2,19 +2,8 @@
 
     <!-- GLOBAL STYLES -->
 
-    <style name="global_font_light">
-        <item name="android:fontFamily">@font/roboto_light</item>
-    </style>
     <style name="global_font_regular">
         <item name="android:fontFamily">@font/roboto</item>
-    </style>
-
-    <style name="global_font_medium">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-    </style>
-
-    <style name="global_font_bold">
-        <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
     <style name="global_icons_style">
