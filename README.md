@@ -65,40 +65,30 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 
 #### :gem: Features
 
-* Custom alarm management system
-
-* Alarms customatization
-
-* Automatically cleans up used up alarms
-
-* Adds new alarm with only two taps from user
-
-* Shows list of hours to set alarm at to wake up with light sleep cycle
-
-* Shows list of hours to go to sleep at when user wants to wake up at specific hour
-
-* Dark and light theme
-
-* Informs user about sleep duration and quality of specific alarm
-
+  * Custom alarm management system
+  * Alarms customatization
+  * Automatically cleans up used up alarms
+  * Adds new alarm with only two taps from user
+  * Shows list of hours to set alarm at to wake up with light sleep cycle
+  * Shows list of hours to go to sleep at when user wants to wake up at specific hour
+  * Dark and light theme
+  * Informs user about sleep duration and quality of specific alarm
+  
 #### ⭐️ Third-Party Dependencies Used
 
-* [Butterknife](https://github.com/JakeWharton/butterknife)
-
-* [Realm](https://github.com/realm/realm-java)
-
-* [Android-Support-Preference-V7-Fix](https://github.com/Gericop/Android-Support-Preference-V7-Fix)
-
-* [Joda-time](https://github.com/JodaOrg/joda-time)
-
-* [EventBus](https://github.com/greenrobot/EventBus)
+  * [Butterknife](https://github.com/JakeWharton/butterknife)
+  * [Realm](https://github.com/realm/realm-java)
+  * [Android-Support-Preference-V7-Fix]  (https://github.com/Gericop/Android-Support-Preference-V7-Fix)
+  * [Joda-time](https://github.com/JodaOrg/joda-time)
+  * [EventBus](https://github.com/greenrobot/EventBus)
 
 #### :books: Licensing
 
 Sleep Cycle Alarm is licensed under the [GNU v3 Public License](https://github.com/letelete/Sleep-Cycle-Alarm/blob/master/LICENSE).
 In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
 
-#### 👍 If you like this project...
-...you can share your love by buying me a coffee!
+#### 👍 If you like this project
+
+you can share your love by buying me a coffee!
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
