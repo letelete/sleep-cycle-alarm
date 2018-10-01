@@ -10,17 +10,18 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-#      - run:
-#         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-#         command: sudo chmod +x ./gradlew
+          keys:
+              # when lock file changes, use increasingly general patterns to restore cache
+              - gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
+              - gradle-repo-v1-{{ .Branch }}-
+              - gradle-repo-v1-
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
           paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+              - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
       - run:
           name: Run Coverage reports
           command: ./gradlew build jacocoTestReport
@@ -42,9 +43,6 @@ jobs:
       - run:
           name: Run Instrumentation tests coverage reports
           command: ./gradlew build connectedCheck
-      - run:
-          name: Run Tests
-          command: ./gradlew lint test
       - store_artifacts:
           path: app/build/reports
           destination: reports
