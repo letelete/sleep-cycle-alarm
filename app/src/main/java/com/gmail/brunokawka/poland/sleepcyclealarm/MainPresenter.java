@@ -27,27 +27,31 @@ public class MainPresenter implements MainContract.MainPresenter {
     }
 
     @Override
-    public void handleBottomNavigationTabClick(MenuItem menuItem) {
+    public void handleBottomNavigationTabClick(int menuItemId) {
         Fragment fragment = null;
-        int menuId = menuItem.getItemId();
 
-        switch (menuId) {
+        switch (menuItemId) {
             case R.id.action_wakeupat:
                 fragment = new WakeUpAtFragment();
-                view.showWakeUpAtActionButton();
                 break;
             case R.id.action_alarms:
                 fragment = new AlarmsFragment();
-                view.hideWakeUpAtActionButton();
                 break;
             case R.id.action_sleepnow:
             default:
                 fragment = new SleepNowFragment();
-                view.hideWakeUpAtActionButton();
                 break;
         }
-
+        handleWakeUpAtButtonVisibility(menuItemId);
         view.replaceFragment(fragment);
+    }
+
+    private void handleWakeUpAtButtonVisibility(int menuItemId) {
+        if (menuItemId == R.id.action_wakeupat) {
+            view.showWakeUpAtActionButton();
+        } else {
+            view.hideWakeUpAtActionButton();
+        }
     }
 
     @Override
@@ -74,5 +78,4 @@ public class MainPresenter implements MainContract.MainPresenter {
     public void onCountedDown() {
         isAfterFirstPress = false;
     }
-
 }

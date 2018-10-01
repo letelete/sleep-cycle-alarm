@@ -20,7 +20,6 @@ public class MenuPresenterTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
         presenter = new MenuPresenter(view);
     }
 

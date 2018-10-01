@@ -19,7 +19,7 @@ public interface MainContract {
 
     interface MainPresenter {
         void handleSetTheme(String changeThemeKey, SharedPreferences preferences);
-        void handleBottomNavigationTabClick(MenuItem menuItem);
+        void handleBottomNavigationTabClick(int menuItemId);
         void handleMenuItemClick(MenuItem item);
         void handleBackPress();
         void onCountedDown();
