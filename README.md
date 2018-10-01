@@ -1,5 +1,6 @@
 ![logo](preview/logo/logohorizontal.png)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a073c092bc9492e921c1ddafc8ed772)](https://app.codacy.com/app/letelete/Sleep-Cycle-Alarm?utm_source=github.com&utm_medium=referral&utm_content=letelete/Sleep-Cycle-Alarm&utm_campaign=Badge_Grade_Settings)
 [![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
 [![codecov](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg)](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/798f14115cdd49f2a64783fd94552980)](https://www.codacy.com/app/letelete/Sleep-Cycle-Alarm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=letelete/Sleep-Cycle-Alarm&amp;utm_campaign=Badge_Grade)
