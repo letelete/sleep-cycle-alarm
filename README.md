@@ -2,8 +2,11 @@
 
 [![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
 [![codecov](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg)](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm)
+[![CodeFactor](https://www.codefactor.io/repository/github/letelete/sleep-cycle-alarm/badge)](https://www.codefactor.io/repository/github/letelete/sleep-cycle-alarm)
 ![Files](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm?category=files)
 ![Lines Of Code](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm)
+
+
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Platform Support](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![chat](https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat)](https://discord.gg/7Rgg5Zc)
