@@ -6,12 +6,12 @@
 ![Files](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm?category=files)
 ![Lines Of Code](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm)
 
-
 [![Version](https://img.shields.io/badge/version-0.9-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![Platform Support](https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-2ecc71.svg)](https://github.com/letelete/Sleep-Cycle-Alarm)
 [![chat](https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat)](https://discord.gg/7Rgg5Zc)
 
 📌 **IT'S NOT STABLE VERSION YET**
+
 * App is still under heavy development. First stable version will be available on Google Play.
 
 Sleep Cycle Alarm is a material-designed Android app which helps waking up during a light sleep, it also is ad-free and open source under GPLv3 license. It has it's own alarm management system so the user doesn't need to care about removing already used alarms.<br/>
@@ -40,7 +40,7 @@ Sleep Cycle Alarm is a material-designed Android app which helps waking up durin
 
 #### :octocat: Contributing
 
-###### Code 
+##### Code 
 
 If you wish to contribute to the project, please do the following steps:
 1. Fork a project
@@ -50,12 +50,12 @@ If you wish to contribute to the project, please do the following steps:
 5. Push to the branch: `git push origin feature-name`
 6. Submit a pull request
 
-###### Issues
+##### Issues
 
 You can trace the status of known issues [here](https://github.com/letelete/Sleep-Cycle-Alarm/issues),
 also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or join to my [discord](https://discord.gg/7Rgg5Zc) server and send a message on #github text channel if you have any questions.
 
-###### Translations
+##### Translations
 
 We are currently not accepting translations until english version will not reach final form.
 <!-- TODO:
@@ -66,21 +66,31 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 #### :gem: Features
 
 * Custom alarm management system
+
 * Alarms customatization
+
 * Automatically cleans up used up alarms
+
 * Adds new alarm with only two taps from user
+
 * Shows list of hours to set alarm at to wake up with light sleep cycle
-* Shows list of hours to go to sleep at when user wants to wake up at specific hour <!-- TODO: (If duration between current hour and user hour to wake up at is too short to get sleep cycle, app shows the closest possible hour to previously definied by user) (Issue #9) -->
+
+* Shows list of hours to go to sleep at when user wants to wake up at specific hour
+
 * Dark and light theme
+
 * Informs user about sleep duration and quality of specific alarm
-  <!-- * TODO: List sort functions (Issue #1) -->
 
 #### ⭐️ Third-Party Dependencies Used
 
 * [Butterknife](https://github.com/JakeWharton/butterknife)
+
 * [Realm](https://github.com/realm/realm-java)
+
 * [Android-Support-Preference-V7-Fix](https://github.com/Gericop/Android-Support-Preference-V7-Fix)
+
 * [Joda-time](https://github.com/JodaOrg/joda-time)
+
 * [EventBus](https://github.com/greenrobot/EventBus)
 
 #### :books: Licensing
@@ -88,6 +98,7 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 Sleep Cycle Alarm is licensed under the [GNU v3 Public License](https://github.com/letelete/Sleep-Cycle-Alarm/blob/master/LICENSE).
 In addition to the terms set by the GNU v3 Public License, we ask that if you use any code from this repository that you send us a message to let us know.
 
-#### If you like this project you can share your love by buying me a coffee!
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
+#### 👍 If you like this project...
+...you can share your love by buying me a coffee!
 
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
