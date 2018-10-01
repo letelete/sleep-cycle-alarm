@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
