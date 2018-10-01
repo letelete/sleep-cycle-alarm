@@ -1,10 +1,9 @@
 version: 2
 jobs:
-  build:
+  localTests:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-25-alpha
-    paralleism: 4
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -25,6 +24,13 @@ jobs:
       - run:
           name: Run Coverage reports
           command: ./gradlew build jacocoTestReport
+  androidTests:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-25-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
       - run:
           name: Setup emulator
           command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
@@ -43,6 +49,13 @@ jobs:
       - run:
           name: Run Instrumentation tests coverage reports
           command: ./gradlew build connectedCheck
+  storeArtifacts:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-25-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
       - store_artifacts:
           path: app/build/reports
           destination: reports
@@ -51,3 +64,14 @@ jobs:
       - run:
           name: After Success
           command: bash <(curl -s https://codecov.io/bash)
+workflows:
+  version: 2
+
+  my_workflow:
+    jobs:
+      - localTests
+      - androidTests
+      - storeArtifacts:
+        requires:
+          - localTests
+          - androidTests
