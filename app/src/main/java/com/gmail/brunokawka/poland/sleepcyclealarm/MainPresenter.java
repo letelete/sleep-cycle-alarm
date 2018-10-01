@@ -11,7 +11,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 
 public class MainPresenter implements MainContract.MainPresenter {
-    private final static String TAG = "MainPresenterLog";
 
     private MainContract.MainView view;
     private boolean isAfterFirstPress;

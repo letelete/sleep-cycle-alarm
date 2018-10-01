@@ -5,8 +5,6 @@ import android.util.Log;
 
 public class ThemeCoordinator {
 
-    private final static String TAG = "ThemeManagerLog";
-
     public static int getCurrentTheme(String themeId) {
         int currentTheme;
 
@@ -21,7 +19,7 @@ public class ThemeCoordinator {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
             default:
-                Log.wtf(TAG, "Default case in setAppTheme switch");
+                Log.wtf(ThemeCoordinator.class.getName(), "Default case in setAppTheme switch");
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }

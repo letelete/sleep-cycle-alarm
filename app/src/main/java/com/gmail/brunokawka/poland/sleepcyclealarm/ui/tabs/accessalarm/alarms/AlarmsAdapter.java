@@ -57,7 +57,7 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
         public AlarmViewHolder(View itemView) {
             super(itemView);
             this.context = itemView.getContext();
-            this.alarmsPresenter = AlarmsPresenter.getService(context);
+            this.alarmsPresenter = AlarmsPresenter.getService();
             ButterKnife.bind(this, itemView);
         }
 

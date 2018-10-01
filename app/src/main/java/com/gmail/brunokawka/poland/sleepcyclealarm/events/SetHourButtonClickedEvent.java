@@ -4,8 +4,7 @@ import android.util.Log;
 
 public class SetHourButtonClickedEvent {
 
-
     public SetHourButtonClickedEvent() {
-        Log.d(TAG, "WakeUpAt activity button clicked");
+        Log.d(getClass().getName(), "WakeUpAt activity button clicked");
     }
 }

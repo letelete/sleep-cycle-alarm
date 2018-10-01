@@ -10,9 +10,6 @@ import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
 
-
-
-
     private WakeUpAtContract.WakeUpAtView view;
     private boolean isDialogShowing;
     private ItemsBuilder itemsBuilder;
@@ -94,7 +91,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
                 showTheClosestAlarmToDefinedHour(newExecutionDate);
             }
         } else {
-            Log.e(TAG, "executionDate is null");
+            Log.e(getClass().getName(), "executionDate is null");
         }
     }
 
@@ -121,7 +118,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
         if (lastExecutionDate != null) {
             updateCardInfoContent();
         } else {
-            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
+            Log.d(getClass().getName(), "lastExecutionDate is null, couldn't update card info content");
         }
     }
 

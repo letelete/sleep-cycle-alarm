@@ -8,9 +8,6 @@ import java.util.List;
 
 public class ItemsBuilder extends ItemsBuilderAbstraction {
 
-
-    private List<Item> items;
-
     @Override
     public List<Item> getItems(DateTime currentDate, DateTime executionDate) {
         return getBuildingStrategy().getArrayOfItems(currentDate, executionDate);

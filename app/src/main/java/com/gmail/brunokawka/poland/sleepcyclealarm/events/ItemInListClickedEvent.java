@@ -6,13 +6,11 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 public class ItemInListClickedEvent {
 
-    private static final String LOG = "SetAlarmEventLog";
-
     private Item item;
 
     public ItemInListClickedEvent(Item item) {
         this.item = item;
-        Log.d("ItemInListClickedEvent", item.getTitle());
+        Log.d(getClass().getName(), item.getTitle());
     }
 
     public Item getItem() {

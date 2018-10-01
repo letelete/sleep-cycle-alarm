@@ -16,6 +16,6 @@ public class RealmInitialData implements Realm.Transaction {
 
     @Override
     public boolean equals(Object obj) {
-        return obj != null && obj instanceof RealmInitialData;
+        return obj instanceof RealmInitialData;
     }
 }

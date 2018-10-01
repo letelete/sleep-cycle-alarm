@@ -6,7 +6,6 @@ import io.realm.annotations.Required;
 
 public class Alarm extends RealmObject {
 
-
     @PrimaryKey
     @Required
     private String id;

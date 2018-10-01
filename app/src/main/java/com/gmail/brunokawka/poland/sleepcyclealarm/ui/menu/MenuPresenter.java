@@ -11,7 +11,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 public class MenuPresenter implements MenuContract.MenuPresenter {
 
-
     private MenuContract.MenuView view;
 
     private static final int WRONG_KEY_ERROR_CODE = -1;
@@ -42,7 +41,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
             view.setActivityTitle(menuItemTitleValue);
         } else {
             view.setActivityTitle("Activity");
-            Log.e(TAG,"ActivityTitle is empty or null");
+            Log.e(getClass().getName(),"ActivityTitle is empty or null");
         }
     }
 
@@ -50,7 +49,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
     public void performActionDependingOnMenuItemIdKey(Bundle savedInstanceState) {
         switch (menuItemIdValue) {
             case WRONG_KEY_ERROR_CODE:
-                Log.e(TAG, "Default value assigned to the key");
+                Log.e(getClass().getName(), "Default value assigned to the key");
                 view.showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
 
             case R.id.menu_settings:
@@ -61,14 +60,14 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
                 break;
 
             default:
-                Log.e(TAG, "Default case in switch terminated. Key value: " + menuItemIdValue);
+                Log.e(getClass().getName(), "Default case in switch terminated. Key value: " + menuItemIdValue);
                 view.showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
         }
     }
 
     @Override
     public void handleCloseActivityButton() {
-        Log.d(TAG, "User close an activity");
+        Log.d(getClass().getName(), "User close an activity");
         view.closeActivity();
     }
 }

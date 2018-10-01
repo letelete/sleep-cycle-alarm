@@ -15,7 +15,6 @@ import java.util.List;
 
 public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
 
-
     private List<Item> items;
 
     private DateTime executionDate;
@@ -34,7 +33,7 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
                 timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
                 createNextItemAndAddItToArray();
             } else {
-                Log.d(TAG, "Its not possible to create next item");
+                Log.d(getClass().getName(), "Its not possible to create next item");
                 break;
             }
         }

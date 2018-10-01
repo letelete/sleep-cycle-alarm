@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 public class MenuActivity extends AppCompatActivity
     implements MenuContract.MenuView {
 
-
     private MenuPresenter menuPresenter;
 
     private PreferenceFragmentCompat preferenceFragment;

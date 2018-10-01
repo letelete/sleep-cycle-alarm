@@ -16,7 +16,6 @@ import javax.annotation.Nullable;
 
 public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
 
-
     private List<Item> items;
 
     private DateTime currentDate;
@@ -33,7 +32,7 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
                 this.executionDate = getNextAlarmDate(this.executionDate);
                 createNextItemAndAddItToArray();
             } else {
-                Log.e(TAG, "Its not possible to create next item");
+                Log.e(getClass().getName(), "Its not possible to create next item");
             }
         }
 
