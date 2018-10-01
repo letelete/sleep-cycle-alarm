@@ -43,7 +43,7 @@ import butterknife.ButterKnife;
 
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
-    private static final String TAG = "WakeUpAtFragmentLog";
+
 
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;

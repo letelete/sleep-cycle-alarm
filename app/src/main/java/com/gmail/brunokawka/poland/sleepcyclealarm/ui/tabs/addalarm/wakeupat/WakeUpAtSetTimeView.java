@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 
 public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContract.WakeUpAtView.DialogContract {
 
-    private static final String TAG = "ChooseHourViewLog";
+
 
     public WakeUpAtSetTimeView(Context context) {
         super(context);

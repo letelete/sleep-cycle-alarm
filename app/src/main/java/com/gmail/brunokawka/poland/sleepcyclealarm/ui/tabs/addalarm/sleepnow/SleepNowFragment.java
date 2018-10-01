@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SleepNowFragment extends Fragment {
-    private static final String TAG = "SleepNowFragmentLog";
+
 
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
-    private static final String TAG = "WakeUpAtStrategyLog";
+
 
     private List<Item> items;
 

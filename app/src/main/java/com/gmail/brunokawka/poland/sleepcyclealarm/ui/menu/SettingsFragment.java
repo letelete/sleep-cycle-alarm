@@ -12,7 +12,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-    private static final String TAG = "SettingsFragment";
+
     private static boolean isFirstRun;
 
     @Override

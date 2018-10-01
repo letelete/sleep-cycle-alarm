@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity
     implements MenuContract.MenuView {
-    private static final String TAG = "MenuActivityLog";
+
 
     private MenuPresenter menuPresenter;
 

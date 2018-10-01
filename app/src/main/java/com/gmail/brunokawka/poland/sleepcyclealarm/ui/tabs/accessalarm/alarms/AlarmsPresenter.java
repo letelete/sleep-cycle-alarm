@@ -16,7 +16,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         return AlarmsFragment.getAlarmsPresenter();
     }
 
-    public static final String TAG = "AlarmsPresenterLog";
+
 
     private AlarmsContract.AlarmsView view;
     private AlarmDAO alarmDAO;

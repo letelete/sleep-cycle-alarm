@@ -6,10 +6,11 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 public class RealmManager {
-    private static final String TAG = "RealmManagerLog";
+
 
     private static Realm realm;
     private static RealmConfiguration realmConfiguration;
+    private static int activityCount = 0;
 
     public static void initializeRealmConfig() {
         if(realmConfiguration == null) {
@@ -25,8 +26,6 @@ public class RealmManager {
         RealmManager.realmConfiguration = realmConfiguration;
         Realm.setDefaultConfiguration(realmConfiguration);
     }
-
-    private static int activityCount = 0;
 
     public static Realm getRealm() {
         return realm;

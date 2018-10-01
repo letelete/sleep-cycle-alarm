@@ -10,7 +10,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 public class MenuPresenter implements MenuContract.MenuPresenter {
-    private static final String TAG = "MenuPresenterLog";
+
 
     private MenuContract.MenuView view;
 

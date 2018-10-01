@@ -26,7 +26,7 @@ import io.realm.RealmChangeListener;
 
 public class AlarmsFragment extends Fragment
     implements AlarmsContract.AlarmsView {
-    private static final String TAG = "AlarmsFragmentLog";
+
 
     private Item item;
     private AlarmScopeListener alarmScopeListener;

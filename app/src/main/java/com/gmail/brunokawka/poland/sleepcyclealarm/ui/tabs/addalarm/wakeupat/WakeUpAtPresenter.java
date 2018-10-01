@@ -10,7 +10,7 @@ import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
 
-    public static final String TAG = "WakeUpAtPresenterLog";
+
 
 
     private WakeUpAtContract.WakeUpAtView view;

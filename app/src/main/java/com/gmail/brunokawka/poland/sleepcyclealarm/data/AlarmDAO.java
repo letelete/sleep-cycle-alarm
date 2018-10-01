@@ -16,7 +16,7 @@ import java.util.UUID;
 import io.realm.Realm;
 
 public class AlarmDAO {
-    private static final String TAG = "AlarmsManagerLog";
+
 
 
     public AlarmDAO() {

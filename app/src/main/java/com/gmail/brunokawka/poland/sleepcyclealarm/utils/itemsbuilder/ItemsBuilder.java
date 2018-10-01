@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import java.util.List;
 
 public class ItemsBuilder extends ItemsBuilderAbstraction {
-    private static final String TAG = "ItemsBuilderLog";
+
 
     private List<Item> items;
 

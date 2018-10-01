@@ -18,7 +18,7 @@ import io.realm.RealmRecyclerViewAdapter;
 import io.realm.RealmResults;
 
 public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter.AlarmViewHolder> {
-    private static final String TAG = "AlarmsAdapterLog";
+
 
     public AlarmsAdapter(RealmResults<Alarm> alarms) {
         super(alarms, true);
@@ -39,7 +39,7 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
     }
 
     public static class AlarmViewHolder extends RecyclerView.ViewHolder {
-        private static final String TAG = "AlarmViewHolderLog";
+
 
         @BindView(R.id.accessAlarm)
         ConstraintLayout itemLayout;

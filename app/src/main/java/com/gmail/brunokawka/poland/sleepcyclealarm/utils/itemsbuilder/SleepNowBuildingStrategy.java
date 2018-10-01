@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
-    private static final String TAG = "SleepNowStrategyLog";
+
 
     private List<Item> items;
 
