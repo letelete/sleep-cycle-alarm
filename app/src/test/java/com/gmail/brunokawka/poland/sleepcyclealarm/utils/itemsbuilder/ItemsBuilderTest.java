@@ -28,7 +28,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnNextAlarmDate_For_SleepNowStrategy() {
+    public void testIfCanReturnNextAlarmDateForSleepNowStrategy() {
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
 
         assertEquals(getDateTime("05/02/2011 02:30"), itemsBuilder.getNextAlarmDate(getDateTime("05/02/2011 01:00")));
@@ -37,7 +37,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnNextAlarmDate_For_WakeUpAtStrategy() {
+    public void testIfCanReturnNextAlarmDateForWakeUpAtStrategy() {
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
 
         assertEquals(getDateTime("04/02/2011 23:30"), itemsBuilder.getNextAlarmDate(getDateTime("05/02/2011 01:00")));
@@ -46,13 +46,13 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfIsPossibleToCreateNextItem_For_SleepNowStrategy() {
+    public void testIfIsPossibleToCreateNextItemForSleepNowStrategy() {
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
         assertTrue(itemsBuilder.isPossibleToCreateNextItem(getDateTime("05/02/2011 22:32"), getDateTime("05/02/2011 00:02")));
     }
 
     @Test
-    public void testIfIsPossibleToCreateNextItem_For_WakeUpAtBuildingStrategy() {
+    public void testIfIsPossibleToCreateNextItemForWakeUpAtBuildingStrategy() {
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
         assertTrue(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 18:30"), getDateTime("04/02/2011 23:00")));
         assertTrue(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 20:30"), getDateTime("05/02/2011 20:20")));
@@ -61,14 +61,14 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfItsNotPossibleToCreateNextItem_For_WakeUpAtBuildingStrategy() {
+    public void testIfItsNotPossibleToCreateNextItemForWakeUpAtBuildingStrategy() {
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
         assertFalse(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 20:30"), getDateTime("04/02/2011 20:20")));
         assertFalse(itemsBuilder.isPossibleToCreateNextItem(getDateTime("04/02/2011 23:53"), getDateTime("05/02/2011 00:53")));
     }
 
     @Test
-    public void testIfCanReturnEmptyListWhenItsNotPossibleToCreateNextItem_For_WakeUpAtBuildingStrategy() {
+    public void testIfCanReturnEmptyListWhenItsNotPossibleToCreateNextItemForWakeUpAtBuildingStrategy() {
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
         List<Item> returnedList = itemsBuilder.getItems(getDateTime("04/02/2011 20:00"), getDateTime("04/02/2011 21:00"));
         assertTrue(returnedList.isEmpty());

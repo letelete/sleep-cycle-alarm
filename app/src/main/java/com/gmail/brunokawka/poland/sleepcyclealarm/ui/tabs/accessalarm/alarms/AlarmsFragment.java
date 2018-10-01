@@ -29,23 +29,23 @@ public class AlarmsFragment extends Fragment
 
     private Item item;
     private AlarmScopeListener alarmScopeListener;
-    static AlarmsPresenter alarmsPresenter;
-    AlertDialog dialog;
+    private static AlarmsPresenter alarmsPresenter;
+    private AlertDialog dialog;
 
     @BindView(R.id.alarms_root)
-    ViewGroup root;
+    protected ViewGroup root;
 
     @BindView(R.id.alarmsList)
-    RecyclerView recycler;
+    protected RecyclerView recycler;
 
     @BindView(R.id.alarmsListCardView)
-    CardView listCardView;
+    protected CardView listCardView;
 
     @BindView(R.id.alarmsEmptyListPlaceHolder)
-    View emptyListPlaceHolder;
+    protected View emptyListPlaceHolder;
 
     @BindView(R.id.alarmsInfoCardView)
-    CardView infoCard;
+    protected CardView infoCard;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,

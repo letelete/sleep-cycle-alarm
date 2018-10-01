@@ -51,6 +51,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
             case WRONG_KEY_ERROR_CODE:
                 Log.e(getClass().getName(), "Default value assigned to the key");
                 view.showErrorAndFinish(R.string.error_menu_activity_key_use_default_value);
+                break;
 
             case R.id.menu_settings:
                 if(savedInstanceState != null)
@@ -62,6 +63,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
             default:
                 Log.e(getClass().getName(), "Default case in switch terminated. Key value: " + menuItemIdValue);
                 view.showErrorAndFinish(R.string.error_menu_activity_default_case_in_switch);
+                break;
         }
     }
 

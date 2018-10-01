@@ -12,16 +12,16 @@ import io.realm.Realm;
 
 public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
-    static AlarmsPresenter getService() {
-        return AlarmsFragment.getAlarmsPresenter();
-    }
-
     private AlarmsContract.AlarmsView view;
     private AlarmDAO alarmDAO;
     private boolean isDialogShowing;
 
     private boolean hasView() {
         return view != null;
+    }
+
+    protected static AlarmsPresenter getService() {
+        return AlarmsFragment.getAlarmsPresenter();
     }
 
     @Override

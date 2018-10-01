@@ -27,12 +27,11 @@ import butterknife.ButterKnife;
 
 public class SleepNowFragment extends Fragment {
 
-
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;
 
     @BindView(R.id.sleepNowFragmentRecycler)
-    RecyclerView recycler;
+    protected RecyclerView recycler;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {

@@ -15,14 +15,14 @@ public abstract class ItemsBuilderAbstraction {
         this.buildingStrategy = buildingStrategy;
     }
 
-    ItemsBuilderStrategy getBuildingStrategy() {
+    public ItemsBuilderStrategy getBuildingStrategy() {
         return this.buildingStrategy;
     }
 
-    abstract List<Item> getItems(DateTime currentDate, DateTime executionDate);
+    public abstract List<Item> getItems(DateTime currentDate, DateTime executionDate);
 
-    abstract DateTime getNextAlarmDate(DateTime executionDate);
+    public abstract DateTime getNextAlarmDate(DateTime executionDate);
 
-    abstract boolean isPossibleToCreateNextItem(DateTime currentDate, DateTime executionDate);
+    public abstract boolean isPossibleToCreateNextItem(DateTime currentDate, DateTime executionDate);
 
 }

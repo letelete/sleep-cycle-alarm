@@ -27,9 +27,9 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,12 +44,10 @@ import butterknife.ButterKnife;
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
 
-
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;
-    static WakeUpAtPresenter wakeUpAtPresenter;
+    private static WakeUpAtPresenter wakeUpAtPresenter;
     private AlertDialog dialog;
-
     private DateTime lastExecutionDate;
     private DateTime currentDate;
 

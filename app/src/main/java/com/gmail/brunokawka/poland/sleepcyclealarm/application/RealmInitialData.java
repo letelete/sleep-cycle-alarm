@@ -1,12 +1,14 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.application;
 
 
+import android.util.Log;
+
 import io.realm.Realm;
 
 public class RealmInitialData implements Realm.Transaction {
     @Override
     public void execute(Realm realm) {
-
+        Log.d(getClass().getName(), "Execute RealmInitialData");
     }
 
     @Override

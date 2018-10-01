@@ -32,11 +32,9 @@ public class RealmManager {
 
     public static void incrementCount() {
         if(activityCount == 0) {
-            if(realm != null) {
-                if(!realm.isClosed()) {
-                    Log.w(RealmManager.class.getName(), "Unexpected open Realm found.");
-                    realm.close();
-                }
+            if(realm != null && !realm.isClosed()) {
+                Log.w(RealmManager.class.getName(), "Unexpected open Realm found.");
+                realm.close();
             }
             Log.d(RealmManager.class.getName(), "Incrementing Activity Count [0]: opening Realm.");
             realm = Realm.getDefaultInstance();

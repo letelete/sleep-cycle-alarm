@@ -1,6 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ import io.realm.RealmRecyclerViewAdapter;
 import io.realm.RealmResults;
 
 public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter.AlarmViewHolder> {
-
 
     public AlarmsAdapter(RealmResults<Alarm> alarms) {
         super(alarms, true);
@@ -40,23 +38,20 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
 
     public static class AlarmViewHolder extends RecyclerView.ViewHolder {
 
+        private final AlarmsPresenter alarmsPresenter;
 
         @BindView(R.id.accessAlarm)
-        ConstraintLayout itemLayout;
+        protected ConstraintLayout itemLayout;
 
         @BindView(R.id.accessAlarmTitle)
-        TextView textTitle;
+        protected TextView textTitle;
 
         @BindView(R.id.accessAlarmSummary)
-        TextView textSummary;
-
-        final Context context;
-        final AlarmsPresenter alarmsPresenter;
+        protected TextView textSummary;
 
 
         public AlarmViewHolder(View itemView) {
             super(itemView);
-            this.context = itemView.getContext();
             this.alarmsPresenter = AlarmsPresenter.getService();
             ButterKnife.bind(this, itemView);
         }

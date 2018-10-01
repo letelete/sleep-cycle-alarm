@@ -60,10 +60,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         private Item item;
 
         @BindView(R.id.addAlarmTitle)
-        TextView textTitle;
+        protected TextView textTitle;
 
         @BindView(R.id.addAlarmSummary)
-        TextView textSummary;
+        protected TextView textSummary;
 
         ListAdapterHolder(View view) {
             super(view);

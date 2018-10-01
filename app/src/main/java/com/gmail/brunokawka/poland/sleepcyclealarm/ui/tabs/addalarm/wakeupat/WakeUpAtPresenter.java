@@ -82,16 +82,12 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     public void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate) {
         DateTime newExecutionDate = newChosenExecutionDate.getDateTime();
 
-        if (newExecutionDate != null) {
-            if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
-                updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
-                showWakeUpAtElements(newExecutionDate);
-                view.setUpAdapterAndCheckForContentUpdate();
-            } else {
-                showTheClosestAlarmToDefinedHour(newExecutionDate);
-            }
+        if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
+            updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
+            showWakeUpAtElements(newExecutionDate);
+            view.setUpAdapterAndCheckForContentUpdate();
         } else {
-            Log.e(getClass().getName(), "executionDate is null");
+            showTheClosestAlarmToDefinedHour(newExecutionDate);
         }
     }
 
