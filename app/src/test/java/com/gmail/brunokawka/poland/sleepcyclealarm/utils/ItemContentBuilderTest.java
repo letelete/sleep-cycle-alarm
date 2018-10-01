@@ -2,10 +2,9 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ItemContentBuilderTest {
 

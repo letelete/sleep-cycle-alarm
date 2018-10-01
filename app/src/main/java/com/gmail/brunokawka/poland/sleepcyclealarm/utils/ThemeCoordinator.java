@@ -19,7 +19,7 @@ public class ThemeCoordinator {
                 currentTheme = AppCompatDelegate.MODE_NIGHT_YES;
                 break;
             default:
-                Log.wtf(ThemeCoordinator.class.getName(), "Default case in setAppTheme switch");
+                Log.e(ThemeCoordinator.class.getName(), "Default case in setAppTheme switch");
                 currentTheme = AppCompatDelegate.MODE_NIGHT_NO;
                 break;
         }
