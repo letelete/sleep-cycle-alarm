@@ -65,22 +65,22 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 
 #### :gem: Features
 
-  * Custom alarm management system
-  * Alarms customatization
-  * Automatically cleans up used up alarms
-  * Adds new alarm with only two taps from user
-  * Shows list of hours to set alarm at to wake up with light sleep cycle
-  * Shows list of hours to go to sleep at when user wants to wake up at specific hour
-  * Dark and light theme
-  * Informs user about sleep duration and quality of specific alarm
+* Custom alarm management system
+* Alarms customatization
+* Automatically cleans up used up alarms
+* Adds new alarm with only two taps from user
+* Shows list of hours to set alarm at to wake up with light sleep cycle
+* Shows list of hours to go to sleep at when user wants to wake up at specific hour
+* Dark and light theme
+* Informs user about sleep duration and quality of specific alarm
   
 #### ⭐️ Third-Party Dependencies Used
 
-  * [Butterknife](https://github.com/JakeWharton/butterknife)
-  * [Realm](https://github.com/realm/realm-java)
-  * [Android-Support-Preference-V7-Fix]  (https://github.com/Gericop/Android-Support-Preference-V7-Fix)
-  * [Joda-time](https://github.com/JodaOrg/joda-time)
-  * [EventBus](https://github.com/greenrobot/EventBus)
+* [Butterknife](https://github.com/JakeWharton/butterknife)
+* [Realm](https://github.com/realm/realm-java)
+* [Android-Support-Preference-V7-Fix]  (https://github.com/Gericop/Android-Support-Preference-V7-Fix)
+* [Joda-time](https://github.com/JodaOrg/joda-time)
+* [EventBus](https://github.com/greenrobot/EventBus)
 
 #### :books: Licensing
 
