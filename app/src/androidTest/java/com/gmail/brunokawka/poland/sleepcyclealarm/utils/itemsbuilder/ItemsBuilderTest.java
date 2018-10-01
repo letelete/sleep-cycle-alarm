@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
@@ -69,14 +69,14 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnCurrentDates_For_SleepNowBuildingStrategy() {
+    public void testIfCanReturnCurrentDatesForSleepNowBuildingStrategy() {
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
             assertEquals(CURRENT_DATE_FOR_SLEEPNOW_BUILDING_STRATEGY, itemsForSleepNowBuildingStrategy.get(index).getCurrentDate());
         }
     }
 
     @Test
-    public void testIfCanReturnCurrentDates_For_WakeUpAtBuildingStrategy() {
+    public void testIfCanReturnCurrentDatesForWakeUpAtBuildingStrategy() {
         DateTime expected;
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
             expected = getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index));
@@ -85,7 +85,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnExecutionDates_For_SleepNowBuildingStrategy() {
+    public void testIfCanReturnExecutionDatesForSleepNowBuildingStrategy() {
         DateTime expected;
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
             expected = getDateTime(EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.get(index));
@@ -94,14 +94,14 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnExecutionDates_For_WakeUpAtBuildingStrategy() {
+    public void testIfCanReturnExecutionDatesForWakeUpAtBuildingStrategy() {
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
             assertEquals(EXECUTION_DATE_FOR_WAKEUPAT_BUILDING_STRATEGY, itemsForWakeUpAtBuildingStrategy.get(index).getExecutionDate());
         }
     }
 
     @Test
-    public void testIfCanReturnCorrectTitles_For_SleepNowBuildingStrategy() {
+    public void testIfCanReturnCorrectTitlesForSleepNowBuildingStrategy() {
         DateTime executionDate;
         String expected;
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
@@ -113,7 +113,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnCorrectTitles_For_WakeUpAtBuildingStrategy() {
+    public void testIfCanReturnCorrectTitlesForWakeUpAtBuildingStrategy() {
         DateTime expectedDate;
         String expected;
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
@@ -125,7 +125,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnCorrectSummaries_For_SleepNowBuildingStrategy() {
+    public void testIfCanReturnCorrectSummariesForSleepNowBuildingStrategy() {
         DateTime expectedDate;
         String expected;
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
@@ -137,7 +137,7 @@ public class ItemsBuilderTest {
     }
 
     @Test
-    public void testIfCanReturnCorrectSummaries_For_WakeUpAtBuildingStrategy() {
+    public void testIfCanReturnCorrectSummariesForWakeUpAtBuildingStrategy() {
         DateTime expectedDate;
         String expected;
         DateTime executionDateWithoutTimeToFallAsleep;

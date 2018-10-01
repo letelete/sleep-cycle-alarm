@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 
 public class AlarmScopeListener extends Fragment {
-    AlarmsPresenter alarmsPresenter;
+    private AlarmsPresenter alarmsPresenter;
 
     public AlarmScopeListener() {
         setRetainInstance(true);

@@ -1,22 +1,16 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import io.realm.Realm;
 
 public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
-
-    public static AlarmsPresenter getService(Context context) {
-        return AlarmsFragment.getAlarmsPresenter();
-    }
-
-    public static final String TAG = "AlarmsPresenterLog";
 
     private AlarmsContract.AlarmsView view;
     private AlarmDAO alarmDAO;
@@ -24,6 +18,10 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     private boolean hasView() {
         return view != null;
+    }
+
+    protected static AlarmsPresenter getService() {
+        return AlarmsFragment.getAlarmsPresenter();
     }
 
     @Override
@@ -58,11 +56,11 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         view.setUpRecycler();
         if (!isRealmEmpty()) {
             showUiElements();
-            Log.d(TAG, "Realm is NOT empty. Showing UI elements and setting up adapter...");
+            Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
             view.setUpAdapter();
         } else {
             hideUiElements();
-            Log.d(TAG, "Realm is empty. Hiding UI elements...");
+            Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
         }
     }
 
@@ -124,7 +122,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         Realm realm = RealmManager.getRealm();
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 Alarm alarm = realm.where(Alarm.class).equalTo("id", id).findFirst();
                 if(alarm != null) {
                     // TODO: RINGTONE

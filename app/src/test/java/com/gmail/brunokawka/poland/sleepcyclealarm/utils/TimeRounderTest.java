@@ -4,7 +4,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TimeRounderTest {
 
@@ -15,7 +16,7 @@ public class TimeRounderTest {
     @Test
     public void testIfCanRoundToFullHour() {
         assertEquals(getDateTime("01/01/2018 19:00"), TimeRounder.getNearest(getDateTime("01/01/2018 18:58")));
-        assertEquals(getDateTime("01/01/2018 20:00"), TimeRounder.getNearest(getDateTime("01/01/2018 19:59")));;
+        assertEquals(getDateTime("01/01/2018 20:00"), TimeRounder.getNearest(getDateTime("01/01/2018 19:59")));
         assertEquals(getDateTime("01/01/2018 21:00"), TimeRounder.getNearest(getDateTime("01/01/2018 21:01")));
         assertEquals(getDateTime("01/01/2018 22:00"), TimeRounder.getNearest(getDateTime("01/01/2018 22:02")));
         assertEquals(getDateTime("02/01/2018 00:00"), TimeRounder.getNearest(getDateTime("01/01/2018 23:58")));

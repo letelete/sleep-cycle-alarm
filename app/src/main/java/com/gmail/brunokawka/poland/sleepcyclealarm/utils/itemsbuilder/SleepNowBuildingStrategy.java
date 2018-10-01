@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import android.util.Log;
 
@@ -15,7 +15,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
-    private static final String TAG = "SleepNowStrategyLog";
 
     private List<Item> items;
 
@@ -33,7 +32,7 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
                 this.executionDate = getNextAlarmDate(this.executionDate);
                 createNextItemAndAddItToArray();
             } else {
-                Log.e(TAG, "Its not possible to create next item");
+                Log.e(getClass().getName(), "Its not possible to create next item");
             }
         }
 

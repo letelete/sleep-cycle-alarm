@@ -1,7 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
@@ -16,15 +15,12 @@ import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity
     implements MenuContract.MenuView {
-    private static final String TAG = "MenuActivityLog";
 
     private MenuPresenter menuPresenter;
-
     private PreferenceFragmentCompat preferenceFragment;
-    private Fragment fragment;
 
     @BindView(R.id.activityTitleTextView)
-    TextView activityTitle;
+    protected TextView activityTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +71,12 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void findStandardFragment() {
-
+        //TODO:
     }
 
     @Override
     public void openNewStandardFragment() {
-
+        //TODO:
     }
 
     @Override

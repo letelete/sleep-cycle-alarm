@@ -22,12 +22,9 @@ import butterknife.ButterKnife;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHolder> {
 
-    private final static String TAG = "ListAdapterLog";
-
     private List<Item> listItems;
-    private RecyclerView recycler;
 
-    public Item getItem(int position) {
+    private Item getItem(int position) {
         return listItems != null ? listItems.get(position) : null;
     }
 
@@ -39,7 +36,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
     public ListAdapter(List<Item> listItems, RecyclerView recycler) {
         this.listItems = listItems;
-        this.recycler = recycler;
     }
 
     @NonNull
@@ -60,15 +56,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
     public class ListAdapterHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
+
         private Item item;
 
         @BindView(R.id.addAlarmTitle)
-        TextView textTitle;
+        protected TextView textTitle;
 
         @BindView(R.id.addAlarmSummary)
-        TextView textSummary;
+        protected TextView textSummary;
 
-        public ListAdapterHolder(View view) {
+        ListAdapterHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
@@ -78,7 +75,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             int position = this.getAdapterPosition();
             Item item = listItems.get(position);
             EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
-            Log.d(TAG, String.valueOf(position));
+            Log.d(getClass().getName(), String.valueOf(position));
         }
     }
 }

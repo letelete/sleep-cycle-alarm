@@ -1,9 +1,9 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.TimeRounder;
 
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
-    private static final String TAG = "WakeUpAtStrategyLog";
 
     private List<Item> items;
 
@@ -34,7 +33,7 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
                 timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
                 createNextItemAndAddItToArray();
             } else {
-                Log.d(TAG, "Its not possible to create next item");
+                Log.d(getClass().getName(), "Its not possible to create next item");
                 break;
             }
         }

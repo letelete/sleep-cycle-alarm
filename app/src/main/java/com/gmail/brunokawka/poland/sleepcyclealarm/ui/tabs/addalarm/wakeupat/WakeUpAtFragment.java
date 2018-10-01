@@ -27,9 +27,9 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,40 +43,37 @@ import butterknife.ButterKnife;
 
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
-    private static final String TAG = "WakeUpAtFragmentLog";
 
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;
-    static WakeUpAtPresenter wakeUpAtPresenter;
-    private List<Item> items;
+    private static WakeUpAtPresenter wakeUpAtPresenter;
     private AlertDialog dialog;
-
     private DateTime lastExecutionDate;
     private DateTime currentDate;
 
     @BindView(R.id.wakeUpAtRoot)
-    ViewGroup root;
+    protected ViewGroup root;
 
     @BindView(R.id.wakeUpAtListCardView)
-    CardView listCardView;
+    protected CardView listCardView;
 
     @BindView(R.id.wakeUpAtListHelper)
-    TextView listHelper;
+    protected TextView listHelper;
 
     @BindView(R.id.wakeUpAtFragmentRecycler)
-    RecyclerView recycler;
+    protected RecyclerView recycler;
 
     @BindView(R.id.wakeUpAtCardInfoTitle)
-    TextView cardInfoTitle;
+    protected TextView cardInfoTitle;
 
     @BindView(R.id.wakeUpAtCardInfoSummary)
-    TextView cardInfoSummary;
+    protected TextView cardInfoSummary;
 
     @BindView(R.id.wakeUpAtEmptyListImage)
-    View emptyListPlaceHolder;
+    protected View emptyListPlaceHolder;
 
     @BindView(R.id.wakeUpAtInfoCardView)
-    CardView cardInfo;
+    protected CardView cardInfo;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(AmountOfItemsChangedEvent amountOfItemsChangedEvent) {
@@ -174,7 +171,7 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void saveExecutionDateToPreferencesAsString() {
-        Log.d(TAG, "Saving execution date to preferences");
+        Log.d(getClass().getName(), "Saving execution date to preferences");
         SharedPreferences pref = getActivity().getSharedPreferences(getString(R.string.wakeupat_preferences_name), Context.MODE_PRIVATE);
         pref.edit()
                 .putString(getString(R.string.key_last_execution_date), lastExecutionDate.toString())
@@ -208,7 +205,7 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void setUpAdapterAndCheckForContentUpdate() {
-        items = itemsBuilder.getItems(currentDate, lastExecutionDate);
+        List<Item> items = itemsBuilder.getItems(currentDate, lastExecutionDate);
         recycler.setAdapter(new ListAdapter(items, recycler));
     }
 

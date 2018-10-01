@@ -14,6 +14,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -40,21 +41,17 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView.OnNavigationItemSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
-    private final static String TAG = "MainActivityLog";
-
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
 
-    private SharedPreferences sharedPreferences;
-
     @BindView(R.id.toolbar)
-    Toolbar appToolbar;
+    protected Toolbar appToolbar;
 
     @BindView(R.id.bottom_navigation_bar)
-    BottomNavigationView bottomNavigationBar;
+    protected BottomNavigationView bottomNavigationBar;
 
     @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
-    Button wakeUpAtActionButton;
+    protected Button wakeUpAtActionButton;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
@@ -63,12 +60,12 @@ public class MainActivity extends AppCompatActivity
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void wakeUpAtActionButtonClickedEvent(SetHourButtonClickedEvent setHourButtonClickedEvent) {
-        Log.d(TAG, "Event received");
+        Log.d(getClass().getName(), "Event received");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mainPresenter = new MainPresenter(this);
         mainPresenter.handleSetTheme(getString(R.string.key_change_theme), sharedPreferences);
@@ -77,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        fragmentManager = getSupportFragmentManager();
         setUpBottomNavigationBar();
         openLatestFragmentOrDefault(savedInstanceState);
 
@@ -114,8 +112,17 @@ public class MainActivity extends AppCompatActivity
 
     private void setupToolbar() {
         setSupportActionBar(appToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        tryToHideActionBarTitle();
         appToolbar.setOnMenuItemClickListener(this);
+    }
+
+    private void tryToHideActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        } else {
+            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
+        }
     }
 
     @Override
@@ -163,7 +170,7 @@ public class MainActivity extends AppCompatActivity
             });
             animation.start();
         } else {
-            Log.e(TAG, "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
+            Log.e(getClass().getName(), "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
         }
     }
 

@@ -16,8 +16,6 @@ import java.util.UUID;
 import io.realm.Realm;
 
 public class AlarmDAO {
-    private static final String TAG = "AlarmsManagerLog";
-
 
     public AlarmDAO() {
         RealmManager.initializeRealmConfig();
@@ -25,28 +23,28 @@ public class AlarmDAO {
     }
 
     public void generateAlarmAndSaveItToRealm(Item item, String ringtone) {
-        Log.d(TAG, "Generating alarm and saving it to realm... (Base on item and ringtone)");
+        Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item and ringtone)");
         Alarm alarm = getAlarmFromItemAndRingtone(item, ringtone);
         saveToRealm(alarm);
     }
 
     public void generateAlarmAndSaveItToRealm(Item item) {
-        Log.d(TAG, "Generating alarm and saving it to realm... (Base on item only)");
+        Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item only)");
         Alarm alarm = getAlarmFromItem(item);
         saveToRealm(alarm);
     }
 
     public Alarm getAlarmFromItemAndRingtone(Item item, String ringtone) {
-        Log.d(TAG, "Returning alarm from item and ringtone...");
+        Log.d(getClass().getName(), "Returning alarm from item and ringtone...");
         Alarm alarm = getAlarmFromItem(item);
 
-        Log.d(TAG, "Overriding ringtone to given one...");
+        Log.d(getClass().getName(), "Overriding ringtone to given one...");
         alarm.setRingtone(ringtone);
         return alarm;
     }
 
     private Alarm getAlarmFromItem(Item item) {
-        Log.d(TAG, "Getting alarm from item...");
+        Log.d(getClass().getName(), "Getting alarm from item...");
 
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -81,7 +79,7 @@ public class AlarmDAO {
     }
 
     public void saveToRealm(final Alarm alarm) {
-        Log.d(TAG, "Saving to realm...");
+        Log.d(getClass().getName(), "Saving to realm...");
         Realm realm = RealmManager.getRealm();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -93,7 +91,7 @@ public class AlarmDAO {
     }
 
     public void removeFromRealmById(final String id) {
-        Log.d(TAG, "Removing from realm...");
+        Log.d(getClass().getName(), "Removing from realm...");
         Realm realm = RealmManager.getRealm();
 
         realm.executeTransactionAsync(new Realm.Transaction() {

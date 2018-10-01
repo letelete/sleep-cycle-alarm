@@ -12,7 +12,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
-    private static final String TAG = "SettingsFragment";
+
     private static boolean isFirstRun;
 
     @Override
@@ -63,18 +63,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private boolean isRecreateRequired(Preference preference) {
         String key = preference.getKey();
-        Log.d(TAG, isFirstRun ? "Is first run" : "Its not a first run");
+        Log.d(getClass().getName(), isFirstRun ? "Is first run" : "Its not a first run");
         return key.equals(getString(R.string.key_change_theme)) && !isFirstRun;
     }
 
     private void recreateAndShowToastIfActivityNotNull() {
         if (getActivity() != null) {
-            Log.d(TAG, "Recreating...");
+            Log.d(getClass().getName(), "Recreating...");
 
             showInformativeToast();
             getActivity().recreate();
         } else {
-            Log.d(TAG, "Activity is null");
+            Log.d(getClass().getName(), "Activity is null");
         }
     }
 

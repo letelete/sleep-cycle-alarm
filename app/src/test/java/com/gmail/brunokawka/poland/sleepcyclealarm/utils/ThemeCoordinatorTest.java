@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatDelegate;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ThemeCoordinatorTest {
 

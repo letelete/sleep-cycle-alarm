@@ -5,7 +5,6 @@ import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
 public class Alarm extends RealmObject {
-    private static final String TAG = "AlarmLog";
 
     @PrimaryKey
     @Required

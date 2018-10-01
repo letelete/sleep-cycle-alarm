@@ -3,15 +3,12 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.WakeUpAtBuildingStrategy;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
 
 import org.joda.time.DateTime;
 
 public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
-
-    public static final String TAG = "WakeUpAtPresenterLog";
-
 
     private WakeUpAtContract.WakeUpAtView view;
     private boolean isDialogShowing;
@@ -85,16 +82,12 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     public void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate) {
         DateTime newExecutionDate = newChosenExecutionDate.getDateTime();
 
-        if (newExecutionDate != null) {
-            if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
-                updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
-                showWakeUpAtElements(newExecutionDate);
-                view.setUpAdapterAndCheckForContentUpdate();
-            } else {
-                showTheClosestAlarmToDefinedHour(newExecutionDate);
-            }
+        if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
+            updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
+            showWakeUpAtElements(newExecutionDate);
+            view.setUpAdapterAndCheckForContentUpdate();
         } else {
-            Log.e(TAG, "executionDate is null");
+            showTheClosestAlarmToDefinedHour(newExecutionDate);
         }
     }
 
@@ -121,7 +114,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
         if (lastExecutionDate != null) {
             updateCardInfoContent();
         } else {
-            Log.d(TAG, "lastExecutionDate is null, couldn't update card info content");
+            Log.d(getClass().getName(), "lastExecutionDate is null, couldn't update card info content");
         }
     }
 

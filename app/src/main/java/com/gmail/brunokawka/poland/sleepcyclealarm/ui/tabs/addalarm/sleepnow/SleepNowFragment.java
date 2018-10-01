@@ -14,8 +14,8 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.ItemsBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder.SleepNowBuildingStrategy;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.SleepNowBuildingStrategy;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,13 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SleepNowFragment extends Fragment {
-    private static final String TAG = "SleepNowFragmentLog";
 
     private ItemsBuilder itemsBuilder;
     private AlarmDAO alarmDAO;
 
     @BindView(R.id.sleepNowFragmentRecycler)
-    RecyclerView recycler;
+    protected RecyclerView recycler;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {

@@ -16,6 +16,16 @@ import butterknife.OnTextChanged;
 
 public class AlarmsAddAlarmView extends LinearLayout implements AlarmsFragment.DialogContract {
 
+    private String ringtone; // TODO: not sure how ringtone will be passed like so setted up String for entry testing
+
+    @BindView(R.id.ringtone_select)
+    protected EditText textRingtoneSelect;
+
+    @OnTextChanged(R.id.ringtone_select)
+    public void ringtoneChanged(CharSequence ringtone) {
+        this.ringtone = ringtone.toString();
+    }
+
     public AlarmsAddAlarmView(Context context) {
         super(context);
     }
@@ -39,17 +49,6 @@ public class AlarmsAddAlarmView extends LinearLayout implements AlarmsFragment.D
         ButterKnife.bind(this);
     }
 
-    // TODO: not sure how ringtone will be passed like so setted up String for entry testing
-    String ringtone;
-
-    @BindView(R.id.ringtone_select)
-    EditText textRingtoneSelect;
-
-    @OnTextChanged(R.id.ringtone_select)
-    public void ringtoneChanged(CharSequence ringtone) {
-        this.ringtone = ringtone.toString();
-    }
-
     @Override
     public String getRingtone() {
         return ringtone;
@@ -61,6 +60,4 @@ public class AlarmsAddAlarmView extends LinearLayout implements AlarmsFragment.D
         textRingtoneSelect.setText(ringtone);
         this.ringtone = ringtone;
     }
-
-
 }

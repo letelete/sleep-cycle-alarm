@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemsBuilder;
+package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
@@ -7,9 +7,6 @@ import org.joda.time.DateTime;
 import java.util.List;
 
 public class ItemsBuilder extends ItemsBuilderAbstraction {
-    private static final String TAG = "ItemsBuilderLog";
-
-    private List<Item> items;
 
     @Override
     public List<Item> getItems(DateTime currentDate, DateTime executionDate) {

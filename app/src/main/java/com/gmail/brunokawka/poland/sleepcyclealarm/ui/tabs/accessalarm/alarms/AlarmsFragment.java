@@ -26,27 +26,26 @@ import io.realm.RealmChangeListener;
 
 public class AlarmsFragment extends Fragment
     implements AlarmsContract.AlarmsView {
-    private static final String TAG = "AlarmsFragmentLog";
 
     private Item item;
     private AlarmScopeListener alarmScopeListener;
-    static AlarmsPresenter alarmsPresenter;
-    AlertDialog dialog;
+    private static AlarmsPresenter alarmsPresenter;
+    private AlertDialog dialog;
 
     @BindView(R.id.alarms_root)
-    ViewGroup root;
+    protected ViewGroup root;
 
     @BindView(R.id.alarmsList)
-    RecyclerView recycler;
+    protected RecyclerView recycler;
 
     @BindView(R.id.alarmsListCardView)
-    CardView listCardView;
+    protected CardView listCardView;
 
     @BindView(R.id.alarmsEmptyListPlaceHolder)
-    View emptyListPlaceHolder;
+    protected View emptyListPlaceHolder;
 
     @BindView(R.id.alarmsInfoCardView)
-    CardView infoCard;
+    protected CardView infoCard;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -198,12 +197,12 @@ public class AlarmsFragment extends Fragment
     }
 
     private void onRealmChangeEvent() {
-        Log.d(TAG, "Realm change event received.");
+        Log.d(getClass().getName(), "Realm change event received.");
         if (alarmsPresenter != null) {
-            Log.d(TAG, "Handling realm change...");
+            Log.d(getClass().getName(), "Handling realm change...");
             alarmsPresenter.handleRealmChange();
         } else {
-            Log.d(TAG, "Couldn't handle realm change. AlarmsPresenter is null.");
+            Log.d(getClass().getName(), "Couldn't handle realm change. AlarmsPresenter is null.");
         }
     }
 }

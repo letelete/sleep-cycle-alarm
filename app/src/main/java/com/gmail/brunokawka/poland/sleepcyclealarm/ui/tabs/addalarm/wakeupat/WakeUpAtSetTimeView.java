@@ -16,7 +16,10 @@ import butterknife.ButterKnife;
 
 public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContract.WakeUpAtView.DialogContract {
 
-    private static final String TAG = "ChooseHourViewLog";
+    private DateTime dateTime;
+
+    @BindView(R.id.dateTimeSelect)
+    protected TimePicker timePicker;
 
     public WakeUpAtSetTimeView(Context context) {
         super(context);
@@ -34,11 +37,6 @@ public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContrac
     public WakeUpAtSetTimeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
-
-    DateTime dateTime;
-
-    @BindView(R.id.dateTimeSelect)
-    TimePicker timePicker;
 
     @Override
     protected void onFinishInflate() {

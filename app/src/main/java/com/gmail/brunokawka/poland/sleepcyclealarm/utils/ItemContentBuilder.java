@@ -10,7 +10,7 @@ import org.joda.time.Period;
 
 public class ItemContentBuilder {
 
-    private static final String TAG = "ItemContentBuilderLog";
+
 
     private static String getString(int resourceId) {
         Context ctx = CustomApp.getContext();
