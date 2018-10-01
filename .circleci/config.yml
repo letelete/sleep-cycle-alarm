@@ -1,6 +1,7 @@
 version: 2
+
 jobs:
-  localTests:
+  "local_tests":
     working_directory: ~/code
     docker:
       - image: circleci/android:api-25-alpha
@@ -10,27 +11,36 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-              # when lock file changes, use increasingly general patterns to restore cache
               - gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
               - gradle-repo-v1-{{ .Branch }}-
               - gradle-repo-v1-
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+      - run:
+          name: Run Coverage reports
+          command: ./gradlew build jacocoTestReport
       - save_cache:
           paths:
               - ~/.gradle
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
-      - run:
-          name: Run Coverage reports
-          command: ./gradlew build jacocoTestReport
-  androidTests:
+
+  "android_tests":
     working_directory: ~/code
     docker:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+              - gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
+              - gradle-repo-v1-{{ .Branch }}-
+              - gradle-repo-v1-
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
       - run:
           name: Setup emulator
           command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
@@ -49,13 +59,24 @@ jobs:
       - run:
           name: Run Instrumentation tests coverage reports
           command: ./gradlew build connectedCheck
-  storeArtifacts:
+      - save_cache:
+          paths:
+              - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
+
+  "store_artifacts":
     working_directory: ~/code
     docker:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
+      - checkout
+      - restore_cache:
+        keys:
+            - gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
+            - gradle-repo-v1-{{ .Branch }}-
+            - gradle-repo-v1-
       - store_artifacts:
           path: app/build/reports
           destination: reports
@@ -64,14 +85,18 @@ jobs:
       - run:
           name: After Success
           command: bash <(curl -s https://codecov.io/bash)
+      - save_cache:
+          paths:
+              - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "dependencies.lockfile" }}
+
 workflows:
   version: 2
-
-  my_workflow:
+  build:
     jobs:
-      - localTests
-      - androidTests
-      - storeArtifacts:
-        requires:
-          - localTests
-          - androidTests
+      - "local_tests"
+      - "android_tests"
+      - "store_artifacts":
+          requires:
+            - "local_tests"
+            - "android_tests"
