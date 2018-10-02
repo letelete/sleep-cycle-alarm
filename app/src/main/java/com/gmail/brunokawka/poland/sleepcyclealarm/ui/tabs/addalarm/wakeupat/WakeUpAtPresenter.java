@@ -92,7 +92,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     }
 
     private void updateLastExecutionDateAndSaveItToPreferencesIfPossible(DateTime lastExecutionDate, DateTime newExecutionDate) {
-        if (newExecutionDate != lastExecutionDate) {
+        if (!newExecutionDate.equals(lastExecutionDate)) {
             view.setLastExecutionDate(newExecutionDate);
             view.saveExecutionDateToPreferencesAsString();
         }
