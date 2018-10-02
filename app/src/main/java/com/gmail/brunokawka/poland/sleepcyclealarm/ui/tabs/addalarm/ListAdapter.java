@@ -34,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         return listItems.size();
     }
 
-    public ListAdapter(List<Item> listItems, RecyclerView recycler) {
+    public ListAdapter(List<Item> listItems) {
         this.listItems = listItems;
     }
 

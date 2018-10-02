@@ -206,7 +206,7 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void setUpAdapterAndCheckForContentUpdate() {
         List<Item> items = itemsBuilder.getItems(currentDate, lastExecutionDate);
-        recycler.setAdapter(new ListAdapter(items, recycler));
+        recycler.setAdapter(new ListAdapter(items));
     }
 
     @Override
