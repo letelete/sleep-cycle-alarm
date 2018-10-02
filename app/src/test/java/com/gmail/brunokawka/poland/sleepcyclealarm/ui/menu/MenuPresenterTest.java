@@ -23,7 +23,7 @@ public class MenuPresenterTest {
     }
 
     @Test
-    public void Should_closeActivity_When_ButtonPressed() {
+    public void testIfCanCloseAnActivityWhenButtonClicked() {
         presenter.handleCloseActivityButton();
         Mockito.verify(view).closeActivity();
     }
