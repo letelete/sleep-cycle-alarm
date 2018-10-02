@@ -64,7 +64,7 @@ public class SleepNowFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setItemAnimator(new DefaultItemAnimator());
 
-        recycler.setAdapter(new ListAdapter(itemsBuilder.getItems(getCurrentDateTime(), null), recycler));
+        recycler.setAdapter(new ListAdapter(itemsBuilder.getItems(getCurrentDateTime(), null)));
     }
 
     private DateTime getCurrentDateTime() {
