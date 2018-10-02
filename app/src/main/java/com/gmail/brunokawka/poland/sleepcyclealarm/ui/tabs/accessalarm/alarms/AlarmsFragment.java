@@ -78,7 +78,6 @@ public class AlarmsFragment extends Fragment
 
     @Override
     public void setUpRecycler() {
-        recycler.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler.setLayoutManager(layoutManager);
