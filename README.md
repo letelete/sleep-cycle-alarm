@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master.svg?style=svg)](https://circleci.com/gh/letelete/Sleep-Cycle-Alarm/tree/master)
 [![codecov](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg)](https://codecov.io/gh/letelete/Sleep-Cycle-Alarm)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/798f14115cdd49f2a64783fd94552980)](https://www.codacy.com/app/letelete/Sleep-Cycle-Alarm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=letelete/Sleep-Cycle-Alarm&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/33b08e7d256b4b348513f083d2586b76)](https://www.codacy.com/app/letelete/Sleep-Cycle-Alarm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=letelete/Sleep-Cycle-Alarm&amp;utm_campaign=Badge_Grade)
 ![Files](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm?category=files)
 ![Lines Of Code](https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm)
 
