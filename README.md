@@ -78,7 +78,7 @@ The project uses [Lokalise](https://lokalise.co/URL_TO_PROJECT), a platform that
 
 * [Butterknife](https://github.com/JakeWharton/butterknife)
 * [Realm](https://github.com/realm/realm-java)
-* [Android-Support-Preference-V7-Fix]  (https://github.com/Gericop/Android-Support-Preference-V7-Fix)
+* [Android-Support-Preference-V7-Fix](https://github.com/Gericop/Android-Support-Preference-V7-Fix)
 * [Joda-time](https://github.com/JodaOrg/joda-time)
 * [EventBus](https://github.com/greenrobot/EventBus)
 
