@@ -51,6 +51,8 @@
         <item name="iconsBackground">@style/icons_background</item>
         <item name="setAlarmIcon">@style/set_alarm_icon</item>
         <item name="accessAlarmIcon">@style/access_alarm_icon</item>
+
+        <item name="alertDialogTheme">@style/alert_dialog_style</item>git
     </style>
 
 </resources>
