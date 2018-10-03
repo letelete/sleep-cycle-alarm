@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
     protected Button wakeUpAtActionButton;
 
+    private ObjectAnimator mWakeUpAtActionButtonAnimation;
+
+    private int mWakeUpAtActionButtonVisibilityAfterStartedAnimation = View.GONE;
+
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
         EventBus.getDefault().post(new SetHourButtonClickedEvent());
@@ -150,11 +154,19 @@ public class MainActivity extends AppCompatActivity
         animateWakeUpAtButton(View.GONE, -150f, 200f);
     }
 
+
+
     private void animateWakeUpAtButton(final int finalViewType, final float startPositionY, final float endPositionY) {
-        if (wakeUpAtActionButton.getVisibility() != finalViewType) {
-            ObjectAnimator animation = ObjectAnimator.ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
-            animation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
-            animation.addListener(new AnimatorListenerAdapter() {
+
+        if (mWakeUpAtActionButtonVisibilityAfterStartedAnimation != finalViewType) {
+            if (mWakeUpAtActionButtonAnimation !=null && mWakeUpAtActionButtonAnimation.isRunning()){
+                mWakeUpAtActionButtonAnimation.cancel();
+            }
+            mWakeUpAtActionButtonVisibilityAfterStartedAnimation = finalViewType;
+            mWakeUpAtActionButtonAnimation = ObjectAnimator
+                    .ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
+            mWakeUpAtActionButtonAnimation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
+            mWakeUpAtActionButtonAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     if (finalViewType != View.VISIBLE) {
@@ -168,7 +180,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             });
-            animation.start();
+            mWakeUpAtActionButtonAnimation.start();
         } else {
             Log.e(getClass().getName(), "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
         }
