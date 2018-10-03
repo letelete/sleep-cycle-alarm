@@ -15,6 +15,11 @@
         <item name="android:layout_marginBottom">@dimen/normal_margin_size</item>
     </style>
 
+    <style name="alert_dialog_style" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:background">@color/color_primary_dark</item>
+    </style>
+
     <!-- ATTRIBUTE STYLES -->
 
     <style name="header_app_name_text">
