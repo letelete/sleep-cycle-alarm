@@ -22,6 +22,14 @@ jobs:
       - run:
           name: Run Coverage reports
           command: ./gradlew build jacocoTestReport
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+      - run:
+          name: After Success
+          command: bash <(curl -s https://codecov.io/bash)
 
   "android_tests":
     working_directory: ~/code
@@ -58,31 +66,12 @@ jobs:
             adb shell input keyevent 82
       - run:
           name: Run Instrumentation tests coverage reports
-          command: ./gradlew build connectedCheck
-
-  "store_artifacts":
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-25-alpha
-    parallelism: 4
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          command: ./gradlew build connectedAndroidTest -PdisablePreDex
       - store_artifacts:
           path: app/build/reports
           destination: reports
       - store_test_results:
-          path: app/build/test-results
+          path: app/build/androidTest-results
       - run:
           name: After Success
           command: bash <(curl -s https://codecov.io/bash)
@@ -93,7 +82,3 @@ workflows:
     jobs:
       - "local_tests"
       - "android_tests"
-      - "store_artifacts":
-          requires:
-            - "local_tests"
-            - "android_tests"
