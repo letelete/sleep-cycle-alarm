@@ -1,6 +1,9 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,10 +75,30 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         }
 
         public void onClick(View view) {
-            int position = this.getAdapterPosition();
-            Item item = listItems.get(position);
+            final int position = this.getAdapterPosition();
+            showAlertDialogForAddAlarmAction(view.getContext(), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    addAlarm();
+                    Log.d(getClass().getName(), String.valueOf(position));
+                }
+            });
+
+        }
+
+        private void addAlarm() {
             EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
-            Log.d(getClass().getName(), String.valueOf(position));
+
+        }
+
+        private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(R.string.add_alarm_dialog_title)
+                    .setMessage(context.getString(R.string.add_alarm_dialog_message, item.getTitle()))
+                    .setPositiveButton(context.getString(R.string.yes), onClickListener)
+                    .setNegativeButton(context.getString(R.string.no), null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }
