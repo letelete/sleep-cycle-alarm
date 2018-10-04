@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity
     protected BottomNavigationView bottomNavigationBar;
 
     @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
-    protected Button wakeUpAtActionButton;
+    protected Button wakeUpAtButton;
 
-    private ObjectAnimator mWakeUpAtActionButtonAnimation;
+    private ObjectAnimator wakeUpAtButtonAnimator;
 
-    private int mWakeUpAtActionButtonVisibilityAfterStartedAnimation = View.GONE;
+    private int wakeUpAtButtonVisibilityAfterStartedAnimation = View.GONE;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
@@ -154,35 +154,36 @@ public class MainActivity extends AppCompatActivity
         animateWakeUpAtButton(View.GONE, -150f, 200f);
     }
 
+    private void animateWakeUpAtButton(final int finalViewId, final float startPosY, final float endPosY) {
+        if (wakeUpAtButtonVisibilityAfterStartedAnimation != finalViewId) {
+            cancelAnimationIfNeeded();
 
-
-    private void animateWakeUpAtButton(final int finalViewType, final float startPositionY, final float endPositionY) {
-
-        if (mWakeUpAtActionButtonVisibilityAfterStartedAnimation != finalViewType) {
-            if (mWakeUpAtActionButtonAnimation !=null && mWakeUpAtActionButtonAnimation.isRunning()){
-                mWakeUpAtActionButtonAnimation.cancel();
-            }
-            mWakeUpAtActionButtonVisibilityAfterStartedAnimation = finalViewType;
-            mWakeUpAtActionButtonAnimation = ObjectAnimator
-                    .ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
-            mWakeUpAtActionButtonAnimation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
-            mWakeUpAtActionButtonAnimation.addListener(new AnimatorListenerAdapter() {
+            wakeUpAtButtonVisibilityAfterStartedAnimation = finalViewId;
+            wakeUpAtButtonAnimator = ObjectAnimator.ofFloat(wakeUpAtButton, "translationY", startPosY, endPosY);
+            wakeUpAtButtonAnimator.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
+            wakeUpAtButtonAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    if (finalViewType != View.VISIBLE) {
-                        wakeUpAtActionButton.setVisibility(View.GONE);
+                    if (finalViewId != View.VISIBLE) {
+                        wakeUpAtButton.setVisibility(View.GONE);
                     }
                 }
                 @Override
                 public void onAnimationStart(Animator animation) {
-                    if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
-                        wakeUpAtActionButton.setVisibility(View.VISIBLE);
+                    if (wakeUpAtButton.getVisibility() != View.VISIBLE) {
+                        wakeUpAtButton.setVisibility(View.VISIBLE);
                     }
                 }
             });
-            mWakeUpAtActionButtonAnimation.start();
+            wakeUpAtButtonAnimator.start();
         } else {
-            Log.e(getClass().getName(), "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
+            Log.e(getClass().getName(), "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewId != View.VISIBLE ? "GONE" : "VISIBLE"));
+        }
+    }
+
+    private void cancelAnimationIfNeeded() {
+        if (wakeUpAtButtonAnimator !=null && wakeUpAtButtonAnimator.isRunning()){
+            wakeUpAtButtonAnimator.cancel();
         }
     }
 
