@@ -12,8 +12,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 
 public class ItemsBuilderTest {
     private ItemsBuilder itemsBuilder;
@@ -114,13 +116,11 @@ public class ItemsBuilderTest {
 
     @Test
     public void testIfCanReturnCorrectTitlesForWakeUpAtBuildingStrategy() {
-        DateTime expectedDate;
         String expected;
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
-            expectedDate = getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index));
-            expected = ItemContentBuilder.getTitle(expectedDate);
-
-            assertEquals(expected, itemsForWakeUpAtBuildingStrategy.get(index).getTitle());
+            expected = ItemContentBuilder.getTitleForWakeUpAt(getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index)),
+                    EXECUTION_DATE_FOR_WAKEUPAT_BUILDING_STRATEGY);
+            assertThat(expected, is(itemsForWakeUpAtBuildingStrategy.get(index).getTitle()));
         }
     }
 

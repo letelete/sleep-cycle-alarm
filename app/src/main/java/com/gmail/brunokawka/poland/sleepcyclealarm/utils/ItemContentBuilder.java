@@ -10,8 +10,6 @@ import org.joda.time.Period;
 
 public class ItemContentBuilder {
 
-
-
     private static String getString(int resourceId) {
         Context ctx = CustomApp.getContext();
         return ctx.getString(resourceId);
@@ -19,6 +17,13 @@ public class ItemContentBuilder {
 
     public static String getTitle(DateTime executionDate) {
         return getFormattedTime(executionDate);
+    }
+
+    public static String getTitleForWakeUpAt(DateTime timeToGoToSleep, DateTime executionDate) {
+        return new StringBuilder().append(getFormattedTime(timeToGoToSleep))
+                .append(" -> ")
+                .append(getFormattedTime(executionDate))
+                .toString();
     }
 
     public static String getSummary(DateTime currentDate, DateTime executionDate) {
