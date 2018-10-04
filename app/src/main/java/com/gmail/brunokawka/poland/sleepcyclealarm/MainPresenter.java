@@ -27,7 +27,7 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     @Override
     public void handleBottomNavigationTabClick(int menuItemId) {
-        Fragment fragment = null;
+        Fragment fragment;
 
         switch (menuItemId) {
             case R.id.action_wakeupat:
@@ -46,11 +46,15 @@ public class MainPresenter implements MainContract.MainPresenter {
     }
 
     private void handleWakeUpAtButtonVisibility(int menuItemId) {
-        if (menuItemId == R.id.action_wakeupat) {
+        if (isWakeUpAtTabOpen(menuItemId)) {
             view.showWakeUpAtActionButton();
         } else {
             view.hideWakeUpAtActionButton();
         }
+    }
+
+    private boolean isWakeUpAtTabOpen(int menuItemId) {
+        return menuItemId == R.id.action_wakeupat;
     }
 
     @Override

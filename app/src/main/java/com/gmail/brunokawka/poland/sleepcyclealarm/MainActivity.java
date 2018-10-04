@@ -1,8 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,11 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,6 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
+    private WakeUpAtSetHourButton wakeUpAtSetHourButton;
 
     @BindView(R.id.toolbar)
     protected Toolbar appToolbar;
@@ -51,11 +49,7 @@ public class MainActivity extends AppCompatActivity
     protected BottomNavigationView bottomNavigationBar;
 
     @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
-    protected Button wakeUpAtActionButton;
-
-    private ObjectAnimator mWakeUpAtActionButtonAnimation;
-
-    private int mWakeUpAtActionButtonVisibilityAfterStartedAnimation = View.GONE;
+    protected Button wakeUpAtButton;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
@@ -70,7 +64,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         mainPresenter = new MainPresenter(this);
         mainPresenter.handleSetTheme(getString(R.string.key_change_theme), sharedPreferences);
 
@@ -78,10 +71,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         setUpBottomNavigationBar();
         openLatestFragmentOrDefault(savedInstanceState);
-
         setupToolbar();
     }
 
@@ -146,44 +139,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void showWakeUpAtActionButton() {
-        animateWakeUpAtButton(View.VISIBLE, 200f, -150f);
+        wakeUpAtSetHourButton.show();
     }
 
     @Override
     public void hideWakeUpAtActionButton() {
-        animateWakeUpAtButton(View.GONE, -150f, 200f);
-    }
-
-
-
-    private void animateWakeUpAtButton(final int finalViewType, final float startPositionY, final float endPositionY) {
-
-        if (mWakeUpAtActionButtonVisibilityAfterStartedAnimation != finalViewType) {
-            if (mWakeUpAtActionButtonAnimation !=null && mWakeUpAtActionButtonAnimation.isRunning()){
-                mWakeUpAtActionButtonAnimation.cancel();
-            }
-            mWakeUpAtActionButtonVisibilityAfterStartedAnimation = finalViewType;
-            mWakeUpAtActionButtonAnimation = ObjectAnimator
-                    .ofFloat(wakeUpAtActionButton, "translationY", startPositionY, endPositionY);
-            mWakeUpAtActionButtonAnimation.setDuration(getResources().getInteger(android.R.integer.config_mediumAnimTime));
-            mWakeUpAtActionButtonAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    if (finalViewType != View.VISIBLE) {
-                        wakeUpAtActionButton.setVisibility(View.GONE);
-                    }
-                }
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    if (wakeUpAtActionButton.getVisibility() != View.VISIBLE) {
-                        wakeUpAtActionButton.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-            mWakeUpAtActionButtonAnimation.start();
-        } else {
-            Log.e(getClass().getName(), "at: animateWakeUpAtButton() - wake up at action button is already " + (finalViewType != View.VISIBLE ? "GONE" : "VISIBLE"));
-        }
+        wakeUpAtSetHourButton.hide();
     }
 
     @Override
