@@ -1,9 +1,12 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceScreen;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity
-    implements MenuContract.MenuView {
+    implements MenuContract.MenuView,
+        PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
     private MenuPresenter menuPresenter;
-    private PreferenceFragmentCompat preferenceFragment;
 
     @BindView(R.id.activityTitleTextView)
     protected TextView activityTitle;
@@ -57,16 +60,20 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void findPreferenceFragment() {
-        preferenceFragment = (SettingsFragment) getSupportFragmentManager()
-                .findFragmentByTag(getString(R.string.key_settings_tag));
+
     }
 
     @Override
     public void openNewPreferenceFragment() {
-        preferenceFragment = new SettingsFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.menu_activity_container, preferenceFragment, getString(R.string.key_settings_tag))
-                .commit();
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(SettingsFragment.TAG);
+        if (fragment == null) {
+            fragment = new SettingsFragment();
+        }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.menu_activity_container, fragment, SettingsFragment.TAG);
+        ft.commit();
     }
 
     @Override
@@ -89,5 +96,20 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public void closeActivity() {
         finish();
+    }
+
+
+    @Override
+    public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat,
+            PreferenceScreen preferenceScreen) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        SettingsFragment fragment = new SettingsFragment();
+        Bundle args = new Bundle();
+        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, preferenceScreen.getKey());
+        fragment.setArguments(args);
+        ft.add(R.id.menu_activity_container, fragment, preferenceScreen.getKey());
+        ft.addToBackStack(preferenceScreen.getKey());
+        ft.commit();
+        return true;
     }
 }
