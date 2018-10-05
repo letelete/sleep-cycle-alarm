@@ -31,11 +31,7 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
-        final Toolbar toolbar = findViewById(R.id.activity_menu_toolbar);
-        if(toolbar!=null) {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        settingToolbar();
         menuPresenter.initializeValueByKeysAndPassedIntent(getString(R.string.key_menu_item_id),
                 getString(R.string.key_menu_item_title),
                 getIntent());
@@ -43,6 +39,14 @@ public class MenuActivity extends AppCompatActivity
         menuPresenter.handleSetActivityTitle();
 
         menuPresenter.performActionDependingOnMenuItemIdKey(savedInstanceState);
+    }
+
+    private void settingToolbar() {
+        final Toolbar toolbar = findViewById(R.id.activity_menu_toolbar);
+        if(toolbar!=null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
