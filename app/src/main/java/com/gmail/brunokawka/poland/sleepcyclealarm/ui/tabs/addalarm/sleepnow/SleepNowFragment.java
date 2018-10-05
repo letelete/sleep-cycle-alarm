@@ -14,6 +14,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.SleepNowBuildingStrategy;
 
@@ -64,11 +65,11 @@ public class SleepNowFragment extends Fragment {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setItemAnimator(new DefaultItemAnimator());
 
-        recycler.setAdapter(new ListAdapter(itemsBuilder.getItems(getCurrentDateTime(), null)));
+        recycler.setAdapter(new ListAdapter(itemsBuilder.getItems(getCurrentDateFormattedToSimple(), null)));
     }
 
-    private DateTime getCurrentDateTime() {
-        return DateTime.now();
+    private DateTime getCurrentDateFormattedToSimple() {
+        return ItemContentBuilder.getDateConvertedToSimple(DateTime.now());
     }
 
     @Override

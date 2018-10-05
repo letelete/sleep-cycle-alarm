@@ -26,13 +26,13 @@ public class AlarmDAO {
     public void generateAlarmAndSaveItToRealm(Item item, String ringtone) {
         Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item and ringtone)");
         Alarm alarm = getAlarmFromItemAndRingtone(item, ringtone);
-        saveToRealm(alarm);
+        saveIfNotDuplicate(alarm);
     }
 
     public void generateAlarmAndSaveItToRealm(Item item) {
         Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item only)");
         Alarm alarm = getAlarmFromItem(item);
-        saveToRealm(alarm);
+        saveIfNotDuplicate(alarm);
     }
 
     public Alarm getAlarmFromItemAndRingtone(Item item, String ringtone) {
@@ -71,7 +71,7 @@ public class AlarmDAO {
         final String executionDate = item.getExecutionDate().toString();
 
         Alarm alarm = new Alarm();
-        alarm.setId(id);
+        alarm.setId(executionDate);
         alarm.setTitle(title);
         alarm.setSummary(summary);
         alarm.setSnoozeDurationInMinutes(snoozeDuration);
@@ -85,7 +85,7 @@ public class AlarmDAO {
         return alarm;
     }
 
-    public void saveToRealm(final Alarm alarm) {
+    public void saveIfNotDuplicate(final Alarm alarm) {
         Log.d(getClass().getName(), "Saving to realm...");
         Realm realm = RealmManager.getRealm();
 
