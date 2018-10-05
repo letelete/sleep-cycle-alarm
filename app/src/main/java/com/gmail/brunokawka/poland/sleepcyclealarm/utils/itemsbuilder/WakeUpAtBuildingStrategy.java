@@ -60,15 +60,16 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
 
     private void createNextItemAndAddItToArray() {
         int timeForFallAsleepInMinutes = ItemsBuilderData.getTimeForFallAsleepInMinutes();
-        DateTime dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime = TimeRounder.getNearest(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
+        DateTime dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime = TimeRounder
+                .getNearest(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
 
         Item item = new Item();
 
-        item.setTitle(ItemContentBuilder.getTitle(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime));
+        item.setTitle(ItemContentBuilder.getTitleForWakeUpAt(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime, executionDate));
         item.setSummary(ItemContentBuilder.getSummary(timeToGoToSleep, executionDate));
         item.setCurrentDate(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime);
         item.setExecutionDate(executionDate);
 
-        items.add(0, item); // every new item's being add at the beginning of array because we want our array to be sorted by hour descending
+        items.add(0, item);
     }
 }
