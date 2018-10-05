@@ -2,11 +2,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -41,9 +38,9 @@ public class SettingsFragment extends PreferenceFragmentCompat  {
 
         isFirstRun = true;
 
-        if (Objects.equals(rootKey, getString(R.string.general))) {
+        if (Objects.equals(rootKey, getString(R.string.pref_theme_category))) {
             bindPreferenceToListener(findPreference(getString(R.string.key_change_theme)));
-        }else if (Objects.equals(rootKey, getString(R.string.notifications))) {
+        }else if (Objects.equals(rootKey, getString(R.string.pref_alarm_category))) {
             bindPreferenceToListener(findPreference(getString(R.string.key_ring_duration)));
             bindPreferenceToListener(findPreference(getString(R.string.key_alarms_intervals)));
             bindPreferenceToListener(findPreference(getString(R.string.key_auto_silence)));
@@ -116,6 +113,7 @@ public class SettingsFragment extends PreferenceFragmentCompat  {
         if (context!=null)
         view.setBackgroundColor(
                 ContextCompat.getColor(context, R.color.color_primary));
+
 
     }
 

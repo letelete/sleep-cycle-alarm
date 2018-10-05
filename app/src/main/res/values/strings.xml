@@ -170,9 +170,4 @@
     <string name="add_alarm_dialog_message">Are you sure you want to add an alarm for %s?</string>
     <string name="add_alarm_dialog_title">Add alarm</string>
 
-    
-    <string name="general">General</string>
-    <string name="notifications">Notifications</string>
-
-
 </resources>

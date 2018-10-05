@@ -1,85 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="@string/menu_settings">
     <PreferenceScreen
-        android:key="@string/general"
-        android:title="@string/general">
-        <PreferenceCategory android:title="@string/general">
-            <PreferenceCategory android:title="@string/pref_theme_category">
+        android:key="@string/pref_theme_category"
+        android:title="@string/pref_theme_category">
 
-                <ListPreference
-                    android:defaultValue="1"
-                    android:entries="@array/pref_change_theme_titles"
-                    android:entryValues="@array/pref_change_theme_values"
-                    android:key="@string/key_change_theme"
-                    android:negativeButtonText="@null"
-                    android:positiveButtonText="@null"
-                    android:title="@string/pref_change_theme_title" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_change_theme_titles"
+            android:entryValues="@array/pref_change_theme_values"
+            android:key="@string/key_change_theme"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_change_theme_title" />
 
-            </PreferenceCategory>
-        </PreferenceCategory>
+
     </PreferenceScreen>
+    <PreferenceCategory android:layout="@layout/divider" />
 
 
     <PreferenceScreen
-        android:key="@string/notifications"
-        android:title="@string/notifications">
-        <PreferenceCategory android:title="@string/notifications">
-            <PreferenceCategory android:title="@string/pref_alarm_category">
+        android:key="@string/pref_alarm_category"
+        android:title="@string/pref_alarm_category">
 
-                <SwitchPreference
-                    android:defaultValue="true"
-                    android:key="@string/key_alarm_in_silent_mode"
-                    android:summary="@string/pref_alarm_in_silent_mode_summary"
-                    android:title="@string/pref_alarm_in_silent_mode_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/key_alarm_in_silent_mode"
+            android:summary="@string/pref_alarm_in_silent_mode_summary"
+            android:title="@string/pref_alarm_in_silent_mode_title" />
 
-                <SwitchPreference
-                    android:defaultValue="false"
-                    android:key="@string/key_alarms_has_same_ringtone"
-                    android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
-                    android:title="@string/pref_alarms_has_same_ringtone_switch_title" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/key_alarms_has_same_ringtone"
+            android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
+            android:title="@string/pref_alarms_has_same_ringtone_switch_title" />
 
-                <RingtonePreference
-                    android:dependency="@string/key_alarms_has_same_ringtone"
-                    android:key="@string/key_ringtone_select"
-                    android:persistent="true"
-                    android:ringtoneType="alarm"
-                    android:showDefault="true"
-                    android:showSilent="false"
-                    android:summary="@string/pref_ringtone_select_default_summary"
-                    android:title="@string/pref_ringtone_select_title"
-                    app:pref_showAdd="true"
-                    app:pref_summaryHasRingtone="@string/pref_ringtone_select_selected_summary" />
+        <RingtonePreference
+            android:dependency="@string/key_alarms_has_same_ringtone"
+            android:key="@string/key_ringtone_select"
+            android:persistent="true"
+            android:ringtoneType="alarm"
+            android:showDefault="true"
+            android:showSilent="false"
+            android:summary="@string/pref_ringtone_select_default_summary"
+            android:title="@string/pref_ringtone_select_title"
+            app:pref_showAdd="true"
+            app:pref_summaryHasRingtone="@string/pref_ringtone_select_selected_summary" />
 
-                <ListPreference
-                    android:defaultValue="1"
-                    android:entries="@array/pref_ring_duration_titles"
-                    android:entryValues="@array/pref_ring_duration_values"
-                    android:key="@string/key_ring_duration"
-                    android:negativeButtonText="@null"
-                    android:positiveButtonText="@null"
-                    android:title="@string/pref_ring_duration_title" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_ring_duration_titles"
+            android:entryValues="@array/pref_ring_duration_values"
+            android:key="@string/key_ring_duration"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_ring_duration_title" />
 
-                <ListPreference
-                    android:defaultValue="1"
-                    android:entries="@array/pref_alarms_intervals_titles"
-                    android:entryValues="@array/pref_alarms_intervals_values"
-                    android:key="@string/key_alarms_intervals"
-                    android:negativeButtonText="@null"
-                    android:positiveButtonText="@null"
-                    android:title="@string/pref_alarms_intervals_title" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_alarms_intervals_titles"
+            android:entryValues="@array/pref_alarms_intervals_values"
+            android:key="@string/key_alarms_intervals"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_alarms_intervals_title" />
 
-                <ListPreference
-                    android:defaultValue="1"
-                    android:entries="@array/pref_auto_silence_titles"
-                    android:entryValues="@array/pref_auto_silence_values"
-                    android:key="@string/key_auto_silence"
-                    android:negativeButtonText="@null"
-                    android:positiveButtonText="@null"
-                    android:title="@string/pref_auto_silence_title" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_auto_silence_titles"
+            android:entryValues="@array/pref_auto_silence_values"
+            android:key="@string/key_auto_silence"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_auto_silence_title" />
 
-            </PreferenceCategory>
-        </PreferenceCategory>
+
     </PreferenceScreen>
 
 </PreferenceScreen>
