@@ -17,6 +17,8 @@ public class Alarm extends RealmObject {
     private String Ringtone; // TODO : RINGTONE (Currently create some string for entry testing)
     private int ringDurationInMinutes;
     private int numberOfRepetitionsBeforeAutoSilence;
+    private String currentDate;
+    private String executionDate;
 
     public String getId() {
         return id;
@@ -82,5 +84,21 @@ public class Alarm extends RealmObject {
 
     public void setNumberOfRepetitionsBeforeAutoSilence(int numberOfRepetitionsBeforeAutoSilence) {
         this.numberOfRepetitionsBeforeAutoSilence = numberOfRepetitionsBeforeAutoSilence;
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public String getExecutionDate() {
+        return executionDate;
+    }
+
+    public void setExecutionDate(String executionDate) {
+        this.executionDate = executionDate;
     }
 }

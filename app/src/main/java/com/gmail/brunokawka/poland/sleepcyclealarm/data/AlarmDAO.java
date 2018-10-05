@@ -3,6 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
@@ -65,6 +66,10 @@ public class AlarmDAO {
 
         final int numberOfRepetitions = Integer.parseInt(pref.getString(ctx.getString(R.string.key_auto_silence), "3"));
 
+        final String currentDate = item.getCurrentDate().toString();
+
+        final String executionDate = item.getExecutionDate().toString();
+
         Alarm alarm = new Alarm();
         alarm.setId(id);
         alarm.setTitle(title);
@@ -74,6 +79,8 @@ public class AlarmDAO {
         alarm.setRingtone(ringtoneTitle);
         alarm.setRingDurationInMinutes(ringDuration);
         alarm.setNumberOfRepetitionsBeforeAutoSilence(numberOfRepetitions);
+        alarm.setCurrentDate(currentDate);
+        alarm.setExecutionDate(executionDate);
 
         return alarm;
     }
@@ -84,7 +91,7 @@ public class AlarmDAO {
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 realm.insertOrUpdate(alarm);
             }
         });
@@ -96,7 +103,7 @@ public class AlarmDAO {
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 Alarm alarm = realm.where(Alarm.class).equalTo("id", id).findFirst();
                 if(alarm != null) {
                     alarm.deleteFromRealm();

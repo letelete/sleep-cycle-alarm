@@ -49,7 +49,6 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
         @BindView(R.id.accessAlarmSummary)
         protected TextView textSummary;
 
-
         public AlarmViewHolder(View itemView) {
             super(itemView);
             this.alarmsPresenter = AlarmsPresenter.getService();
