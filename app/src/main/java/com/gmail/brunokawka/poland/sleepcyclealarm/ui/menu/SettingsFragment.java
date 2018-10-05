@@ -29,8 +29,6 @@ public class SettingsFragment extends PreferenceFragmentCompat  {
 
     private static boolean isFirstRun;
 
-    public SettingsFragment() {
-    }
 
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
