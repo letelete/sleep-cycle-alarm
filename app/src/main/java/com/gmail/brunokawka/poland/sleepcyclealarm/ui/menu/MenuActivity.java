@@ -23,7 +23,8 @@ public class MenuActivity extends AppCompatActivity
 
     private MenuPresenter menuPresenter;
 
-    @BindView(R.id.activity_menu_toolbar) Toolbar toolbar;
+    @BindView(R.id.activity_menu_toolbar)
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
