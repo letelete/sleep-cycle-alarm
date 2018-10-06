@@ -2,7 +2,6 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
 
@@ -79,15 +78,13 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     }
 
     @Override
-    public void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate) {
-        DateTime newExecutionDate = newChosenExecutionDate.getDateTime();
-
-        if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newExecutionDate)) {
-            updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newExecutionDate);
-            showWakeUpAtElements(newExecutionDate);
+    public void tryToGenerateAListWithGivenValues(DateTime newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate) {
+        if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newChosenExecutionDate)) {
+            updateLastExecutionDateAndSaveItToPreferencesIfPossible(lastExecutionDate, newChosenExecutionDate);
+            showWakeUpAtElements(newChosenExecutionDate);
             view.setUpAdapterAndCheckForContentUpdate();
         } else {
-            showTheClosestAlarmToDefinedHour(newExecutionDate);
+            showTheClosestAlarmToDefinedHour(newChosenExecutionDate);
         }
     }
 

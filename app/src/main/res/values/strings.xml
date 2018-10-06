@@ -162,6 +162,7 @@
     -->
     <string name="error_menu_activity_default_case_in_switch">Cannot open this window. Please try again.</string>
     <string name="error_menu_activity_key_use_default_value">Cannot open this window. Please try again.</string>
+    <string name="error_wake_up_at_fragment_new_hour_is_null">Cannot generate a list for this hour</string>
 
 
     <string name="yes">Yes</string>

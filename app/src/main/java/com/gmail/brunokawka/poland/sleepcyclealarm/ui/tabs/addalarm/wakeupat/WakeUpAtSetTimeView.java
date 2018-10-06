@@ -64,6 +64,9 @@ public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContrac
 
     @Override
     public DateTime getDateTime() {
+        if (dateTime == null) {
+            dateTime = DateTime.now();
+        }
         return dateTime;
     }
 }
