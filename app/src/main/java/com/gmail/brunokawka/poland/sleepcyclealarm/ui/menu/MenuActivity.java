@@ -8,6 +8,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -33,32 +34,32 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
-        settingToolbar();
-        menuPresenter.initializeValueByKeysAndPassedIntent(getString(R.string.key_menu_item_id),
-                getString(R.string.key_menu_item_title),
-                getIntent());
-
-        menuPresenter.handleSetActivityTitle();
-
+        menuPresenter.setUpActivity(getString(R.string.key_menu_item_id), getString(R.string.key_menu_item_title), getIntent());
         menuPresenter.performActionDependingOnMenuItemIdKey(savedInstanceState);
     }
 
-    private void settingToolbar() {
+    @Override
+    public void setUpToolbar() {
         if(toolbar!=null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
-
-    public void handleScreenChange(String key){
-        setActivityTitle(key);
-        //2 conditions to handle the situation when a fragment is not yet created and recreated on theme change. TODO:make it better
-        if (key.equals(getString(R.string.pref_theme_category)) || key.equals(getString(R.string.pref_alarm_category))){
-            setToolbarBackButtonIcon(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material);
-        }else{
-            setToolbarBackButtonIcon(R.drawable.button_close_activity_drawable);
-        }
+    @Override
+    public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
+        String preferenceKey = preferenceScreen.getKey();
+        Log.d(getClass().getName(), "Preference key is: " + preferenceKey);
+        menuPresenter.handlePreferenceScreenChange(preferenceKey);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        SettingsFragment fragment = new SettingsFragment();
+        Bundle args = new Bundle();
+        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT,preferenceKey);
+        fragment.setArguments(args);
+        ft.add(R.id.activity_menu_container, fragment, preferenceKey);
+        ft.addToBackStack(preferenceKey);
+        ft.commit();
+        return true;
     }
 
     private void setToolbarBackButtonIcon(int button_close_activity_drawable) {
@@ -70,13 +71,13 @@ public class MenuActivity extends AppCompatActivity
     public void onBackPressed() {
         super.onBackPressed();
         handleIconAndTitleDependsOnActiveFragment();
-
     }
 
     private void handleIconAndTitleDependsOnActiveFragment() {
         Fragment frag = getSupportFragmentManager().findFragmentById(R.id.activity_menu_container);
         if(frag instanceof PreferenceFragmentCompat) {
-            handleScreenChange(((PreferenceFragmentCompat)frag).getPreferenceScreen().getKey());
+            Log.d(getClass().getName(), "Fragment is instanceof PreferenceFragmentCompat");
+            menuPresenter.handlePreferenceScreenChange(((PreferenceFragmentCompat)frag).getPreferenceScreen().getKey());
         }
     }
 
@@ -88,7 +89,6 @@ public class MenuActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void setAppTheme(int themeId) {
@@ -130,20 +130,19 @@ public class MenuActivity extends AppCompatActivity
         finish();
     }
 
-
+    @Override
+    public void setToolbarBackIcon() {
+        setToolbarBackButtonIcon(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material);
+    }
 
     @Override
-    public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat,
-            PreferenceScreen preferenceScreen) {
-        handleScreenChange(preferenceScreen.getKey());
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, preferenceScreen.getKey());
-        fragment.setArguments(args);
-        ft.add(R.id.activity_menu_container, fragment, preferenceScreen.getKey());
-        ft.addToBackStack(preferenceScreen.getKey());
-        ft.commit();
-        return true;
+    public void setToolbarCloseIcon() {
+        setToolbarBackButtonIcon(R.drawable.button_close_activity_drawable);
+    }
+
+    @Override
+    public boolean isPreferenceKeyEqualsToOneOfCategory(String preferenceKey) {
+        return preferenceKey.equals(getString(R.string.pref_theme_category))
+                || preferenceKey.equals(getString(R.string.pref_alarm_category));
     }
 }
