@@ -54,10 +54,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
                 break;
 
             case R.id.menu_settings:
-                if(savedInstanceState != null)
-                    view.findPreferenceFragment();
-                else
-                    view.openNewPreferenceFragment();
+                view.openPreferenceFragment();
                 break;
 
             default:

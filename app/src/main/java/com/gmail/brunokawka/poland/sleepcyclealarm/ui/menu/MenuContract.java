@@ -9,10 +9,8 @@ public interface MenuContract {
     interface MenuView {
         void setAppTheme(int themeId);
         void setActivityTitle(String title);
-        void findPreferenceFragment();
-        void openNewPreferenceFragment();
-        void findStandardFragment();
-        void openNewStandardFragment();
+        void openPreferenceFragment();
+        void openStandardFragment();
         void showErrorAndFinish(int resourceMsgReference);
         void closeActivity();
     }

@@ -102,19 +102,11 @@ public class MenuActivity extends AppCompatActivity
     }
 
     @Override
-    public void findPreferenceFragment() {
-
-    }
-
-
-    @Override
-    public void openNewPreferenceFragment() {
-
+    public void openPreferenceFragment() {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(SettingsFragment.TAG);
         if (fragment == null) {
             fragment = new SettingsFragment();
         }
-
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.activity_menu_container, fragment, SettingsFragment.TAG);
@@ -122,12 +114,7 @@ public class MenuActivity extends AppCompatActivity
     }
 
     @Override
-    public void findStandardFragment() {
-        //TODO:
-    }
-
-    @Override
-    public void openNewStandardFragment() {
+    public void openStandardFragment() {
         //TODO:
     }
 
