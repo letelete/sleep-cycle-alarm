@@ -12,8 +12,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
-import java.util.UUID;
-
 import io.realm.Realm;
 
 public class AlarmDAO {
@@ -50,8 +48,6 @@ public class AlarmDAO {
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-        final String id = UUID.randomUUID().toString();
-
         final String title = item.getTitle();
 
         final String summary = item.getSummary();
@@ -70,8 +66,10 @@ public class AlarmDAO {
 
         final String executionDate = item.getExecutionDate().toString();
 
+        final String id = executionDate;
+
         Alarm alarm = new Alarm();
-        alarm.setId(executionDate);
+        alarm.setId(id);
         alarm.setTitle(title);
         alarm.setSummary(summary);
         alarm.setSnoozeDurationInMinutes(snoozeDuration);
