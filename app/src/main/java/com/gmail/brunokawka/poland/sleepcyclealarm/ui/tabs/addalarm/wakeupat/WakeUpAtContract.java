@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtContract.WakeUpAtView.DialogContract;
-
 import org.joda.time.DateTime;
 
 public interface WakeUpAtContract {
@@ -62,7 +60,7 @@ public interface WakeUpAtContract {
 
         void dismissTimeDialog();
 
-        void tryToGenerateAListWithGivenValues(DialogContract newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate);
+        void tryToGenerateAListWithGivenValues(DateTime newChosenExecutionDate, DateTime currentDate, DateTime lastExecutionDate);
 
         void hideWakeUpAtElements();
 

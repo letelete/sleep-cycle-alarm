@@ -22,6 +22,14 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
     }
 
     @Override
+    public void setUpActivity(String idKey, String titleKey, Intent intent) {
+        view.setUpToolbar();
+        initializeValueByKeysAndPassedIntent(idKey, titleKey, intent);
+        handleSetActivityTitle();
+        view.setToolbarCloseIcon();
+    }
+
+    @Override
     public void initializeValueByKeysAndPassedIntent(String idKey, String titleKey, Intent intent) {
         this.menuItemIdValue = intent.getIntExtra(idKey, R.id.menu_settings);
         this.menuItemTitleValue = TextUtils.isEmpty(titleKey)
@@ -54,10 +62,7 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
                 break;
 
             case R.id.menu_settings:
-                if(savedInstanceState != null)
-                    view.findPreferenceFragment();
-                else
-                    view.openNewPreferenceFragment();
+                view.openPreferenceFragment();
                 break;
 
             default:
@@ -71,5 +76,15 @@ public class MenuPresenter implements MenuContract.MenuPresenter {
     public void handleCloseActivityButton() {
         Log.d(getClass().getName(), "User close an activity");
         view.closeActivity();
+    }
+
+    @Override
+    public void handlePreferenceScreenChange(String key) {
+        view.setActivityTitle(key);
+        if (view.isPreferenceKeyEqualsToOneOfCategory(key)) {
+            view.setToolbarBackIcon();
+        }else{
+            view.setToolbarCloseIcon();
+        }
     }
 }

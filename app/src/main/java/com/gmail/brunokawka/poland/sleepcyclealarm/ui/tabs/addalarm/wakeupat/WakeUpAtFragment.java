@@ -149,7 +149,8 @@ public class WakeUpAtFragment extends Fragment
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(dialogContract, currentDate, lastExecutionDate);
+                        DateTime newChosenExecutionDate = dialogContract.getDateTime();
+                        wakeUpAtPresenter.tryToGenerateAListWithGivenValues(newChosenExecutionDate, currentDate, lastExecutionDate);
                         wakeUpAtPresenter.dismissTimeDialog();
                     }
                 })
