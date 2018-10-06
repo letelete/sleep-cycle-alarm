@@ -53,7 +53,7 @@ If you wish to contribute to the project, please do the following steps:
 ##### Issues
 
 You can trace the status of known issues [here](https://github.com/letelete/Sleep-Cycle-Alarm/issues),
-also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or join to my [discord](https://discord.gg/7Rgg5Zc) server and send a message on #github text channel if you have any questions.
+also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or join to my [discord](https://discord.gg/7Rgg5Zc) server and send a message on #programming text channel if you have any questions.
 
 ##### Translations
 
