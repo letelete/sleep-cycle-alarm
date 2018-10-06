@@ -49,8 +49,8 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public boolean onPreferenceStartScreen(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
         String preferenceKey = preferenceScreen.getKey();
-        Log.d(getClass().getName(), "Preference key is: " + preferenceKey);
         menuPresenter.handlePreferenceScreenChange(preferenceKey);
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
