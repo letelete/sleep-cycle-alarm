@@ -1,5 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils;
 
+import android.util.Log;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
@@ -24,9 +26,19 @@ public class ItemContentBuilderTest {
 
     @Test
     public void testIfCanReturnTitleForWakeUpAt() {
-        assertThat("23:00 -> 06:30",
-                is(ItemContentBuilder.getTitleForWakeUpAt(getDateTime("01/01/2001 23:00"), getDateTime("02/01/2001 6:30"))));
-        assertThat("00:00 -> 01:30",
-                is(ItemContentBuilder.getTitleForWakeUpAt(getDateTime("02/01/2001 00:00"), getDateTime("02/01/2001 01:30"))));
+        assertThat(ItemContentBuilder.getTitleForWakeUpAt(getDateTime("01/01/2001 23:00"), getDateTime("02/01/2001 6:30")),
+                is("23:00 -> 06:30"));
+        assertThat(ItemContentBuilder.getTitleForWakeUpAt(getDateTime("02/01/2001 00:00"), getDateTime("02/01/2001 01:30")),
+                is("00:00 -> 01:30"));
+    }
+
+    @Test
+    public void testIfCanReturnSimpleDate() {
+        DateTime complexDate = DateTime.now();
+        DateTime simpleDate = getDateTime(complexDate.getDayOfMonth() + "/" + complexDate.getMonthOfYear() + "/"
+                + complexDate.getYear() + " " + complexDate.getHourOfDay() + ":" + complexDate.getMinuteOfHour());
+        Log.d(getClass().getName(), simpleDate.toString());
+        assertThat(ItemContentBuilder.getDateConvertedToSimple(complexDate),
+                is(simpleDate));
     }
 }

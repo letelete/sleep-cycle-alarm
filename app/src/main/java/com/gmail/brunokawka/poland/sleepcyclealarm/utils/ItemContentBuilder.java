@@ -7,6 +7,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormat;
 
 public class ItemContentBuilder {
 
@@ -25,6 +26,16 @@ public class ItemContentBuilder {
                 .append(getFormattedTime(executionDate))
                 .toString();
     }
+
+    public static DateTime getDateConvertedToSimple(DateTime date) {
+        return DateTimeFormat.forPattern("dd/MM/yyyy HH:mm").parseDateTime(
+                date.getDayOfMonth() + "/"
+                        + date.getMonthOfYear() + "/"
+                        + date.getYear() + " "
+                        + date.getHourOfDay()
+                        + ":" + date.getMinuteOfHour());
+    }
+
 
     public static String getSummary(DateTime currentDate, DateTime executionDate) {
         String itemSummary = getString(R.string.list_element_summary_changeable);

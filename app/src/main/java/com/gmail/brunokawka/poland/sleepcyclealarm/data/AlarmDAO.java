@@ -3,6 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
@@ -10,8 +11,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.application.CustomApp;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-
-import java.util.UUID;
 
 import io.realm.Realm;
 
@@ -25,13 +24,13 @@ public class AlarmDAO {
     public void generateAlarmAndSaveItToRealm(Item item, String ringtone) {
         Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item and ringtone)");
         Alarm alarm = getAlarmFromItemAndRingtone(item, ringtone);
-        saveToRealm(alarm);
+        saveIfNotDuplicate(alarm);
     }
 
     public void generateAlarmAndSaveItToRealm(Item item) {
         Log.d(getClass().getName(), "Generating alarm and saving it to realm... (Base on item only)");
         Alarm alarm = getAlarmFromItem(item);
-        saveToRealm(alarm);
+        saveIfNotDuplicate(alarm);
     }
 
     public Alarm getAlarmFromItemAndRingtone(Item item, String ringtone) {
@@ -49,8 +48,6 @@ public class AlarmDAO {
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-        final String id = UUID.randomUUID().toString();
-
         final String title = item.getTitle();
 
         final String summary = item.getSummary();
@@ -65,6 +62,12 @@ public class AlarmDAO {
 
         final int numberOfRepetitions = Integer.parseInt(pref.getString(ctx.getString(R.string.key_auto_silence), "3"));
 
+        final String currentDate = item.getCurrentDate().toString();
+
+        final String executionDate = item.getExecutionDate().toString();
+
+        final String id = executionDate;
+
         Alarm alarm = new Alarm();
         alarm.setId(id);
         alarm.setTitle(title);
@@ -74,17 +77,19 @@ public class AlarmDAO {
         alarm.setRingtone(ringtoneTitle);
         alarm.setRingDurationInMinutes(ringDuration);
         alarm.setNumberOfRepetitionsBeforeAutoSilence(numberOfRepetitions);
+        alarm.setCurrentDate(currentDate);
+        alarm.setExecutionDate(executionDate);
 
         return alarm;
     }
 
-    public void saveToRealm(final Alarm alarm) {
+    public void saveIfNotDuplicate(final Alarm alarm) {
         Log.d(getClass().getName(), "Saving to realm...");
         Realm realm = RealmManager.getRealm();
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 realm.insertOrUpdate(alarm);
             }
         });
@@ -96,7 +101,7 @@ public class AlarmDAO {
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
+            public void execute(@NonNull Realm realm) {
                 Alarm alarm = realm.where(Alarm.class).equalTo("id", id).findFirst();
                 if(alarm != null) {
                     alarm.deleteFromRealm();

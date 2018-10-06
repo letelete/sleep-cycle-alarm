@@ -93,7 +93,7 @@ public class AlarmsFragment extends Fragment
                 onRealmChangeEvent();
             }
         });
-        recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync()));
+        recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync().sort("executionDate")));
     }
 
     @Override
