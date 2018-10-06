@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MenuActivity extends AppCompatActivity
@@ -21,6 +22,7 @@ public class MenuActivity extends AppCompatActivity
 
     private MenuPresenter menuPresenter;
 
+    @BindView(R.id.activity_menu_toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,6 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void settingToolbar() {
-        final Toolbar toolbar = findViewById(R.id.activity_menu_toolbar);
         if(toolbar!=null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
