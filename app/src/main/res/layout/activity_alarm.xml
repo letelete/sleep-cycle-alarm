@@ -39,7 +39,7 @@
     <Button
         android:id="@+id/activityAlarmDismissAlarmButton"
         style="?floatingActionButtonStyle"
-        android:drawableStart=""
+        android:drawableStart="@null"
         android:text="@string/alarm_activity_dismiss_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

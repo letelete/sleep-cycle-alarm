@@ -91,6 +91,9 @@
     <string name="pref_alarm_in_silent_mode_title">Alarm in silent mode</string>
     <string name="pref_alarm_in_silent_mode_summary">Play alarm even when phone is in silent mode</string>
 
+    <string name="pref_alarm_vibrate_when_ringing_title">Phone vibration</string>
+    <string name="pref_alarm_vibrate_when_ringing_summary">Vibrate when alarm rings</string>
+
     <string-array name="pref_alarm_in_silent_mode_values">
         <item>1</item>
         <item>2</item>

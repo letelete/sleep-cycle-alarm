@@ -12,6 +12,7 @@
     <string name="key_info_tag" translatable="false">key_info_tag</string>
 
     <string name="key_change_theme" translatable="false">key_select_theme</string>
+    <string name="key_alarm_vibrate_when_ringing" translatable="false">key_alarm_vibrate_when_ringing</string>
     <string name="key_alarm_in_silent_mode" translatable="false">key_alarm_in_silent_mode</string>
     <string name="key_alarms_has_same_ringtone" translatable="false">key_alarms_has_same_ringtone</string>
     <string name="key_ringtone_select" translatable="false">key_ringtone_select</string>

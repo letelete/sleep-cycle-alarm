@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.brunokawka.poland.sleepcyclealarm">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:name=".application.CustomApp"
         android:allowBackup="false"
@@ -25,6 +26,8 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".alarm.AlarmActivity" />
+
+        <service android:name=".alarm.AlarmService" />
     </application>
 
 </manifest>
