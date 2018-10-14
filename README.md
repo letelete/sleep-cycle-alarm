@@ -11,7 +11,7 @@
 <a href="" alt="Version"><img src="https://img.shields.io/badge/version-0.9-brightgreen.svg"/></a>
 <a href="" alt="Platform Support"><img src="https://img.shields.io/badge/android-%3E%3D%205.0%20(API%2021)-brightgreen.svg"/></a>
 <a href="" alt="Contributors"><img src="https://img.shields.io/badge/contributors-welcome-brightgreen.svg"/></a>
-<a href="" alt="Discord"><img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat"/></a>
+<a href="https://discord.gg/invite/fgGzude" alt="Discord"><img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg?style=flat"/></a>
 </p>
 
 <hr />
