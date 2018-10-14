@@ -24,17 +24,11 @@ public class AlarmController {
         alarmDAO = new AlarmDAO();
     }
 
-    public void scheduleAlarms() {
-        List<Alarm> alarms = alarmDAO.getListOfAlarms();
-        for (Alarm alarm : alarms) {
-            scheduleAlarm(alarm);
-        }
-    }
-
-    public void cancelAlarms() {
+    public void rescheduleAlarms() {
         List<Alarm> alarms = alarmDAO.getListOfAlarms();
         for (Alarm alarm : alarms) {
             cancelAlarm(alarm);
+            scheduleAlarm(alarm);
         }
     }
 
@@ -45,6 +39,7 @@ public class AlarmController {
     public void startAlarm() {
         context.startService(new Intent(context, AlarmService.class));
     }
+
 
     private void scheduleAlarm(Alarm alarm) {
         PendingIntent pendingIntent = createPendingIntent(context, alarm);

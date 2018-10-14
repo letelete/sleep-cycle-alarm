@@ -95,7 +95,7 @@ public class WakeUpAtFragment extends Fragment
     public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
         if (alarmDAO != null) {
             alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
-            new AlarmController(getActivity()).scheduleAlarms();
+            new AlarmController(getActivity()).rescheduleAlarms();
         }
     }
 

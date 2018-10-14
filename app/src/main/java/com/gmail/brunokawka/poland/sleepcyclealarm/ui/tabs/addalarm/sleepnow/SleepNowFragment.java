@@ -40,7 +40,7 @@ public class SleepNowFragment extends Fragment {
         // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
         if (alarmDAO != null) {
             alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
-            new AlarmController(getActivity()).scheduleAlarms();
+            new AlarmController(getActivity()).rescheduleAlarms();
         }
     }
 
