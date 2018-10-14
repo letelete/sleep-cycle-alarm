@@ -53,6 +53,7 @@ public class AlarmActivity extends AppCompatActivity {
 
     public void dismissAlarm() {
         Log.d(getClass().getName(), "Dismissing the alarm...");
+        new AlarmController(this).dismissCurrentlyPlayingAlarm();
         finish();
     }
 
