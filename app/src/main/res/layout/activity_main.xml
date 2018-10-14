@@ -58,6 +58,7 @@
 
     <Button
         android:id="@+id/wakeUpAtFloatingActionButtonExtended"
+        android:text="@string/wake_up_at_set_hour_button"
         style="?floatingActionButtonStyle"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
