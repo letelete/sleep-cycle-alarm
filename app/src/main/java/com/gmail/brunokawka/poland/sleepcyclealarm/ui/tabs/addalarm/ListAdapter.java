@@ -88,7 +88,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
 
         private void addAlarm() {
             EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
-
         }
 
         private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {

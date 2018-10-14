@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.alarm.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
@@ -37,7 +38,10 @@ public class SleepNowFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
         // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
-        alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
+        if (alarmDAO != null) {
+            alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
+            new AlarmController(getActivity()).scheduleAlarms();
+        }
     }
 
     @Override

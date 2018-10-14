@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.alarm.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
@@ -94,6 +95,7 @@ public class WakeUpAtFragment extends Fragment
     public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
         if (alarmDAO != null) {
             alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
+            new AlarmController(getActivity()).scheduleAlarms();
         }
     }
 
