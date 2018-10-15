@@ -159,6 +159,12 @@
         <item name="android:layout_marginTop">@dimen/extra_large_margin_size</item>
     </style>
 
+    <style name="floating_action_button_no_background_style" parent="floating_action_button_style">
+        <item name="android:background">@drawable/button_fab_extended</item>
+        <item name="android:drawableStart">@null</item>
+        <item name="android:textColor">@color/text_high_emphasis</item>
+    </style>
+
     <style name="close_activity_button_style">
         <item name="android:layout_width">@dimen/circleButtonsBackgroundSize</item>
         <item name="android:layout_height">@dimen/circleButtonsBackgroundSize</item>
