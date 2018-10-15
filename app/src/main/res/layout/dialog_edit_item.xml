@@ -46,12 +46,9 @@
 
         <Button
             android:id="@+id/alarmsEditCancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="?floatingActionButtonNoBackgroundStyle"
             android:layout_margin="@dimen/large_margin_size"
-            android:background="@color/transparent"
-            android:text="@android:string/cancel"
-            android:textColor="?colorAccent" />
+            android:text="@android:string/cancel" />
 
         <Button
             android:id="@+id/alarmsEditOkButton"

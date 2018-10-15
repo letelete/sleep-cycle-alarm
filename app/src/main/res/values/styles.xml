@@ -160,9 +160,9 @@
     </style>
 
     <style name="floating_action_button_no_background_style" parent="floating_action_button_style">
-        <item name="android:background">@drawable/button_fab_extended</item>
+        <item name="android:background">@drawable/button_fab_extended_no_background</item>
         <item name="android:drawableStart">@null</item>
-        <item name="android:textColor">@color/text_high_emphasis</item>
+        <item name="android:textColor">@color/color_accent</item>
     </style>
 
     <style name="close_activity_button_style">
