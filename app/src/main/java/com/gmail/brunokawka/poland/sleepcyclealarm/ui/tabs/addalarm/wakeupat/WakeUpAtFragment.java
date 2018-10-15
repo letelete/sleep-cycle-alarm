@@ -20,11 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.alarm.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
@@ -88,14 +86,6 @@ public class WakeUpAtFragment extends Fragment
     public void onWakeUpAtActivityButtonClicked(SetHourButtonClickedEvent setHourButtonClickedEvent) {
         if (wakeUpAtPresenter != null) {
             wakeUpAtPresenter.handleFloatingActionButtonClicked();
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
-        if (alarmDAO != null) {
-            alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
-            new AlarmController(getActivity()).rescheduleAlarms();
         }
     }
 

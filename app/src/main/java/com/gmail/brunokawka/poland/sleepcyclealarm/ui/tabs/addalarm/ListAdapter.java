@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -79,15 +78,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             showAlertDialogForAddAlarmAction(view.getContext(), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    addAlarm();
+                    //TODO: ADD ALARM
                     Log.d(getClass().getName(), String.valueOf(position));
                 }
             });
 
-        }
-
-        private void addAlarm() {
-            EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
         }
 
         private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {
