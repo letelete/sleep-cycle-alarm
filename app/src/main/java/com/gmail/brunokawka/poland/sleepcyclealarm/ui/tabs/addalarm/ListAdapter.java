@@ -89,8 +89,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
                 }
 
                 private void addAlarm() {
-                    alarmDAO.generateAlarmAndSaveItToRealm(item);
-                    new AlarmController(context).scheduleAlarms();
                 }
 
                 private void showAddAlarmToast() {
