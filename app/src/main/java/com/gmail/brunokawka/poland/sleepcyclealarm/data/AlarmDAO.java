@@ -14,6 +14,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -53,25 +54,17 @@ public class AlarmDAO {
         Context ctx = CustomApp.getContext();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
 
+
+        final String id = UUID.randomUUID().toString();
         final String title = item.getTitle();
-
         final String summary = item.getSummary();
-
-        final String ringtoneTitle = pref.getString(ctx.getString(R.string.key_ringtone_select), "None"); // TODO : RINGTONE (Currently create some string for entry testing)
-
+        final String ringtoneTitle = pref.getString(ctx.getString(R.string.key_ringtone_select), "None");
         final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
-
         final int snoozeDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_alarms_intervals), "5"));
-
         final int ringDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_ring_duration), "5"));
-
         final int numberOfRepetitions = Integer.parseInt(pref.getString(ctx.getString(R.string.key_auto_silence), "3"));
-
         final String currentDate = item.getCurrentDate().toString();
-
         final String executionDate = item.getExecutionDate().toString();
-
-        final String id = executionDate;
 
         Alarm alarm = new Alarm();
         alarm.setId(id);

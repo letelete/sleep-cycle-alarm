@@ -25,12 +25,6 @@
         android:title="@string/pref_alarm_category">
 
         <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/key_alarm_in_silent_mode"
-            android:summary="@string/pref_alarm_in_silent_mode_summary"
-            android:title="@string/pref_alarm_in_silent_mode_title" />
-
-        <SwitchPreference
             android:defaultValue="false"
             android:key="@string/key_alarms_has_same_ringtone"
             android:summary="@string/pref_alarms_has_same_ringtone_switch_summary"
@@ -63,24 +57,6 @@
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_ring_duration_title" />
-
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/pref_alarms_intervals_titles"
-            android:entryValues="@array/pref_alarms_intervals_values"
-            android:key="@string/key_alarms_intervals"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:title="@string/pref_alarms_intervals_title" />
-
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/pref_auto_silence_titles"
-            android:entryValues="@array/pref_auto_silence_values"
-            android:key="@string/key_auto_silence"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null"
-            android:title="@string/pref_auto_silence_title" />
 
 
     </PreferenceScreen>
