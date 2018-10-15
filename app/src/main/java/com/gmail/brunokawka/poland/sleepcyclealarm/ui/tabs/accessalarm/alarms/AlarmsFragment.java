@@ -30,6 +30,8 @@ import io.realm.RealmChangeListener;
 public class AlarmsFragment extends Fragment
     implements AlarmsContract.AlarmsView {
 
+    private static final int RINGTONE_INTENT_REQUEST_CODE = 2137;
+
     private AlarmScopeListener alarmScopeListener;
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
@@ -118,18 +120,19 @@ public class AlarmsFragment extends Fragment
     }
 
     private void startRingtonePickerActivityForResult() {
+        Uri selectedRingtoneUri = Uri.parse(dialogContract.getRingtone());
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE,getString(R.string.ringtone_picker_title));
-        Uri uri = ContentUris.withAppendedId(
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, 1);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, getString(R.string.pref_ringtone_select_title));
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, selectedRingtoneUri);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, uri);
-        startActivityForResult(intent, 123);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, selectedRingtoneUri);
+        startActivityForResult(intent, RINGTONE_INTENT_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == 123) {
+        if (resultCode == Activity.RESULT_OK && requestCode == RINGTONE_INTENT_REQUEST_CODE) {
             Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 
             if (uri != null && dialogContract != null) {
