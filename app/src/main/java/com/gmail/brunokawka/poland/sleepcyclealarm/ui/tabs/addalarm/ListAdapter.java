@@ -79,7 +79,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             final AlarmDAO alarmDAO = new AlarmDAO();
             final Context context = view.getContext();
             final int position = this.getAdapterPosition();
-            item = listItems.get(position);
+            item = getItem(position);
 
             showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
                 @Override
