@@ -19,6 +19,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
@@ -29,7 +30,6 @@ public class AlarmsFragment extends Fragment
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
 
-    @BindView(R.id.alarms_root) protected ViewGroup root;
     @BindView(R.id.alarmsList) protected RecyclerView recycler;
     @BindView(R.id.alarmsListCardView) protected CardView listCardView;
     @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
@@ -84,19 +84,25 @@ public class AlarmsFragment extends Fragment
             return;
         }
 
-        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
+        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, null);
         final AlarmsContract.AlarmsView.DialogContract dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
         dialogContract.bind(alarm);
+        dialog = new AlertDialog.Builder(getActivity()).create();
+        dialog.setView(content);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(content);
         content.findViewById(R.id.alarmsEditOkButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alarmsPresenter.updateEditedAlarm(dialogContract, alarm);
+                dialog.dismiss();
             }
         });
-        dialog = builder.create();
+        content.findViewById(R.id.alarmsEditCancelButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });ect
         dialog.show();
     }
 
