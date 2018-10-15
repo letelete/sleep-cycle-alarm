@@ -29,9 +29,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     @Override
     public void handleRealmChange() {
-        if (hasView()) {
-            updateUi();
-        }
+        updateUi();
     }
 
     @Override
@@ -56,7 +54,6 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final Alarm alarm) {
         Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
         alarmDAO.updateAlarm(editedAlarm);
-        setUpUi();
     }
 
     private boolean hasView() {
