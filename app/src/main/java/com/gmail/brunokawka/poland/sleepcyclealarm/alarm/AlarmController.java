@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
@@ -18,17 +19,24 @@ public class AlarmController {
 
     private Context context;
     private AlarmDAO alarmDAO;
+    private List<Alarm> alarms;
 
     public AlarmController(Context context) {
         this.context = context;
         alarmDAO = new AlarmDAO();
     }
 
-    public void rescheduleAlarms() {
-        List<Alarm> alarms = alarmDAO.getListOfAlarms();
+    public void scheduleAlarms() {
+        updateAlarmsList();
+        for (Alarm alarm : alarms) {
+            scheduleAlarm(alarm);
+        }
+    }
+
+    public void cancelAlarms() {
+        updateAlarmsList();
         for (Alarm alarm : alarms) {
             cancelAlarm(alarm);
-            scheduleAlarm(alarm);
         }
     }
 
@@ -40,6 +48,10 @@ public class AlarmController {
         context.startService(new Intent(context, AlarmService.class));
     }
 
+    private void updateAlarmsList() {
+        alarms = alarmDAO.getListOfAlarms();
+        Log.d(getClass().getName(), "Alarms list updated. With " + alarms.size() + " objects now");
+    }
 
     private void scheduleAlarm(Alarm alarm) {
         PendingIntent pendingIntent = createPendingIntent(context, alarm);
