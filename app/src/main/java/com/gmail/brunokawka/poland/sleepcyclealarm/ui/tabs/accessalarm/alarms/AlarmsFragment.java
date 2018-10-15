@@ -127,32 +127,44 @@ public class AlarmsFragment extends Fragment
 
     @Override
     public void showList() {
-        VisibilityHandler.showIfNotVisible(listCardView);
+        if (listCardView.getVisibility() != View.VISIBLE) {
+            listCardView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void hideList() {
-        VisibilityHandler.hideIfNotGone(listCardView);
+        if (listCardView.getVisibility() != View.GONE) {
+            listCardView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showInfoCard() {
-        VisibilityHandler.showIfNotVisible(infoCard);
+        if (infoCard.getVisibility() != View.VISIBLE) {
+            infoCard.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void hideInfoCard() {
-        VisibilityHandler.hideIfNotGone(infoCard);
+        if (infoCard.getVisibility() != View.GONE) {
+            infoCard.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showEmptyListHint() {
-        VisibilityHandler.showIfNotVisible(emptyListPlaceHolder);
+        if (emptyListPlaceHolder.getVisibility() != View.VISIBLE) {
+            emptyListPlaceHolder.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void hideEmptyListHint() {
-        VisibilityHandler.hideIfNotGone(emptyListPlaceHolder);
+        if (emptyListPlaceHolder.getVisibility() != View.GONE) {
+            emptyListPlaceHolder.setVisibility(View.GONE);
+        }
     }
 
     public static AlarmsPresenter getAlarmsPresenter() {
