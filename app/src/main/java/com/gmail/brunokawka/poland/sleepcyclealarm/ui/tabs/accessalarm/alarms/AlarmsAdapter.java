@@ -64,8 +64,10 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
             itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    AlarmController alarmController = new AlarmController(v.getContext());
+                    alarmController.cancelAlarms();
                     alarmsPresenter.deleteAlarmById(id);
-                    new AlarmController(v.getContext()).cancelAlarms();
+                    alarmController.scheduleAlarms();
                     return false;
                 }
             });
