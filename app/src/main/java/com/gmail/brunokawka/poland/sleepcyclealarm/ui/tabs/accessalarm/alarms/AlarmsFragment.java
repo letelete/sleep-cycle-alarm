@@ -97,39 +97,14 @@ public class AlarmsFragment extends Fragment
     }
 
     @Override
-    public void showAddAlarmDialog() {
-        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
-        final DialogContract dialogContract = (DialogContract) content;
-
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-        dialogBuilder.setView(content)
-                .setTitle(getString(R.string.dialog_add_new_alarm))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, item);
-                        alarmsPresenter.dismissAddDialog();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alarmsPresenter.saveAlarm(dialogContract, item);
-                        alarmsPresenter.dismissAddDialog();
-                    }
-                });
-    }
-
-    @Override
-    public void showEditAlarmDialog(Alarm alarm) {
+    public void showEditAlarmDialog(final Alarm alarm) {
         if(!alarm.isValid()) {
             return;
         }
+
         final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, root, false);
         final AlarmsContract.AlarmsView.DialogContract dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
         dialogContract.bind(alarm);
-
-        final String id = alarm.getId();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(content)
@@ -137,7 +112,7 @@ public class AlarmsFragment extends Fragment
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        alarmsPresenter.editAlarm(dialogContract, id);
+                        alarmsPresenter.updateEditedAlarm(dialogContract, alarm);
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
