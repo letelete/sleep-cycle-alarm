@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.SleepNowBuildingStrategy;
 
-import org.greenrobot.eventbus.EventBus;
 import org.joda.time.DateTime;
 
 import butterknife.BindView;
@@ -26,7 +24,6 @@ import butterknife.ButterKnife;
 public class SleepNowFragment extends Fragment {
 
     private ItemsBuilder itemsBuilder;
-    private AlarmDAO alarmDAO;
 
     @BindView(R.id.sleepNowFragmentRecycler)
     protected RecyclerView recycler;
@@ -39,8 +36,6 @@ public class SleepNowFragment extends Fragment {
 
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
-
-        alarmDAO = new AlarmDAO();
 
         return view;
     }
@@ -65,7 +60,6 @@ public class SleepNowFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        alarmDAO.cleanUp();
         super.onDestroyView();
     }
 }

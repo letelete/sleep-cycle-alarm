@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
@@ -44,7 +43,6 @@ public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
 
     private ItemsBuilder itemsBuilder;
-    private AlarmDAO alarmDAO;
     private static WakeUpAtPresenter wakeUpAtPresenter;
     private AlertDialog dialog;
     private DateTime lastExecutionDate;
@@ -100,8 +98,6 @@ public class WakeUpAtFragment extends Fragment
 
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new WakeUpAtBuildingStrategy());
-
-        alarmDAO = new AlarmDAO();
 
         return view;
     }
@@ -259,10 +255,6 @@ public class WakeUpAtFragment extends Fragment
 
         if (lastExecutionDate != null) {
             lastExecutionDate = null;
-        }
-
-        if (alarmDAO != null) {
-            alarmDAO = null;
         }
     }
 }
