@@ -17,7 +17,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.VisibilityHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
