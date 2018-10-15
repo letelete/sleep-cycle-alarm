@@ -50,29 +50,13 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     public void setUpUIDependingOnDatabaseItemAmount() {
         view.setUpRecycler();
         if (!isRealmEmpty()) {
-            showUiElements();
             Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
+            showUiElements();
             view.setUpAdapter();
         } else {
-            hideUiElements();
             Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
+            hideUiElements();
         }
-    }
-
-    private boolean isRealmEmpty() {
-        return RealmManager.getRealm().isEmpty();
-    }
-
-    private void showUiElements() {
-        view.hideEmptyListHint();
-        view.showList();
-        view.showInfoCard();
-    }
-
-    private void hideUiElements() {
-        view.hideList();
-        view.hideInfoCard();
-        view.showEmptyListHint();
     }
 
     @Override
@@ -91,7 +75,23 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final Alarm alarm) {
         Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
         alarmDAO.updateAlarm(editedAlarm);
-        view.setUpAdapter();
+        setUpUIDependingOnDatabaseItemAmount();
+    }
+
+    private boolean isRealmEmpty() {
+        return RealmManager.getRealm().isEmpty();
+    }
+
+    private void showUiElements() {
+        view.hideEmptyListHint();
+        view.showList();
+        view.showInfoCard();
+    }
+
+    private void hideUiElements() {
+        view.hideList();
+        view.hideInfoCard();
+        view.showEmptyListHint();
     }
 
     private Alarm getEditedAlarm(AlarmsContract.AlarmsView.DialogContract dialog, final Alarm previousAlarm) {
