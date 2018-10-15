@@ -59,10 +59,6 @@ public class AlarmDAO {
         final String title = item.getTitle();
         final String summary = item.getSummary();
         final String ringtoneTitle = pref.getString(ctx.getString(R.string.key_ringtone_select), "None");
-        final boolean isRingingInSilentMode = pref.getBoolean(ctx.getString(R.string.key_alarm_in_silent_mode), true);
-        final int snoozeDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_alarms_intervals), "5"));
-        final int ringDuration = Integer.parseInt(pref.getString(ctx.getString(R.string.key_ring_duration), "5"));
-        final int numberOfRepetitions = Integer.parseInt(pref.getString(ctx.getString(R.string.key_auto_silence), "3"));
         final String currentDate = item.getCurrentDate().toString();
         final String executionDate = item.getExecutionDate().toString();
 
@@ -70,11 +66,7 @@ public class AlarmDAO {
         alarm.setId(id);
         alarm.setTitle(title);
         alarm.setSummary(summary);
-        alarm.setSnoozeDurationInMinutes(snoozeDuration);
-        alarm.setRingingInSilentMode(isRingingInSilentMode);
         alarm.setRingtone(ringtoneTitle);
-        alarm.setRingDurationInMinutes(ringDuration);
-        alarm.setNumberOfRepetitionsBeforeAutoSilence(numberOfRepetitions);
         alarm.setCurrentDate(currentDate);
         alarm.setExecutionDate(executionDate);
 
