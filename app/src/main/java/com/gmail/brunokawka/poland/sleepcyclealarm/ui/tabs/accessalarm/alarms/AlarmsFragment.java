@@ -89,20 +89,13 @@ public class AlarmsFragment extends Fragment
         dialogContract.bind(alarm);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(content)
-                .setTitle(getString(R.string.dialog_edit_alarm))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        alarmsPresenter.updateEditedAlarm(dialogContract, alarm);
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+        builder.setView(content);
+        content.findViewById(R.id.alarmsEditOkButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alarmsPresenter.updateEditedAlarm(dialogContract, alarm);
+            }
+        });
         dialog = builder.create();
         dialog.show();
     }

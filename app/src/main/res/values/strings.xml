@@ -4,6 +4,7 @@
 
     <string name="content_descriptions_set_alarm_icon">Set alarm icon</string>
     <string name="content_descriptions_empty_list_placeholder">Your list is empty</string>
+    <string name="content_description_edit_alarm_image">Your list is empty</string>
 
     <!-- SLEEP QUALITY STATES-->
     <string name="sleep_state_unhealthy">Unhealthy</string>

@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsEditAlarmView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?colorPrimary">
+
+    <ImageView
+        android:id="@+id/alarmsEditImage"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:background="?colorAccent"
+        android:contentDescription="@string/content_description_edit_alarm_image"
+        android:padding="@dimen/medium_margin_size"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_access_alarm_light" />
 
     <LinearLayout
         android:id="@+id/alarmsEditRingtoneClickable"
@@ -26,5 +39,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/alarmsEditOkButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@string/error_wake_up_at_fragment_new_hour_is_null"
+        android:text="@android:string/ok" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/normal_margin_size"
+        android:layout_marginEnd="@dimen/normal_margin_size"
+        android:layout_height="1dp"
+        android:background="?colorDisabled" />
+
+    <Button
+        android:id="@+id/alarmsEditCancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@string/error_wake_up_at_fragment_new_hour_is_null"
+        android:text="@android:string/cancel" />
 
 </com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsEditAlarmView>
