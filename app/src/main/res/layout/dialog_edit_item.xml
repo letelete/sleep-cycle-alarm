@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsEditAlarmView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="?colorPrimary">
 
-    <ImageView
-        android:id="@+id/alarmsEditImage"
+    <TextView
+        android:textAlignment="center"
+        android:layout_margin="@dimen/medium_margin_size"
+        android:id="@+id/alarmsEditDialogTitle"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_gravity="center"
-        android:background="?colorAccent"
-        android:contentDescription="@string/content_description_edit_alarm_image"
-        android:padding="@dimen/medium_margin_size"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_access_alarm_light" />
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_edit_alarm" />
 
     <LinearLayout
         android:id="@+id/alarmsEditRingtoneClickable"
@@ -40,26 +38,27 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/alarmsEditOkButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:text="@android:string/ok" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/normal_margin_size"
-        android:layout_marginEnd="@dimen/normal_margin_size"
-        android:layout_height="1dp"
-        android:background="?colorDisabled" />
+        <Button
+            android:id="@+id/alarmsEditCancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_margin_size"
+            android:background="@color/transparent"
+            android:text="@android:string/cancel"
+            android:textColor="?colorAccent" />
 
-    <Button
-        android:id="@+id/alarmsEditCancelButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:text="@android:string/cancel" />
+        <Button
+            android:id="@+id/alarmsEditOkButton"
+            style="?floatingActionButtonStyle"
+            android:layout_margin="@dimen/large_margin_size"
+            android:drawableStart="@null"
+            android:text="@android:string/ok" />
+    </LinearLayout>
 
 </com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsEditAlarmView>

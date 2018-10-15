@@ -102,7 +102,7 @@ public class AlarmsFragment extends Fragment
             public void onClick(View view) {
                 dialog.dismiss();
             }
-        });ect
+        });
         dialog.show();
     }
 
