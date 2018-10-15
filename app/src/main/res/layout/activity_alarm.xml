@@ -37,6 +37,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:paddingStart="@dimen/medium_margin_size"
+        android:paddingEnd="@dimen/medium_margin_size"
+        android:layout_marginBottom="@dimen/large_margin_size"
+        android:layout_marginTop="@dimen/extra_large_text_size"
         android:id="@+id/activityAlarmDismissAlarmButton"
         style="?floatingActionButtonStyle"
         android:drawableStart="@null"

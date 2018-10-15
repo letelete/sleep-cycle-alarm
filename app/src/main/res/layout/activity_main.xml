@@ -57,6 +57,10 @@
         app:menu="@menu/bottom_navigation_menu" />
 
     <Button
+        android:paddingStart="@dimen/medium_margin_size"
+        android:paddingEnd="@dimen/medium_margin_size"
+        android:layout_marginBottom="@dimen/large_margin_size"
+        android:layout_marginTop="@dimen/extra_large_text_size"
         android:id="@+id/wakeUpAtFloatingActionButtonExtended"
         android:text="@string/wake_up_at_set_hour_button"
         style="?floatingActionButtonStyle"

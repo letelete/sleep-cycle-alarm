@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsEditAlarmView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -16,6 +14,8 @@
         android:text="@string/dialog_edit_alarm" />
 
     <LinearLayout
+        android:layout_marginStart="@dimen/normal_margin_size"
+        android:layout_marginEnd="@dimen/normal_margin_size"
         android:id="@+id/alarmsEditRingtoneClickable"
         android:padding="@dimen/medium_margin_size"
         android:layout_width="match_parent"
@@ -39,21 +39,24 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="@dimen/medium_margin_size"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <Button
+            android:layout_margin="@dimen/dialog_buttons_margin"
+            android:layout_width="@dimen/dialog_buttons_width"
             android:id="@+id/alarmsEditCancelButton"
             style="?floatingActionButtonNoBackgroundStyle"
-            android:layout_margin="@dimen/large_margin_size"
             android:text="@android:string/cancel" />
 
         <Button
+            android:layout_margin="@dimen/dialog_buttons_margin"
+            android:layout_width="@dimen/dialog_buttons_width"
             android:id="@+id/alarmsEditOkButton"
             style="?floatingActionButtonStyle"
-            android:layout_margin="@dimen/large_margin_size"
             android:drawableStart="@null"
             android:text="@android:string/ok" />
     </LinearLayout>
