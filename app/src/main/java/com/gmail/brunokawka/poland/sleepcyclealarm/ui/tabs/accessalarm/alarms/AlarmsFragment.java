@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,25 +25,15 @@ import io.realm.RealmChangeListener;
 public class AlarmsFragment extends Fragment
     implements AlarmsContract.AlarmsView {
 
-    private Item item;
     private AlarmScopeListener alarmScopeListener;
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
 
-    @BindView(R.id.alarms_root)
-    protected ViewGroup root;
-
-    @BindView(R.id.alarmsList)
-    protected RecyclerView recycler;
-
-    @BindView(R.id.alarmsListCardView)
-    protected CardView listCardView;
-
-    @BindView(R.id.alarmsEmptyListPlaceHolder)
-    protected View emptyListPlaceHolder;
-
-    @BindView(R.id.alarmsInfoCardView)
-    protected CardView infoCard;
+    @BindView(R.id.alarms_root) protected ViewGroup root;
+    @BindView(R.id.alarmsList) protected RecyclerView recycler;
+    @BindView(R.id.alarmsListCardView) protected CardView listCardView;
+    @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
+    @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -65,14 +54,14 @@ public class AlarmsFragment extends Fragment
         alarmsPresenter.bindView(this);
 
         alarmsPresenter.setUpUi();
-    }
 
-    public void addScopeListener() {
-        alarmScopeListener = (AlarmScopeListener) getFragmentManager().findFragmentByTag("SCOPE_LISTENER");
-        if (alarmScopeListener == null) {
-            alarmScopeListener = new AlarmScopeListener();
-            getFragmentManager().beginTransaction().add(alarmScopeListener, "SCOPE_LISTENER").commit();
-        }
+        Realm realm = RealmManager.getRealm();
+        realm.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm realm) {
+                onRealmChangeEvent();
+            }
+        });
     }
 
     @Override
@@ -86,12 +75,6 @@ public class AlarmsFragment extends Fragment
     @Override
     public void setUpAdapter() {
         Realm realm = RealmManager.getRealm();
-        realm.addChangeListener(new RealmChangeListener<Realm>() {
-            @Override
-            public void onChange(Realm realm) {
-                onRealmChangeEvent();
-            }
-        });
         recycler.setAdapter(new AlarmsAdapter(realm.where(Alarm.class).findAllAsync().sort("executionDate")));
     }
 
@@ -120,7 +103,7 @@ public class AlarmsFragment extends Fragment
                         dialog.dismiss();
                     }
                 });
-        AlertDialog dialog = builder.create();
+        dialog = builder.create();
         dialog.show();
     }
 
@@ -166,10 +149,6 @@ public class AlarmsFragment extends Fragment
         }
     }
 
-    public static AlarmsPresenter getAlarmsPresenter() {
-        return alarmsPresenter;
-    }
-
     @Override
     public void onDestroyView() {
         if(alarmsPresenter != null) {
@@ -179,6 +158,18 @@ public class AlarmsFragment extends Fragment
             dialog.dismiss();
         }
         super.onDestroyView();
+    }
+
+    public void addScopeListener() {
+        alarmScopeListener = (AlarmScopeListener) getFragmentManager().findFragmentByTag("SCOPE_LISTENER");
+        if (alarmScopeListener == null) {
+            alarmScopeListener = new AlarmScopeListener();
+            getFragmentManager().beginTransaction().add(alarmScopeListener, "SCOPE_LISTENER").commit();
+        }
+    }
+
+    public static AlarmsPresenter getAlarmsPresenter() {
+        return alarmsPresenter;
     }
 
     private void onRealmChangeEvent() {

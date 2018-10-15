@@ -66,8 +66,8 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     private void updateUi() {
         if (!isRealmEmpty()) {
             Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
-            showUiElements();
             view.setUpAdapter();
+            showUiElements();
         } else {
             Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
             hideUiElements();
