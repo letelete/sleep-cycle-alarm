@@ -65,7 +65,7 @@ public class AlarmsFragment extends Fragment
         alarmsPresenter = alarmScopeListener.getPresenter();
         alarmsPresenter.bindView(this);
 
-        alarmsPresenter.setUpUIDependingOnDatabaseItemAmount();
+        alarmsPresenter.setUpUi();
     }
 
     public void addScopeListener() {

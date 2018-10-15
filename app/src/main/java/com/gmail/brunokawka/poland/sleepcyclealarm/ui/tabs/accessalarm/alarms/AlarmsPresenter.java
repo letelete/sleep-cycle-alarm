@@ -1,23 +1,15 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-
-import io.realm.Realm;
 
 public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     private AlarmsContract.AlarmsView view;
     private AlarmDAO alarmDAO;
-
-    private boolean hasView() {
-        return view != null;
-    }
 
     protected static AlarmsPresenter getService() {
         return AlarmsFragment.getAlarmsPresenter();
@@ -38,25 +30,14 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void handleRealmChange() {
         if (hasView()) {
-            if (isRealmEmpty()) {
-                hideUiElements();
-            } else {
-                showUiElements();
-            }
+            updateUi();
         }
     }
 
     @Override
-    public void setUpUIDependingOnDatabaseItemAmount() {
+    public void setUpUi() {
         view.setUpRecycler();
-        if (!isRealmEmpty()) {
-            Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
-            showUiElements();
-            view.setUpAdapter();
-        } else {
-            Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
-            hideUiElements();
-        }
+        updateUi();
     }
 
     @Override
@@ -75,7 +56,22 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final Alarm alarm) {
         Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
         alarmDAO.updateAlarm(editedAlarm);
-        setUpUIDependingOnDatabaseItemAmount();
+        setUpUi();
+    }
+
+    private boolean hasView() {
+        return view != null;
+    }
+
+    private void updateUi() {
+        if (!isRealmEmpty()) {
+            Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
+            showUiElements();
+            view.setUpAdapter();
+        } else {
+            Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
+            hideUiElements();
+        }
     }
 
     private boolean isRealmEmpty() {

@@ -36,7 +36,7 @@ public interface AlarmsContract {
 
         void unbindView();
 
-        void setUpUIDependingOnDatabaseItemAmount();
+        void setUpUi();
 
         void handleRealmChange();
 
