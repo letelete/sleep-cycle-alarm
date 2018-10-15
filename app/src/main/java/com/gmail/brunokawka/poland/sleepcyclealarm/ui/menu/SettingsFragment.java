@@ -40,8 +40,6 @@ public class SettingsFragment extends PreferenceFragmentCompat  {
             bindPreferenceToListener(findPreference(getString(R.string.key_change_theme)));
         }else if (Objects.equals(rootKey, getString(R.string.pref_alarm_category))) {
             bindPreferenceToListener(findPreference(getString(R.string.key_ring_duration)));
-            bindPreferenceToListener(findPreference(getString(R.string.key_alarms_intervals)));
-            bindPreferenceToListener(findPreference(getString(R.string.key_auto_silence)));
         }
 
         isFirstRun = false;
