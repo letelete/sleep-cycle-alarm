@@ -2,6 +2,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.alarm.AlarmController;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.DataOutput;
 import java.util.List;
 
 import butterknife.BindView;
@@ -75,14 +80,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         }
 
         public void onClick(final View view) {
+            final AlarmDAO alarmDAO = new AlarmDAO();
             final Context context = view.getContext();
             final int position = this.getAdapterPosition();
-            
+
             showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //TODO: ADD ALARM
+                    addAlarm();
                     showAddAlarmToast();
+                }
+
+                private void addAlarm() {
+                    alarmDAO.generateAlarmAndSaveItToRealm(item);
+                    new AlarmController(context).rescheduleAlarms();
                 }
 
                 private void showAddAlarmToast() {
@@ -91,6 +102,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
                 }
             });
 
+            alarmDAO.cleanUp();
         }
 
         private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {
