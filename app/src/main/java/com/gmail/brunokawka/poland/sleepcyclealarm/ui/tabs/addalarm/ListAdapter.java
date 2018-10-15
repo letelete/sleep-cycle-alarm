@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
@@ -73,13 +74,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             view.setOnClickListener(this);
         }
 
-        public void onClick(View view) {
+        public void onClick(final View view) {
+            final Context context = view.getContext();
             final int position = this.getAdapterPosition();
-            showAlertDialogForAddAlarmAction(view.getContext(), new DialogInterface.OnClickListener() {
+            
+            showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     //TODO: ADD ALARM
-                    Log.d(getClass().getName(), String.valueOf(position));
+                    showAddAlarmToast();
+                }
+
+                private void showAddAlarmToast() {
+                    String toastText = String.format(context.getString(R.string.toast_alarm_added), item.getTitle());
+                    Toast.makeText(view.getContext(), toastText, Toast.LENGTH_LONG).show();
                 }
             });
 
