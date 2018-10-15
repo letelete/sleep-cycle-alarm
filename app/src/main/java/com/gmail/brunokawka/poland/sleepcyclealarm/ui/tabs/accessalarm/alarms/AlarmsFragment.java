@@ -1,7 +1,13 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentUris;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -27,6 +33,7 @@ public class AlarmsFragment extends Fragment
     private AlarmScopeListener alarmScopeListener;
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
+    private AlarmsContract.AlarmsView.DialogContract dialogContract;
 
     @BindView(R.id.alarmsList) protected RecyclerView recycler;
     @BindView(R.id.alarmsListCardView) protected CardView listCardView;
@@ -83,11 +90,17 @@ public class AlarmsFragment extends Fragment
         }
 
         final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, null);
-        final AlarmsContract.AlarmsView.DialogContract dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
+        dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
         dialogContract.bind(alarm);
         dialog = new AlertDialog.Builder(getActivity()).create();
         dialog.setView(content);
 
+        content.findViewById(R.id.alarmsEditRingtoneClickable).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startRingtonePickerActivityForResult();
+            }
+        });
         content.findViewById(R.id.alarmsEditOkButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +115,29 @@ public class AlarmsFragment extends Fragment
             }
         });
         dialog.show();
+    }
+
+    private void startRingtonePickerActivityForResult() {
+        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE,getString(R.string.ringtone_picker_title));
+        Uri uri = ContentUris.withAppendedId(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, 1);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, uri);
+        startActivityForResult(intent, 123);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 123) {
+            Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+
+            if (uri != null && dialogContract != null) {
+                String chosenRingtone = uri.toString();
+                dialogContract.setRingtone(chosenRingtone);
+                Log.d(getClass().getName(), "onActivityResult ringtone:" + chosenRingtone);
+            }
+        }
     }
 
     @Override

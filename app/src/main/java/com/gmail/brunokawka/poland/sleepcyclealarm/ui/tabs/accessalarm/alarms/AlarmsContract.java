@@ -1,7 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 
 public interface AlarmsContract {
     interface AlarmsView {
@@ -25,6 +24,7 @@ public interface AlarmsContract {
         void hideEmptyListHint();
 
         interface DialogContract {
+            void setRingtone(String ringtone);
             String getRingtone();
 
             void bind(Alarm alarm);

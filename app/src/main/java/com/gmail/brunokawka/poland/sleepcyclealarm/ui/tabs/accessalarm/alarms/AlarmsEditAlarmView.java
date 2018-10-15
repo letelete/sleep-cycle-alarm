@@ -2,6 +2,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -10,32 +11,18 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
 
 public class AlarmsEditAlarmView extends LinearLayout implements AlarmsFragment.DialogContract {
 
     private String ringtone;
-    private Alarm alarm;
 
     @BindView(R.id.alarmsEditRingtoneSummary) protected TextView textRingtoneSummary;
-
-    @OnClick(R.id.alarmsEditRingtoneClickable)
-    public void selectRingtone() {
-        Toast.makeText(getContext(), "Ziup", Toast.LENGTH_SHORT).show();
-    }
-
-    @OnTextChanged(R.id.alarmsEditRingtoneSummary)
-    public void ringtoneChanged(CharSequence ringtone) {
-        this.ringtone = ringtone.toString();
-    }
 
     public AlarmsEditAlarmView(Context context) {
         super(context);
@@ -66,25 +53,28 @@ public class AlarmsEditAlarmView extends LinearLayout implements AlarmsFragment.
     }
 
     @Override
-    public void bind(Alarm alarm) {
-        String ringtone = alarm.getRingtone();
-        setTextRingtoneSummary();
+    public void setRingtone(String ringtone) {
         this.ringtone = ringtone;
-        this.alarm = alarm;
+        setTextRingtoneSummary();
+    }
+
+    @Override
+    public void bind(Alarm alarm) {
+        this.ringtone = alarm.getRingtone();
+        setTextRingtoneSummary();
     }
 
     private void setTextRingtoneSummary() {
         Context context = getContext();
         String summary = context.getString(R.string.pref_ringtone_select_default_summary);
-
         try {
-            Uri ringtoneUri = Uri.parse(alarm.getRingtone());
-            Ringtone ringtone = RingtoneManager.getRingtone(context, ringtoneUri);
-            String ringtoneTitle = ringtone.getTitle(context);
+            Uri uri = Uri.parse(ringtone);
+            Ringtone ringtone = RingtoneManager.getRingtone(getContext(), uri);
+            String title = ringtone.getTitle(getContext());
             String stringToParse = context.getString(R.string.pref_ringtone_select_selected_summary);
-            summary = String.format(stringToParse, ringtoneTitle);
+            summary = String.format(stringToParse, title);
         } catch (Exception e) {
-            Log.e(getClass().getName(), "Error while setting ringtone summary: " + e.getMessage());
+            Log.e(getClass().getName(), "Error while setting ringtone summary! Error msg: " + e.getMessage());
         } finally {
             textRingtoneSummary.setText(summary);
         }
