@@ -2,15 +2,14 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
@@ -26,7 +25,7 @@ public class AlarmsEditAlarmView extends LinearLayout implements AlarmsFragment.
     private String ringtone;
     private Alarm alarm;
 
-    @BindView(R.id.alarmsEditRingtoneSummary) protected EditText textRingtoneSummary;
+    @BindView(R.id.alarmsEditRingtoneSummary) protected TextView textRingtoneSummary;
 
     @OnClick(R.id.alarmsEditRingtoneClickable)
     public void selectRingtone() {
