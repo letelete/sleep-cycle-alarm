@@ -23,10 +23,9 @@ import android.widget.Toast;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
     private WakeUpAtSetHourButton wakeUpAtSetHourButton;
+    private WakeUpAtFragment wakeUpAtFragment;
 
     @BindView(R.id.toolbar)
     protected Toolbar appToolbar;
@@ -56,11 +56,6 @@ public class MainActivity extends AppCompatActivity
         EventBus.getDefault().post(new SetHourButtonClickedEvent());
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void wakeUpAtActionButtonClickedEvent(SetHourButtonClickedEvent setHourButtonClickedEvent) {
-        Log.d(getClass().getName(), "Event received");
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -71,6 +66,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        wakeUpAtFragment = new WakeUpAtFragment();
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         setUpBottomNavigationBar();
@@ -81,7 +77,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(wakeUpAtFragment);
     }
 
     @Override
@@ -195,7 +191,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(wakeUpAtFragment);
     }
 
     @Override

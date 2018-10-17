@@ -21,10 +21,12 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
 
     @Override
     public void showOrHideElementsDependingOnAmountOfListItems(int amount, DateTime lastExecutionDate) {
-        if (amount <= 0) {
-            hideWakeUpAtElements();
-        } else {
-            showWakeUpAtElements(lastExecutionDate);
+        if (view != null) {
+            if (amount <= 0) {
+                hideWakeUpAtElements();
+            } else {
+                showWakeUpAtElements(lastExecutionDate);
+            }
         }
     }
 
