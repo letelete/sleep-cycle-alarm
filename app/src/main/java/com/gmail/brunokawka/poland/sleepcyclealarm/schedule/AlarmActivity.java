@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 
 import org.joda.time.DateTime;
 
@@ -76,10 +78,6 @@ public class AlarmActivity extends AppCompatActivity {
 
     private String getFormattedCurrentHour() {
         DateTime currentDate = DateTime.now();
-        int hour = currentDate.getHourOfDay();
-        int minute = currentDate.getMinuteOfHour();
-        return String.valueOf(hour)
-                + ":"
-                + String.valueOf(minute);
+        return ItemContentBuilder.getTitle(currentDate);
     }
 }
