@@ -1,11 +1,10 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.alarm;
+package com.gmail.brunokawka.poland.sleepcyclealarm.schedule;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;

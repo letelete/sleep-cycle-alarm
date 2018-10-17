@@ -30,9 +30,9 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".alarm.AlarmActivity" android:theme="@style/Theme.SleepCycleTheme" />
-        <service android:name=".alarm.AlarmService" />
-        <receiver android:name=".alarm.AlarmReceiver" />
+        <activity android:name=".schedule.AlarmActivity" android:theme="@style/Theme.SleepCycleTheme" />
+        <service android:name=".schedule.AlarmService" />
+        <receiver android:name=".schedule.AlarmReceiver" />
     </application>
 
 </manifest>

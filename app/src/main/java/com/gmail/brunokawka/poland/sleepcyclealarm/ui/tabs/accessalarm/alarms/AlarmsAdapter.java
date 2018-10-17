@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.alarm.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
 import butterknife.BindView;

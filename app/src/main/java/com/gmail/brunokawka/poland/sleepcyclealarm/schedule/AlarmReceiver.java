@@ -1,4 +1,4 @@
-package com.gmail.brunokawka.poland.sleepcyclealarm.alarm;
+package com.gmail.brunokawka.poland.sleepcyclealarm.schedule;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
