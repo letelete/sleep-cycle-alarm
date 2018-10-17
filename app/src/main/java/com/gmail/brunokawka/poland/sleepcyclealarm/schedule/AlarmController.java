@@ -28,18 +28,9 @@ public class AlarmController {
         alarmDAO = new AlarmDAO();
     }
 
-    public void scheduleAlarms() {
-        updateAlarmsList();
-        for (Alarm alarm : alarms) {
-            scheduleAlarm(alarm);
-        }
-    }
-
-    public void cancelAlarms() {
-        updateAlarmsList();
-        for (Alarm alarm : alarms) {
-            cancelAlarm(alarm);
-        }
+    public void rescheduleAlarms() {
+        cancelAllAlarms();
+        updateDataAndScheduleAllAlarms();
     }
 
     public void dismissCurrentlyPlayingAlarm() {
@@ -48,6 +39,19 @@ public class AlarmController {
 
     public void startAlarm() {
         context.startService(new Intent(context, AlarmService.class));
+    }
+
+    private void updateDataAndScheduleAllAlarms() {
+        updateAlarmsList();
+        for (Alarm alarm : alarms) {
+            scheduleAlarm(alarm);
+        }
+    }
+
+    private void cancelAllAlarms() {
+        for (Alarm alarm : alarms) {
+            cancelAlarm(alarm);
+        }
     }
 
     private void updateAlarmsList() {
