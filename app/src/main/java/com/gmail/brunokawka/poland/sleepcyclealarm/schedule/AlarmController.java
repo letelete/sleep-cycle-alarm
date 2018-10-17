@@ -13,6 +13,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import org.joda.time.DateTime;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AlarmController {
     private final static String KEY_ALARM_ID = "alarm_id";
@@ -77,11 +78,11 @@ public class AlarmController {
     }
 
     private PendingIntent createPendingIntent(Context context, Alarm alarm) {
-        int alarmId = (int) DateTime.parse(alarm.getId()).getMillis();
-
+        String alarmId = alarm.getId();
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(KEY_ALARM_ID, alarmId);
+        int alarmIdLeastSignificantBits = (int) Math.abs(UUID.fromString(alarmId).getLeastSignificantBits());
 
-        return PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, alarmIdLeastSignificantBits, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
