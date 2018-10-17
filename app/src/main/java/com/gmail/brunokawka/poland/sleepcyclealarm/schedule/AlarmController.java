@@ -17,6 +17,7 @@ import java.util.UUID;
 
 public class AlarmController {
     private final static String KEY_ALARM_ID = "alarm_id";
+    private static final String KEY_RINGTONE_ID = "ringtone_id";
 
     private Context context;
     private AlarmDAO alarmDAO;
@@ -79,8 +80,10 @@ public class AlarmController {
 
     private PendingIntent createPendingIntent(Context context, Alarm alarm) {
         String alarmId = alarm.getId();
+        String ringtone = alarm.getRingtone();
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(KEY_ALARM_ID, alarmId);
+        intent.putExtra(KEY_RINGTONE_ID, ringtone);
         int alarmIdLeastSignificantBits = (int) Math.abs(UUID.fromString(alarmId).getLeastSignificantBits());
 
         return PendingIntent.getBroadcast(context, alarmIdLeastSignificantBits, intent, PendingIntent.FLAG_UPDATE_CURRENT);

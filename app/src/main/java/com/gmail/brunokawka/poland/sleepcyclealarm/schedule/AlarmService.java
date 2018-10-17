@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class AlarmService extends Service {
 
+    private static final String KEY_RINGTONE_ID = "ringtone_id";
     private final static String HANDLER_THREAD_NAME = "alarm_service";
 
     private final static int PAUSE_BETWEEN_VIBRATE_DELAY_IN_MS = 2000;
@@ -31,6 +32,7 @@ public class AlarmService extends Service {
     private final static float VOLUME_INCREASE_STEP = 0.01f;
     private final static float MAX_VOLUME = 1.0f;
 
+    private String ringtonePassedInIntent;
     private SharedPreferences preferences;
     private MediaPlayer player;
     private Vibrator vibrator;
@@ -67,6 +69,7 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        ringtonePassedInIntent = intent.getStringExtra(KEY_RINGTONE_ID);
         startPlayer();
         startAlarmActivity();
         return START_NOT_STICKY;
@@ -90,7 +93,10 @@ public class AlarmService extends Service {
 
         try {
             postVibrationHandlerIfVibrationEnabled();
-            setPlayerDataSource();
+            String ringtone = ringtonePassedInIntent != null
+                    ? ringtonePassedInIntent
+                    : "DEFAULT_SOUND";
+            player.setDataSource(this, Uri.parse(ringtone));
             player.setLooping(true);
             player.setAudioStreamType(AudioManager.STREAM_ALARM);
             player.setVolume(volumeLevel, volumeLevel);
@@ -117,20 +123,6 @@ public class AlarmService extends Service {
 
     private boolean isVibrateEnabled() {
         return preferences.getBoolean(getString(R.string.key_alarm_vibrate_when_ringing), true);
-    }
-
-    private void setPlayerDataSource() throws IOException {
-        String ringtone = "DEFAULT_SOUND";
-        if (isSameRingtoneForAllAlarmsEnabled()) {
-            ringtone = preferences.getString(getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
-        } else {
-            //TODO:
-        }
-        player.setDataSource(this, Uri.parse(ringtone));
-    }
-
-    private boolean isSameRingtoneForAllAlarmsEnabled() {
-        return preferences.getBoolean(getString(R.string.key_alarms_has_same_ringtone), false);
     }
 
     private void postDelayedVolumeHandler() {
