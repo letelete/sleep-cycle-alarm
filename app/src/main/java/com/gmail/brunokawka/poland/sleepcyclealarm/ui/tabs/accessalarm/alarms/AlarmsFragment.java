@@ -22,6 +22,9 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -42,6 +45,17 @@ public class AlarmsFragment extends Fragment
     @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
     @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRealmChanged() {
+        Log.d(getClass().getName(), "Realm change event received.");
+        if (alarmsPresenter != null) {
+            Log.d(getClass().getName(), "Handling realm change...");
+            alarmsPresenter.handleRealmChange();
+        } else {
+            Log.d(getClass().getName(), "Couldn't handle realm change. AlarmsPresenter is null.");
+        }
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,14 +75,6 @@ public class AlarmsFragment extends Fragment
         alarmsPresenter.bindView(this);
 
         alarmsPresenter.setUpUi();
-
-        Realm realm = RealmManager.getRealm();
-        realm.addChangeListener(new RealmChangeListener<Realm>() {
-            @Override
-            public void onChange(Realm realm) {
-                onRealmChangeEvent();
-            }
-        });
     }
 
     @Override
@@ -206,15 +212,5 @@ public class AlarmsFragment extends Fragment
 
     public static AlarmsPresenter getAlarmsPresenter() {
         return alarmsPresenter;
-    }
-
-    private void onRealmChangeEvent() {
-        Log.d(getClass().getName(), "Realm change event received.");
-        if (alarmsPresenter != null) {
-            Log.d(getClass().getName(), "Handling realm change...");
-            alarmsPresenter.handleRealmChange();
-        } else {
-            Log.d(getClass().getName(), "Couldn't handle realm change. AlarmsPresenter is null.");
-        }
     }
 }

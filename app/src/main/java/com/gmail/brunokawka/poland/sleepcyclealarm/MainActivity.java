@@ -20,7 +20,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.listeners.OnRealmChangeListener;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
@@ -30,6 +32,7 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -65,6 +68,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        RealmManager.initializeRealmConfig();
+        Realm realm = RealmManager.getRealm();
+        realm.addChangeListener(new OnRealmChangeListener(getApplicationContext()));
 
         wakeUpAtFragment = new WakeUpAtFragment();
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
