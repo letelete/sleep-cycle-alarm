@@ -53,7 +53,7 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final Alarm alarm) {
         Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
-        alarmDAO.updateAlarm(editedAlarm);
+        alarmDAO.saveEvenIfDuplicate(editedAlarm);
     }
 
     private boolean hasView() {

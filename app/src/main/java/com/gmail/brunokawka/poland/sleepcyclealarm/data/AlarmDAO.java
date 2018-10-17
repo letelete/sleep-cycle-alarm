@@ -20,7 +20,7 @@ public class AlarmDAO {
         RealmManager.incrementCount();
     }
 
-    public void saveAlarm(final Alarm alarm) {
+    public void saveIfNotDuplicate(final Alarm alarm) {
         RealmManager.getRealm().executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
@@ -31,7 +31,7 @@ public class AlarmDAO {
         });
     }
 
-    public void updateAlarm(final Alarm alarm) {
+    public void saveEvenIfDuplicate(final Alarm alarm) {
         RealmManager.getRealm().executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
