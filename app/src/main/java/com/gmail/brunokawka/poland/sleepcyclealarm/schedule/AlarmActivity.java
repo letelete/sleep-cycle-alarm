@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 
@@ -21,6 +22,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AlarmActivity extends AppCompatActivity {
+    private static final String KEY_ALARM_ID = "alarm_id";
+
     private PowerManager.WakeLock wakeLock;
     private int ringDurationInMillis;
 
@@ -45,6 +48,7 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
         setUpCurrentHourTextView();
+        removeExecutedAlarmFromDatabase();
     }
 
     @Override
@@ -79,5 +83,10 @@ public class AlarmActivity extends AppCompatActivity {
     private String getFormattedCurrentHour() {
         DateTime currentDate = DateTime.now();
         return ItemContentBuilder.getTitle(currentDate);
+    }
+
+    private void removeExecutedAlarmFromDatabase() {
+        String alarmId = getIntent().getStringExtra(KEY_ALARM_ID);
+        new AlarmDAO().removeFromRealmById(alarmId);
     }
 }

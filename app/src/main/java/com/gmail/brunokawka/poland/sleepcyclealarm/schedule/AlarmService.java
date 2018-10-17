@@ -24,6 +24,7 @@ import java.io.IOException;
 public class AlarmService extends Service {
 
     private static final String KEY_RINGTONE_ID = "ringtone_id";
+    private static final String KEY_ALARM_ID = "alarm_id";
     private final static String HANDLER_THREAD_NAME = "alarm_service";
 
     private final static int PAUSE_BETWEEN_VIBRATE_DELAY_IN_MS = 2000;
@@ -34,6 +35,7 @@ public class AlarmService extends Service {
     private final static float MAX_VOLUME = 1.0f;
 
     private String ringtonePassedInIntent;
+    private String alarmIdPassedInIntent;
     private SharedPreferences preferences;
     private MediaPlayer player;
     private Vibrator vibrator;
@@ -71,6 +73,7 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         ringtonePassedInIntent = intent.getStringExtra(KEY_RINGTONE_ID);
+        alarmIdPassedInIntent = intent.getStringExtra(KEY_ALARM_ID);
         startPlayer();
         startAlarmActivity();
         return START_NOT_STICKY;
@@ -132,6 +135,7 @@ public class AlarmService extends Service {
 
     private void startAlarmActivity() {
         Intent alarmActivityIntent = new Intent(Intent.ACTION_MAIN);
+        alarmActivityIntent.putExtra(KEY_ALARM_ID, alarmIdPassedInIntent);
         alarmActivityIntent.setComponent(new ComponentName(this, AlarmActivity.class));
         alarmActivityIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP |
                 Intent.FLAG_ACTIVITY_NEW_TASK |
