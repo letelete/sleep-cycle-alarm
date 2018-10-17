@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.RealmChangeEvent;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -46,7 +47,7 @@ public class AlarmsFragment extends Fragment
     @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onRealmChanged() {
+    public void onRealmChanged(RealmChangeEvent realmChangeEvent) {
         Log.d(getClass().getName(), "Realm change event received.");
         if (alarmsPresenter != null) {
             Log.d(getClass().getName(), "Handling realm change...");
