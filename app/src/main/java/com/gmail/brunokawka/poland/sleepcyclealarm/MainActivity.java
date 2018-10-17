@@ -69,16 +69,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        RealmManager.initializeRealmConfig();
-        Realm realm = RealmManager.getRealm();
-        realm.addChangeListener(new OnRealmChangeListener(getApplicationContext()));
-
         wakeUpAtFragment = new WakeUpAtFragment();
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         setUpBottomNavigationBar();
         openLatestFragmentOrDefault(savedInstanceState);
         setupToolbar();
+        RealmManager.initializeRealmConfig();
+        RealmManager.incrementCount();
+        Realm realm = RealmManager.getRealm();
+        realm.addChangeListener(new OnRealmChangeListener(getApplicationContext()));
     }
 
     @Override
@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         removeWakeUpAtPreferences();
+        RealmManager.decrementCount();
         super.onDestroy();
     }
 

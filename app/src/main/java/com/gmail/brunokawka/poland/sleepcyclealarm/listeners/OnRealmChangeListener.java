@@ -18,19 +18,15 @@ public class OnRealmChangeListener implements RealmChangeListener<Realm> {
     private AlarmController alarmController;
 
     public OnRealmChangeListener(Context context) {
-        initEventBus();
         alarmsFragment = new AlarmsFragment();
         alarmController = new AlarmController(context);
+        EventBus.getDefault().register(alarmsFragment);
     }
 
     @Override
     public void onChange(@NonNull Realm realm) {
         updateAlarms();
         EventBus.getDefault().post(new RealmChangeEvent());
-    }
-
-    private void initEventBus() {
-        EventBus.getDefault().register(alarmsFragment);
     }
 
     private void updateAlarms() {

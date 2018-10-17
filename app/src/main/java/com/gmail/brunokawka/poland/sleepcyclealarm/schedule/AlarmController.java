@@ -29,7 +29,9 @@ public class AlarmController {
     }
 
     public void rescheduleAlarms() {
-        cancelAllAlarms();
+        if (alarms != null) {
+            cancelAllAlarms();
+        }
         updateDataAndScheduleAllAlarms();
     }
 
