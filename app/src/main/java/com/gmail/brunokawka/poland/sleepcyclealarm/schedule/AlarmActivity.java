@@ -65,7 +65,8 @@ public class AlarmActivity extends AppCompatActivity {
     private void setUpRingDuration() {
         final int defaultRingDurationInMillis = 5 * 60 * 1000;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        ringDurationInMillis = preferences.getInt(getString(R.string.key_ring_duration), defaultRingDurationInMillis);
+        String ringDurationString = preferences.getString(getString(R.string.key_ring_duration), String.valueOf(defaultRingDurationInMillis));
+        ringDurationInMillis = Integer.parseInt(ringDurationString);
     }
 
     private void setUpCurrentHourTextView() {
