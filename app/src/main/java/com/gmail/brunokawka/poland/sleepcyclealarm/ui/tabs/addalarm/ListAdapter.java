@@ -2,9 +2,12 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +16,14 @@ import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,11 +88,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    addAlarm();
+                    Alarm alarm = getAlarmFromItem(item, context);
+                    addAlarm(alarm);
                     showAddAlarmToast();
                 }
 
-                private void addAlarm() {
+                private void addAlarm(Alarm alarm) {
+                    alarmDAO.saveIfNotDuplicate(alarm);
                 }
 
                 private void showAddAlarmToast() {
@@ -108,5 +115,27 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
+
+    private Alarm getAlarmFromItem(Item item, Context ctx) {
+        Log.d(getClass().getName(), "Getting alarm from item...");
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
+        final String id = UUID.randomUUID().toString();
+        final String title = item.getTitle();
+        final String summary = item.getSummary();
+        final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
+        final String currentDate = item.getCurrentDate().toString();
+        final String executionDate = item.getExecutionDate().toString();
+
+        Alarm alarm = new Alarm();
+        alarm.setId(id);
+        alarm.setTitle(title);
+        alarm.setSummary(summary);
+        alarm.setRingtone(ringtone);
+        alarm.setCurrentDate(currentDate);
+        alarm.setExecutionDate(executionDate);
+
+        return alarm;
     }
 }
