@@ -102,8 +102,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
                     Toast.makeText(view.getContext(), toastText, Toast.LENGTH_LONG).show();
                 }
             });
-
-            alarmDAO.cleanUp();
         }
 
         private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {

@@ -29,7 +29,9 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     @Override
     public void handleRealmChange() {
-        updateUi();
+        if (view != null) {
+            updateUi();
+        }
     }
 
     @Override
