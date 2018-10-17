@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -95,7 +96,7 @@ public class AlarmService extends Service {
             postVibrationHandlerIfVibrationEnabled();
             String ringtone = ringtonePassedInIntent != null
                     ? ringtonePassedInIntent
-                    : "DEFAULT_SOUND";
+                    : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
             player.setDataSource(this, Uri.parse(ringtone));
             player.setLooping(true);
             player.setAudioStreamType(AudioManager.STREAM_ALARM);
