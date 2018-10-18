@@ -95,9 +95,12 @@ public class AlarmService extends Service {
         ringtonePassedInIntent = intent != null
                 ? intent.getStringExtra(KEY_RINGTONE_ID)
                 : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+        Log.d(getClass().getName(), "Set up ringtonePassedInIntent: " + ringtonePassedInIntent);
+
         alarmIdPassedInIntent = intent != null
                 ? intent.getStringExtra(KEY_ALARM_ID)
                 : "";
+        Log.d(getClass().getName(), "Set up alarmIdPassedInIntent: " + alarmIdPassedInIntent);
     }
 
     private void startPlayer() {
