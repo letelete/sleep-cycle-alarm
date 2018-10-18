@@ -65,7 +65,9 @@ public class AlarmActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        wakeLock.release();
+        if (wakeLock.isHeld()) {
+            wakeLock.release();
+        }
         super.onDestroy();
     }
 
