@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -87,6 +88,8 @@ public class AlarmActivity extends AppCompatActivity {
 
     private void removeExecutedAlarmFromDatabase() {
         String alarmId = getIntent().getStringExtra(KEY_ALARM_ID);
-        new AlarmDAO().removeFromRealmById(alarmId);
+        if (alarmId != null && !TextUtils.isEmpty(alarmId)) {
+            new AlarmDAO().removeFromRealmById(alarmId);
+        }
     }
 }

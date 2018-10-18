@@ -92,12 +92,12 @@ public class AlarmService extends Service {
     }
 
     private void setUpVariablesByGivenIntent(Intent intent) {
-        ringtonePassedInIntent = intent != null
+        ringtonePassedInIntent = intent != null && intent.hasExtra(KEY_RINGTONE_ID)
                 ? intent.getStringExtra(KEY_RINGTONE_ID)
                 : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
         Log.d(getClass().getName(), "Set up ringtonePassedInIntent: " + ringtonePassedInIntent);
 
-        alarmIdPassedInIntent = intent != null
+        alarmIdPassedInIntent = intent != null && intent.hasExtra(KEY_ALARM_ID)
                 ? intent.getStringExtra(KEY_ALARM_ID)
                 : "";
         Log.d(getClass().getName(), "Set up alarmIdPassedInIntent: " + alarmIdPassedInIntent);
@@ -108,8 +108,7 @@ public class AlarmService extends Service {
 
         try {
             postVibrationHandlerIfVibrationEnabled();
-            String ringtone = ringtonePassedInIntent;
-            player.setDataSource(this, Uri.parse(ringtone));
+            player.setDataSource(this, Uri.parse(ringtonePassedInIntent));
             player.setLooping(true);
             player.setAudioStreamType(AudioManager.STREAM_ALARM);
             player.setVolume(volumeLevel, volumeLevel);
