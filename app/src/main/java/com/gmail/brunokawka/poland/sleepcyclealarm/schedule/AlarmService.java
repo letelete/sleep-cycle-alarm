@@ -72,8 +72,7 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        ringtonePassedInIntent = intent.getStringExtra(KEY_RINGTONE_ID);
-        alarmIdPassedInIntent = intent.getStringExtra(KEY_ALARM_ID);
+        setUpVariablesByGivenIntent(intent);
         startPlayer();
         startAlarmActivity();
         return START_NOT_STICKY;
@@ -92,14 +91,21 @@ public class AlarmService extends Service {
         super.onDestroy();
     }
 
+    private void setUpVariablesByGivenIntent(Intent intent) {
+        ringtonePassedInIntent = intent != null
+                ? intent.getStringExtra(KEY_RINGTONE_ID)
+                : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+        alarmIdPassedInIntent = intent != null
+                ? intent.getStringExtra(KEY_ALARM_ID)
+                : "";
+    }
+
     private void startPlayer() {
         player = new MediaPlayer();
 
         try {
             postVibrationHandlerIfVibrationEnabled();
-            String ringtone = ringtonePassedInIntent != null
-                    ? ringtonePassedInIntent
-                    : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+            String ringtone = ringtonePassedInIntent;
             player.setDataSource(this, Uri.parse(ringtone));
             player.setLooping(true);
             player.setAudioStreamType(AudioManager.STREAM_ALARM);
