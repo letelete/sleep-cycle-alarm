@@ -19,9 +19,9 @@ import butterknife.ButterKnife;
 
 public class AlarmsEditAlarmView extends LinearLayout implements AlarmsFragment.DialogContract {
 
-    private String ringtone;
-
     @BindView(R.id.alarmsEditRingtoneSummary) protected TextView textRingtoneSummary;
+
+    private String ringtone;
 
     public AlarmsEditAlarmView(Context context) {
         super(context);

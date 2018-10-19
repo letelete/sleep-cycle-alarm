@@ -33,15 +33,16 @@ public class AlarmsFragment extends Fragment
 
     private static final int RINGTONE_INTENT_REQUEST_CODE = 2137;
 
+    @BindView(R.id.alarmsList) protected RecyclerView recycler;
+    @BindView(R.id.alarmsListCardView) protected CardView listCardView;
+    @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
+    @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
+
     private AlarmScopeListener alarmScopeListener;
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
     private AlarmsContract.AlarmsView.DialogContract dialogContract;
 
-    @BindView(R.id.alarmsList) protected RecyclerView recycler;
-    @BindView(R.id.alarmsListCardView) protected CardView listCardView;
-    @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
-    @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRealmChanged(RealmChangeEvent realmChangeEvent) {
