@@ -15,9 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
-
     private List<Item> items;
-
     private DateTime currentDate;
     private DateTime executionDate;
 

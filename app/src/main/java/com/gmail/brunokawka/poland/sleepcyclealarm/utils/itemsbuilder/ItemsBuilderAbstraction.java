@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 import java.util.List;
 
 public abstract class ItemsBuilderAbstraction {
-
     private ItemsBuilderStrategy buildingStrategy;
 
     public void setBuildingStrategy(ItemsBuilderStrategy buildingStrategy) {

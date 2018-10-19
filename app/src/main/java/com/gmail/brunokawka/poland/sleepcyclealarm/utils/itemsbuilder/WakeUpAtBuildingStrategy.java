@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
-
     private List<Item> items;
-
     private DateTime executionDate;
     private DateTime timeToGoToSleep;
 
