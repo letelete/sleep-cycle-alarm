@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -18,8 +19,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-
-import java.io.IOException;
 
 public class AlarmService extends Service {
 
@@ -72,7 +71,8 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        setUpVariablesByGivenIntent(intent);
+        setDefaultValuesForAlarmVariables();
+        tryToOverrideAlarmVariablesByValuesPassedInIntent(intent);
         startPlayer();
         startAlarmActivity();
         return START_NOT_STICKY;
@@ -91,16 +91,35 @@ public class AlarmService extends Service {
         super.onDestroy();
     }
 
-    private void setUpVariablesByGivenIntent(Intent intent) {
-        ringtonePassedInIntent = intent != null && intent.hasExtra(KEY_RINGTONE_ID)
-                ? intent.getStringExtra(KEY_RINGTONE_ID)
-                : RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
-        Log.d(getClass().getName(), "Set up ringtonePassedInIntent: " + ringtonePassedInIntent);
+    private void tryToOverrideAlarmVariablesByValuesPassedInIntent(Intent intent) {
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
 
-        alarmIdPassedInIntent = intent != null && intent.hasExtra(KEY_ALARM_ID)
-                ? intent.getStringExtra(KEY_ALARM_ID)
-                : "";
-        Log.d(getClass().getName(), "Set up alarmIdPassedInIntent: " + alarmIdPassedInIntent);
+            if (extras != null) {
+                if (extras.getString(KEY_ALARM_ID) != null) {
+                    String id = extras.getString(KEY_ALARM_ID);
+                    Log.d(getClass().getName(), "ALARM_ID Overridden! New value: " + id);
+                } else {
+                    Log.e(getClass().getName(), "ALARM_ID is null");
+                }
+
+                if (extras.getString(KEY_RINGTONE_ID) != null) {
+                    String ringtone = extras.getString(KEY_RINGTONE_ID);
+                    Log.d(getClass().getName(), "RINGTONE_ID Overridden! New value: " + ringtone);
+                } else {
+                    Log.e(getClass().getName(), "RINGTONE_ID is null");
+                }
+            } else {
+                Log.e(getClass().getName(), "Extras is null");
+            }
+        } else {
+            Log.e(getClass().getName(), "Intent is null");
+        }
+    }
+
+    private void setDefaultValuesForAlarmVariables() {
+        ringtonePassedInIntent = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+        alarmIdPassedInIntent = "";
     }
 
     private void startPlayer() {
