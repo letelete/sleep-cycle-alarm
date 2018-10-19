@@ -66,13 +66,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
     public class ListAdapterHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
+
+        @BindView(R.id.addAlarmTitle) protected TextView textTitle;
+        @BindView(R.id.addAlarmSummary) protected TextView textSummary;
+
         private Item item;
-
-        @BindView(R.id.addAlarmTitle)
-        protected TextView textTitle;
-
-        @BindView(R.id.addAlarmSummary)
-        protected TextView textSummary;
 
         ListAdapterHolder(View view) {
             super(view);

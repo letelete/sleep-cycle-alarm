@@ -16,10 +16,9 @@ import butterknife.ButterKnife;
 
 public class WakeUpAtSetTimeView extends LinearLayout implements WakeUpAtContract.WakeUpAtView.DialogContract {
 
-    private DateTime dateTime;
+    @BindView(R.id.dateTimeSelect) protected TimePicker timePicker;
 
-    @BindView(R.id.dateTimeSelect)
-    protected TimePicker timePicker;
+    private DateTime dateTime;
 
     public WakeUpAtSetTimeView(Context context) {
         super(context);

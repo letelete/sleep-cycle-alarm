@@ -23,10 +23,9 @@ import butterknife.ButterKnife;
 
 public class SleepNowFragment extends Fragment {
 
-    private ItemsBuilder itemsBuilder;
+    @BindView(R.id.sleepNowFragmentRecycler) protected RecyclerView recycler;
 
-    @BindView(R.id.sleepNowFragmentRecycler)
-    protected RecyclerView recycler;
+    private ItemsBuilder itemsBuilder;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,

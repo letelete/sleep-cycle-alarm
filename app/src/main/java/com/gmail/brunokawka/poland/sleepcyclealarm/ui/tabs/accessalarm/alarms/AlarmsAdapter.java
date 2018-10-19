@@ -38,16 +38,11 @@ public class AlarmsAdapter extends RealmRecyclerViewAdapter<Alarm, AlarmsAdapter
 
     public static class AlarmViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.accessAlarm) protected ConstraintLayout itemLayout;
+        @BindView(R.id.accessAlarmTitle) protected TextView textTitle;
+        @BindView(R.id.accessAlarmSummary) protected TextView textSummary;
+
         private final AlarmsPresenter alarmsPresenter;
-
-        @BindView(R.id.accessAlarm)
-        protected ConstraintLayout itemLayout;
-
-        @BindView(R.id.accessAlarmTitle)
-        protected TextView textTitle;
-
-        @BindView(R.id.accessAlarmSummary)
-        protected TextView textSummary;
 
         public AlarmViewHolder(View itemView) {
             super(itemView);

@@ -40,19 +40,14 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView.OnNavigationItemSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
+    @BindView(R.id.toolbar) protected Toolbar appToolbar;
+    @BindView(R.id.bottom_navigation_bar) protected BottomNavigationView bottomNavigationBar;
+    @BindView(R.id.wakeUpAtFloatingActionButtonExtended) protected Button wakeUpAtButton;
+
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
     private WakeUpAtSetHourButton wakeUpAtSetHourButton;
     private WakeUpAtFragment wakeUpAtFragment;
-
-    @BindView(R.id.toolbar)
-    protected Toolbar appToolbar;
-
-    @BindView(R.id.bottom_navigation_bar)
-    protected BottomNavigationView bottomNavigationBar;
-
-    @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
-    protected Button wakeUpAtButton;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {

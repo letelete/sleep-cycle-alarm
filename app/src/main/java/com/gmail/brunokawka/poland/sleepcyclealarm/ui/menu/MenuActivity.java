@@ -21,10 +21,9 @@ public class MenuActivity extends AppCompatActivity
     implements MenuContract.MenuView,
         PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
-    private MenuPresenter menuPresenter;
+    @BindView(R.id.activity_menu_toolbar) protected Toolbar toolbar;
 
-    @BindView(R.id.activity_menu_toolbar)
-    protected Toolbar toolbar;
+    private MenuPresenter menuPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

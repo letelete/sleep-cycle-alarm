@@ -41,35 +41,21 @@ import butterknife.ButterKnife;
 public class WakeUpAtFragment extends Fragment
     implements WakeUpAtContract.WakeUpAtView {
 
-    private ItemsBuilder itemsBuilder;
+    @BindView(R.id.wakeUpAtRoot) protected ViewGroup root;
+    @BindView(R.id.wakeUpAtListCardView) protected CardView listCardView;
+    @BindView(R.id.wakeUpAtListHelper) protected TextView listHelper;
+    @BindView(R.id.wakeUpAtFragmentRecycler) protected RecyclerView recycler;
+    @BindView(R.id.wakeUpAtCardInfoTitle) protected TextView infoCardTitle;
+    @BindView(R.id.wakeUpAtCardInfoSummary) protected TextView cardInfoSummary;
+    @BindView(R.id.wakeUpAtEmptyListImage) protected View emptyListPlaceHolder;
+    @BindView(R.id.wakeUpAtInfoCardView) protected CardView infoCard;
+
     private static WakeUpAtPresenter wakeUpAtPresenter;
+    private ItemsBuilder itemsBuilder;
     private AlertDialog dialog;
     private DateTime lastExecutionDate;
     private DateTime currentDate;
 
-    @BindView(R.id.wakeUpAtRoot)
-    protected ViewGroup root;
-
-    @BindView(R.id.wakeUpAtListCardView)
-    protected CardView listCardView;
-
-    @BindView(R.id.wakeUpAtListHelper)
-    protected TextView listHelper;
-
-    @BindView(R.id.wakeUpAtFragmentRecycler)
-    protected RecyclerView recycler;
-
-    @BindView(R.id.wakeUpAtCardInfoTitle)
-    protected TextView infoCardTitle;
-
-    @BindView(R.id.wakeUpAtCardInfoSummary)
-    protected TextView cardInfoSummary;
-
-    @BindView(R.id.wakeUpAtEmptyListImage)
-    protected View emptyListPlaceHolder;
-
-    @BindView(R.id.wakeUpAtInfoCardView)
-    protected CardView infoCard;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onItemsAmountChangedEvent(AmountOfItemsChangedEvent amountOfItemsChangedEvent) {
