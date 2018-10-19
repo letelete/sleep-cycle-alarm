@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
@@ -17,6 +18,13 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     public MainPresenter(MainContract.MainView view) {
         this.view = view;
+    }
+
+    @Override
+    public void setUpUi(Bundle savedInstanceState) {
+        view.setUpBottomNavigationBar();
+        view.openLatestFragmentOrDefault(savedInstanceState);
+        view.setUpToolbar();
     }
 
     @Override

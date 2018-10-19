@@ -67,9 +67,11 @@ public class MainActivity extends AppCompatActivity
         wakeUpAtFragment = new WakeUpAtFragment();
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
-        setUpBottomNavigationBar();
-        openLatestFragmentOrDefault(savedInstanceState);
-        setupToolbar();
+        mainPresenter.setUpUi(savedInstanceState);
+        initializeRealmAndAddListener();
+    }
+
+    private void initializeRealmAndAddListener() {
         RealmManager.initializeRealmConfig();
         RealmManager.incrementCount();
         Realm realm = RealmManager.getRealm();
@@ -86,6 +88,36 @@ public class MainActivity extends AppCompatActivity
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(getString(R.string.key_last_execution_date), bottomNavigationBar.getSelectedItemId());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void setUpBottomNavigationBar() {
+        bottomNavigationBar.setOnNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void openLatestFragmentOrDefault(Bundle savedInstanceState) {
+        final int defaultPosition = R.id.action_sleepnow;
+        final int bottomNavigationPosition = savedInstanceState != null
+                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
+                : defaultPosition;
+        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
+    }
+
+    @Override
+    public void setUpToolbar() {
+        setSupportActionBar(appToolbar);
+        tryToHideActionBarTitle();
+        appToolbar.setOnMenuItemClickListener(this);
+    }
+
+    private void tryToHideActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        } else {
+            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
+        }
     }
 
     @Override
@@ -174,33 +206,6 @@ public class MainActivity extends AppCompatActivity
         removeWakeUpAtPreferences();
         RealmManager.decrementCount();
         super.onDestroy();
-    }
-
-    private void setUpBottomNavigationBar() {
-        bottomNavigationBar.setOnNavigationItemSelectedListener(this);
-    }
-
-    private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
-        final int defaultPosition = R.id.action_sleepnow;
-        final int bottomNavigationPosition = savedInstanceState != null
-                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
-                : defaultPosition;
-        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
-    }
-
-    private void setupToolbar() {
-        setSupportActionBar(appToolbar);
-        tryToHideActionBarTitle();
-        appToolbar.setOnMenuItemClickListener(this);
-    }
-
-    private void tryToHideActionBarTitle() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        } else {
-            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
-        }
     }
 
     @SuppressLint("ApplySharedPref")
