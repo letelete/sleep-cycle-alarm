@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
@@ -39,8 +40,10 @@ public class AlarmController {
         context.stopService(new Intent(context, AlarmService.class));
     }
 
-    public void startAlarm() {
-        context.startService(new Intent(context, AlarmService.class));
+    public void startAlarm(Bundle extras) {
+        Intent intent = new Intent(context, AlarmService.class);
+        intent.putExtras(extras);
+        context.startService(intent);
     }
 
     private void updateDataAndScheduleAllAlarms() {
