@@ -1,6 +1,7 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.schedule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -27,9 +28,9 @@ public class AlarmActivity extends AppCompatActivity {
 
     private PowerManager.WakeLock wakeLock;
     private int ringDurationInMillis;
+    private String alarmId;
 
-    @BindView(R.id.activityAlarmCurrentHour)
-    protected TextView currentHourTextView;
+    @BindView(R.id.activityAlarmCurrentHour) protected TextView currentHourTextView;
 
     @OnClick(R.id.activityAlarmDismissAlarmButton)
     public void onAlarmDismissButtonClicked() {
@@ -48,6 +49,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
+
         setUpCurrentHourTextView();
         removeExecutedAlarmFromDatabase();
     }
@@ -89,9 +91,15 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
     private void removeExecutedAlarmFromDatabase() {
-        String alarmId = getIntent().getStringExtra(KEY_ALARM_ID);
-        if (alarmId != null && !TextUtils.isEmpty(alarmId)) {
-            new AlarmDAO().removeFromRealmById(alarmId);
+        Intent intent = getIntent();
+        if (intent != null) {
+            alarmId = intent.getStringExtra(KEY_ALARM_ID);
+            if (alarmId != null) {
+                Log.d(getClass().getName(), "Removing already executed alarm from Realm | alarm id: " + alarmId);
+                new AlarmDAO().removeFromRealmById(alarmId);
+            } else {
+                Log.e(getClass().getName(), "Error while removing executed alarm from Realm | alarmId is null");
+            }
         }
     }
 }
