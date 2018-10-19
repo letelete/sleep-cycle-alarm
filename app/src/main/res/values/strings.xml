@@ -30,6 +30,7 @@
     <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
 
     <string name="activity_alarm_title">Wake up!</string>
+    <string name="activity_alarm_hint">Tap anywhere to dismiss alarm</string>
 
     <!-- BUTTON STRINGS -->
     <string name="wake_up_at_set_hour_button">Set hour</string>

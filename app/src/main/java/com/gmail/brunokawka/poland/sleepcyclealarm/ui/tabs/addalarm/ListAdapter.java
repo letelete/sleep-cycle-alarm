@@ -21,6 +21,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.joda.time.DateTime;
 
 import java.util.List;
 import java.util.UUID;
@@ -122,7 +123,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         final String summary = item.getSummary();
         final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
         final String currentDate = item.getCurrentDate().toString();
-        final String executionDate = item.getExecutionDate().toString();
+        final String executionDate = DateTime.now().plusSeconds(10).toString();//item.getExecutionDate().toString();
 
         Alarm alarm = new Alarm();
         alarm.setId(id);

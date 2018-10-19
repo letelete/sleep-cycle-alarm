@@ -24,14 +24,14 @@ import butterknife.OnClick;
 public class AlarmActivity extends AppCompatActivity {
     private static final String KEY_ALARM_ID = "alarm_id";
 
+    @BindView(R.id.activityAlarmCurrentHour) protected TextView currentHourTextView;
+
     private PowerManager.WakeLock wakeLock;
     private int ringDurationInMillis;
     private String alarmId;
 
-    @BindView(R.id.activityAlarmCurrentHour) protected TextView currentHourTextView;
-
-    @OnClick(R.id.activityAlarmDismissAlarmButton)
-    public void onAlarmDismissButtonClicked() {
+    @OnClick(R.id.activityAlarmLayout)
+    public void onAlarmDismissRequest() {
         dismissAlarm();
     }
 
@@ -57,18 +57,18 @@ public class AlarmActivity extends AppCompatActivity {
         dismissAlarm();
     }
 
-    public void dismissAlarm() {
-        Log.d(getClass().getName(), "Dismissing the alarm...");
-        new AlarmController(this).dismissCurrentlyPlayingAlarm();
-        finish();
-    }
-
     @Override
     public void onDestroy() {
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
         super.onDestroy();
+    }
+
+    public void dismissAlarm() {
+        Log.d(getClass().getName(), "Dismissing the alarm...");
+        new AlarmController(this).dismissCurrentlyPlayingAlarm();
+        finish();
     }
 
     private void setUpRingDuration() {
