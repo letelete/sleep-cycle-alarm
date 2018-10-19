@@ -93,33 +93,6 @@ public class MainActivity extends AppCompatActivity
         getDelegate().setLocalNightMode(themeId);
     }
 
-    private void setUpBottomNavigationBar() {
-        bottomNavigationBar.setOnNavigationItemSelectedListener(this);
-    }
-
-    private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
-        final int defaultPosition = R.id.action_sleepnow;
-        final int bottomNavigationPosition = savedInstanceState != null
-                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
-                : defaultPosition;
-        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
-    }
-
-    private void setupToolbar() {
-        setSupportActionBar(appToolbar);
-        tryToHideActionBarTitle();
-        appToolbar.setOnMenuItemClickListener(this);
-    }
-
-    private void tryToHideActionBarTitle() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        } else {
-            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
-        }
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int menuItemId = menuItem.getItemId();
@@ -203,8 +176,34 @@ public class MainActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    private void setUpBottomNavigationBar() {
+        bottomNavigationBar.setOnNavigationItemSelectedListener(this);
+    }
+
+    private void openLatestFragmentOrDefault(Bundle savedInstanceState) {
+        final int defaultPosition = R.id.action_sleepnow;
+        final int bottomNavigationPosition = savedInstanceState != null
+                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
+                : defaultPosition;
+        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(appToolbar);
+        tryToHideActionBarTitle();
+        appToolbar.setOnMenuItemClickListener(this);
+    }
+
+    private void tryToHideActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        } else {
+            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
+        }
+    }
+
     @SuppressLint("ApplySharedPref")
-    // It has to be .commit(); .apply() doesn't clear preferences on destroy
     private void removeWakeUpAtPreferences() {
         SharedPreferences wakeUpAtPreferences = getSharedPreferences(getString(R.string.wakeupat_preferences_name), MODE_PRIVATE);
         wakeUpAtPreferences.edit().clear().commit();
