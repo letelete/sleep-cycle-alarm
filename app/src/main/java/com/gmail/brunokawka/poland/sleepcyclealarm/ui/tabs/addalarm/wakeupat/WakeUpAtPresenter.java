@@ -21,10 +21,12 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
 
     @Override
     public void showOrHideElementsDependingOnAmountOfListItems(int amount, DateTime lastExecutionDate) {
-        if (amount <= 0) {
-            hideWakeUpAtElements();
-        } else {
-            showWakeUpAtElements(lastExecutionDate);
+        if (view != null) {
+            if (amount <= 0) {
+                hideWakeUpAtElements();
+            } else {
+                showWakeUpAtElements(lastExecutionDate);
+            }
         }
     }
 
@@ -99,14 +101,14 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     public void hideWakeUpAtElements() {
         view.hideList();
         view.showEmptyListHint();
-        view.hideCardInfo();
+        view.hideInfoCard();
     }
 
     @Override
     public void showWakeUpAtElements(DateTime lastExecutionDate) {
         view.showList();
         view.hideEmptyListHint();
-        view.showCardInfo();
+        view.showInfoCard();
 
         if (lastExecutionDate != null) {
             updateCardInfoContent();

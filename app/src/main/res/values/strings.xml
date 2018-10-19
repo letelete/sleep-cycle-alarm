@@ -4,6 +4,7 @@
 
     <string name="content_descriptions_set_alarm_icon">Set alarm icon</string>
     <string name="content_descriptions_empty_list_placeholder">Your list is empty</string>
+    <string name="content_description_edit_alarm_image">Your list is empty</string>
 
     <!-- SLEEP QUALITY STATES-->
     <string name="sleep_state_unhealthy">Unhealthy</string>
@@ -28,8 +29,11 @@
     <string name="alarms_card_info_title">Manage your alarms.</string>
     <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
 
+    <string name="activity_alarm_title">Wake up!</string>
+
     <!-- BUTTON STRINGS -->
     <string name="wake_up_at_set_hour_button">Set hour</string>
+    <string name="alarm_activity_dismiss_button">Dismiss alarm</string>
 
     <!-- LIST STRINGS -->
     <string name="global_hour_mark">h</string>
@@ -51,12 +55,19 @@
 
     <!-- DIALOG STRINGS -->
     <string name="dialog_add_new_alarm">Add alarm</string>
-    <string name="dialog_edit_alarm">Edit alarm</string>
     <string name="dialog_set_hour_to_wake_up_at">Set hour when you want to wake up at</string>
+    <string name="dialog_edit_alarm">Edit alarm</string>
+    <string name="dialog_edit_alarm_ringtone_title">Ringtone</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="add_alarm_dialog_message">Are you sure you want to add an alarm for %s?</string>
+    <string name="add_alarm_dialog_title">Add alarm</string>
 
     <!-- TOAST STRINGS -->
     <string name="toast_double_back_to_exit">Press once again to exit</string>
     <string name="toast_what_if_theme_didnt_apply">If the theme didn\'t apply correctly, please kill and open the app manually</string>
+    <string name="toast_alarm_added">Alarm will ring at %1$s</string>
 
     <!-- PREFERENCE STRINGS -->
 
@@ -85,8 +96,8 @@
 
     <string name="pref_alarm_category">Alarm</string>
 
-    <string name="pref_alarm_in_silent_mode_title">Alarm in silent mode</string>
-    <string name="pref_alarm_in_silent_mode_summary">Play alarm even when phone is in silent mode</string>
+    <string name="pref_alarm_vibrate_when_ringing_title">Phone vibration</string>
+    <string name="pref_alarm_vibrate_when_ringing_summary">Vibrate when alarm rings</string>
 
     <string-array name="pref_alarm_in_silent_mode_values">
         <item>1</item>
@@ -119,56 +130,8 @@
         <item>30</item>
     </string-array>
 
-    <string name="pref_alarms_intervals_title">Snooze duration</string>
-    <string-array name="pref_alarms_intervals_titles">
-        <item>1 minute</item>
-        <item>5 minutes</item>
-        <item>10 minutes</item>
-        <item>15 minutes</item>
-        <item>20 minutes</item>
-        <item>25 minutes</item>
-        <item>30 minutes</item>
-    </string-array>
-    <string-array name="pref_alarms_intervals_values">
-        <item>1</item>
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
-    </string-array>
-
-    <string name="pref_auto_silence_title">Auto silence</string>
-    <string-array name="pref_auto_silence_titles">
-        <item>After 1 time</item>
-        <item>After 3 times</item>
-        <item>After 5 times</item>
-        <item>After 10 times</item>
-    </string-array>
-    <string-array name="pref_auto_silence_values">
-        <item>1</item>
-        <item>3</item>
-        <item>5</item>
-        <item>10</item>
-    </string-array>
-
-    <!-- ERROR CODES
-    typo:
-    error_<class name>_<info>
-    -->
-    <!--
-    TODO: well done error msg!!!
-    -->
     <string name="error_menu_activity_default_case_in_switch">Cannot open this window. Please try again.</string>
     <string name="error_menu_activity_key_use_default_value">Cannot open this window. Please try again.</string>
     <string name="error_wake_up_at_fragment_new_hour_is_null">Cannot generate a list for this hour</string>
-
-
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <!--Add alarm dialog-->
-    <string name="add_alarm_dialog_message">Are you sure you want to add an alarm for %s?</string>
-    <string name="add_alarm_dialog_title">Add alarm</string>
 
 </resources>

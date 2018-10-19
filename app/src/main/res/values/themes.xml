@@ -45,6 +45,7 @@
 
         <item name="closeActivityButtonStyle">@style/close_activity_button_style</item>
         <item name="floatingActionButtonStyle">@style/floating_action_button_style</item>
+        <item name="floatingActionButtonNoBackgroundStyle">@style/floating_action_button_no_background_style</item>
 
         <item name="colorForIcons">@color/icons_active_unfocused</item>
         <item name="colorForIconsNegative">@color/icons_active_focused_negative</item>

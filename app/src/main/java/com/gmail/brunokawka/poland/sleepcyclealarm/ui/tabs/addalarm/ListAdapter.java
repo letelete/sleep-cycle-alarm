@@ -2,6 +2,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -10,15 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.joda.time.DateTime;
 
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,21 +80,29 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             view.setOnClickListener(this);
         }
 
-        public void onClick(View view) {
+        public void onClick(final View view) {
+            final AlarmDAO alarmDAO = new AlarmDAO();
+            final Context context = view.getContext();
             final int position = this.getAdapterPosition();
-            showAlertDialogForAddAlarmAction(view.getContext(), new DialogInterface.OnClickListener() {
+            item = getItem(position);
+
+            showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    addAlarm();
-                    Log.d(getClass().getName(), String.valueOf(position));
+                    Alarm alarm = getAlarmFromItem(item, context);
+                    addAlarm(alarm);
+                    showAddAlarmToast();
+                }
+
+                private void addAlarm(Alarm alarm) {
+                    alarmDAO.saveIfNotDuplicate(alarm);
+                }
+
+                private void showAddAlarmToast() {
+                    String toastText = String.format(context.getString(R.string.toast_alarm_added), item.getTitle());
+                    Toast.makeText(view.getContext(), toastText, Toast.LENGTH_LONG).show();
                 }
             });
-
-        }
-
-        private void addAlarm() {
-            EventBus.getDefault().postSticky(new ItemInListClickedEvent(item));
-
         }
 
         private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface.OnClickListener onClickListener) {
@@ -100,5 +114,27 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
+
+    private Alarm getAlarmFromItem(Item item, Context ctx) {
+        Log.d(getClass().getName(), "Getting alarm from item...");
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
+        final String id = UUID.randomUUID().toString();
+        final String title = item.getTitle();
+        final String summary = item.getSummary();
+        final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
+        final String currentDate = item.getCurrentDate().toString();
+        final String executionDate = item.getExecutionDate().toString();
+
+        Alarm alarm = new Alarm();
+        alarm.setId(id);
+        alarm.setTitle(title);
+        alarm.setSummary(summary);
+        alarm.setRingtone(ringtone);
+        alarm.setCurrentDate(currentDate);
+        alarm.setExecutionDate(executionDate);
+
+        return alarm;
     }
 }

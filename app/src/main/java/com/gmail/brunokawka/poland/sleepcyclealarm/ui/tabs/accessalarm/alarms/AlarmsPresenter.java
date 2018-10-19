@@ -1,24 +1,15 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-
-import io.realm.Realm;
 
 public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
 
     private AlarmsContract.AlarmsView view;
     private AlarmDAO alarmDAO;
-    private boolean isDialogShowing;
-
-    private boolean hasView() {
-        return view != null;
-    }
 
     protected static AlarmsPresenter getService() {
         return AlarmsFragment.getAlarmsPresenter();
@@ -27,9 +18,6 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
     @Override
     public void bindView(AlarmsContract.AlarmsView view) {
         this.view = view;
-        if(isDialogShowing) {
-            showAddDialog();
-        }
         alarmDAO = new AlarmDAO();
     }
 
@@ -39,28 +27,49 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         alarmDAO.cleanUp();
     }
 
-
     @Override
     public void handleRealmChange() {
-        if (hasView()) {
-            if (isRealmEmpty()) {
-                hideUiElements();
-            } else {
-                showUiElements();
-            }
+        if (view != null) {
+            updateUi();
         }
     }
 
     @Override
-    public void setUpUIDependingOnDatabaseItemAmount() {
+    public void setUpUi() {
         view.setUpRecycler();
+        updateUi();
+    }
+
+    @Override
+    public void showEditDialog(Alarm alarm) {
+        if(hasView()) {
+            view.showEditAlarmDialog(alarm);
+        }
+    }
+
+    @Override
+    public void deleteAlarmById(final String id) {
+        alarmDAO.removeFromRealmById(id);
+    }
+
+    @Override
+    public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final Alarm alarm) {
+        Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
+        alarmDAO.saveEvenIfDuplicate(editedAlarm);
+    }
+
+    private boolean hasView() {
+        return view != null;
+    }
+
+    private void updateUi() {
         if (!isRealmEmpty()) {
-            showUiElements();
             Log.d(getClass().getName(), "Realm is NOT empty. Showing UI elements and setting up adapter...");
             view.setUpAdapter();
+            showUiElements();
         } else {
-            hideUiElements();
             Log.d(getClass().getName(), "Realm is empty. Hiding UI elements...");
+            hideUiElements();
         }
     }
 
@@ -80,56 +89,16 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         view.showEmptyListHint();
     }
 
-    @Override
-    public void showAddDialog() {
-        if(hasView()) {
-            isDialogShowing = true;
-            view.showAddAlarmDialog();
-        }
-    }
+    private Alarm getEditedAlarm(AlarmsContract.AlarmsView.DialogContract dialog, final Alarm previousAlarm) {
+        String newRingtone = dialog.getRingtone();
 
-    @Override
-    public void dismissAddDialog() {
-        isDialogShowing = false;
-    }
-
-    @Override
-    public void showEditDialog(Alarm alarm) {
-        if(hasView()) {
-            view.showEditAlarmDialog(alarm);
-        }
-    }
-
-    @Override
-    public void saveAlarm(AlarmsContract.AlarmsView.DialogContract dialogContract, final Item item) {
-        if (hasView()) {
-            alarmDAO.generateAlarmAndSaveItToRealm(item, dialogContract.getRingtone());
-        }
-    }
-
-    @Override
-    public void deleteAlarmByIdWithDialog(final String id) {
-        // TODO: if user swipes list item confirmation dialog will be displayed
-    }
-
-    @Override
-    public void deleteAlarmById(final String id) {
-        alarmDAO.removeFromRealmById(id);
-    }
-
-    @Override
-    public void editAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract, final String id) {
-        Realm realm = RealmManager.getRealm();
-        realm.executeTransactionAsync(new Realm.Transaction() {
-            @Override
-            public void execute(@NonNull Realm realm) {
-                Alarm alarm = realm.where(Alarm.class).equalTo("id", id).findFirst();
-                if(alarm != null) {
-                    // TODO: RINGTONE
-                    // Currently create some string for entry testing
-                    alarm.setRingtone(dialogContract.getRingtone());
-                }
-            }
-        });
+        Alarm editedAlarm = new Alarm();
+        editedAlarm.setId(previousAlarm.getId());
+        editedAlarm.setTitle(previousAlarm.getTitle());
+        editedAlarm.setSummary(previousAlarm.getSummary());
+        editedAlarm.setCurrentDate(previousAlarm.getCurrentDate());
+        editedAlarm.setExecutionDate(previousAlarm.getExecutionDate());
+        editedAlarm.setRingtone(newRingtone);
+        return editedAlarm;
     }
 }

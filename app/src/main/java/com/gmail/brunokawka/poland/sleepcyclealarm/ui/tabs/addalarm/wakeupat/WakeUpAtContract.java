@@ -16,9 +16,9 @@ public interface WakeUpAtContract {
 
         void hideList();
 
-        void showCardInfo();
+        void showInfoCard();
 
-        void hideCardInfo();
+        void hideInfoCard();
 
         void showEmptyListHint();
 

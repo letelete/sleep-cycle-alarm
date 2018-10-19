@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.brunokawka.poland.sleepcyclealarm">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".application.CustomApp"
         android:allowBackup="false"
@@ -24,6 +29,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity android:name=".schedule.AlarmActivity" android:theme="@style/Theme.SleepCycleTheme" />
+        <service android:name=".schedule.AlarmService" />
+        <receiver android:name=".schedule.AlarmReceiver" />
     </application>
 
 </manifest>

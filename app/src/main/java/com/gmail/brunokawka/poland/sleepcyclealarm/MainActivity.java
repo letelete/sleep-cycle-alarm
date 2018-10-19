@@ -20,17 +20,19 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.listeners.OnRealmChangeListener;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
     private WakeUpAtSetHourButton wakeUpAtSetHourButton;
+    private WakeUpAtFragment wakeUpAtFragment;
 
     @BindView(R.id.toolbar)
     protected Toolbar appToolbar;
@@ -56,11 +59,6 @@ public class MainActivity extends AppCompatActivity
         EventBus.getDefault().post(new SetHourButtonClickedEvent());
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void wakeUpAtActionButtonClickedEvent(SetHourButtonClickedEvent setHourButtonClickedEvent) {
-        Log.d(getClass().getName(), "Event received");
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -71,17 +69,22 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        wakeUpAtFragment = new WakeUpAtFragment();
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         setUpBottomNavigationBar();
         openLatestFragmentOrDefault(savedInstanceState);
         setupToolbar();
+        RealmManager.initializeRealmConfig();
+        RealmManager.incrementCount();
+        Realm realm = RealmManager.getRealm();
+        realm.addChangeListener(new OnRealmChangeListener(getApplicationContext()));
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(wakeUpAtFragment);
     }
 
     @Override
@@ -195,12 +198,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(wakeUpAtFragment);
     }
 
     @Override
     public void onDestroy() {
         removeWakeUpAtPreferences();
+        RealmManager.decrementCount();
         super.onDestroy();
     }
 

@@ -11,16 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.ItemInListClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.ListAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.SleepNowBuildingStrategy;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.joda.time.DateTime;
 
 import butterknife.BindView;
@@ -29,16 +24,9 @@ import butterknife.ButterKnife;
 public class SleepNowFragment extends Fragment {
 
     private ItemsBuilder itemsBuilder;
-    private AlarmDAO alarmDAO;
 
     @BindView(R.id.sleepNowFragmentRecycler)
     protected RecyclerView recycler;
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSetAlarmEvent(ItemInListClickedEvent itemInListClickedEvent) {
-        // TODO: show dialog that dialog has been added and will ring at: <hour>:<minute>
-        alarmDAO.generateAlarmAndSaveItToRealm(itemInListClickedEvent.getItem());
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -48,8 +36,6 @@ public class SleepNowFragment extends Fragment {
 
         itemsBuilder = new ItemsBuilder();
         itemsBuilder.setBuildingStrategy(new SleepNowBuildingStrategy());
-
-        alarmDAO = new AlarmDAO();
 
         return view;
     }
@@ -73,20 +59,7 @@ public class SleepNowFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Override
     public void onDestroyView() {
-        alarmDAO.cleanUp();
         super.onDestroyView();
     }
 }

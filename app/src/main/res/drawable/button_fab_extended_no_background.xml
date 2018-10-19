@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:colorControlHighlight"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
+    <!-- Use this to define the shape of the ripple effect (rectangle, oval, ring or line). The color specified here isn't used anyway -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/fabCornerRadius"/>
+            <!-- This color is needed to be set - doesn't affect anything -->
+            <solid android:color="@android:color/white"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/button_fab_extended_no_background_drawable" />
+</ripple>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/activityAlarmTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/activity_alarm_title"
+        android:textColor="@color/text_medium_emphasis"
+        app:layout_constraintBottom_toTopOf="@+id/activityAlarmCurrentHour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/activityAlarmCurrentHour"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/text_high_emphasis"
+        android:textSize="@dimen/activity_alarm_current_hour_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/activityAlarmDismissAlarmButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:paddingStart="@dimen/medium_margin_size"
+        android:paddingEnd="@dimen/medium_margin_size"
+        android:layout_marginBottom="@dimen/large_margin_size"
+        android:layout_marginTop="@dimen/extra_large_text_size"
+        android:id="@+id/activityAlarmDismissAlarmButton"
+        style="?floatingActionButtonStyle"
+        android:drawableStart="@null"
+        android:text="@string/alarm_activity_dismiss_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
