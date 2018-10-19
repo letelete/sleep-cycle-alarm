@@ -71,8 +71,7 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        setDefaultValuesForAlarmVariables();
-        tryToOverrideAlarmVariablesByValuesPassedInIntent(intent);
+        setAlarmVariablesByValuesPassedInIntent(intent);
         startPlayer();
         startAlarmActivity();
         return START_NOT_STICKY;
@@ -91,35 +90,39 @@ public class AlarmService extends Service {
         super.onDestroy();
     }
 
-    private void tryToOverrideAlarmVariablesByValuesPassedInIntent(Intent intent) {
+    private void setAlarmVariablesByValuesPassedInIntent(Intent intent) {
+        ringtonePassedInIntent = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+        alarmIdPassedInIntent = "DEFAULT_ID";
+
         if (intent != null) {
             Bundle extras = intent.getExtras();
-
             if (extras != null) {
-                if (extras.getString(KEY_ALARM_ID) != null) {
-                    String id = extras.getString(KEY_ALARM_ID);
-                    Log.d(getClass().getName(), "ALARM_ID Overridden! New value: " + id);
-                } else {
-                    Log.e(getClass().getName(), "ALARM_ID is null");
-                }
-
-                if (extras.getString(KEY_RINGTONE_ID) != null) {
-                    String ringtone = extras.getString(KEY_RINGTONE_ID);
-                    Log.d(getClass().getName(), "RINGTONE_ID Overridden! New value: " + ringtone);
-                } else {
-                    Log.e(getClass().getName(), "RINGTONE_ID is null");
-                }
+                tryToSetAlarmIdVariable(extras);
+                tryToSetAlarmRingtoneVariable(extras);
             } else {
                 Log.e(getClass().getName(), "Extras is null");
             }
         } else {
-            Log.e(getClass().getName(), "Intent is null");
+            Log.e(getClass().getName(), "Intent is null... Setting default values");
         }
     }
 
-    private void setDefaultValuesForAlarmVariables() {
-        ringtonePassedInIntent = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
-        alarmIdPassedInIntent = "";
+    private void tryToSetAlarmIdVariable(Bundle extras) {
+        if (extras.getString(KEY_ALARM_ID) != null) {
+            alarmIdPassedInIntent = extras.getString(KEY_ALARM_ID);
+            Log.d(getClass().getName(), "ALARM_ID Overridden! New value: " + alarmIdPassedInIntent);
+        } else {
+            Log.e(getClass().getName(), "ALARM_ID is null");
+        }
+    }
+
+    private void tryToSetAlarmRingtoneVariable(Bundle extras) {
+        if (extras.getString(KEY_RINGTONE_ID) != null) {
+            ringtonePassedInIntent = extras.getString(KEY_RINGTONE_ID);
+            Log.d(getClass().getName(), "KEY_RINGTONE_ID Overridden! New value: " + ringtonePassedInIntent);
+        } else {
+            Log.e(getClass().getName(), "KEY_RINGTONE_ID is null");
+        }
     }
 
     private void startPlayer() {
@@ -162,11 +165,11 @@ public class AlarmService extends Service {
 
     private void startAlarmActivity() {
         Intent alarmActivityIntent = new Intent(Intent.ACTION_MAIN);
-        alarmActivityIntent.putExtra(KEY_ALARM_ID, alarmIdPassedInIntent);
         alarmActivityIntent.setComponent(new ComponentName(this, AlarmActivity.class));
         alarmActivityIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP |
                 Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        alarmActivityIntent.putExtra(KEY_ALARM_ID, alarmIdPassedInIntent);
         startActivity(alarmActivityIntent);
     }
 
