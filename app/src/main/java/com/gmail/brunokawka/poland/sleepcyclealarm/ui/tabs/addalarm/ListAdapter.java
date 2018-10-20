@@ -123,7 +123,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListAdapterHol
         final String summary = item.getSummary();
         final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
         final String currentDate = item.getCurrentDate().toString();
-        final String executionDate = DateTime.now().plusSeconds(10).toString();//item.getExecutionDate().toString();
+        final String executionDate =  item.getExecutionDate().toString();
 
         Alarm alarm = new Alarm();
         alarm.setId(id);
