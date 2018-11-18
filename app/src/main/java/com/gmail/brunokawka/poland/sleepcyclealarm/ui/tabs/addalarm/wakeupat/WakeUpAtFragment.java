@@ -39,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WakeUpAtFragment extends Fragment
-    implements WakeUpAtContract.WakeUpAtView {
+    implements WakeUpAtContract.WakeUpAtView, DialogInterface.OnDismissListener {
 
     @BindView(R.id.wakeUpAtRoot) protected ViewGroup root;
     @BindView(R.id.wakeUpAtListCardView) protected CardView listCardView;
@@ -127,11 +127,11 @@ public class WakeUpAtFragment extends Fragment
                         wakeUpAtPresenter.dismissTimeDialog();
                     }
                 })
+                .setOnDismissListener(this)
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         wakeUpAtPresenter.dismissTimeDialog();
-                        dialog.dismiss();
                     }
                 });
         dialog = dialogBuilder.create();
@@ -251,5 +251,10 @@ public class WakeUpAtFragment extends Fragment
         if (lastExecutionDate != null) {
             lastExecutionDate = null;
         }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        wakeUpAtPresenter.dismissTimeDialog();
     }
 }
