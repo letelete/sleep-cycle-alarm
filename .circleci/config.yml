@@ -39,14 +39,14 @@ jobs:
       - run:
           name: Run EspressoTests
           command: ./gradlew connectedDemoDebugAndroidTest
+      - run:
+          name: Run Coverage reports
+          command: ./gradlew build jacocoTestReport
       - store_artifacts:
           path: app/build/reports
           destination: reports
       - store_test_results:
           path: app/build/test-result
-      - run:
-          name: Run Coverage reports
-          command: ./gradlew build jacocoTestReport
       - run:
           name: After Success
           command: bash <(curl -s https://codecov.io/bash)
