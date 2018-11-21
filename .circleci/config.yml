@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Run Tests and lint check
           command: ./gradlew lint test
-       - run:
+      - run:
           name: Setup emulator
           command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
       - run:
