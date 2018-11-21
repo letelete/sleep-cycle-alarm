@@ -1,20 +1,12 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.MenuItem;
-
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 
 public class MainPresenter implements MainContract.MainPresenter {
 
     private MainContract.MainView view;
-    private boolean isAfterFirstPress;
+    private boolean isButtonAfterFirstPress;
 
     public MainPresenter(MainContract.MainView view) {
         this.view = view;
@@ -23,34 +15,45 @@ public class MainPresenter implements MainContract.MainPresenter {
     @Override
     public void setUpUi(Bundle savedInstanceState) {
         view.setUpBottomNavigationBar();
-        view.openLatestFragmentOrDefault(savedInstanceState);
         view.setUpToolbar();
+        handleFragmentToDisplay(savedInstanceState);
+    }
+
+    private void handleFragmentToDisplay(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            view.openDefaultFragment();
+        } else {
+            view.openLatestFragment();
+        }
     }
 
     @Override
-    public void handleSetTheme(String changeThemeKey, SharedPreferences sharedPreferences) {
-        int themeId = ThemeCoordinator.getCurrentTheme(sharedPreferences.getString(changeThemeKey, "1"));
-        view.setAppTheme(themeId);
+    public void handleMenuItemClick(int menuItemId) {
+        switch (menuItemId) {
+            case R.id.menu_settings:
+                view.openSettingsActivity();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void handleBottomNavigationTabClick(int menuItemId) {
-        Fragment fragment;
-
         switch (menuItemId) {
             case R.id.action_wakeupat:
-                fragment = new WakeUpAtFragment();
+                view.openWakeUpAtFragment();
                 break;
             case R.id.action_alarms:
-                fragment = new AlarmsFragment();
+                view.openAlarmsFragment();
                 break;
             case R.id.action_sleepnow:
             default:
-                fragment = new SleepNowFragment();
+                view.openSleepNowFragment();
                 break;
         }
+
         handleWakeUpAtButtonVisibility(menuItemId);
-        view.replaceFragment(fragment);
     }
 
     private void handleWakeUpAtButtonVisibility(int menuItemId) {
@@ -66,27 +69,20 @@ public class MainPresenter implements MainContract.MainPresenter {
     }
 
     @Override
-    public void handleMenuItemClick(MenuItem item) {
-        int itemId = item.getItemId();
-        String itemTitle = item.getTitle().toString();
-        view.openMenuActivityWithItemVariables(itemId, itemTitle);
-    }
-
-    @Override
     public void handleBackPress() {
         int milliseconds = 2000;
 
-        if (isAfterFirstPress) {
+        if (isButtonAfterFirstPress) {
             view.moveAppToBack();
         } else {
             view.showToastWithDoubleBackMessage();
-            isAfterFirstPress = true;
-            view.countDownInMillisecondsAndEmitSignalBackAtTheEnd(milliseconds);
+            isButtonAfterFirstPress = true;
+            view.countDownInMilliseconds(milliseconds);
         }
     }
 
     @Override
     public void onCountedDown() {
-        isAfterFirstPress = false;
+        isButtonAfterFirstPress = false;
     }
 }

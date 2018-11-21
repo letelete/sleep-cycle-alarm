@@ -97,7 +97,13 @@ public class WakeUpAtFragment extends Fragment
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        if (isEventBusNotRegistered()) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    private boolean isEventBusNotRegistered() {
+        return !EventBus.getDefault().isRegistered(this);
     }
 
     @Override

@@ -25,7 +25,10 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEv
 import com.gmail.brunokawka.poland.sleepcyclealarm.listeners.OnRealmChangeListener;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.menu.MenuActivity;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeCoordinator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -47,7 +50,11 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
     private WakeUpAtSetHourButton wakeUpAtSetHourButton;
+    private Bundle savedInstanceState;
+
+    private SleepNowFragment sleepNowFragment;
     private WakeUpAtFragment wakeUpAtFragment;
+    private AlarmsFragment alarmsFragment;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
@@ -56,22 +63,33 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mainPresenter = new MainPresenter(this);
-        mainPresenter.handleSetTheme(getString(R.string.key_change_theme), sharedPreferences);
+        this.savedInstanceState = savedInstanceState;
+        setAppTheme();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        mainPresenter = new MainPresenter(this);
+
+        sleepNowFragment = new SleepNowFragment();
         wakeUpAtFragment = new WakeUpAtFragment();
+        alarmsFragment = new AlarmsFragment();
+
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         mainPresenter.setUpUi(savedInstanceState);
-        initializeRealmAndAddListener();
+        initRealm();
     }
 
-    private void initializeRealmAndAddListener() {
+    private void setAppTheme() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String key = getString(R.string.key_change_theme);
+        int themeId = ThemeCoordinator.getCurrentTheme(pref.getString(key, "1"));
+        getDelegate().setLocalNightMode(themeId);
+    }
+
+    private void initRealm() {
         RealmManager.initializeRealmConfig();
         RealmManager.incrementCount();
         Realm realm = RealmManager.getRealm();
@@ -96,12 +114,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void openLatestFragmentOrDefault(Bundle savedInstanceState) {
-        final int defaultPosition = R.id.action_sleepnow;
-        final int bottomNavigationPosition = savedInstanceState != null
-                ? savedInstanceState.getInt(getString(R.string.key_last_execution_date))
-                : defaultPosition;
-        bottomNavigationBar.setSelectedItemId(bottomNavigationPosition);
+    public void openLatestFragment() {
+        final int latestFragmentId = savedInstanceState.getInt(getString(R.string.key_last_execution_date));
+        bottomNavigationBar.setSelectedItemId(latestFragmentId);
+    }
+
+    @Override
+    public void openDefaultFragment() {
+        final int defaultFragmentId = R.id.action_sleepnow;
+        bottomNavigationBar.setSelectedItemId(defaultFragmentId);
     }
 
     @Override
@@ -121,23 +142,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void setAppTheme(int themeId) {
-        getDelegate().setLocalNightMode(themeId);
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int menuItemId = menuItem.getItemId();
         mainPresenter.handleBottomNavigationTabClick(menuItemId);
         return true;
-    }
-
-    @Override
-    public void replaceFragment(Fragment newFragment) {
-        FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.setCustomAnimations(R.animator.fragment_open_enter, R.animator.fragment_open_exit)
-                .replace(R.id.main_activity_container, newFragment)
-                .commit();
     }
 
     @Override
@@ -157,16 +165,38 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void openSleepNowFragment() {
+        replaceFragment(sleepNowFragment);
+    }
+
+    @Override
+    public void openWakeUpAtFragment() {
+        replaceFragment(wakeUpAtFragment);
+    }
+
+    @Override
+    public void openAlarmsFragment() {
+        replaceFragment(alarmsFragment);
+    }
+
+    public void replaceFragment(Fragment newFragment) {
+        FragmentTransaction ft = this.fragmentManager.beginTransaction();
+        ft.setCustomAnimations(R.animator.fragment_open_enter, R.animator.fragment_open_exit)
+                .replace(R.id.main_activity_container, newFragment)
+                .commit();
+    }
+
+    @Override
     public boolean onMenuItemClick(MenuItem item) {
-        mainPresenter.handleMenuItemClick(item);
+        int itemId = item.getItemId();
+        mainPresenter.handleMenuItemClick(itemId);
         return true;
     }
 
     @Override
-    public void openMenuActivityWithItemVariables(int itemId, String itemTitle) {
+    public void openSettingsActivity() {
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        intent.putExtra(getString(R.string.key_menu_item_id), itemId)
-                .putExtra(getString(R.string.key_menu_item_title), itemTitle);
+        intent.putExtra(getString(R.string.key_settings_tag), R.id.menu_settings);
         startActivity(intent);
     }
 
@@ -181,7 +211,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void countDownInMillisecondsAndEmitSignalBackAtTheEnd(int milliseconds) {
+    public void countDownInMilliseconds(int milliseconds) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

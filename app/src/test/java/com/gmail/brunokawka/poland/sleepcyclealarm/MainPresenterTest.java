@@ -1,15 +1,10 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm;
 
-import android.support.v4.app.Fragment;
-
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.sleepnow.SleepNowFragment;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.addalarm.wakeupat.WakeUpAtFragment;
+import android.os.Bundle;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
@@ -19,6 +14,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -42,23 +38,33 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void testIfCanHandleBottomNavigationTabClickAndReturnCorrectFragment() {
-        ArgumentCaptor fragmentCaptor = ArgumentCaptor.forClass(Fragment.class);
-        doNothing().when(view).replaceFragment((Fragment) fragmentCaptor.capture());
-
-        presenter.handleBottomNavigationTabClick(R.id.action_sleepnow);
-        assertThat(SleepNowFragment.class.getSimpleName(), is(fragmentCaptor.getValue().getClass().getSimpleName()));
-
-        presenter.handleBottomNavigationTabClick(R.id.action_wakeupat);
-        assertThat(WakeUpAtFragment.class.getSimpleName(), is(fragmentCaptor.getValue().getClass().getSimpleName()));
-
-        presenter.handleBottomNavigationTabClick(R.id.action_alarms);
-        assertThat(AlarmsFragment.class.getSimpleName(), is(fragmentCaptor.getValue().getClass().getSimpleName()));
-
-        presenter.handleBottomNavigationTabClick(-9999);
-        Fragment defaultFragment = new SleepNowFragment();
-        assertThat(defaultFragment.getClass().getSimpleName(), is(fragmentCaptor.getValue().getClass().getSimpleName()));
+    public void openSleepNowFragment() {
+        int fragmentId = R.id.action_sleepnow;
+        presenter.handleBottomNavigationTabClick(fragmentId);
+        verify(view).openSleepNowFragment();
     }
+
+    @Test
+    public void openSleepNowFragmentAsDefault() {
+        int unexpectedId = -666;
+        presenter.handleBottomNavigationTabClick(unexpectedId);
+        verify(view).openSleepNowFragment();
+    }
+
+    @Test
+    public void openWakeUpAtFragment() {
+        int fragmentId = R.id.action_wakeupat;
+        presenter.handleBottomNavigationTabClick(fragmentId);
+        verify(view).openWakeUpAtFragment();
+    }
+
+    @Test
+    public void openAlarmsFragment() {
+        int fragmentId = R.id.action_alarms;
+        presenter.handleBottomNavigationTabClick(fragmentId);
+        verify(view).openAlarmsFragment();
+    }
+
 
     @Test
     public void testIfCanHandleButtonVisibility() {
@@ -73,11 +79,42 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void testIfCanHandleSingleAndDoubleBackPressClick() {
+    public void handleSingleBackPress() {
         presenter.handleBackPress();
         verify(view).showToastWithDoubleBackMessage();
-        verify(view).countDownInMillisecondsAndEmitSignalBackAtTheEnd(any(Integer.class));
-        presenter.handleBackPress();
+        verify(view).countDownInMilliseconds(any(Integer.class));
+        verify(view, never()).moveAppToBack();
+    }
+
+    @Test
+    public void handleDoubleBackPress() {
+        doubleTapBackButton();
         verify(view).moveAppToBack();
+    }
+
+    private void doubleTapBackButton() {
+        presenter.handleBackPress();
+        presenter.handleBackPress();
+    }
+
+    @Test
+    public void showDefaultFragmentIfBundleIsNull() {
+        Bundle savedInstanceState = null;
+        presenter.setUpUi(savedInstanceState);
+        verify(view).openDefaultFragment();
+    }
+
+    @Test
+    public void showLatestFragmentIfBundleIsNotNull() {
+        Bundle savedInstanceState = new Bundle();
+        presenter.setUpUi(savedInstanceState);
+        verify(view).openLatestFragment();
+    }
+
+    @Test
+    public void openSettings() {
+        int menuItemId = R.id.menu_settings;
+        presenter.handleMenuItemClick(menuItemId);
+        verify(view).openSettingsActivity();
     }
 }
