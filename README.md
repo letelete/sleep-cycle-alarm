@@ -3,7 +3,7 @@
 <h4 align="center">A free material-designed Android app which helps waking up during a light sleep, it also is ad-free and open source under GPLv3 license.</h4>
 <!-- TODO: APP STORE URL + LOGO <p align="center"><a href=""><img src=""/></a></p>  -->
 <p align="center">
-<a href="https://travis-ci.org/letelete/Sleep-Cycle-Alarm" alt="Build Status"><img src="https://travis-ci.org/letelete/Sleep-Cycle-Alarm.svg?branch=master" /></a>
+<a href="https://travis-ci.org/letelete/Sleep-Cycle-Alarm" alt="Build Status"><img src="https://travis-ci.org/letelete/sleep-cycle-alarm.svg?branch=master" /></a>
 <a href="https://codecov.io/gh/letelete/Sleep-Cycle-Alarm" alt="Coverage Status"><img src="https://codecov.io/gh/letelete/Sleep-Cycle-Alarm/branch/master/graph/badge.svg" /></a>
 <a class="badge-align" href="https://www.codacy.com/app/letelete/Sleep-Cycle-Alarm?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=letelete/Sleep-Cycle-Alarm&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/33b08e7d256b4b348513f083d2586b76"/></a>
 <a href="" alt="Lines of Code"><img src="https://tokei.rs/b1/github/letelete/Sleep-Cycle-Alarm"/></a>
