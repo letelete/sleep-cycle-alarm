@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.TimeRounder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.TimeUtils;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
@@ -58,13 +58,13 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
 
     private void createNextItemAndAddItToArray() {
         int timeForFallAsleepInMinutes = ItemsBuilderData.getTimeForFallAsleepInMinutes();
-        DateTime dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime = TimeRounder
-                .getNearest(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
+        DateTime dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime = TimeUtils
+                .getClosestTimeRound(timeToGoToSleep.minusMinutes(timeForFallAsleepInMinutes));
 
         Item item = new Item();
 
-        item.setTitle(ItemContentBuilder.getTitleForWakeUpAt(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime, executionDate));
-        item.setSummary(ItemContentBuilder.getSummary(timeToGoToSleep, executionDate));
+        item.setTitle(AlarmContentUtils.getTitleForWakeUpAt(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime, executionDate));
+        item.setSummary(AlarmContentUtils.getSummary(timeToGoToSleep, executionDate));
         item.setCurrentDate(dateToGoToSleepPlusTimeToFallAsleepWithRoundedTime);
         item.setExecutionDate(executionDate);
 

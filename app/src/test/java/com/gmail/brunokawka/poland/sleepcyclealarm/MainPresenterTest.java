@@ -2,6 +2,9 @@ package com.gmail.brunokawka.poland.sleepcyclealarm;
 
 import android.os.Bundle;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.app.base.MainContract;
+import com.gmail.brunokawka.poland.sleepcyclealarm.app.base.MainPresenter;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

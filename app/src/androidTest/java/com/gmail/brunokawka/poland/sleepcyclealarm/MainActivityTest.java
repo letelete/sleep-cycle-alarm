@@ -3,6 +3,8 @@ package com.gmail.brunokawka.poland.sleepcyclealarm;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.gmail.brunokawka.poland.sleepcyclealarm.app.base.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

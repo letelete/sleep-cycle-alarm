@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 
 import org.joda.time.DateTime;
 
@@ -85,7 +85,7 @@ public class AlarmActivity extends AppCompatActivity {
 
     private String getFormattedCurrentHour() {
         DateTime currentDate = DateTime.now();
-        return ItemContentBuilder.getTitle(currentDate);
+        return AlarmContentUtils.getTitle(currentDate);
     }
 
     private void removeExecutedAlarmFromDatabase() {

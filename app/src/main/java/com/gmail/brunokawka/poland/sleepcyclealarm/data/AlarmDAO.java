@@ -3,7 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
 import java.util.ArrayList;

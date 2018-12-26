@@ -2,7 +2,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -108,7 +108,7 @@ public class ItemsBuilderTest {
         String expected;
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
             executionDate = getDateTime(EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.get(index));
-            expected = ItemContentBuilder.getTitle(executionDate);
+            expected = AlarmContentUtils.getTitle(executionDate);
 
             assertEquals(expected, itemsForSleepNowBuildingStrategy.get(index).getTitle());
         }
@@ -118,7 +118,7 @@ public class ItemsBuilderTest {
     public void testIfCanReturnCorrectTitlesForWakeUpAtBuildingStrategy() {
         String expected;
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
-            expected = ItemContentBuilder.getTitleForWakeUpAt(getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index)),
+            expected = AlarmContentUtils.getTitleForWakeUpAt(getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index)),
                     EXECUTION_DATE_FOR_WAKEUPAT_BUILDING_STRATEGY);
             assertThat(expected, is(itemsForWakeUpAtBuildingStrategy.get(index).getTitle()));
         }
@@ -130,7 +130,7 @@ public class ItemsBuilderTest {
         String expected;
         for (int index = 0; index < EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.size(); index++) {
             expectedDate = getDateTime(EXPECTED_FOR_SLEEPNOW_BUILDING_STRATEGY.get(index));
-            expected = ItemContentBuilder.getSummary(CURRENT_DATE_FOR_SLEEPNOW_BUILDING_STRATEGY, expectedDate.minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes()));
+            expected = AlarmContentUtils.getSummary(CURRENT_DATE_FOR_SLEEPNOW_BUILDING_STRATEGY, expectedDate.minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes()));
 
             assertEquals(expected, itemsForSleepNowBuildingStrategy.get(index).getSummary());
         }
@@ -144,7 +144,7 @@ public class ItemsBuilderTest {
         for (int index = 0; index < EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.size(); index++) {
             expectedDate = getDateTime(EXPECTED_FOR_WAKEUPAT_BUILDING_STRATEGY.get(index));
             executionDateWithoutTimeToFallAsleep = EXECUTION_DATE_FOR_WAKEUPAT_BUILDING_STRATEGY.minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes());
-            expected = ItemContentBuilder.getSummary(expectedDate, executionDateWithoutTimeToFallAsleep);
+            expected = AlarmContentUtils.getSummary(expectedDate, executionDateWithoutTimeToFallAsleep);
 
             assertEquals(expected, itemsForWakeUpAtBuildingStrategy.get(index).getSummary());
         }
