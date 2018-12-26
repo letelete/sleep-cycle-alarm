@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ItemContentBuilder;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 
 import org.joda.time.DateTime;
 
@@ -40,7 +40,8 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
-            PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, getClass().getName());
+            PowerManager.ACQUIRE_CAUSES_WAKEUP
+                | PowerManager.ON_AFTER_RELEASE, getClass().getName());
         setUpRingDuration();
         wakeLock.acquire(ringDurationInMillis);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
@@ -85,7 +86,7 @@ public class AlarmActivity extends AppCompatActivity {
 
     private String getFormattedCurrentHour() {
         DateTime currentDate = DateTime.now();
-        return ItemContentBuilder.getTitle(currentDate);
+        return AlarmContentUtils.getTitle(currentDate);
     }
 
     private void removeExecutedAlarmFromDatabase() {

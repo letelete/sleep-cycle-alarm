@@ -21,6 +21,7 @@ public abstract class ItemsBuilderAbstraction {
 
     public abstract DateTime getNextAlarmDate(DateTime executionDate);
 
-    public abstract boolean isPossibleToCreateNextItem(DateTime currentDate, DateTime executionDate);
+    public abstract boolean isPossibleToCreateNextItem(DateTime currentDate,
+                                                       DateTime executionDate);
 
 }
