@@ -61,7 +61,8 @@ public class AlarmController {
 
     private void updateAlarmsList() {
         alarms = alarmDAO.getListOfAlarms();
-        Log.d(getClass().getName(), "Alarms list updated. With " + alarms.size() + " objects now");
+        Log.d(getClass().getName(), "Alarms list updated. With " + alarms.size()
+                + " objects now");
     }
 
     private void scheduleAlarm(Alarm alarm) {
@@ -70,13 +71,16 @@ public class AlarmController {
         setAlarm(context, executionDateInMillis, pendingIntent);
     }
 
-    private void setAlarm(Context context, long executionDateInMillis, PendingIntent pendingIntent) {
+    private void setAlarm(Context context, long executionDateInMillis,
+                          PendingIntent pendingIntent) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, executionDateInMillis, pendingIntent);
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                        executionDateInMillis, pendingIntent);
             } else {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, executionDateInMillis, pendingIntent);
+                alarmManager
+                        .setExact(AlarmManager.RTC_WAKEUP, executionDateInMillis, pendingIntent);
             }
         }
     }
@@ -93,8 +97,10 @@ public class AlarmController {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(KEY_ALARM_ID, alarmId);
         intent.putExtra(KEY_RINGTONE_ID, ringtone);
-        int alarmIdLeastSignificantBits = (int) Math.abs(UUID.fromString(alarmId).getLeastSignificantBits());
+        int alarmIdLeastSignificantBits = (int) Math
+                .abs(UUID.fromString(alarmId).getLeastSignificantBits());
 
-        return PendingIntent.getBroadcast(context, alarmIdLeastSignificantBits, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, alarmIdLeastSignificantBits,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

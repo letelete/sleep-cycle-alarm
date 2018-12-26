@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.RealmChangeEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
-import com.gmail.brunokawka.poland.sleepcyclealarm.ui.tabs.accessalarm.alarms.AlarmsFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms.AlarmsFragment;
 
 import org.greenrobot.eventbus.EventBus;
 

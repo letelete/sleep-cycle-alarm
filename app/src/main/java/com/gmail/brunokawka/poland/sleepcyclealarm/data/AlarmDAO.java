@@ -3,7 +3,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.data;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.gmail.brunokawka.poland.sleepcyclealarm.application.RealmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
 import java.util.ArrayList;
@@ -75,7 +75,8 @@ public class AlarmDAO {
     }
 
     private boolean isNotDuplicate(Alarm alarm, Realm realm) {
-        Alarm duplicateAlarm = realm.where(Alarm.class).equalTo("executionDate", alarm.getExecutionDate()).findFirst();
+        Alarm duplicateAlarm = realm.where(Alarm.class)
+                .equalTo("executionDate", alarm.getExecutionDate()).findFirst();
         return duplicateAlarm == null;
     }
 

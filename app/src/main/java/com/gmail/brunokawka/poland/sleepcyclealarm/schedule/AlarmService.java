@@ -91,7 +91,8 @@ public class AlarmService extends Service {
     }
 
     private void setAlarmVariablesByValuesPassedInIntent(Intent intent) {
-        ringtonePassedInIntent = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM).toString();
+        ringtonePassedInIntent = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                .toString();
         alarmIdPassedInIntent = "DEFAULT_ID";
 
         if (intent != null) {
@@ -110,7 +111,8 @@ public class AlarmService extends Service {
     private void tryToSetAlarmIdVariable(Bundle extras) {
         if (extras.getString(KEY_ALARM_ID) != null) {
             alarmIdPassedInIntent = extras.getString(KEY_ALARM_ID);
-            Log.d(getClass().getName(), "ALARM_ID Overridden! New value: " + alarmIdPassedInIntent);
+            Log.d(getClass().getName(), "ALARM_ID Overridden! New value: "
+                    + alarmIdPassedInIntent);
         } else {
             Log.e(getClass().getName(), "ALARM_ID is null");
         }
@@ -119,7 +121,8 @@ public class AlarmService extends Service {
     private void tryToSetAlarmRingtoneVariable(Bundle extras) {
         if (extras.getString(KEY_RINGTONE_ID) != null) {
             ringtonePassedInIntent = extras.getString(KEY_RINGTONE_ID);
-            Log.d(getClass().getName(), "KEY_RINGTONE_ID Overridden! New value: " + ringtonePassedInIntent);
+            Log.d(getClass().getName(), "KEY_RINGTONE_ID Overridden! New value: "
+                    + ringtonePassedInIntent);
         } else {
             Log.e(getClass().getName(), "KEY_RINGTONE_ID is null");
         }
@@ -141,7 +144,8 @@ public class AlarmService extends Service {
             if (player.isPlaying()) {
                 player.stop();
             }
-            Log.e(getClass().getName(), "Error while starting player. Error message: " + e.getMessage());
+            Log.e(getClass().getName(), "Error while starting player. Error message: "
+                    + e.getMessage());
             stopSelf();
         }
     }
