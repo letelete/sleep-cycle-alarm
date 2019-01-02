@@ -30,4 +30,6 @@
     <dimen name="dialog_edit_alarm_title_text_size">18sp</dimen>
     <dimen name="dialog_buttons_width">125dp</dimen>
     <dimen name="dialog_buttons_margin">18dp</dimen>
+    <dimen name="paddingSettingsItems">16dp</dimen>
+    <dimen name="paddingLayout">24dp</dimen>
 </resources>

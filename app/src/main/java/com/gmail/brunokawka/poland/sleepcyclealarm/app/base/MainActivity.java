@@ -24,11 +24,11 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.listeners.OnRealmChangeListener;
-import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.WakeUpAtSetHourButton;
-import com.gmail.brunokawka.poland.sleepcyclealarm.menu.MenuActivity;
+import com.gmail.brunokawka.poland.sleepcyclealarm.settings.SettingsActivity;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.wakeupat.WakeUpAtFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.WakeUpAtSetHourButton;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -198,9 +198,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void openSettingsActivity() {
-        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        intent.putExtra(getString(R.string.key_settings_tag), R.id.menu_settings);
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
     }
 
     @Override
