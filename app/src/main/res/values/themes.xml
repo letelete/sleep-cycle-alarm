@@ -56,4 +56,10 @@
         <item name="alertDialogTheme">@style/alert_dialog_style</item>git
     </style>
 
+    <style name="Theme.SleepCycleTheme.PreferenceTheme">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

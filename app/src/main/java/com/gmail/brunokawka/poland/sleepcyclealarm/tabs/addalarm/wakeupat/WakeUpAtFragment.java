@@ -156,7 +156,7 @@ public class WakeUpAtFragment extends Fragment
 
     @Override
     public void saveExecutionDateToPreferencesAsString() {
-        Log.d(getClass().getName(), "Saving execution date to preferences");
+        Log.d(getClass().getName(), "Saving execution date to pref_alarm");
         SharedPreferences pref = getActivity()
                 .getSharedPreferences(getString(R.string.wakeupat_preferences_name),
                         Context.MODE_PRIVATE);

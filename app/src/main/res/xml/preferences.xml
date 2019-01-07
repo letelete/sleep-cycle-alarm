@@ -2,11 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="@string/menu_settings">
-    <PreferenceScreen
+
+    <PreferenceCategory
         android:key="@string/pref_theme_category"
         android:title="@string/pref_theme_category">
 
         <ListPreference
+            android:summary="%s"
             android:defaultValue="1"
             android:entries="@array/pref_change_theme_titles"
             android:entryValues="@array/pref_change_theme_values"
@@ -16,11 +18,9 @@
             android:title="@string/pref_change_theme_title" />
 
 
-    </PreferenceScreen>
-    <PreferenceCategory android:layout="@layout/divider" />
+    </PreferenceCategory>
 
-
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="@string/pref_alarm_category"
         android:title="@string/pref_alarm_category">
 
@@ -50,6 +50,7 @@
 
 
         <ListPreference
+            android:summary="%s"
             android:defaultValue="1"
             android:entries="@array/pref_ring_duration_titles"
             android:entryValues="@array/pref_ring_duration_values"
@@ -59,6 +60,6 @@
             android:title="@string/pref_ring_duration_title" />
 
 
-    </PreferenceScreen>
+    </PreferenceCategory>
 
 </PreferenceScreen>
