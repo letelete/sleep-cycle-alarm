@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.CustomApp"
@@ -27,10 +26,12 @@
         </activity>
 
         <activity android:name=".settings.SettingsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/Theme.SleepCycleTheme" />
 
         <activity android:name=".schedule.AlarmActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.SleepCycleTheme" />
 
         <service android:name=".schedule.AlarmService" />

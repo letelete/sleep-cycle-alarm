@@ -122,13 +122,13 @@
         <item>30 minutes</item>
     </string-array>
     <string-array name="pref_ring_duration_values">
-        <item>1</item>
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>25</item>
-        <item>30</item>
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>900000</item>
+        <item>1200000</item>
+        <item>1500000</item>
+        <item>1800000</item>
     </string-array>
 
     <string name="error_menu_activity_default_case_in_switch">Cannot open this window. Please try again.</string>

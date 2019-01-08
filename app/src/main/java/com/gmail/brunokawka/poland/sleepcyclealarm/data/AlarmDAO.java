@@ -6,17 +6,14 @@ import android.util.Log;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 public class AlarmDAO {
 
     public AlarmDAO() {
-        RealmManager.initializeRealmConfig();
         RealmManager.incrementCount();
     }
 
@@ -58,16 +55,9 @@ public class AlarmDAO {
     }
 
     public List<Alarm> getListOfAlarms() {
-        List<Alarm> alarms = new ArrayList<>();
-
         Realm realm = RealmManager.getRealm();
         RealmQuery<Alarm> query = realm.where(Alarm.class);
-        RealmResults<Alarm> results = query.findAll();
-        if (!results.isEmpty()) {
-            alarms = results;
-        }
-
-        return alarms;
+        return query.findAll();
     }
 
     public void cleanUp() {

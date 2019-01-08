@@ -69,7 +69,7 @@ public class AlarmsFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        RealmManager.initializeRealmConfig();
+        RealmManager.incrementCount();
 
         addScopeListener();
         alarmsPresenter = alarmScopeListener.getPresenter();
@@ -204,6 +204,7 @@ public class AlarmsFragment extends Fragment
         if(dialog != null) {
             dialog.dismiss();
         }
+        RealmManager.decrementCount();
         super.onDestroyView();
     }
 
