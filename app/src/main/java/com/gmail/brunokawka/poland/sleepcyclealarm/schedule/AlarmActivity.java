@@ -1,12 +1,13 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.schedule;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeUtils;
 
 import org.joda.time.DateTime;
 
@@ -22,83 +25,106 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AlarmActivity extends AppCompatActivity {
-    private static final String KEY_ALARM_ID = "alarm_id";
+
+    private AlarmDAO alarmDAO;
+    private AlarmController alarmController;
+    private long ringDurationMs;
 
     @BindView(R.id.activityAlarmCurrentHour) protected TextView currentHourTextView;
 
-    private PowerManager.WakeLock wakeLock;
-    private int ringDurationInMillis;
-    private String alarmId;
-
     @OnClick(R.id.activityAlarmLayout)
     public void onAlarmDismissRequest() {
-        dismissAlarm();
+        finish();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
-            PowerManager.ACQUIRE_CAUSES_WAKEUP
-                | PowerManager.ON_AFTER_RELEASE, getClass().getName());
-        setUpRingDuration();
-        wakeLock.acquire(ringDurationInMillis);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+        setupWindowFlags();
+        setAppTheme();
 
         setContentView(R.layout.activity_alarm);
         ButterKnife.bind(this);
+        alarmDAO = new AlarmDAO();
+        alarmController = new AlarmController(getApplicationContext());
 
-        setUpCurrentHourTextView();
         removeExecutedAlarmFromDatabase();
+        showCurrentHour();
+        setupRingDuration();
+        countDownRingDuration();
     }
 
-    @Override
-    public void onBackPressed() {
-        dismissAlarm();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (wakeLock.isHeld()) {
-            wakeLock.release();
+    private void setupWindowFlags() {
+        if (Build.VERSION.SDK_INT >= 27) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+        } else {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                    | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
-        super.onDestroy();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    public void dismissAlarm() {
-        Log.d(getClass().getName(), "Dismissing the alarm...");
-        new AlarmController(this).dismissCurrentlyPlayingAlarm();
-        finish();
-    }
-
-    private void setUpRingDuration() {
-        final int defaultRingDurationInMillis = 5 * 60 * 1000;
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String ringDurationString = preferences.getString(getString(R.string.key_ring_duration), String.valueOf(defaultRingDurationInMillis));
-        ringDurationInMillis = Integer.parseInt(ringDurationString);
-    }
-
-    private void setUpCurrentHourTextView() {
-        String currentHour = getFormattedCurrentHour();
-        currentHourTextView.setText(currentHour);
-    }
-
-    private String getFormattedCurrentHour() {
-        DateTime currentDate = DateTime.now();
-        return AlarmContentUtils.getTitle(currentDate);
+    private void setAppTheme() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String key = getString(R.string.key_change_theme);
+        int themeId = ThemeUtils.getCurrentTheme(pref.getString(key, Const.DEFAULTS.THEME_ID));
+        getDelegate().setLocalNightMode(themeId);
     }
 
     private void removeExecutedAlarmFromDatabase() {
         Intent intent = getIntent();
         if (intent != null) {
-            alarmId = intent.getStringExtra(KEY_ALARM_ID);
-            if (alarmId != null) {
-                Log.d(getClass().getName(), "Removing already executed alarm from Realm | alarm id: " + alarmId);
-                new AlarmDAO().removeFromRealmById(alarmId);
+            String alarmId = intent.getStringExtra(Const.KEYS.ALARM_ID);
+            if (!TextUtils.isEmpty(alarmId)) {
+                alarmDAO.removeFromRealmById(alarmId);
             } else {
-                Log.e(getClass().getName(), "Error while removing executed alarm from Realm | alarmId is null");
+                Log.e(getClass().getName(),
+                        "removeExecutedAlarmFromDatabase(): alarmId is empty");
             }
+        } else {
+            Log.e(getClass().getName(), "removeExecutedAlarmFromDatabase(): intent == null");
         }
+    }
+
+    private void showCurrentHour() {
+        String currentHour = AlarmContentUtils.getTitle(DateTime.now());
+        currentHourTextView.setText(currentHour);
+    }
+
+    private void setupRingDuration() {
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        String ringDurationString = preferences.getString(getString(R.string.key_ring_duration),
+                String.valueOf(Const.DEFAULTS.RING_DURATION_MS));
+        ringDurationMs = Long.parseLong(ringDurationString);
+    }
+
+    private void countDownRingDuration() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        }, ringDurationMs);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
+    public void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        alarmController.dismissCurrentlyPlayingAlarm();
+        alarmDAO.cleanUp();
     }
 }

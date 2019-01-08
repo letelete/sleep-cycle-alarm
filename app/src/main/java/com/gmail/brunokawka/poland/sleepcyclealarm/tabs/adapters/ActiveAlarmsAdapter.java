@@ -1,5 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
+import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms.AlarmsPresenter;
 
 import butterknife.BindView;
@@ -39,18 +41,22 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
         }
     }
 
-    public static class AlarmViewHolder extends RecyclerView.ViewHolder {
+    public class AlarmViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.accessAlarm) protected ConstraintLayout itemLayout;
         @BindView(R.id.accessAlarmTitle) protected TextView textTitle;
         @BindView(R.id.accessAlarmSummary) protected TextView textSummary;
 
         private final AlarmsPresenter alarmsPresenter;
+        private AlarmController alarmController;
+        private Context context;
 
         public AlarmViewHolder(View itemView) {
             super(itemView);
-            this.alarmsPresenter = AlarmsPresenter.getService();
             ButterKnife.bind(this, itemView);
+            this.context = itemView.getContext();
+            this.alarmsPresenter = AlarmsPresenter.getService();
+            this.alarmController = new AlarmController(context);
         }
 
         public void bind(final Alarm alarm) {
@@ -62,6 +68,7 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
                 @Override
                 public boolean onLongClick(View v) {
                     alarmsPresenter.deleteAlarmById(id);
+                    alarmController.cancelAlarm(alarm);
                     return false;
                 }
             });

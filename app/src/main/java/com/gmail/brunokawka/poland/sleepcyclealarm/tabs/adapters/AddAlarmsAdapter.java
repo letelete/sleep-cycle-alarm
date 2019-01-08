@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,8 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -71,11 +72,13 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
         @BindView(R.id.addAlarmSummary) protected TextView textSummary;
 
         private Item item;
+        private AlarmController alarmController;
 
         ListAdapterHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+            alarmController = new AlarmController(view.getContext());
         }
 
         public void onClick(final View view) {
@@ -94,10 +97,12 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
 
                 private void addAlarm(Alarm alarm) {
                     alarmDAO.saveIfNotDuplicate(alarm);
+                    alarmController.setAlarm(alarm);
                 }
 
                 private void showAddAlarmToast() {
-                    String toastText = String.format(context.getString(R.string.toast_alarm_added), item.getTitle());
+                    String toastText = String.format(context.getString(R.string.toast_alarm_added),
+                            item.getTitle());
                     Toast.makeText(view.getContext(), toastText, Toast.LENGTH_LONG).show();
                 }
             });
@@ -117,15 +122,14 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
     }
 
     private Alarm getAlarmFromItem(Item item, Context ctx) {
-        Log.d(getClass().getName(), "Getting alarm from item...");
-
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
         final String id = UUID.randomUUID().toString();
         final String title = item.getTitle();
         final String summary = item.getSummary();
-        final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select), "DEFAULT_SOUND");
+        final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select),
+                Const.DEFAULTS.ALARM_SOUND);
         final String currentDate = item.getCurrentDate().toString();
-        final String executionDate =  item.getExecutionDate().toString();
+        final String executionDate = item.getExecutionDate().toString();
 
         Alarm alarm = new Alarm();
         alarm.setId(id);

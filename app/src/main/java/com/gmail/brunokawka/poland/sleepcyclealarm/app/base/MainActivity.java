@@ -23,12 +23,12 @@ import android.widget.Toast;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.listeners.OnRealmChangeListener;
 import com.gmail.brunokawka.poland.sleepcyclealarm.settings.SettingsActivity;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms.AlarmsFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.sleepnow.SleepNowFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.wakeupat.WakeUpAtFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.WakeUpAtSetHourButton;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,7 +36,6 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        RealmManager.initializeRealmConfig();
         mainPresenter = new MainPresenter(this);
 
         sleepNowFragment = new SleepNowFragment();
@@ -80,21 +79,13 @@ public class MainActivity extends AppCompatActivity
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         mainPresenter.setUpUi(savedInstanceState);
-        initRealm();
     }
 
     private void setAppTheme() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String key = getString(R.string.key_change_theme);
-        int themeId = ThemeUtils.getCurrentTheme(pref.getString(key, "1"));
+        int themeId = ThemeUtils.getCurrentTheme(pref.getString(key, Const.DEFAULTS.THEME_ID));
         getDelegate().setLocalNightMode(themeId);
-    }
-
-    private void initRealm() {
-        RealmManager.initializeRealmConfig();
-        RealmManager.incrementCount();
-        Realm realm = RealmManager.getRealm();
-        realm.addChangeListener(new OnRealmChangeListener(getApplicationContext()));
     }
 
     @Override
@@ -140,7 +131,7 @@ public class MainActivity extends AppCompatActivity
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         } else {
-            Log.e(getClass().getName(), "actionBar at tryToHideActionBarTitle is null");
+            Log.e(getClass().getName(), "tryToHideActionBarTitle(): actionBar == null");
         }
     }
 
@@ -236,7 +227,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         removeWakeUpAtPreferences();
-        RealmManager.decrementCount();
         super.onDestroy();
     }
 

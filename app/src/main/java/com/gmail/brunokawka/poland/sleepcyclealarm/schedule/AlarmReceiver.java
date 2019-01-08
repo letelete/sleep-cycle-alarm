@@ -4,11 +4,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle extras = intent.getExtras();
-        new AlarmController(context).startAlarm(extras);
+        Intent service = new Intent(context, AlarmService.class);
+        if (extras != null) {
+            service.putExtras(extras);
+        } else {
+            Log.e(getClass().getName(), "onReceive(): extras == null");
+        }
+        context.startService(service);
     }
 }

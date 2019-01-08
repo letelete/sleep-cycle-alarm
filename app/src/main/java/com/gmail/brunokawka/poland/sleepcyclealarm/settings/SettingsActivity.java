@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.ThemeUtils;
 
 import butterknife.BindView;
@@ -45,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void setAppTheme() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String key = getString(R.string.key_change_theme);
-        int themeId = ThemeUtils.getCurrentTheme(pref.getString(key, "1"));
+        int themeId = ThemeUtils.getCurrentTheme(pref.getString(key, Const.DEFAULTS.THEME_ID));
         getDelegate().setLocalNightMode(themeId);
     }
 

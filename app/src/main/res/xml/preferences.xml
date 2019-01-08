@@ -51,7 +51,7 @@
 
         <ListPreference
             android:summary="%s"
-            android:defaultValue="1"
+            android:defaultValue="300000"
             android:entries="@array/pref_ring_duration_titles"
             android:entryValues="@array/pref_ring_duration_values"
             android:key="@string/key_ring_duration"
