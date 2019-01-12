@@ -6,12 +6,4 @@
         android:title="@string/menu_settings"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/menu_help"
-        android:title="@string/menu_help"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/menu_about"
-        android:title="@string/menu_about"
-        app:showAsAction="never"/>
-
 </menu>
