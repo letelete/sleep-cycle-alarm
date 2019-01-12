@@ -2,7 +2,6 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.sleepnow;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.AddAlarmsAdapter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmAbstractFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.SleepNowBuildingStrategy;
@@ -21,7 +21,7 @@ import org.joda.time.DateTime;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SleepNowFragment extends Fragment {
+public class SleepNowFragment extends AddAlarmAbstractFragment {
 
     @BindView(R.id.sleepNowFragmentRecycler) protected RecyclerView recycler;
 

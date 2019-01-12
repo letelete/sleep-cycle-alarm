@@ -29,6 +29,12 @@ public class AlarmDAO {
         });
     }
 
+    private boolean isNotDuplicate(Alarm alarm, Realm realm) {
+        Alarm duplicateAlarm = realm.where(Alarm.class)
+                .equalTo("executionDate", alarm.getExecutionDate()).findFirst();
+        return duplicateAlarm == null;
+    }
+
     public void saveEvenIfDuplicate(final Alarm alarm) {
         Realm realm = RealmManager.getRealm();
         realm.executeTransactionAsync(new Realm.Transaction() {
@@ -62,12 +68,6 @@ public class AlarmDAO {
 
     public void cleanUp() {
         RealmManager.decrementCount();
-    }
-
-    private boolean isNotDuplicate(Alarm alarm, Realm realm) {
-        Alarm duplicateAlarm = realm.where(Alarm.class)
-                .equalTo("executionDate", alarm.getExecutionDate()).findFirst();
-        return duplicateAlarm == null;
     }
 
 }

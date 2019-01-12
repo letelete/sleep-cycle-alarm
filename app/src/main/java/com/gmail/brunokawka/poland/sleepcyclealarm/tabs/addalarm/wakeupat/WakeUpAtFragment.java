@@ -24,6 +24,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.AddAlarmsAdapter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmAbstractFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
@@ -38,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WakeUpAtFragment extends Fragment
+public class WakeUpAtFragment extends AddAlarmAbstractFragment
     implements WakeUpAtContract.WakeUpAtView, DialogInterface.OnDismissListener {
 
     @BindView(R.id.wakeUpAtRoot) protected ViewGroup root;
@@ -94,14 +95,6 @@ public class WakeUpAtFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
         wakeUpAtPresenter.setUpEnvironment();
         wakeUpAtPresenter.setUpUIElements(lastExecutionDate);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (isEventBusNotRegistered()) {
-            EventBus.getDefault().register(this);
-        }
     }
 
     private boolean isEventBusNotRegistered() {
@@ -247,12 +240,6 @@ public class WakeUpAtFragment extends Fragment
                         + AlarmContentUtils.getTitle(definedHour)
                         + ") There will be displayed the nearest hour to defined...",
                 Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
