@@ -44,8 +44,5 @@ public interface AlarmsContract {
 
         void deleteAlarmById(final String id);
 
-        void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract,
-                               final Alarm alarm);
-
     }
 }

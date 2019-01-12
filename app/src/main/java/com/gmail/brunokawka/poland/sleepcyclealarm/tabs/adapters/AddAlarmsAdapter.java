@@ -1,30 +1,20 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
-import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
+import com.gmail.brunokawka.poland.sleepcyclealarm.events.AddAlarmEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
-import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,73 +62,17 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
         @BindView(R.id.addAlarmSummary) protected TextView textSummary;
 
         private Item item;
-        private AlarmController alarmController;
 
         ListAdapterHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
-            alarmController = new AlarmController(view.getContext());
         }
 
         public void onClick(final View view) {
-            final AlarmDAO alarmDAO = new AlarmDAO();
-            final Context context = view.getContext();
             final int position = this.getAdapterPosition();
             item = getItem(position);
-
-            showAlertDialogForAddAlarmAction(context, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Alarm alarm = getAlarmFromItem(item, context);
-                    addAlarm(alarm);
-                    showAddAlarmToast();
-                }
-
-                private void addAlarm(Alarm alarm) {
-                    alarmDAO.saveIfNotDuplicate(alarm);
-                    alarmController.setAlarm(alarm);
-                }
-
-                private void showAddAlarmToast() {
-                    String toastText = String.format(context.getString(R.string.toast_alarm_added),
-                            item.getTitle());
-                    Toast.makeText(view.getContext(), toastText, Toast.LENGTH_LONG).show();
-                }
-            });
+            EventBus.getDefault().post(new AddAlarmEvent(item));
         }
-
-        private void showAlertDialogForAddAlarmAction(@NonNull Context context, DialogInterface
-                                                              .OnClickListener onClickListener) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle(R.string.add_alarm_dialog_title)
-                    .setMessage(context
-                            .getString(R.string.add_alarm_dialog_message, item.getTitle()))
-                    .setPositiveButton(context.getString(R.string.yes), onClickListener)
-                    .setNegativeButton(context.getString(R.string.no), null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-    }
-
-    private Alarm getAlarmFromItem(Item item, Context ctx) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
-        final String id = UUID.randomUUID().toString();
-        final String title = item.getTitle();
-        final String summary = item.getSummary();
-        final String ringtone = pref.getString(ctx.getString(R.string.key_ringtone_select),
-                Const.DEFAULTS.ALARM_SOUND);
-        final String currentDate = item.getCurrentDate().toString();
-        final String executionDate = item.getExecutionDate().toString();
-
-        Alarm alarm = new Alarm();
-        alarm.setId(id);
-        alarm.setTitle(title);
-        alarm.setSummary(summary);
-        alarm.setRingtone(ringtone);
-        alarm.setCurrentDate(currentDate);
-        alarm.setExecutionDate(executionDate);
-
-        return alarm;
     }
 }

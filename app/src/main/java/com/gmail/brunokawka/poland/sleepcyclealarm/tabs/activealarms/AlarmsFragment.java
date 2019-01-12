@@ -18,8 +18,10 @@ import android.view.ViewGroup;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
+import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.RealmChangeEvent;
+import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.ActiveAlarmsAdapter;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -43,6 +45,8 @@ public class AlarmsFragment extends Fragment
     private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
     private AlarmsContract.AlarmsView.DialogContract dialogContract;
+    private AlarmController alarmController;
+    private AlarmDAO alarmDAO;
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -63,6 +67,8 @@ public class AlarmsFragment extends Fragment
 
         View view = layoutInflater.inflate(R.layout.fragment_alarms, container, false);
         ButterKnife.bind(this, view);
+        alarmController = new AlarmController(view.getContext());
+        alarmDAO = new AlarmDAO();
         return view;
     }
 
@@ -116,10 +122,25 @@ public class AlarmsFragment extends Fragment
                 .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alarmsPresenter.updateEditedAlarm(dialogContract, alarm);
+                createNewAlarm();
                 dialog.dismiss();
             }
-        });
+
+                    private void createNewAlarm() {
+                        alarmController.cancelAlarm(alarm);
+                        String newRingtone = dialogContract.getRingtone();
+
+                        Alarm newAlarm = new Alarm();
+                        newAlarm.setId(alarm.getId());
+                        newAlarm.setTitle(alarm.getTitle());
+                        newAlarm.setSummary(alarm.getSummary());
+                        newAlarm.setCurrentDate(alarm.getCurrentDate());
+                        newAlarm.setExecutionDate(alarm.getExecutionDate());
+                        newAlarm.setRingtone(newRingtone);
+                        alarmDAO.saveEvenIfDuplicate(newAlarm);
+                        alarmController.setAlarm(newAlarm);
+                    }
+                });
         content.findViewById(R.id.alarmsEditCancelButton)
                 .setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,13 +149,15 @@ public class AlarmsFragment extends Fragment
             }
         });
         dialog.show();
+
     }
 
     private void startRingtonePickerActivityForResult() {
         Uri selectedRingtoneUri = Uri.parse(dialogContract.getRingtone());
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM);
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, getString(R.string.pref_ringtone_select_title));
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE,
+                getString(R.string.pref_ringtone_select_title));
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, selectedRingtoneUri);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, selectedRingtoneUri);
@@ -149,7 +172,6 @@ public class AlarmsFragment extends Fragment
             if (uri != null && dialogContract != null) {
                 String chosenRingtone = uri.toString();
                 dialogContract.setRingtone(chosenRingtone);
-                Log.d(getClass().getName(), "onActivityResult ringtone:" + chosenRingtone);
             }
         }
     }
@@ -204,6 +226,7 @@ public class AlarmsFragment extends Fragment
         if(dialog != null) {
             dialog.dismiss();
         }
+        alarmDAO.cleanUp();
         RealmManager.decrementCount();
         super.onDestroyView();
     }

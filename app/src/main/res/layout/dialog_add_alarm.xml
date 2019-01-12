@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmDialog
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?colorPrimary"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:id="@+id/alarmsEditDialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_margin_size"
+            android:text="@string/add_alarm"
+            android:textAlignment="center"
+            android:textColor="@color/text_medium_emphasis" />
+
+        <LinearLayout
+            android:id="@+id/ll_alarm_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin_size"
+            android:layout_marginEnd="@dimen/normal_margin_size"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_margin_size">
+
+        <TextView
+            android:id="@+id/tv_alarm_execution_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_high_emphasis"
+            android:text="@string/alarm_will_ring_at"
+            android:textSize="@dimen/dialog_edit_alarm_title_text_size" />
+
+        <TextView
+            android:id="@+id/tv_alarm_health_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_medium_emphasis" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_alarm_ringtone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin_size"
+            android:layout_marginEnd="@dimen/normal_margin_size"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_margin_size">
+
+            <TextView
+                android:id="@+id/tv_ringtone_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pref_ringtone_select_title"
+                android:textColor="@color/text_high_emphasis"
+                android:textSize="@dimen/dialog_edit_alarm_title_text_size" />
+
+            <TextView
+                android:id="@+id/tv_ringtone_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pref_ringtone_select_selected_summary"
+                android:textColor="@color/text_medium_emphasis" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/normal_margin_size">
+
+            <Button
+                android:id="@+id/alarmsEditCancelButton"
+                style="?floatingActionButtonNoBackgroundStyle"
+                android:layout_width="@dimen/dialog_buttons_width"
+                android:layout_margin="@dimen/dialog_buttons_margin"
+                android:text="@android:string/cancel" />
+
+            <Button
+                android:id="@+id/alarmsEditOkButton"
+                style="?floatingActionButtonStyle"
+                android:layout_width="@dimen/dialog_buttons_width"
+                android:layout_margin="@dimen/dialog_buttons_margin"
+                android:drawableStart="@null"
+                android:text="@string/add" />
+
+        </LinearLayout>
+
+</com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmDialog>

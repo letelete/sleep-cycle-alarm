@@ -132,5 +132,8 @@
     <string name="error_menu_activity_default_case_in_switch">Cannot open this window. Please try again.</string>
     <string name="error_menu_activity_key_use_default_value">Cannot open this window. Please try again.</string>
     <string name="error_wake_up_at_fragment_new_hour_is_null">Cannot generate a list for this hour</string>
+    <string name="add_alarm">Add alarm</string>
+    <string name="add">Add</string>
+    <string name="alarm_will_ring_at">Alarm will ring at %1$s</string>
 
 </resources>

@@ -52,13 +52,6 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         alarmDAO.removeFromRealmById(id);
     }
 
-    @Override
-    public void updateEditedAlarm(final AlarmsContract.AlarmsView.DialogContract dialogContract,
-                                  final Alarm alarm) {
-        Alarm editedAlarm = getEditedAlarm(dialogContract, alarm);
-        alarmDAO.saveEvenIfDuplicate(editedAlarm);
-    }
-
     private boolean hasView() {
         return view != null;
     }
@@ -89,19 +82,5 @@ public class AlarmsPresenter implements AlarmsContract.AlarmsPresenter {
         view.hideList();
         view.hideInfoCard();
         view.showEmptyListHint();
-    }
-
-    private Alarm getEditedAlarm(AlarmsContract.AlarmsView.DialogContract dialog,
-                                 final Alarm previousAlarm) {
-        String newRingtone = dialog.getRingtone();
-
-        Alarm editedAlarm = new Alarm();
-        editedAlarm.setId(previousAlarm.getId());
-        editedAlarm.setTitle(previousAlarm.getTitle());
-        editedAlarm.setSummary(previousAlarm.getSummary());
-        editedAlarm.setCurrentDate(previousAlarm.getCurrentDate());
-        editedAlarm.setExecutionDate(previousAlarm.getExecutionDate());
-        editedAlarm.setRingtone(newRingtone);
-        return editedAlarm;
     }
 }
