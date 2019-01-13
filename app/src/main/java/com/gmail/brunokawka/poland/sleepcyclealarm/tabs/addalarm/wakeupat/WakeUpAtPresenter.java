@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.wakeupat;
 
-import android.util.Log;
-
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
 
@@ -17,18 +15,6 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     public void handleFloatingActionButtonClicked() {
         view.updateCurrentDate();
         showTimeDialog();
-    }
-
-    @Override
-    public void showOrHideElementsDependingOnAmountOfListItems(int amount, 
-                                                               DateTime lastExecutionDate) {
-        if (view != null) {
-            if (amount <= 0) {
-                hideWakeUpAtElements();
-            } else {
-                showWakeUpAtElements(lastExecutionDate);
-            }
-        }
     }
 
     private boolean hasView() {
@@ -55,16 +41,6 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
     public void setUpEnvironment() {
         view.updateCurrentDate();
         view.setLastExecutionDateFromPreferences();
-        view.setUpRecycler();
-    }
-
-    @Override
-    public void setUpUIElements(DateTime lastExecutionDate) {
-        if (lastExecutionDate == null) {
-            hideWakeUpAtElements();
-        } else {
-            view.setUpAdapterAndCheckForContentUpdate();
-        }
     }
 
     @Override
@@ -86,10 +62,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
                                                   DateTime lastExecutionDate) {
         if (itemsBuilder.isPossibleToCreateNextItem(currentDate, newChosenExecutionDate)) {
             updateLastExecutionDate(lastExecutionDate, newChosenExecutionDate);
-            showWakeUpAtElements(newChosenExecutionDate);
-            view.setUpAdapterAndCheckForContentUpdate();
-        } else {
-            showTheClosestAlarmToDefinedHour(newChosenExecutionDate);
+            view.setupAdapter();
         }
     }
 
@@ -99,38 +72,4 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
             view.saveExecutionDateToPreferencesAsString();
         }
     }
-
-    @Override
-    public void hideWakeUpAtElements() {
-        view.hideList();
-        view.showEmptyListHint();
-        view.hideInfoCard();
-    }
-
-    @Override
-    public void showWakeUpAtElements(DateTime lastExecutionDate) {
-        view.showList();
-        view.hideEmptyListHint();
-        view.showInfoCard();
-
-        if (lastExecutionDate != null) {
-            updateCardInfoContent();
-        } else {
-            Log.d(getClass().getName(),
-                    "lastExecutionDate is null, couldn't update card info content");
-        }
-    }
-
-    @Override
-    public void showTheClosestAlarmToDefinedHour(DateTime definedHour) {
-        view.showToast(definedHour);
-    }
-
-    @Override
-    public void updateCardInfoContent() {
-        view.updateCardInfoTitle();
-        view.updateCardInfoSummary();
-    }
-
-
 }

@@ -22,5 +22,5 @@
     android:interpolator="@android:interpolator/accelerate_quad"
     android:fromAlpha="1.0"
     android:toAlpha="0.0"
-    android:duration="140"
+    android:duration="30"
 />
