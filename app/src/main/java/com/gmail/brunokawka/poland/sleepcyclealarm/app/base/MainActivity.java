@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity
 
     public void replaceFragment(Fragment newFragment) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.setCustomAnimations(R.animator.fragment_open_enter, R.animator.fragment_open_exit)
+        ft.setCustomAnimations(R.anim.grow_fade_in_center, R.anim.fast_fade_out)
                 .replace(R.id.main_activity_container, newFragment)
                 .commit();
     }
