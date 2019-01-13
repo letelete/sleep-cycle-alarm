@@ -84,9 +84,6 @@
         <item name="contentPadding">@dimen/content_padding_info_board</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_marginTop">@dimen/normal_margin_size</item>
-        <item name="android:layout_marginLeft">@dimen/normal_margin_size</item>
-        <item name="android:layout_marginRight">@dimen/normal_margin_size</item>
         <item name="cardBackgroundColor">@color/color_accent</item>
     </style>
 

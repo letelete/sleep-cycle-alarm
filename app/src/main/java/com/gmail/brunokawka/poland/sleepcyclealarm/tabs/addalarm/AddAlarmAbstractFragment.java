@@ -22,7 +22,6 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.utils.Const;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.joda.time.DateTime;
 
 import java.util.UUID;
 
@@ -117,7 +116,7 @@ public abstract class AddAlarmAbstractFragment extends Fragment {
                 : pref.getString(ctx.getString(R.string.key_ringtone_select),
                     Const.DEFAULTS.ALARM_SOUND);
         final String currentDate = item.getCurrentDate().toString();
-        final String executionDate = DateTime.now().plusSeconds(10).toString(); //item.getExecutionDate().toString();
+        final String executionDate = item.getExecutionDate().toString();
 
         Alarm alarm = new Alarm();
         alarm.setId(id);

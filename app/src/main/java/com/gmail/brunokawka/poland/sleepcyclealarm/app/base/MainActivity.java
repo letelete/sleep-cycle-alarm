@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(wakeUpAtFragment);
+        if (!EventBus.getDefault().isRegistered(wakeUpAtFragment)) {
+            EventBus.getDefault().register(wakeUpAtFragment);
+        }
     }
 
     @Override
@@ -221,7 +223,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(wakeUpAtFragment);
+        if (EventBus.getDefault().isRegistered(wakeUpAtFragment)) {
+            EventBus.getDefault().unregister(wakeUpAtFragment);
+        }
     }
 
     @Override

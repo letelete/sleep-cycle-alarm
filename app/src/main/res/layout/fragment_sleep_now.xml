@@ -1,73 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/paddingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/sleepNowInfoCardView"
-        style="?infoCardStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        style="@style/info_card_style"
+        android:id="@+id/alarmsInfoCardView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/sleepNowCardInfoTitle"
                 style="?titleInfoText"
-                android:text="@string/sleep_now_card_info_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/alarmsCardInfoTitle"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/sleep_now_card_info_title" />
 
             <TextView
-                android:id="@+id/sleepNowCardInfoSummary"
                 style="?contentInfoText"
-                android:text="@string/sleep_now_card_info_summary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/sleepNowCardInfoTitle"
-                app:layout_constraintTop_toBottomOf="@+id/sleepNowCardInfoTitle" />
-
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/sleepNowListCardView"
-        style="?listCardStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sleepNowInfoCardView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:minHeight="@dimen/listCardViewMinHeight"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/sleepNowListHelper"
-                style="?listHelperText"
-                android:text="@string/sleep_now_list_helper"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <android.support.v7.widget.RecyclerView
-                android:paddingBottom="@dimen/normal_margin_size"
-                android:id="@+id/sleepNowFragmentRecycler"
-                style="?listStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/alarmsCardInfoSummary"
+                android:text="@string/sleep_now_card_info_summary" />
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+    <com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView
+        android:id="@+id/rv_sleepnow"
+        style="?listStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/i_sleepnow_empty_state"
+        layout="@layout/item_empty_state" />
+
+</LinearLayout>

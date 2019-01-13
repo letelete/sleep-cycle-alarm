@@ -7,21 +7,7 @@ public interface AlarmsContract {
 
         void showEditAlarmDialog(Alarm alarm);
 
-        void setUpRecycler();
-
-        void setUpAdapter();
-
-        void showList();
-
-        void hideList();
-
-        void showInfoCard();
-
-        void hideInfoCard();
-
-        void showEmptyListHint();
-
-        void hideEmptyListHint();
+        void setupAdapter();
 
         interface DialogContract {
             void setRingtone(String ringtone);
@@ -35,8 +21,6 @@ public interface AlarmsContract {
         void bindView(AlarmsContract.AlarmsView viewContract);
 
         void unbindView();
-
-        void setUpUi();
 
         void handleRealmChange();
 

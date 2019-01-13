@@ -10,8 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +18,9 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.AlarmDAO;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.RealmChangeEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.ActiveAlarmsAdapter;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,30 +31,22 @@ public class AlarmsFragment extends Fragment
 
     private static final int RINGTONE_INTENT_REQUEST_CODE = 2137;
 
-    @BindView(R.id.alarmsList) protected RecyclerView recycler;
-    @BindView(R.id.alarmsListCardView) protected CardView listCardView;
-    @BindView(R.id.alarmsEmptyListPlaceHolder) protected View emptyListPlaceHolder;
-    @BindView(R.id.alarmsInfoCardView) protected CardView infoCard;
+    private static AlarmsPresenter alarmsPresenter;
 
     private AlarmScopeListener alarmScopeListener;
-    private static AlarmsPresenter alarmsPresenter;
     private AlertDialog dialog;
-    private AlarmsContract.AlarmsView.DialogContract dialogContract;
     private AlarmController alarmController;
     private AlarmDAO alarmDAO;
+    private AlarmsContract.AlarmsView.DialogContract dialogContract;
 
+    @BindView(R.id.rv_alarms)
+    EmptyStateRecyclerView recycler;
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onRealmChanged(RealmChangeEvent realmChangeEvent) {
-        Log.d(getClass().getName(), "Realm change event received.");
-        if (alarmsPresenter != null) {
-            Log.d(getClass().getName(), "Handling realm change...");
-            alarmsPresenter.handleRealmChange();
-        } else {
-            Log.d(getClass().getName(),
-                    "Couldn't handle realm change. AlarmsPresenter is null.");
-        }
-    }
+    @BindView(R.id.alarmsInfoCardView)
+    CardView infoCard;
+
+    @BindView(R.id.i_alarms_empty_state)
+    View vEmptyView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -81,19 +68,22 @@ public class AlarmsFragment extends Fragment
         alarmsPresenter = alarmScopeListener.getPresenter();
         alarmsPresenter.bindView(this);
 
-        alarmsPresenter.setUpUi();
+        setupUi();
+    }
+
+    private void setupUi() {
+        setupRecycler();
+    }
+
+    public void setupRecycler() {
+        recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setupAdapter();
+        recycler.setEmptyView(vEmptyView, R.string.alarms_empty_list_title,
+                R.string.alarms_empty_list_summary);
     }
 
     @Override
-    public void setUpRecycler() {
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recycler.setLayoutManager(layoutManager);
-
-    }
-
-    @Override
-    public void setUpAdapter() {
+    public void setupAdapter() {
         Realm realm = RealmManager.getRealm();
         recycler.setAdapter(new ActiveAlarmsAdapter(realm
                 .where(Alarm.class).findAllAsync().sort("executionDate")));
@@ -106,6 +96,7 @@ public class AlarmsFragment extends Fragment
         }
 
         final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, null);
+
         dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
         dialogContract.bind(alarm);
         dialog = new AlertDialog.Builder(getActivity()).create();
@@ -177,55 +168,15 @@ public class AlarmsFragment extends Fragment
     }
 
     @Override
-    public void showList() {
-        if (listCardView.getVisibility() != View.VISIBLE) {
-            listCardView.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void hideList() {
-        if (listCardView.getVisibility() != View.GONE) {
-            listCardView.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void showInfoCard() {
-        if (infoCard.getVisibility() != View.VISIBLE) {
-            infoCard.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void hideInfoCard() {
-        if (infoCard.getVisibility() != View.GONE) {
-            infoCard.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void showEmptyListHint() {
-        if (emptyListPlaceHolder.getVisibility() != View.VISIBLE) {
-            emptyListPlaceHolder.setVisibility(View.VISIBLE);
-        }
-    }
-
-    @Override
-    public void hideEmptyListHint() {
-        if (emptyListPlaceHolder.getVisibility() != View.GONE) {
-            emptyListPlaceHolder.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
     public void onDestroyView() {
         if(alarmsPresenter != null) {
             alarmsPresenter.unbindView();
         }
+
         if(dialog != null) {
             dialog.dismiss();
         }
+
         alarmDAO.cleanUp();
         RealmManager.decrementCount();
         super.onDestroyView();
