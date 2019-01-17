@@ -13,8 +13,14 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmptyStateRecyclerView extends RecyclerView {
-    @Nullable View emptyView;
+
+    @Nullable
+    private View vEmpty;
+    private List<View> viewsToHideIfListEmpty = new ArrayList<>();
 
     public EmptyStateRecyclerView(Context context) { super(context); }
 
@@ -43,10 +49,32 @@ public class EmptyStateRecyclerView extends RecyclerView {
     };
 
     private void checkIfEmpty() {
-        if (emptyView != null && getAdapter() != null) {
+        if (vEmpty != null && getAdapter() != null) {
             boolean showEmptyView = getAdapter().getItemCount() == 0;
-            emptyView.setVisibility(showEmptyView ? VISIBLE : GONE);
+            vEmpty.setVisibility(showEmptyView ? VISIBLE : GONE);
             setVisibility(showEmptyView ? GONE : VISIBLE);
+
+            if (showEmptyView) {
+                hideViewsToHideIfListEmpty();
+            } else {
+                showViewsToHideIfListEmpty();
+            }
+        }
+    }
+
+    private void hideViewsToHideIfListEmpty() {
+        for (View v : viewsToHideIfListEmpty) {
+            if (v.getVisibility() != View.GONE) {
+                v.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void showViewsToHideIfListEmpty() {
+        for (View v : viewsToHideIfListEmpty) {
+            if (v.getVisibility() != View.VISIBLE) {
+                v.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -62,27 +90,30 @@ public class EmptyStateRecyclerView extends RecyclerView {
         checkIfEmpty();
     }
 
-    public void setEmptyView(@Nullable View emptyView,
+    public void setEmptyView(View emptyView,
                              int resImage,
                              int resTitle,
                              int resSubtitle) {
-        this.emptyView = emptyView;
-        Drawable imageDrawable = getResources().getDrawable(resImage);
         ((ImageView) emptyView.findViewById(R.id.iv_empty_state_icon))
-                .setImageDrawable(imageDrawable);
+                .setImageResource(resImage);
         setEmptyView(emptyView, resTitle, resSubtitle);
     }
 
-    public void setEmptyView(@Nullable View emptyView,
+    public void setEmptyView(View emptyView,
                              int resTitle,
                              int resSubtitle) {
-        this.emptyView = emptyView;
+        this.vEmpty = emptyView;
 
         String title = getResources().getString(resTitle);
         String subTitle = getResources().getString(resSubtitle);
 
         ((TextView) emptyView.findViewById(R.id.tv_empty_state_title)).setText(title);
         ((TextView) emptyView.findViewById(R.id.tv_empty_state_subtitle)).setText(subTitle);
+        checkIfEmpty();
+    }
+
+    public void addViewToHideIfListEmpty(View view) {
+        viewsToHideIfListEmpty.add(view);
         checkIfEmpty();
     }
 

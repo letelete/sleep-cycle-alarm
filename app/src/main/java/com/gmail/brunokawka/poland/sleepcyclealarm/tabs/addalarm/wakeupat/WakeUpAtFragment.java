@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,6 +50,9 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
 
     @BindView(R.id.i_wakeupat_empty_state)
     View vEmptyView;
+
+    @BindView(R.id.cv_wakeupat_info)
+    CardView cvInfo;
 
     @Subscribe
     public void onWakeUpAtActivityClicked(SetHourButtonClickedEvent setHourButtonClickedEvent) {
@@ -115,8 +119,11 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
     private void setupRecycler() {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         setupAdapter();
-        recycler.setEmptyView(vEmptyView, R.string.wake_up_at_empty_list_title,
+        recycler.setEmptyView(vEmptyView,
+                R.drawable.ic_empty_wakeupat_list,
+                R.string.wake_up_at_empty_list_title,
                 R.string.wake_up_at_empty_list_summary);
+        recycler.addViewToHideIfListEmpty(cvInfo);
     }
 
     @Override
