@@ -32,4 +32,5 @@
     <dimen name="dialog_buttons_margin">18dp</dimen>
     <dimen name="paddingSettingsItems">16dp</dimen>
     <dimen name="paddingLayout">24dp</dimen>
+    <dimen name="empty_list_image_size">64dp</dimen>
 </resources>

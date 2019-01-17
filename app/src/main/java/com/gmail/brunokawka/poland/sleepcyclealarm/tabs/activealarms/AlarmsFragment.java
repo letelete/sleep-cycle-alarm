@@ -42,8 +42,8 @@ public class AlarmsFragment extends Fragment
     @BindView(R.id.rv_alarms)
     EmptyStateRecyclerView recycler;
 
-    @BindView(R.id.alarmsInfoCardView)
-    CardView infoCard;
+    @BindView(R.id.cv_alarms_info)
+    CardView cvInfo;
 
     @BindView(R.id.i_alarms_empty_state)
     View vEmptyView;
@@ -78,8 +78,11 @@ public class AlarmsFragment extends Fragment
     public void setupRecycler() {
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         setupAdapter();
-        recycler.setEmptyView(vEmptyView, R.string.alarms_empty_list_title,
+        recycler.setEmptyView(vEmptyView,
+                R.drawable.ic_empty_alarms_list,
+                R.string.alarms_empty_list_title,
                 R.string.alarms_empty_list_summary);
+        recycler.addViewToHideIfListEmpty(cvInfo);
     }
 
     @Override

@@ -7,7 +7,7 @@
 
     <android.support.v7.widget.CardView
         style="@style/info_card_style"
-        android:id="@+id/alarmsInfoCardView"
+        android:id="@+id/cv_sleepnow_info"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 

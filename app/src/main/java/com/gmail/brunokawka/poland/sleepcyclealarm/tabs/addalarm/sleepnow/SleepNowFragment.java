@@ -2,6 +2,7 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.sleepnow;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
