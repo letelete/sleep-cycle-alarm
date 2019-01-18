@@ -2,7 +2,6 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.sleepnow;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.AddAlarmsAdapter;
-import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmAbstractFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddDialogFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
@@ -24,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SleepNowFragment extends AddAlarmAbstractFragment {
+public class SleepNowFragment extends AddDialogFragment {
 
     private ItemsBuilder itemsBuilder;
 

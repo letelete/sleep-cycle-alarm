@@ -9,12 +9,6 @@ public interface AlarmsContract {
 
         void setupAdapter();
 
-        interface DialogContract {
-            void setRingtone(String ringtone);
-            String getRingtone();
-
-            void bind(Alarm alarm);
-        }
     }
 
     interface AlarmsPresenter {

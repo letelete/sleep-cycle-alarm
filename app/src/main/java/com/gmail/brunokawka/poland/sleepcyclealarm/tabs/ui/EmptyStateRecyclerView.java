@@ -1,7 +1,6 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -112,9 +111,8 @@ public class EmptyStateRecyclerView extends RecyclerView {
         checkIfEmpty();
     }
 
-    public void addViewToHideIfListEmpty(View view) {
-        viewsToHideIfListEmpty.add(view);
+    public void addViewToHideIfListEmpty(View viewToHideIfListEmpty) {
+        viewsToHideIfListEmpty.add(viewToHideIfListEmpty);
         checkIfEmpty();
     }
-
 }

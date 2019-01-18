@@ -5,19 +5,10 @@
     <string name="wakeupat_preferences_name">wakeupat_preferences</string>
     <string name="key_last_execution_date">key_last_execution_date</string>
 
-    <string name="key_menu_item_id" translatable="false">key_menu_item_id</string>
-    <string name="key_menu_item_title" translatable="false">key_menu_item_title</string>
-    <string name="key_settings_tag" translatable="false">key_settings_tag</string>
-    <string name="key_help_tag" translatable="false">key_help_tag</string>
-    <string name="key_info_tag" translatable="false">key_info_tag</string>
-
     <string name="key_change_theme" translatable="false">key_select_theme</string>
     <string name="key_alarm_vibrate_when_ringing" translatable="false">key_alarm_vibrate_when_ringing</string>
-    <string name="key_alarm_in_silent_mode" translatable="false">key_alarm_in_silent_mode</string>
     <string name="key_alarms_has_same_ringtone" translatable="false">key_alarms_has_same_ringtone</string>
     <string name="key_ringtone_select" translatable="false">key_ringtone_select</string>
     <string name="key_ring_duration" translatable="false">key_ring_duration</string>
-    <string name="key_alarms_intervals" translatable="false">key_alarms_intervals</string>
-    <string name="key_auto_silence" translatable="false">key_auto_silence</string>
 
 </resources>

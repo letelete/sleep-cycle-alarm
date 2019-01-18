@@ -2,17 +2,18 @@ package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.app.RealmManager;
@@ -21,6 +22,7 @@ import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.ActiveAlarmsAdapter;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.dialog.ItemDialogContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,16 +39,16 @@ public class AlarmsFragment extends Fragment
     private AlertDialog dialog;
     private AlarmController alarmController;
     private AlarmDAO alarmDAO;
-    private AlarmsContract.AlarmsView.DialogContract dialogContract;
+    private ItemDialogContract dialogContract;
 
     @BindView(R.id.rv_alarms)
     EmptyStateRecyclerView recycler;
 
-    @BindView(R.id.cv_alarms_info)
-    CardView cvInfo;
-
     @BindView(R.id.i_alarms_empty_state)
     View vEmptyView;
+
+    @BindView(R.id.tv_alarms_list_hint)
+    TextView tvListHint;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup container,
@@ -82,7 +84,7 @@ public class AlarmsFragment extends Fragment
                 R.drawable.ic_empty_alarms_list,
                 R.string.alarms_empty_list_title,
                 R.string.alarms_empty_list_summary);
-        recycler.addViewToHideIfListEmpty(cvInfo);
+        recycler.addViewToHideIfListEmpty(tvListHint);
     }
 
     @Override
@@ -98,52 +100,52 @@ public class AlarmsFragment extends Fragment
             return;
         }
 
-        final View content = getLayoutInflater().inflate(R.layout.dialog_edit_item, null);
+        String positiveButtonText = getString(R.string.save);
+        String negativeButtonText = getString(R.string.cancel);
+        final View content = getLayoutInflater().inflate(R.layout.dialog_item_ringtone, null);
 
-        dialogContract = (AlarmsContract.AlarmsView.DialogContract) content;
+        dialogContract = (ItemDialogContract) content;
         dialogContract.bind(alarm);
-        dialog = new AlertDialog.Builder(getActivity()).create();
-        dialog.setView(content);
+        AlertDialog.Builder builder
+                = new AlertDialog.Builder(getActivity(), R.style.Theme_SleepCycleAlarm_Dialog);
+        builder.setView(content)
+            .setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    createNewAlarm();
+                    dialog.dismiss();
+                }
 
-        content.findViewById(R.id.alarmsEditRingtoneClickable)
+                private void createNewAlarm() {
+                    alarmController.cancelAlarm(alarm);
+                    String newRingtone = dialogContract.getRingtone();
+
+                    Alarm newAlarm = new Alarm();
+                    newAlarm.setId(alarm.getId());
+                    newAlarm.setTitle(alarm.getTitle());
+                    newAlarm.setSummary(alarm.getSummary());
+                    newAlarm.setCurrentDate(alarm.getCurrentDate());
+                    newAlarm.setExecutionDate(alarm.getExecutionDate());
+                    newAlarm.setRingtone(newRingtone);
+                    alarmDAO.saveEvenIfDuplicate(newAlarm);
+                    alarmController.setAlarm(newAlarm);
+                }
+            })
+            .setNegativeButton(negativeButtonText, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialog.dismiss();
+                }
+            });
+        content.findViewById(R.id.i_dialog_item_ringtone)
                 .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startRingtonePickerActivityForResult();
             }
         });
-        content.findViewById(R.id.alarmsEditOkButton)
-                .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createNewAlarm();
-                dialog.dismiss();
-            }
-
-                    private void createNewAlarm() {
-                        alarmController.cancelAlarm(alarm);
-                        String newRingtone = dialogContract.getRingtone();
-
-                        Alarm newAlarm = new Alarm();
-                        newAlarm.setId(alarm.getId());
-                        newAlarm.setTitle(alarm.getTitle());
-                        newAlarm.setSummary(alarm.getSummary());
-                        newAlarm.setCurrentDate(alarm.getCurrentDate());
-                        newAlarm.setExecutionDate(alarm.getExecutionDate());
-                        newAlarm.setRingtone(newRingtone);
-                        alarmDAO.saveEvenIfDuplicate(newAlarm);
-                        alarmController.setAlarm(newAlarm);
-                    }
-                });
-        content.findViewById(R.id.alarmsEditCancelButton)
-                .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        dialog = builder.create();
         dialog.show();
-
     }
 
     private void startRingtonePickerActivityForResult() {

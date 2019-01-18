@@ -70,6 +70,7 @@ public class WakeUpAtPresenter implements WakeUpAtContract.WakeUpAtPresenter {
         if (!newExecutionDate.equals(lastExecutionDate)) {
             view.setLastExecutionDate(newExecutionDate);
             view.saveExecutionDateToPreferencesAsString();
+            view.updateDescription();
         }
     }
 }

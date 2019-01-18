@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SleepCycleTheme">
+        android:theme="@style/Theme.SleepCycleAlarm">
 
         <activity android:name=".app.base.MainActivity"
             android:screenOrientation="portrait">
@@ -28,11 +28,11 @@
         <activity android:name=".settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name"
-            android:theme="@style/Theme.SleepCycleTheme" />
+            android:theme="@style/Theme.SleepCycleAlarm" />
 
         <activity android:name=".schedule.AlarmActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SleepCycleTheme" />
+            android:theme="@style/Theme.SleepCycleAlarm" />
 
         <service android:name=".schedule.AlarmService" />
 

@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
-import android.util.Log;
-
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
@@ -29,8 +27,6 @@ public class SleepNowBuildingStrategy implements ItemsBuilderStrategy {
             if (isPossibleToCreateNextItem(currentDate, this.executionDate)) {
                 this.executionDate = getNextAlarmDate(this.executionDate);
                 createNextItemAndAddItToArray();
-            } else {
-                Log.e(getClass().getName(), "Its not possible to create next item");
             }
         }
 

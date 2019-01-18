@@ -3,8 +3,6 @@
     <string name="app_name">Sleep Cycle Alarm</string>
 
     <string name="content_descriptions_set_alarm_icon">Set alarm icon</string>
-    <string name="content_descriptions_empty_list_placeholder">Your list is empty</string>
-    <string name="content_description_edit_alarm_image">Your list is empty</string>
 
     <!-- SLEEP QUALITY STATES-->
     <string name="sleep_state_unhealthy">Unhealthy</string>
@@ -21,29 +19,16 @@
     <string name="sleep_now_card_info_title">Going to sleep right now?</string>
     <string name="sleep_now_card_info_summary">Choose any hour of listed below, so I will easily wake you up on time!</string>
 
-    <string name="wake_up_at_card_info_title">Need to wake up on specific time?</string>
-    <string name="wake_up_at_card_info_summary">Set hour and I will create a list of hours when you should go to sleep</string>
-    <string name="wake_up_at_card_info_title_when_user_defined_hour">You want to wake up at %1$s?</string>
-    <string name="wake_up_at_card_info_summary_when_user_defined_hour">I\'ve created a list of hours when you should go to sleep to wake up fully rested at defined hour</string>
-
-    <string name="alarms_card_info_title">Manage your alarms.</string>
-    <string name="alarms_card_info_summary">List presents active alarms that are going to be executed in the future. Used alarms will be removed, so you don\'t need to care about them.</string>
-
-    <string name="activity_alarm_title">Wake up!</string>
     <string name="activity_alarm_hint">Tap anywhere to dismiss alarm</string>
 
     <!-- BUTTON STRINGS -->
     <string name="wake_up_at_set_hour_button">Set hour</string>
-    <string name="alarm_activity_dismiss_button">Dismiss alarm</string>
 
     <!-- LIST STRINGS -->
     <string name="global_hour_mark">h</string>
     <string name="global_minute_mark">min</string>
-    <string name="sleep_now_list_helper">Tap on any hour of listed below to set alarm</string>
-    <string name="wake_up_at_list_helper">Tap on any hour of listed below to set alarm</string>
-    <string name="alarms_list_helper">Tap to edit, press and hold to select</string>
     <string name="list_element_title_changeable">%1$d:%2$d</string>
-    <string name="list_element_summary_changeable">%1$s of sleep, %2$s</string>
+    <string name="list_element_summary_changeable">%1$s of sleep | %2$s</string>
     <string name="wake_up_at_empty_list_title">Wake up on time!</string>
     <string name="wake_up_at_empty_list_summary">Tap the \'Set hour\' button to pick a specific hour at which you want to wake up. I will create a list of hours you should fall asleep at.</string>
     <string name="alarms_empty_list_title">Keep an eye on your alarms!</string>
@@ -53,20 +38,10 @@
     <string name="menu_settings">Settings</string>
 
     <!-- DIALOG STRINGS -->
-    <string name="dialog_add_new_alarm">Add alarm</string>
-    <string name="dialog_set_hour_to_wake_up_at">Set hour when you want to wake up at</string>
-    <string name="dialog_edit_alarm">Edit alarm</string>
-    <string name="dialog_edit_alarm_ringtone_title">Ringtone</string>
-
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="add_alarm_dialog_message">Are you sure you want to add an alarm for %s?</string>
-    <string name="add_alarm_dialog_title">Add alarm</string>
+    <string name="edit_alarm">Edit alarm</string>
 
     <!-- TOAST STRINGS -->
     <string name="toast_double_back_to_exit">Press once again to exit</string>
-    <string name="toast_what_if_theme_didnt_apply">If the theme didn\'t apply correctly, please kill and open the app manually</string>
-    <string name="toast_alarm_added">Alarm will ring at %1$s</string>
 
     <!-- PREFERENCE STRINGS -->
 
@@ -86,10 +61,6 @@
     </string-array>
 
     <!-- NEW CATEGORY -->
-    <string name="pref_wordclock_category">Word clock</string>
-
-    <string name="pref_date_and_time_title">Date &amp; Time</string>
-    <string name="pref_date_and_time_summary">Set the system date and time</string>
 
     <!-- NEW CATEGORY -->
 
@@ -98,13 +69,8 @@
     <string name="pref_alarm_vibrate_when_ringing_title">Phone vibration</string>
     <string name="pref_alarm_vibrate_when_ringing_summary">Vibrate when alarm rings</string>
 
-    <string-array name="pref_alarm_in_silent_mode_values">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string name="pref_alarms_has_same_ringtone_switch_title">Alarms has the same ringtone</string>
-    <string name="pref_alarms_has_same_ringtone_switch_summary">Avoid configuring ringtone for every single alarm.</string>
+    <string name="pref_alarms_have_same_ringtone_switch_title">Alarms have the same ringtone</string>
+    <string name="pref_alarms_have_same_ringtone_switch_summary">Avoid configuring ringtone for every single alarm.</string>
     <string name="pref_ringtone_select_title">Alarm ringtone</string>
     <string name="pref_ringtone_select_default_summary">Tap to select ringtone</string>
     <string name="pref_ringtone_select_selected_summary">Chosen ringtone: %s</string>
@@ -129,12 +95,15 @@
         <item>1800000</item>
     </string-array>
 
-    <string name="error_menu_activity_default_case_in_switch">Cannot open this window. Please try again.</string>
-    <string name="error_menu_activity_key_use_default_value">Cannot open this window. Please try again.</string>
-    <string name="error_wake_up_at_fragment_new_hour_is_null">Cannot generate a list for this hour</string>
     <string name="add_alarm">Add alarm</string>
     <string name="add">Add</string>
-    <string name="alarm_will_ring_at">Alarm will ring at %1$s</string>
     <string name="empty_list_image">Empty list image</string>
+    <string name="dialog_alarm_description">Alarm will ring at %1$s, which gives you %2$s type of rest</string>
+    <string name="alarm_ringtone">Alarm ringtone</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="wakeupat_view_description">To wake up at %1$s fully rested you should fall asleep at one of the listed hours below.</string>
+    <string name="tap_to_set_alarm">Tap to set alarm</string>
+    <string name="tap_to_edit_press_and_hold_to_delete">Tap to edit, press and hold to delete</string>
 
 </resources>

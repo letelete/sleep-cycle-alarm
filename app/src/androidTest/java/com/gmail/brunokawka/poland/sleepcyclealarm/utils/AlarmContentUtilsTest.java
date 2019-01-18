@@ -47,7 +47,7 @@ public class AlarmContentUtilsTest {
             sleepDurationString = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.get(index+1);
             sleepQuality = SUMMARY_VARIABLES_FOR_CURRENT_DATE_EQUALS_2220.get(index+2);
 
-            expected = String.format("%1$s of sleep, %2$s", sleepDurationString, sleepQuality);
+            expected = String.format("%1$s of sleep | %2$s", sleepDurationString, sleepQuality);
             executionDateWithoutTimeToFallAsleep = getDateTime(executionDateString).minusMinutes(ItemsBuilderData.getTimeForFallAsleepInMinutes());
 
             assertEquals(expected, AlarmContentUtils.getSummary(getDateTime(CURRENT_DATE_STRING), executionDateWithoutTimeToFallAsleep));

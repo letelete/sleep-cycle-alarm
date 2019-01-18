@@ -6,7 +6,7 @@
             android:shape="oval">
 
             <solid
-                android:color="@color/transparent"/>
+                android:color="@android:color/transparent"/>
 
             <size
                 android:width="@dimen/circleButtonsBackgroundSize"

@@ -16,6 +16,11 @@ public class AlarmContentUtils {
         return ctx.getString(resourceId);
     }
 
+    public static String getTitle(String executionDateString) {
+        DateTime executionDate = DateTime.parse(executionDateString);
+        return getTitle(executionDate);
+    }
+
     public static String getTitle(DateTime executionDate) {
         return getFormattedTime(executionDate);
     }

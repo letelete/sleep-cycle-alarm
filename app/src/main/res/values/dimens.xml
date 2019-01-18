@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="small_margin_size">4dp</dimen>
-    <dimen name="normal_margin_size">8dp</dimen>
-    <dimen name="medium_margin_size">16dp</dimen>
-    <dimen name="large_margin_size">24dp</dimen>
-    <dimen name="extra_large_margin_size">32dp</dimen>
 
-    <dimen name="elevation_size">3dp</dimen>
-    <dimen name="corner_radius_size">7dp</dimen>
+    <dimen name="paddingLayout">24dp</dimen>
+
+    <dimen name="textH6">20sp</dimen>
+    <dimen name="textBody1">16sp</dimen>
+    <dimen name="textBody2">14sp</dimen>
+    <dimen name="textButton">14sp</dimen>
+    <dimen name="textCaption">12sp</dimen>
+    <dimen name="textOverline">12sp</dimen>
+
+    <dimen name="marginBetweenTextHorizontalSmall">4dp</dimen>
+    <dimen name="marginBetweenTextHorizontal">8dp</dimen>
+    <dimen name="marginItemsInSectionSmall">16dp</dimen>
+    <dimen name="marginItemsInSectionLarge">24dp</dimen>
+    <dimen name="marginBetweenSections">48dp</dimen>
+
+    <dimen name="iconsInListLarge">40dp</dimen>
+    <dimen name="iconsInListSmall">24dp</dimen>
+
+    <dimen name="elevationSize">3dp</dimen>
+    <dimen name="cornerRadiusSize">7dp</dimen>
 
     <dimen name="title">14sp</dimen>
-    <dimen name="large_text_size">18sp</dimen>
-    <dimen name="extra_large_text_size">20sp</dimen>
 
-    <dimen name="content_padding_info_board">12dp</dimen>
-    <dimen name="iconsSize">24dp</dimen>
-    <dimen name="iconsBackgroundSize">36dp</dimen>
+    <dimen name="contentPaddingInfoBoard">12dp</dimen>
     <dimen name="circleButtonsBackgroundSize">36dp</dimen>
 
     <dimen name="fabCornerRadius">38dp</dimen>
     <dimen name="fabHeight">38dp</dimen>
     <dimen name="fabWidth">144dp</dimen>
 
-    <dimen name="listCardViewMinHeight">70dp</dimen>
-
-    <dimen name="emptyListHintSize">125dp</dimen>
-
-    <dimen name="activity_alarm_current_hour_text_size">64sp</dimen>
-    <dimen name="dialog_edit_alarm_title_text_size">18sp</dimen>
-    <dimen name="dialog_buttons_width">125dp</dimen>
-    <dimen name="dialog_buttons_margin">18dp</dimen>
-    <dimen name="paddingSettingsItems">16dp</dimen>
-    <dimen name="paddingLayout">24dp</dimen>
-    <dimen name="empty_list_image_size">64dp</dimen>
+    <dimen name="activityAlarmCurrentHourTextSize">64sp</dimen>
+    <dimen name="emptyListImageSize">64dp</dimen>
+    <dimen name="marginBottomForDialog">8dp</dimen>
 </resources>

@@ -18,6 +18,8 @@ public interface WakeUpAtContract {
 
         void saveExecutionDateToPreferencesAsString();
 
+        void updateDescription();
+
         interface DialogContract {
             DateTime getDateTime();
         }

@@ -13,18 +13,18 @@
 
     <TextView
         android:fontFamily="@font/roboto_bold"
-        android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        android:textColor="@color/text_high_emphasis"
+        android:layout_marginTop="@dimen/marginItemsInSectionLarge"
+        android:textSize="@dimen/textH6"
+        android:textColor="@color/colorTextPrimary"
         android:id="@+id/tv_empty_state_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center" />
 
     <TextView
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/text_medium_emphasis"
+        android:textSize="@dimen/textBody2"
+        android:layout_marginTop="@dimen/marginBetweenTextHorizontal"
+        android:textColor="@color/colorTextSecondary"
         android:id="@+id/tv_empty_state_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

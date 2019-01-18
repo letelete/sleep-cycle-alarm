@@ -1,16 +1,17 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters;
 
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.AddAlarmEvent;
-import com.gmail.brunokawka.poland.sleepcyclealarm.events.AmountOfItemsChangedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -23,16 +24,6 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
 
     private List<Item> listItems;
 
-    private Item getItem(int position) {
-        return listItems != null ? listItems.get(position) : null;
-    }
-
-    @Override
-    public int getItemCount() {
-        EventBus.getDefault().post(new AmountOfItemsChangedEvent(listItems.size()));
-        return listItems.size();
-    }
-
     public AddAlarmsAdapter(List<Item> listItems) {
         this.listItems = listItems;
     }
@@ -42,37 +33,52 @@ public class AddAlarmsAdapter extends RecyclerView.Adapter<AddAlarmsAdapter.List
     public ListAdapterHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup,
                                                 final int index) {
         return new ListAdapterHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_add_alarm, viewGroup, false));
+                .inflate(R.layout.item_alarm, viewGroup, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapterHolder listAdapterHolder, int position) {
-        Item item = listItems.get(position);
-        listAdapterHolder.item = getItem(position);
-
-        listAdapterHolder.textTitle.setText(item.getTitle());
-        listAdapterHolder.textSummary.setText(item.getSummary());
+        final Item item = listItems.get(position);
+        if (item != null) {
+            listAdapterHolder.bind(item);
+        }
     }
 
-    public class ListAdapterHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener {
+    public class ListAdapterHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.cl_item_alarm_root)
+        ConstraintLayout clRoot;
 
-        @BindView(R.id.addAlarmTitle) protected TextView textTitle;
-        @BindView(R.id.addAlarmSummary) protected TextView textSummary;
+        @BindView(R.id.iv_item_alarm_icon)
+        ImageView ivIcon;
 
-        private Item item;
+        @BindView(R.id.tv_item_alarm_title)
+        TextView tvTitle;
+
+        @BindView(R.id.tv_item_alarm_subtitle)
+        TextView tvSubtitle;
 
         ListAdapterHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(this);
         }
 
-        public void onClick(final View view) {
-            final int position = this.getAdapterPosition();
-            item = getItem(position);
-            EventBus.getDefault().post(new AddAlarmEvent(item));
+        public void bind(final Item item) {
+            ivIcon.setImageResource(R.drawable.ic_list_alarm_add_full_shape);
+            tvTitle.setText(item.getTitle());
+            tvSubtitle.setText(item.getSummary());
+
+            clRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EventBus.getDefault().post(new AddAlarmEvent(item));
+                }
+            });
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        return listItems.size();
     }
 }
