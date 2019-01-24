@@ -23,13 +23,6 @@
         alt="Chat on Discord"></a>
 </p>
 
-<p align="center">
-  <a href="#features">Features</a> &bull; 
-  <a href="#dependencies">Dependencies</a> &bull;
-  <a href="#contributing">Contributing</a> &bull; 
-  <a href="#donate">Donate</a>
-</p>
-
 #### Features
 
 * Custom alarm management system
@@ -52,10 +45,6 @@
 #### Contributing
 
 You can trace the status of known issues [here](https://github.com/letelete/Sleep-Cycle-Alarm/issues),
-also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or join to my [discord](https://discord.gg/7Rgg5Zc) server and send a message on #programming text channel if you have any questions.
-
-#### Donate
-
-If you like Sleep Cycle Alarm I'd be happy about a donation.
-
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunokawka)
+also feel free to file a new issue (helpful description, screenshots and logcat are appreciated), or join to my discord <a href="https://discord.gg/invite/fgGzude">
+    <img src="https://img.shields.io/discord/348753044692926465.svg?logo=discord"
+        alt="Chat on Discord"></a> and send a message on #programming text channel if you have any questions.
