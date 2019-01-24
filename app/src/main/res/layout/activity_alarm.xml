@@ -4,7 +4,7 @@
     android:id="@+id/activityAlarmLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorPrimaryDark">
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/activityAlarmCurrentHour"
@@ -14,14 +14,13 @@
         android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/roboto_light"
-        android:textColor="?colorHighEmphasis"
-        android:textSize="@dimen/activity_alarm_current_hour_text_size"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/activityAlarmCurrentHourTextSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/activityAlarmHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -29,7 +28,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/activity_alarm_hint"
-        android:textColor="?colorHighEmphasis"
+        android:textColor="@color/colorTextPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

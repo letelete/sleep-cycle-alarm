@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/marginItemsInSectionSmall"
+    android:id="@+id/cl_item_alarm_root"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="29dp">
+
+    <ImageView
+        android:id="@+id/iv_item_alarm_icon"
+        android:contentDescription="@string/content_descriptions_set_alarm_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_item_alarm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginItemsInSectionSmall"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/textBody1"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_alarm_icon"
+        app:layout_constraintTop_toTopOf="@+id/iv_item_alarm_icon" />
+
+    <TextView
+        android:id="@+id/tv_item_alarm_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginBetweenTextHorizontalSmall"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/textBody2"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_alarm_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_alarm_title" />
+
+
+</android.support.constraint.ConstraintLayout>

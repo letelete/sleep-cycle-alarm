@@ -6,20 +6,21 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.events.SetHourButtonClickedEvent;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.adapters.AddAlarmsAdapter;
-import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddAlarmAbstractFragment;
+import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.addalarm.AddDialogFragment;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.ItemsBuilder;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder.WakeUpAtBuildingStrategy;
 
@@ -32,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WakeUpAtFragment extends AddAlarmAbstractFragment
+public class WakeUpAtFragment extends AddDialogFragment
     implements WakeUpAtContract.WakeUpAtView, DialogInterface.OnDismissListener {
 
     private static WakeUpAtPresenter wakeUpAtPresenter;
@@ -51,8 +52,11 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
     @BindView(R.id.i_wakeupat_empty_state)
     View vEmptyView;
 
-    @BindView(R.id.cv_wakeupat_info)
-    CardView cvInfo;
+    @BindView(R.id.tv_fragment_wakeupat_action_description)
+    TextView tvActionDescription;
+
+    @BindView(R.id.tv_wakeupat_list_hint)
+    TextView tvListHint;
 
     @Subscribe
     public void onWakeUpAtActivityClicked(SetHourButtonClickedEvent setHourButtonClickedEvent) {
@@ -88,6 +92,7 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
         updateCurrentDate();
         setLastExecutionDateFromPreferences();
         setupRecycler();
+        updateDescription();
     }
 
     @Override
@@ -123,7 +128,8 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
                 R.drawable.ic_empty_wakeupat_list,
                 R.string.wake_up_at_empty_list_title,
                 R.string.wake_up_at_empty_list_summary);
-        recycler.addViewToHideIfListEmpty(cvInfo);
+        recycler.addViewToHideIfListEmpty(tvActionDescription);
+        recycler.addViewToHideIfListEmpty(tvListHint);
     }
 
     @Override
@@ -172,6 +178,16 @@ public class WakeUpAtFragment extends AddAlarmAbstractFragment
                 });
         dialog = dialogBuilder.create();
         dialog.show();
+    }
+
+    @Override
+    public void updateDescription() {
+        if (lastExecutionDate != null) {
+            String baseString = getString(R.string.wakeupat_view_description);
+            String simpleExecutionDate = AlarmContentUtils.getTitle(lastExecutionDate);
+            String formattedDescription = String.format(baseString, simpleExecutionDate);
+            tvActionDescription.setText(formattedDescription);
+        }
     }
 
     @Override

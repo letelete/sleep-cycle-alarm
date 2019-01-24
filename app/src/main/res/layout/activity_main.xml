@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout android:id="@+id/main_root"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?appBackgroundStyle"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        style="?toolbarStyle"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:textColorSecondary="@color/colorTextPrimary"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.v7.widget.Toolbar>
+        <TextView
+            android:textSize="@dimen/textH6"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            android:id="@+id/tv_toolbar_title" />
 
-    <TextView
-        android:id="@+id/toolbar_title"
-        style="?headerAppNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/main_activity_container"
@@ -46,8 +46,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="?colorPrimary"
-        app:itemBackground="?colorPrimary"
+        android:background="@color/colorPrimary"
+        app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/navigation_bar_selector"
         app:itemTextColor="@color/navigation_bar_selector"
         app:labelVisibilityMode="selected"
@@ -57,13 +57,13 @@
         app:menu="@menu/bottom_navigation_menu" />
 
     <Button
-        android:paddingStart="@dimen/medium_margin_size"
-        android:paddingEnd="@dimen/medium_margin_size"
-        android:layout_marginBottom="@dimen/large_margin_size"
-        android:layout_marginTop="@dimen/extra_large_text_size"
+        android:paddingStart="@dimen/marginItemsInSectionSmall"
+        android:paddingEnd="@dimen/marginItemsInSectionSmall"
+        android:layout_marginBottom="@dimen/marginItemsInSectionLarge"
+        android:layout_marginTop="@dimen/marginItemsInSectionSmall"
         android:id="@+id/wakeUpAtFloatingActionButtonExtended"
         android:text="@string/wake_up_at_set_hour_button"
-        style="?floatingActionButtonStyle"
+        style="@style/Theme.SleepCycleAlarm.FloatingActionButton"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

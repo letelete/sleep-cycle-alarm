@@ -43,18 +43,21 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView.OnNavigationItemSelectedListener,
         Toolbar.OnMenuItemClickListener {
 
-    @BindView(R.id.toolbar) protected Toolbar appToolbar;
-    @BindView(R.id.bottom_navigation_bar) protected BottomNavigationView bottomNavigationBar;
-    @BindView(R.id.wakeUpAtFloatingActionButtonExtended) protected Button wakeUpAtButton;
-
     private FragmentManager fragmentManager;
     private MainPresenter mainPresenter;
     private WakeUpAtSetHourButton wakeUpAtSetHourButton;
     private Bundle savedInstanceState;
-
-    private SleepNowFragment sleepNowFragment;
     private WakeUpAtFragment wakeUpAtFragment;
-    private AlarmsFragment alarmsFragment;
+    private int lastBottomViewClickedId = -1;
+
+    @BindView(R.id.toolbar)
+    Toolbar appToolbar;
+
+    @BindView(R.id.bottom_navigation_bar)
+    BottomNavigationView bottomNavigationBar;
+
+    @BindView(R.id.wakeUpAtFloatingActionButtonExtended)
+    Button wakeUpAtButton;
 
     @OnClick(R.id.wakeUpAtFloatingActionButtonExtended)
     public void onWakeUpAtFloatingActionButtonExtendedClicked() {
@@ -71,11 +74,7 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
         RealmManager.initializeRealmConfig();
         mainPresenter = new MainPresenter(this);
-
-        sleepNowFragment = new SleepNowFragment();
         wakeUpAtFragment = new WakeUpAtFragment();
-        alarmsFragment = new AlarmsFragment();
-
         wakeUpAtSetHourButton = new WakeUpAtSetHourButton(wakeUpAtButton);
         fragmentManager = getSupportFragmentManager();
         mainPresenter.setUpUi(savedInstanceState);
@@ -124,23 +123,26 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void setUpToolbar() {
         setSupportActionBar(appToolbar);
-        tryToHideActionBarTitle();
+        setupActionbarTitle();
         appToolbar.setOnMenuItemClickListener(this);
     }
 
-    private void tryToHideActionBarTitle() {
+    private void setupActionbarTitle() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         } else {
-            Log.e(getClass().getName(), "tryToHideActionBarTitle(): actionBar == null");
+            Log.e(getClass().getName(), "setupActionbarTitle(): actionBar == null");
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int menuItemId = menuItem.getItemId();
-        mainPresenter.handleBottomNavigationTabClick(menuItemId);
+        if (lastBottomViewClickedId != menuItemId) {
+            mainPresenter.handleBottomNavigationTabClick(menuItemId);
+        }
+        lastBottomViewClickedId = menuItemId;
         return true;
     }
 
@@ -162,17 +164,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void openSleepNowFragment() {
-        replaceFragment(sleepNowFragment);
+        replaceFragment(new SleepNowFragment());
     }
 
     @Override
     public void openWakeUpAtFragment() {
-        replaceFragment(wakeUpAtFragment);
+        replaceFragment(new WakeUpAtFragment());
     }
 
     @Override
     public void openAlarmsFragment() {
-        replaceFragment(alarmsFragment);
+        replaceFragment(new AlarmsFragment());
     }
 
     public void replaceFragment(Fragment newFragment) {

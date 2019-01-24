@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.dialog.ItemDialog
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorDialogBackground"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/paddingLayout"
+    android:paddingEnd="@dimen/marginBottomForDialog"
+    android:paddingStart="@dimen/paddingLayout"
+    android:paddingBottom="@dimen/marginBottomForDialog"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:id="@+id/tv_dialog_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_alarm"
+            android:textSize="@dimen/textH6"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/colorTextPrimary" />
+
+        <TextView
+            android:layout_marginTop="@dimen/marginItemsInSectionSmall"
+            android:id="@+id/tv_dialog_item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/textBody1" />
+
+        <include layout="@layout/item_alarm"
+            android:id="@+id/i_dialog_item_ringtone"
+            android:layout_marginTop="@dimen/marginItemsInSectionLarge"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+
+</com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.dialog.ItemDialog>

@@ -1,43 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/alarms_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:padding="@dimen/paddingLayout"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        style="@style/info_card_style"
-        android:id="@+id/cv_alarms_info"
+    <TextView
+        android:id="@+id/tv_alarms_list_hint"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                style="?titleInfoText"
-                android:id="@+id/alarmsCardInfoTitle"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/alarms_card_info_title" />
-
-            <TextView
-                style="?contentInfoText"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/alarmsCardInfoSummary"
-                android:text="@string/alarms_card_info_summary" />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+        android:textSize="@dimen/textCaption"
+        android:textAllCaps="true"
+        android:textColor="@color/colorTextSecondary"
+        android:layout_marginTop="@dimen/marginItemsInSectionSmall"
+        android:text="@string/tap_to_edit_press_and_hold_to_delete" />
 
     <com.gmail.brunokawka.poland.sleepcyclealarm.tabs.ui.EmptyStateRecyclerView
         android:id="@+id/rv_alarms"
-        style="?listStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

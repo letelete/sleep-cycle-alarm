@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="transparent">#00FFFFFF</color>
-    
-    <color name="color_primary">#FFFFFF</color>
-    <color name="color_primary_dark">#F9FAFC</color>
-    <color name="color_accent">#3b79e8</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#FFFFFF</color>
+    <color name="colorAccent">#2ed573</color>
 
-    <color name="color_accent_lighter">#82b1ff</color>
-    <color name="color_ripple_material">#1f000000</color>
+    <color name="colorDialogBackground">@color/colorPrimary</color>
 
-    <color name="text_high_emphasis">#DE000000</color>
-    <color name="text_medium_emphasis">#99000000</color>
-    <color name="text_disabled">#61000000</color>
+    <!-- 100, 87, 54 etc.. - OPACITY IN PERCENTAGE -->
+    <color name="colorBlack100">#000000</color>
+    <color name="colorBlack87">#DE000000</color>
+    <color name="colorBlack70">#B3000000</color>
+    <color name="colorBlack54">#8A000000</color>
+    <color name="colorBlack50">#80000000</color>
+    <color name="colorBlack38">#61000000</color>
+    <color name="colorBlack12">#1F000000</color>
 
-    <color name="text_on_card_info">#FFFFFF</color>
+    <!-- 100, 87, 54 etc.. - OPACITY IN PERCENTAGE -->
+    <color name="colorWhite100">#FFFFFF</color>
+    <color name="colorWhite87">#DEFFFFFF</color>
+    <color name="colorWhite70">#B3FFFFFF</color>
+    <color name="colorWhite54">#8AFFFFFF</color>
+    <color name="colorWhite50">#8FFFFFF0</color>
+    <color name="colorWhite38">#61FFFFFF</color>
+    <color name="colorWhite12">#1FFFFFFF</color>
 
-    <color name="icons_active_focused_negative">#DEFFFFFF</color>
-    <color name="icons_active_unfocused">#8A000000</color>
+    <color name="colorTextPrimary">@color/colorBlack87</color>
+    <color name="colorTextSecondary">@color/colorBlack54</color>
+    <color name="colorTextDisabled">@color/colorBlack38</color>
+
+    <color name="colorTextPrimaryNegative">@color/colorWhite100</color>
+    <color name="colorTextSecondaryNegative">@color/colorWhite70</color>
+    <color name="colorTextDisabledNegative">@color/colorWhite50</color>
+
+    <color name="colorAccentLighter">#82b1ff</color>
+    <color name="colorRippleMaterial">#1f000000</color>
+
+    <color name="colorTextOnCardInfo">#FFFFFF</color>
+
+    <color name="colorIconsInList">@color/colorTextPrimary</color>
+    <color name="colorBackgroundForIconsInList">@color/colorBlack12</color>
+
+    <color name="colorIconsActiveFocusedNegative">#DEFFFFFF</color>
+    <color name="colorIconsActiveUnfocused">#8A000000</color>
 
 </resources>

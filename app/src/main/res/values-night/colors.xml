@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="color_primary">#34495E</color>
-    <color name="color_primary_dark">#2C3E50</color>
-    <color name="color_accent">#10ac84</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorSecondary">#000000</color>
 
-    <color name="color_accent_lighter">#a7ffeb</color>
-    <color name="color_ripple_material">#33ffffff</color>
+    <color name="colorDialogBackground">#111111</color>
 
-    <color name="text_high_emphasis">#DEFFFFFF</color>
-    <color name="text_medium_emphasis">#99FFFFFF</color>
-    <color name="text_disabled">#61FFFFFF</color>
+    <color name="colorRippleMaterial">#33ffffff</color>
 
-    <color name="text_on_card_info">#DEFFFFFF</color>
-    <color name="icons_active_focused_negative">#DEFFFFFF</color>
+    <color name="colorTextPrimary">@color/colorWhite87</color>
+    <color name="colorTextSecondary">@color/colorWhite54</color>
+    <color name="colorTextDisabled">@color/colorWhite38</color>
 
-    <color name="icons_active_unfocused">#8AFFFFFF</color>
+    <color name="colorTextPrimaryNegative">@color/colorBlack87</color>
+    <color name="colorTextSecondaryNegative">@color/colorBlack54</color>
+    <color name="colorTextDisabledNegative">@color/colorBlack38</color>
+
+    <color name="colorIconsInList">@color/colorTextPrimary</color>
+    <color name="colorBackgroundForIconsInList">@color/colorWhite12</color>
+
+    <color name="colorTextOnCardInfo">#DEFFFFFF</color>
+    <color name="colorIconsActiveFocusedNegative">#DEFFFFFF</color>
+
+    <color name="colorIconsActiveUnfocused">#8AFFFFFF</color>
 
 </resources>

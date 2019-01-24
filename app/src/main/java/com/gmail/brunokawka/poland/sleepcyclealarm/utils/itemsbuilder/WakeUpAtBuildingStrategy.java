@@ -1,7 +1,5 @@
 package com.gmail.brunokawka.poland.sleepcyclealarm.utils.itemsbuilder;
 
-import android.util.Log;
-
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.ItemsBuilderData;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Item;
 import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
@@ -31,7 +29,6 @@ public class WakeUpAtBuildingStrategy implements ItemsBuilderStrategy {
                 timeToGoToSleep = getNextAlarmDate(timeToGoToSleep);
                 createNextItemAndAddItToArray();
             } else {
-                Log.d(getClass().getName(), "Its not possible to create next item");
                 break;
             }
         }

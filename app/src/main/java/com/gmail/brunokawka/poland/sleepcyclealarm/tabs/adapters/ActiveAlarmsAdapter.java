@@ -7,12 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gmail.brunokawka.poland.sleepcyclealarm.R;
 import com.gmail.brunokawka.poland.sleepcyclealarm.data.pojo.Alarm;
 import com.gmail.brunokawka.poland.sleepcyclealarm.schedule.AlarmController;
 import com.gmail.brunokawka.poland.sleepcyclealarm.tabs.activealarms.AlarmsPresenter;
+import com.gmail.brunokawka.poland.sleepcyclealarm.utils.AlarmContentUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +32,7 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AlarmViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_access_alarm, parent, false));
+                .inflate(R.layout.item_alarm, parent, false));
     }
 
     @Override
@@ -43,13 +45,21 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
 
     public class AlarmViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.accessAlarm) protected ConstraintLayout itemLayout;
-        @BindView(R.id.accessAlarmTitle) protected TextView textTitle;
-        @BindView(R.id.accessAlarmSummary) protected TextView textSummary;
-
         private final AlarmsPresenter alarmsPresenter;
         private AlarmController alarmController;
         private Context context;
+
+        @BindView(R.id.cl_item_alarm_root)
+        ConstraintLayout clRoot;
+
+        @BindView(R.id.iv_item_alarm_icon)
+        ImageView ivIcon;
+
+        @BindView(R.id.tv_item_alarm_title)
+        TextView tvTitle;
+
+        @BindView(R.id.tv_item_alarm_subtitle)
+        TextView tvSubtitle;
 
         public AlarmViewHolder(View itemView) {
             super(itemView);
@@ -61,10 +71,12 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
 
         public void bind(final Alarm alarm) {
             final String id = alarm.getId();
-            textTitle.setText(alarm.getTitle());
-            textSummary.setText(alarm.getSummary());
+            ivIcon.setImageResource(R.drawable.ic_list_alarm_access_full_shape);
+            String alarmExecutionDate = AlarmContentUtils.getTitle(alarm.getExecutionDate());
+            tvTitle.setText(alarmExecutionDate);
+            tvSubtitle.setText(alarm.getSummary());
 
-            itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            clRoot.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     alarmsPresenter.deleteAlarmById(id);
@@ -73,7 +85,7 @@ public class ActiveAlarmsAdapter extends RealmRecyclerViewAdapter<Alarm,
                 }
             });
 
-            itemLayout.setOnClickListener(new View.OnClickListener() {
+            clRoot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alarmsPresenter.showEditDialog(alarm);

@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="?colorPrimary"
+    android:background="@color/colorPrimary"
+    android:paddingStart="@dimen/marginItemsInSectionSmall"
+    android:paddingEnd="0dp"
     android:orientation="vertical" >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_settings"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?colorPrimary" />
+        android:background="@color/colorPrimary" />
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fl_settings_container"
