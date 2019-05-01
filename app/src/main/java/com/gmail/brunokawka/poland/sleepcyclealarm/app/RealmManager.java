@@ -51,6 +51,8 @@ public class RealmManager {
             Log.d(RealmManager.class.getName(), "Decrementing Activity Count: closing Realm.");
             activityCount = 0;
             realm.close();
+            // realmConfiguration null on Android 6 (Test with xiaomi Mi4)
+            if (realmConfiguration == null) initializeRealmConfig();
             if(Realm.compactRealm(realmConfiguration)) {
                 Log.d(RealmManager.class.getName(), "Realm compacted successfully.");
             }
